@@ -1,13 +1,14 @@
-// Fetch official, public-domain Swiss cantonal flag SVGs from Wikimedia Commons
-// into public/flags/<AB>.svg, cached in the repo so the app has no runtime
-// dependency on Wikimedia. Swiss cantonal arms are in the public domain.
+// Fetch Swiss cantonal flag SVGs into public/flags/<AB>.svg, cached in the repo
+// so the app has no runtime dependency on a third party.
 //
-// Run:  npm run flags
+// Run:  npm run flags               (skips files already present)
+//       npm run flags -- --force    (re-download everything)
 //
-// Polite by design: sequential requests, a descriptive User-Agent, and a delay
-// between calls (Commons rate-limits bursts with HTTP 429). Any canton that
-// cannot be resolved falls back to a clean geometric SVG so the build is never
-// blocked — swap those for full heraldry later if you want.
+// Source: https://github.com/ylerjen/swiss-flags (MIT), served over jsDelivr and
+// pinned to a commit SHA so the artwork is reproducible. Every canton is present
+// upstream with a consistent 24.03 × 29 viewBox, so no geometric fallbacks are
+// needed — a canton that cannot be fetched fails the run loudly instead of
+// silently shipping a wrong flag.
 
 import { mkdir, writeFile, readFile, access } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
@@ -18,138 +19,115 @@ const OUT = join(__dirname, '..', 'public', 'flags')
 
 const UA =
   'bundeshaus-pack/0.1 (Swiss Parliament card game; educational prototype)'
-const DELAY_MS = 700
 
-// Each canton: abbreviation → candidate Commons file titles (tried in order).
-const CANTONS = {
-  ZH: ['Flag of Canton of Zürich.svg'],
-  BE: ['Flag of Canton of Bern.svg'],
-  LU: ['Flag of Canton of Lucerne.svg', 'Flag of Canton of Luzern.svg'],
-  UR: ['Flag of Canton of Uri.svg'],
-  SZ: ['Flag of Canton of Schwyz.svg'],
-  OW: ['Flag of Canton of Obwalden.svg'],
-  NW: ['Flag of Canton of Nidwalden.svg'],
-  GL: ['Flag of Canton of Glarus.svg'],
-  ZG: ['Flag of Canton of Zug.svg'],
-  FR: ['Flag of Canton of Fribourg.svg'],
-  SO: ['Flag of Canton of Solothurn.svg'],
-  BS: ['Flag of Canton of Basel-Stadt.svg'],
-  BL: ['Flag of Canton of Basel-Landschaft.svg'],
-  SH: ['Flag of Canton of Schaffhausen.svg'],
-  AR: ['Flag of Canton of Appenzell Ausserrhoden.svg'],
-  AI: ['Flag of Canton of Appenzell Innerrhoden.svg'],
-  SG: ['Flag of Canton of St. Gallen.svg'],
-  GR: ['Flag of Canton of Graubünden.svg', 'Flag of Canton of Grisons.svg'],
-  AG: ['Flag of Canton of Aargau.svg'],
-  TG: ['Flag of Canton of Thurgau.svg'],
-  TI: ['Flag of Canton of Ticino.svg'],
-  VD: ['Flag of Canton of Vaud.svg'],
-  VS: ['Flag of Canton of Valais.svg'],
-  NE: ['Flag of Canton of Neuchâtel.svg'],
-  GE: ['Flag of Canton of Geneva.svg', 'Flag of Canton of Geneve.svg'],
-  JU: ['Flag of Canton of Jura.svg'],
-}
+const REPO = 'ylerjen/swiss-flags'
+// Pinned commit — bump deliberately, never track a moving branch.
+const REF = '68d246174f297e07e5dca5d9df051cd819537149'
+const MIRRORS = [
+  (ab) => `https://cdn.jsdelivr.net/gh/${REPO}@${REF}/cantons/${ab}.svg`,
+  (ab) => `https://raw.githubusercontent.com/${REPO}/${REF}/cantons/${ab}.svg`,
+]
 
-// Minimal correct-colour geometric fallbacks (used only if a fetch fails).
-const FALLBACK = {
-  ZH: two('#0F4C9E', '#ffffff', 'diag'),
-  SO: two('#E4002B', '#ffffff', 'horiz'),
-  TI: two('#E4002B', '#0F4C9E', 'vert'),
-  VS: two('#E4002B', '#ffffff', 'vert'),
-  NE: tri('#17683A', '#ffffff', '#E4002B', 'vert'),
-  FR: two('#141414', '#ffffff', 'horiz'),
-  AG: two('#141414', '#0F4C9E', 'vert'),
-}
-function two(a, b, dir) {
-  const g =
-    dir === 'diag'
-      ? `<polygon points="0,0 32,0 0,32" fill="${a}"/><polygon points="32,0 32,32 0,32" fill="${b}"/>`
-      : dir === 'vert'
-        ? `<rect width="16" height="32" fill="${a}"/><rect x="16" width="16" height="32" fill="${b}"/>`
-        : `<rect width="32" height="16" fill="${a}"/><rect y="16" width="32" height="16" fill="${b}"/>`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${g}</svg>`
-}
-function tri(a, b, c, _dir) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="10.67" fill="${a}"/><rect y="10.67" width="32" height="10.67" fill="${b}"/><rect y="21.33" width="32" height="10.67" fill="${c}"/></svg>`
-}
-function genericFallback(ab) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#5C7391"/><text x="16" y="21" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">${ab}</text></svg>`
-}
+// prettier-ignore
+const CANTONS = [
+  'ZH', 'BE', 'LU', 'UR', 'SZ', 'OW', 'NW', 'GL', 'ZG', 'FR', 'SO', 'BS', 'BL',
+  'SH', 'AR', 'AI', 'SG', 'GR', 'AG', 'TG', 'TI', 'VD', 'VS', 'NE', 'GE', 'JU',
+]
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+// The smallest upstream flag (FR) is ~900 bytes; anything below this is a
+// truncated download or a placeholder left by an earlier version of this script.
+const MIN_BYTES = 500
 
-async function resolveUrl(title) {
-  const api = `https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&prop=imageinfo&iiprop=url&titles=${encodeURIComponent('File:' + title)}`
-  const res = await fetch(api, { headers: { 'User-Agent': UA } })
-  if (!res.ok) throw new Error(`API HTTP ${res.status}`)
-  const data = await res.json()
-  const page = data?.query?.pages?.[0]
-  if (page?.missing) return null
-  return page?.imageinfo?.[0]?.url ?? null
+const ATTRIBUTION = `Swiss cantonal flags in this directory are generated by scripts/fetch-flags.mjs.
+
+Source:  https://github.com/${REPO}
+Licence: MIT
+Commit:  ${REF}
+
+Do not edit these files by hand — run \`npm run flags -- --force\` instead.
+`
+
+function isValidSvg(body) {
+  return (
+    body.includes('<svg') && body.includes('</svg>') && body.length >= MIN_BYTES
+  )
 }
 
 async function download(url) {
   const res = await fetch(url, { headers: { 'User-Agent': UA } })
-  if (!res.ok) throw new Error(`SVG HTTP ${res.status}`)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
   return await res.text()
 }
 
-async function exists(p) {
-  try {
-    await access(p)
-    return true
-  } catch {
-    return false
+async function fetchFlag(ab) {
+  const errors = []
+  for (const mirror of MIRRORS) {
+    const url = mirror(ab.toLowerCase())
+    try {
+      const svg = await download(url)
+      if (!isValidSvg(svg)) throw new Error(`unexpected body (${svg.length} B)`)
+      return svg
+    } catch (e) {
+      errors.push(`${url}: ${e.message}`)
+    }
   }
+  throw new Error(errors.join('\n    '))
+}
+
+async function cachedFlag(path) {
+  try {
+    await access(path)
+  } catch {
+    return null
+  }
+  const body = await readFile(path, 'utf8')
+  return isValidSvg(body) ? body : null
 }
 
 async function main() {
   await mkdir(OUT, { recursive: true })
   const force = process.argv.includes('--force')
+
   let fetched = 0
   let cached = 0
-  let fell = 0
+  const failed = []
 
-  for (const [ab, titles] of Object.entries(CANTONS)) {
-    const out = join(OUT, `${ab}.svg`)
-    if (!force && (await exists(out))) {
-      const body = await readFile(out, 'utf8')
-      if (body.length > 200) {
-        cached++
-        continue
-      }
-    }
-
-    let svg = null
-    for (const title of titles) {
+  const results = await Promise.all(
+    CANTONS.map(async (ab) => {
+      const out = join(OUT, `${ab}.svg`)
+      if (!force && (await cachedFlag(out))) return { ab, status: 'cached' }
       try {
-        const url = await resolveUrl(title)
-        await sleep(DELAY_MS)
-        if (!url) continue
-        svg = await download(url)
-        await sleep(DELAY_MS)
-        break
+        const svg = await fetchFlag(ab)
+        await writeFile(out, svg)
+        return { ab, status: 'fetched', size: svg.length }
       } catch (e) {
-        process.stderr.write(`  ${ab} "${title}": ${e.message}\n`)
-        await sleep(DELAY_MS)
+        return { ab, status: 'failed', message: e.message }
       }
-    }
+    }),
+  )
 
-    if (svg && svg.includes('<svg')) {
-      await writeFile(out, svg)
+  for (const r of results) {
+    if (r.status === 'cached') {
+      cached++
+    } else if (r.status === 'fetched') {
       fetched++
-      process.stdout.write(`✓ ${ab}  (${(svg.length / 1024).toFixed(1)} kB)\n`)
+      process.stdout.write(`✓ ${r.ab}  (${(r.size / 1024).toFixed(1)} kB)\n`)
     } else {
-      const fb = FALLBACK[ab] || genericFallback(ab)
-      await writeFile(out, fb)
-      fell++
-      process.stdout.write(`• ${ab}  (geometric fallback)\n`)
+      failed.push(r.ab)
+      process.stderr.write(`✗ ${r.ab}\n    ${r.message}\n`)
     }
   }
 
+  await writeFile(join(OUT, 'ATTRIBUTION.txt'), ATTRIBUTION)
+
   process.stdout.write(
-    `\nflags: ${fetched} fetched, ${cached} cached, ${fell} fallback → ${OUT}\n`,
+    `\nflags: ${fetched} fetched, ${cached} cached, ${failed.length} failed → ${OUT}\n`,
   )
+
+  if (failed.length) {
+    process.stderr.write(`\nMissing flags: ${failed.join(', ')}\n`)
+    process.exitCode = 1
+  }
 }
 
 main().catch((e) => {
