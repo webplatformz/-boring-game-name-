@@ -8,9 +8,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "data": "node scripts/fetch-members.mjs",
+    "data": "node scripts/fetch-raw.mjs && node scripts/build-members.mjs",
+    "data:fetch": "node scripts/fetch-raw.mjs",
+    "data:build": "node scripts/build-members.mjs",
     "flags": "node scripts/fetch-flags.mjs",
-    "data:all": "node scripts/fetch-flags.mjs && node scripts/fetch-members.mjs"
+    "data:all": "node scripts/fetch-flags.mjs && node scripts/fetch-raw.mjs && node scripts/build-members.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
