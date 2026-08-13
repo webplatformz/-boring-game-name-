@@ -25,11 +25,12 @@ const FIGHT_CARD_W = Math.min(0.6 * CARD_MAX_W, 210)
  * the whole thing down with a CSS transform, so every proportion (text,
  * wedge, bars) shrinks together correctly.
  */
-function ScaledCard({ width, member, foil = true, highlightStat = null, style }: {
+function ScaledCard({ width, member, foil = true, highlightStat = null, hideStats = false, style }: {
   width: number
   member: Member
   foil?: boolean
   highlightStat?: 'atk' | 'def' | null
+  hideStats?: boolean
   style?: CSSProperties
 }) {
   const scale = width / CARD_MAX_W
@@ -38,7 +39,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, style }:
     <div style={{ width, height, position: 'relative' }}>
       <div style={{ width: CARD_MAX_W, height: CARD_MAX_W * (504 / 336), position: 'absolute', top: 0, left: 0, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
         <CardGlow rarity={member.rarity} />
-        <CardFront member={member} foil={foil} highlightStat={highlightStat} style={style} />
+        <CardFront member={member} foil={foil} highlightStat={highlightStat} hideStats={hideStats} style={style} />
       </div>
     </div>
   )
@@ -202,6 +203,7 @@ function Arena({
         actionLabel={revealed ? oppAction : null}
         bump={step === 'reveal' && oppAction === 'attack' ? 'down' : null}
         dimmed={step === 'result' && won}
+        hideStats={!locked}
       />
 
       <div
@@ -305,6 +307,7 @@ function BattleCard({
   actionLabel,
   bump,
   dimmed = false,
+  hideStats = false,
 }: {
   label: string
   labelColor: string
@@ -314,6 +317,7 @@ function BattleCard({
   actionLabel: Action | null
   bump: 'up' | 'down' | null
   dimmed?: boolean
+  hideStats?: boolean
 }) {
   const t = TIERS[member.rarity]
   return (
@@ -334,6 +338,7 @@ function BattleCard({
           width={width}
           member={member}
           highlightStat={highlightStat}
+          hideStats={hideStats}
           style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${t.c}8c` }}
         />
       </div>
