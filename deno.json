@@ -1,5 +1,0 @@
-{
-  "tasks": {
-    "fetch": "deno run --allow-net fetch.ts"
-  }
-}

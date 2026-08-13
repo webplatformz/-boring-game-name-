@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
 import { SESSION, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
-import { Silhouette } from './Silhouette'
+import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
 
 const AB = "'Archivo Black',sans-serif"
@@ -130,7 +130,7 @@ export function CardFront({
 
   return (
     <div style={face}>
-      <Silhouette deep={t.deep} />
+      <Portrait member={m} deep={t.deep} />
       <div
         style={{
           position: 'absolute',
@@ -256,6 +256,8 @@ export function CardFront({
           <Stat label="CMTE" value={m.committeeCount} />
           <Stat label="NO." value={m.no} accent />
         </div>
+
+        <PortraitCredit member={m} style={{ marginTop: -4 }} />
       </div>
     </div>
   )

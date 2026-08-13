@@ -8,6 +8,22 @@ export interface Committee {
   chair: boolean
 }
 
+/**
+ * Portrait shipped in public/portraits. Every source image is CC BY / CC BY-SA,
+ * so `author` and `licence` must be surfaced wherever the image is shown.
+ */
+export interface Portrait {
+  /** Root-relative path, e.g. "/portraits/825.webp". Use `portraitUrl`. */
+  src: string
+  author: string
+  licence: string
+  licenceUrl: string | null
+  /** Credit line requested by the author, if any. */
+  attribution: string | null
+  /** Commons file page. */
+  source: string
+}
+
 export interface Member {
   id: number
   first: string
@@ -32,11 +48,13 @@ export interface Member {
   ovr: number
   rarity: RarityKey
   mandates: string | null
+  portrait: Portrait
   no: string
 }
 
 export interface MembersMeta {
   source: string
+  portraitSource: string
   generatedAt: string
   count: number
   rarity: Record<RarityKey, number>
@@ -51,3 +69,7 @@ export const MEMBERS_BY_ID: Map<number, Member> = new Map(MEMBERS.map((m) => [m.
 
 /** URL of a canton's flag SVG (served from public/flags). */
 export const flagUrl = (canton: string): string => `${import.meta.env.BASE_URL}flags/${canton}.svg`
+
+/** URL of a member's portrait (served from public/portraits). */
+export const portraitUrl = (m: Member): string =>
+  `${import.meta.env.BASE_URL}${m.portrait.src.replace(/^\//, '')}`
