@@ -4,6 +4,7 @@ import type { Game } from '../game/useGame'
 import type { Member, RarityKey } from '../data/members'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
 import { Flag } from '../components/Flag'
+import { CardFront } from '../components/CardFront'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -14,7 +15,7 @@ export function Collection({ game }: { game: Game }) {
   const [sortKey, setSortKey] = useState<SortKey>('ovr')
   const [sortDir, setSortDir] = useState(-1) // -1 = desc, 1 = asc
   const [selectedRarities, setSelectedRarities] = useState<Set<RarityKey>>(new Set(RARITY_ORDER))
-  const [highlightedId, setHighlightedId] = useState<number | null>(null)
+  const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const [openCantonDropdown, setOpenCantonDropdown] = useState(false)
   const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set())
 
@@ -256,11 +257,10 @@ export function Collection({ game }: { game: Game }) {
             {sorted.map((r) => {
               const t = TIERS[r.member.rarity]
               const pc = partyColors(r.member.partyCode)
-              const isHighlighted = highlightedId === r.member.id
               return (
                 <div
                   key={r.member.id}
-                  onClick={() => setHighlightedId(isHighlighted ? null : r.member.id)}
+                  onClick={() => setOpenCardMember(r.member)}
                   style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 40px 40px 44px',
@@ -268,7 +268,6 @@ export function Collection({ game }: { game: Game }) {
                     padding: '11px 12px',
                     borderBottom: '1px solid rgba(234,242,255,.07)',
                     borderLeft: `3px solid ${t.c}`,
-                    background: isHighlighted ? 'rgba(255,197,61,.08)' : undefined,
                     cursor: 'pointer',
                     transition: 'background 150ms',
                   }}
@@ -340,6 +339,38 @@ export function Collection({ game }: { game: Game }) {
           >
             GO GET A PACK
           </button>
+        </div>
+      )}
+
+      {openCardMember && (
+        <div
+          onClick={() => setOpenCardMember(null)}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 50,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 18,
+            padding: '20px 20px 40px',
+            background: 'rgba(4,7,12,.86)',
+            backdropFilter: 'blur(4px)',
+            cursor: 'pointer',
+            animation: 'riseIn 200ms ease-out',
+          }}
+        >
+          <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>
+            <CardFront
+              member={openCardMember}
+              foil
+              style={{
+                boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[openCardMember.rarity].c}8c`,
+              }}
+            />
+          </div>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>TAP TO CLOSE</div>
         </div>
       )}
     </div>

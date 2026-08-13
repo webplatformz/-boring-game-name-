@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
 import { drawPack } from './pack'
-import { loadSave, persist } from './storage'
+import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
 
 export type Screen = 'home' | 'tear' | 'reveal' | 'collection'
 
 export interface GameState {
   screen: Screen
   packs: number
+  refillAt: number | null
   owned: Record<number, number>
   pack: Member[]
   revealIdx: number
@@ -25,6 +26,7 @@ const save = loadSave()
 const INITIAL: GameState = {
   screen: 'home',
   packs: save.packs,
+  refillAt: save.refillAt,
   owned: save.owned,
   pack: [],
   revealIdx: 0,
@@ -110,10 +112,28 @@ export function useGame(): Game {
       const owned = { ...s.owned }
       for (const m of s.pack) owned[m.id] = (owned[m.id] || 0) + 1
       const packs = Math.max(0, s.packs - 1)
-      persist({ owned, packs })
-      return { ...s, owned, packs, screen: 'home', pack: [], revealIdx: 0, outgoing: null, faceUp: false }
+      const refillAt = packs <= 0 ? Date.now() + REFILL_COOLDOWN_MS : s.refillAt
+      persist({ owned, packs, refillAt })
+      return { ...s, owned, packs, refillAt, screen: 'home', pack: [], revealIdx: 0, outgoing: null, faceUp: false }
     })
   }, [])
+
+  // While waiting on the refill cooldown, tick once a second so the UI countdown
+  // stays live, and grant the next batch of packs once it elapses.
+  useEffect(() => {
+    if (state.refillAt == null) return
+    const id = setInterval(() => {
+      setState((s) => {
+        if (s.refillAt == null) return s
+        if (Date.now() >= s.refillAt) {
+          persist({ owned: s.owned, packs: STARTING_PACKS, refillAt: null })
+          return { ...s, packs: STARTING_PACKS, refillAt: null }
+        }
+        return { ...s }
+      })
+    }, 1000)
+    return () => clearInterval(id)
+  }, [state.refillAt])
 
   const advance = useCallback(() => {
     const s = stateRef.current

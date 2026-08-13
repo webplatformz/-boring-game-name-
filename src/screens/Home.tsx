@@ -9,7 +9,7 @@ const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 export function Home({ game }: { game: Game }) {
-  const { packs, owned } = game.state
+  const { packs, owned, refillAt } = game.state
   const ownedList = Object.keys(owned)
     .map((id) => MEMBERS_BY_ID.get(Number(id)))
     .filter((m): m is NonNullable<typeof m> => Boolean(m))
@@ -21,6 +21,8 @@ export function Home({ game }: { game: Game }) {
   )
   const progress = Math.round((ownedCount / total) * 100)
   const canRip = packs > 0
+  const remainingSec = refillAt ? Math.max(0, Math.ceil((refillAt - Date.now()) / 1000)) : 0
+  const countdown = `${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, '0')}`
 
   return (
     <div style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
@@ -74,7 +76,7 @@ export function Home({ game }: { game: Game }) {
       </div>
 
       <button onClick={game.ripNow} disabled={!canRip} style={openBtn(canRip)}>
-        {canRip ? 'RIP IT OPEN' : 'NO PACKS LEFT'}
+        {canRip ? 'RIP IT OPEN' : refillAt ? `NEXT PACK IN ${countdown}` : 'NO PACKS LEFT'}
       </button>
 
       {/* stat tiles */}

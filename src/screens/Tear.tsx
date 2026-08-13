@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import { PACK_CLIP } from '../theme'
 import type { GameState } from '../game/useGame'
-import { PackFoil, PackLabel, TearTab, PACK_W, PACK_H, packBodyBg } from '../components/PackArt'
+import { PackFoil, PackLabel, TearTab, packBodyBg } from '../components/PackArt'
 import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
@@ -37,8 +37,8 @@ export function Tear({ state }: { state: GameState }) {
     position: 'absolute',
     left: 0,
     top: 0,
-    width: PACK_W,
-    height: PACK_H,
+    width: '100%',
+    height: '100%',
     background: packBodyBg,
     overflow: 'hidden',
     clipPath: PACK_CLIP,
@@ -55,7 +55,7 @@ export function Tear({ state }: { state: GameState }) {
         <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>FIVE MEMBERS INCOMING</div>
       </div>
 
-      <div style={{ position: 'relative', width: PACK_W, height: PACK_H }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: 330, aspectRatio: '2 / 3' }}>
         {/* the golden tear-strip */}
         <div style={stripStyle}>
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg,rgba(255,197,61,.35),rgba(255,197,61,.08))', borderRadius: '4px 4px 0 0' }} />
