@@ -150,14 +150,17 @@ async function main() {
     ),
   )
 
-  process.stdout.write('Fetching Voting counts (per person)…\n')
-  await cached('vote-counts.json', async () => {
+  process.stdout.write('Fetching Voting counts for current legislature (52) per person…\n')
+  await cached('vote-counts-current.json', async () => {
     const counts = {}
     let i = 0
     for (const pn of personNumbers) {
-      const n = await countRows('Voting', `Language eq '${LANG}' and PersonNumber eq ${pn}`)
+      const n = await countRows(
+        'Voting',
+        `Language eq '${LANG}' and IdLegislativePeriod eq 52 and PersonNumber eq ${pn}`,
+      )
       counts[pn] = n
-      process.stdout.write(`  Voting: ${++i}/${personNumbers.length} (person ${pn}: ${n})\r`)
+      process.stdout.write(`  Voting[LP52]: ${++i}/${personNumbers.length} (person ${pn}: ${n})\r`)
       await sleep(150)
     }
     process.stdout.write('\n')

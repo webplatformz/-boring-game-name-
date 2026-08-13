@@ -61,8 +61,8 @@ const RARITY_TIERS = [
   { key: 'uncommon', share: 0.28 },
   { key: 'common', share: 0.50 },
 ]
-function rarityScore({ years, committeeCount, hasChair, chamber }) {
-  return years + 1.5 * committeeCount + 6 * (hasChair ? 1 : 0) + 2 * (chamber === 'SR' ? 1 : 0)
+function rarityScore({ years, chairCount, chamber }) {
+  return years + 0.75 * chairCount + 2 * (chamber === 'SR' ? 1 : 0)
 }
 function assignRarities(records) {
   const ranked = [...records].sort((a, b) => b._score - a._score)
@@ -83,8 +83,8 @@ const RARITY_FACTOR = {
   ultra: 1.7,
   legend: 2.0,
 }
-const MIN_OVR_RAW = 100 // realistic floor: freshman common (~atk 45 + def 45) × 1.0
-const MAX_OVR_RAW = 320 // realistic ceiling: strong legend (~atk 85 + def 85) × ~1.9
+const MIN_OVR_RAW = 90 // realistic floor: freshman common (~atk 45 + def 45) × 1.0
+const MAX_OVR_RAW = 340 // realistic ceiling: strong legend (~atk 85 + def 85) × 2.0
 
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n))
 
@@ -99,7 +99,12 @@ function deriveStats({ years, age, voteCount, committeeCount, rarity, maxVotes }
 
   const rarityFactor = RARITY_FACTOR[rarity] ?? 1.0
   const ovrRaw = (atk + def) * rarityFactor
-  const ovr = clamp(Math.round(((ovrRaw - MIN_OVR_RAW) / (MAX_OVR_RAW - MIN_OVR_RAW)) * 100), 0, 100)
+  // Map to 50–99 so every member has a meaningful headline number.
+  const ovr = clamp(
+    Math.round(50 + ((ovrRaw - MIN_OVR_RAW) / (MAX_OVR_RAW - MIN_OVR_RAW)) * 49),
+    50,
+    99,
+  )
 
   return { atk, def, ovr }
 }
@@ -130,9 +135,9 @@ async function main() {
     readRaw('members-council.json'),
     readRaw('council-history.json'),
     readRaw('committees.json'),
-    readRaw('vote-counts.json'),
+    readRaw('vote-counts-current.json'),
   ])
-  process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${Object.keys(voteCounts).length} vote counts\n`)
+  process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${Object.keys(voteCounts).length} current-legislature vote counts\n`)
 
   // Earliest join across all past legislatures.
   const earliestJoin = new Map()
@@ -172,10 +177,10 @@ async function main() {
     const party = normParty(m.PartyAbbreviation)
     const cmtes = (cmteByPerson.get(m.PersonNumber) ?? []).filter((c) => c.standing)
     const committeeCount = cmtes.length
-    const hasChair = cmtes.some((c) => c.chair)
+    const chairCount = cmtes.filter((c) => c.chair).length
     const voteCount = voteCounts[m.PersonNumber] ?? 0
-    const rec = { m, years, age, chamber, party, cmtes, committeeCount, hasChair, voteCount }
-    rec._score = rarityScore({ years, committeeCount, hasChair, chamber })
+    const rec = { m, years, age, chamber, party, cmtes, committeeCount, chairCount, voteCount }
+    rec._score = rarityScore({ years, chairCount, chamber })
     return rec
   })
 
@@ -231,7 +236,7 @@ async function main() {
     generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
-    note: 'Rarity is percentile-ranked (top 2/6/14/28/50%) over a composite score (years + 1.5·committees + 6·chair + 2·SR). ATK from age + votes cast; DEF from years + committees; OVR = (ATK+DEF)*rarityFactor mapped to 0–100. Portraits are placeholders.',
+    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99. Portraits are placeholders.',
   }
 
   await mkdir(dirname(OUT), { recursive: true })
