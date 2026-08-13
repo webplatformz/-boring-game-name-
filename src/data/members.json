@@ -1,6 +1,7 @@
 {
   "meta": {
     "source": "Swiss Federal Assembly OData web service (ws.parlament.ch)",
+    "portraitSource": "Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.",
     "generatedAt": "2026-08-12",
     "count": 246,
     "rarity": {
@@ -10,7 +11,7 @@
       "uncommon": 69,
       "common": 123
     },
-    "note": "MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99. Portraits are placeholders."
+    "note": "MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99."
   },
   "members": [
     {
@@ -68,6 +69,14 @@
       "ovr": 94,
       "rarity": "legend",
       "mandates": "Exekutive der Gemeinde: Präsident von Januar 1997 bis Dezember 2008; Legislative des Kantons (Kantonsrat): von Januar 1997 bis Dezember 2001; Erziehungsrat: von Januar 1993 bis Dezember 1996",
+      "portrait": {
+        "src": "/portraits/825.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Hannes_Germann_(2019).jpg"
+      },
       "no": "001"
     },
     {
@@ -135,6 +144,14 @@
       "ovr": 92,
       "rarity": "legend",
       "mandates": "Législatif communal de Thônex à Genève : de 1991 à 2001; Législatif cantonal (Grand Conseil) de 2001 à 2003",
+      "portrait": {
+        "src": "/portraits/1120.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Carlo_Sommaruga_(2019).jpg"
+      },
       "no": "002"
     },
     {
@@ -182,6 +199,14 @@
       "ovr": 92,
       "rarity": "ultra",
       "mandates": "Präsident der CVP Schweiz: seit April 2016; Präsident CVP Oberägeri: von April 1999 bis April 2005; Präsident CVP Kanton Zug: von April 1999 bis April 2008; Mitglied des Parteipräsidiums der CVP Schweiz: von 2012 bis 2016; Legislative des Kantons: von Dezember 1998 bis November 2003",
+      "portrait": {
+        "src": "/portraits/1109.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Gerhard_Pfister_2019.jpg"
+      },
       "no": "003"
     },
     {
@@ -244,6 +269,14 @@
       "ovr": 92,
       "rarity": "legend",
       "mandates": "Legislative der Gemeinde (Gemeindekommission): von Juli 1988 bis Juni 1995; Legislative des Kantons: von Juli 1995 bis Mai 2001",
+      "portrait": {
+        "src": "/portraits/806.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Maya_Graf_(2020,_cropped).jpg"
+      },
       "no": "004"
     },
     {
@@ -326,6 +359,14 @@
       "ovr": 92,
       "rarity": "legend",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/1159.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pirmin_Schwander_(2016,_cropped).jpg"
+      },
       "no": "005"
     },
     {
@@ -373,6 +414,14 @@
       "ovr": 90,
       "rarity": "ultra",
       "mandates": "Legislative der Gemeinde Zürich: vom Mai 2014 - Frühling 2019; Vorstand Grüne Schweiz, Vorstand Grüne Zürich 3/9; Legislative der Gemeinde Zürich: vom April 1990 - Juni 2003; Legislative des Kantons Zürich: vom September 2002 - Juli 2008",
+      "portrait": {
+        "src": "/portraits/3999.webp",
+        "author": "Parlament",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Katharina_Prelicz_(2020).jpg"
+      },
       "no": "006"
     },
     {
@@ -415,6 +464,14 @@
       "ovr": 89,
       "rarity": "ultra",
       "mandates": "Exekutive der Gemeinde (Stadtschulrat): von September 2003 bis Dezember 2008; Legislative des Kantons (Kantonsrat): von Januar 2005 bis März 2016; Parteipräsident SVP der Stadt Schaffhausen: von März 2009 bis April 2013",
+      "portrait": {
+        "src": "/portraits/3890.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Hurter_(2023).jpg"
+      },
       "no": "007"
     },
     {
@@ -457,6 +514,14 @@
       "ovr": 88,
       "rarity": "legend",
       "mandates": "chef du Département de la santé et de l’action sociale; Législatif communal Lausanne: de mars 1990 à mars 1998; Législatif cantonal Vaud: de mars 1998 à mars 2000; Exécutif cantonal Vaud: de décembre 2004 à mai 2019",
+      "portrait": {
+        "src": "/portraits/491.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pierre-Yves_Maillard_(2019).jpg"
+      },
       "no": "008"
     },
     {
@@ -489,6 +554,14 @@
       "ovr": 87,
       "rarity": "ultra",
       "mandates": "Legislative des Kantons: von Mai 1987 bis Mai 1995 und von Mai 1999 bis Mai 2004; Vizepräsident Grünliberale Schweiz von August 2017 bis Ende 2019; Exekutive der Gemeinde (Stadtrat): seit April 1998; Legislative der Gemeinde: von April 1990 bis März 1998; Präsident Grünliberale Kanton Zürich: von Juli 2004 bis Mai 2008; Präsident Grünliberale Schweiz: von Juli 2007 bis August 2017",
+      "portrait": {
+        "src": "/portraits/1138.webp",
+        "author": "Services du Parlement, 3003 Berne",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_B%C3%A4umle_(2019).jpg"
+      },
       "no": "009"
     },
     {
@@ -526,6 +599,14 @@
       "ovr": 84,
       "rarity": "ultra",
       "mandates": "Legislative der Gemeinde (Stadtrat) Bern: von Juli 2003 bis November 2007; Präsident Jungfreisinnige Stadt Bern: von Januar 2002 bis Januar 2005; Vizepräsident FDP.Die Liberalen Schweiz: April 2012 bis Dezember 2019",
+      "portrait": {
+        "src": "/portraits/3912.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christian_Wasserfallen_(2023).jpg"
+      },
       "no": "010"
     },
     {
@@ -563,6 +644,14 @@
       "ovr": 84,
       "rarity": "ultra",
       "mandates": "Kantonalvorstandsmitglied und Parteileitung SVP Kanton St. Gallen: seit Januar 2001; Präsident Junge SVP Kanton St. Gallen: von Januar 2001 bis Januar 2009; Legislative des Kantons (Kantonsrat): von März 2004 bis März 2008",
+      "portrait": {
+        "src": "/portraits/3901.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Lukas_Reimann_(2023).jpg"
+      },
       "no": "011"
     },
     {
@@ -615,6 +704,14 @@
       "ovr": 82,
       "rarity": "ultra",
       "mandates": "Präsidentin CVP Thurgau: von Juni 2001 bis 2006; Vizepräsidentin der Fraktion C: von Mai 2005 bis 2011, Mitglied Fraktionsvorstand Bundeshausfraktion CVP; Mitglied Parteivorstand CVP Schweiz: seit Oktober 2004; Exekutive der Gemeinde: von Januar 1996 bis Mai 2003; Legislative des Kantons: von Juni 1996 bis November 2003",
+      "portrait": {
+        "src": "/portraits/1106.webp",
+        "author": "Parlamentsdienste",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Brigitte_H%C3%A4berli-Koller_(cropped,_St%C3%A4nderatspr%C3%A4sidentin).jpg"
+      },
       "no": "012"
     },
     {
@@ -677,6 +774,14 @@
       "ovr": 80,
       "rarity": "ultra",
       "mandates": "Exekutive der Gemeinde: von April 2000 bis August 2006; Legislative des Kantons: von Mai 2007 bis Dezember 2007; Vizepräsident Fraktion",
+      "portrait": {
+        "src": "/portraits/3891.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Jositsch_(2015,_cropped).jpg"
+      },
       "no": "013"
     },
     {
@@ -729,6 +834,14 @@
       "ovr": 80,
       "rarity": "rare",
       "mandates": "Parlament der Stadt Zürich: von Mai 2002 bis November 2011",
+      "portrait": {
+        "src": "/portraits/4058.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_Badran_(2018,_cropped).jpg"
+      },
       "no": "014"
     },
     {
@@ -781,6 +894,14 @@
       "ovr": 80,
       "rarity": "rare",
       "mandates": "Vorstand SVP Oberriet; Vorstand SVP Rheintal; Vorstand SVP St. Gallen; Vorstand SVP Schweiz; Vorstand SVP International; Vorstand SVP Bundeshausfraktion; Legislative des Kantons: von Juni 2004 bis Mai 2010",
+      "portrait": {
+        "src": "/portraits/4025.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Roland_Rino_B%C3%BCchel_(2023).jpg"
+      },
       "no": "015"
     },
     {
@@ -838,6 +959,14 @@
       "ovr": 80,
       "rarity": "ultra",
       "mandates": "Legislative des Kantons: von Mai 1987 bis Mai 1998; Exekutive des Kantons: von Januar 1999 bis Dezember 2010; Präsident CVP Graubünden",
+      "portrait": {
+        "src": "/portraits/4055.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Stefan_Engler.jpg"
+      },
       "no": "016"
     },
     {
@@ -895,6 +1024,14 @@
       "ovr": 80,
       "rarity": "rare",
       "mandates": "Legislative des Kantons: von März 2003 bis Dezember 2011; Präsident Volkswirtschaftskommission und Gesundheitskommission des Landrates Basel-Landschaft; Parteivorstand SVP Schweiz; Parteileitung SVP Baselland; Vizepräsident SVP Gelterkinden und Umgebung",
+      "portrait": {
+        "src": "/portraits/4051.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_de_Courten_(2019).jpg"
+      },
       "no": "017"
     },
     {
@@ -942,6 +1079,14 @@
       "ovr": 79,
       "rarity": "rare",
       "mandates": "Präsident Wahlkreis Luzern-Land: von Juni 2004 bis April 2009; Präsident FDP Kanton Luzern: von Juni 2008 bis Januar 2016; Gemeinderat/Sozialvorsteher Udligenswil: von Juli 1991 bis August 2000; Gemeindepräsident Udligenswil: von September 2000 bis Juni 2011; Kantonsrat Kanton Luzern: von April 2003 bis September 2012; Nationalrat von September 2012 bis November 2019",
+      "portrait": {
+        "src": "/portraits/4124.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Peter_Schilliger_(2023).jpg"
+      },
       "no": "018"
     },
     {
@@ -989,6 +1134,14 @@
       "ovr": 79,
       "rarity": "ultra",
       "mandates": "Legislative des Kantons (Kantonsrat): von April 2005 bis November 2007; Exekutive der Gemeinde (Gemeinderat) Solothurn: seit Mai 1997",
+      "portrait": {
+        "src": "/portraits/3871.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pirmin_Bischof_(2019).jpg"
+      },
       "no": "019"
     },
     {
@@ -1031,6 +1184,14 @@
       "ovr": 78,
       "rarity": "rare",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4101.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christine_Bulliard-Marbach_(2019).jpg"
+      },
       "no": "020"
     },
     {
@@ -1083,6 +1244,14 @@
       "ovr": 78,
       "rarity": "ultra",
       "mandates": "Judikative: Bezirksgericht Appenzell (1999 bis 2004); Kantonsgericht Appenzell Innerrhoden (2004 bis 2008); Standeskommission (Regierungsrat): Landammann und Volkswirtschaftsdirektor des Kantons Appenzell Innerrhoden (27. April 2008 bis 28. April 2019)",
+      "portrait": {
+        "src": "/portraits/4056.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Daniel_F%C3%A4ssler_(2019).jpg"
+      },
       "no": "021"
     },
     {
@@ -1125,6 +1294,14 @@
       "ovr": 78,
       "rarity": "rare",
       "mandates": "Mitglied Parteivorstand Mitte Basel-Landschaft; Legislative des Kantons: von Juli 1999 bis September 2010",
+      "portrait": {
+        "src": "/portraits/4040.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Elisabeth_Schneider-Schneiter_2020.jpg"
+      },
       "no": "022"
     },
     {
@@ -1177,6 +1354,14 @@
       "ovr": 78,
       "rarity": "ultra",
       "mandates": "Consigliere comunale a Gordola: da aprile 1984 ad aprile 1996; Deputato in Gran Consiglio: da aprile 1995 ad aprile 2011",
+      "portrait": {
+        "src": "/portraits/4072.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Fabio_Regazzi_(2019).jpg"
+      },
       "no": "023"
     },
     {
@@ -1234,6 +1419,14 @@
       "ovr": 78,
       "rarity": "rare",
       "mandates": "Zuger Kantonsrat: 2010 - 2012; Parteileitungsausschuss SVP Schweiz: Seit April 2016 (davon als Vizepräsident SVP Schweiz: 2016 – 2018); Vorstandsmitglied SVP Baar: Seit Mai 2009 (davon als Präsident SVP Baar: 2009 – 2015).; Fraktionsvizepräsident SVP Schweiz: 2011 – 2017; Präsident SVP Kanton Zug: 2015 – 2021; Vizepräsident SVP Kanton Zug: 2011 – 2015; Fraktionspräsident SVP Schweiz: Seit November 2017; Parteivorstandsmitglied SVP Schweiz: Seit Mai 2012",
+      "portrait": {
+        "src": "/portraits/4053.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Aeschi_(2023).jpg"
+      },
       "no": "024"
     },
     {
@@ -1271,6 +1464,14 @@
       "ovr": 77,
       "rarity": "rare",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4118.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christian_Lohr_(2019).jpg"
+      },
       "no": "025"
     },
     {
@@ -1308,6 +1509,14 @@
       "ovr": 77,
       "rarity": "rare",
       "mandates": "Legislative des Kantons (Kantonsrat): 21. April 1999 bis 31. Dezember 2011; Kantonsratspräsident: 2011; Exekutive der Gemeinde Ruswil (Gemeindepräsident): 1. September 2008 bis 31. August 2018; Präsident der CVP Ruswil: von November 1995 bis Februar 2000; Präsident der CVP Amt Sursee: von Januar 2000 bis Januar 2008; Parteileitung CVP Kanton Luzern: Oktober 2012 bis Mai 2020",
+      "portrait": {
+        "src": "/portraits/4097.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Leo_M%C3%BCller_(2021).jpg"
+      },
       "no": "026"
     },
     {
@@ -1355,6 +1564,14 @@
       "ovr": 77,
       "rarity": "rare",
       "mandates": "Municipio di Lugano: a partire da aprile 2008; Gran Consiglio del Canton Ticino: da aprile 2003 a novembre 2011",
+      "portrait": {
+        "src": "/portraits/4046.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Lorenzo_Quadri_(2019).jpg"
+      },
       "no": "027"
     },
     {
@@ -1417,6 +1634,14 @@
       "ovr": 77,
       "rarity": "ultra",
       "mandates": "Legislative des Kantons: von Juni 2004 bis November 2011; Präsidentin FDP.Die Liberalen Kt. Schwyz: von Mai 2012 bis April 2016; Präsidentin FDP.Die Liberalen Schweiz: von April 2016 bis Oktober 2021",
+      "portrait": {
+        "src": "/portraits/4116.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Petra_G%C3%B6ssi_(2019).jpg"
+      },
       "no": "028"
     },
     {
@@ -1469,6 +1694,14 @@
       "ovr": 77,
       "rarity": "rare",
       "mandates": "Mitglied des Präsidiums der CVP Schweiz; Legislative des Kantons: von Mai 2005 bis November 2011; Gemeindepräsident Herbetswil: seit Oktober 2009",
+      "portrait": {
+        "src": "/portraits/4063.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Stefan_M%C3%BCller-Altermatt_(2019).jpg"
+      },
       "no": "029"
     },
     {
@@ -1506,6 +1739,14 @@
       "ovr": 76,
       "rarity": "rare",
       "mandates": "Kantonsrat: von September 1999 bis Mai 2000 und von Juni 2004 bis November 2011; Stadtparlament Wil (SG): von Januar 1997 bis Dezember 2000; Stadtrat (Exekutive) Wil (SG): von Januar 2001 bis Dezember 2012; Präsidentin der SP Wil (SG): von März 1993 bis März 1998; Vizepräsidentin SP Schweiz von September 2012 bis August 2021",
+      "portrait": {
+        "src": "/portraits/4121.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Gysi.jpg"
+      },
       "no": "030"
     },
     {
@@ -1538,6 +1779,14 @@
       "ovr": 76,
       "rarity": "rare",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4094.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Lorenz_Hess_(2023).jpg"
+      },
       "no": "031"
     },
     {
@@ -1585,6 +1834,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Einwohnerrat der Stadt Baden: von Januar 2010 bis Dezember 2011; Regierungsrätliche Jugendkommission: von 2004 bis 2007; Co-Präsident der Sozialdemokratischen Partei der Schweiz seit 17.10.2020. Früher: Vize-Präsident der SP-Fraktion der Bundesversammlung 2015-2020; Co-Präsident der SP Kanton Aargau 2014 bis 2018; Vizepräsident der SP Schweiz von 2009 bis 2011; Präsident der JUSO Schweiz von 2008 bis 2011",
+      "portrait": {
+        "src": "/portraits/4057.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9dric_Wermuth_2019.jpg"
+      },
       "no": "032"
     },
     {
@@ -1627,6 +1884,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Organe législatif cantonal: depuis octobre 2009 jusqu'à octobre 2011; Organe législatif de la commune de Puplinge: depuis mars 2011 jusqu'à mars 2015; Présidente de la séction genevoise de l'UDC: dès août 2010; Vice-présidente UDC Suisse: dès avril 2016",
+      "portrait": {
+        "src": "/portraits/4090.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Amaudruz_(2019).jpg"
+      },
       "no": "033"
     },
     {
@@ -1659,6 +1924,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Landrat des Kantons Basel-Landschaft: von Juli 1999 bis Dezember 2011, Mitglied der Finanzkommission; Landratspräsidentin Basel-Landschaft: von Juli 2004 bis Juni 2005; Vorstandsmitglied FDP Schweiz bis 27.6.2020; Vorstandsmitglied FDP Schweiz ab 1.3.2022; Vizepräsidentin FDP Fraktion ab 1.3.2022",
+      "portrait": {
+        "src": "/portraits/4060.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Daniela_Schneeberger_(2019).jpg"
+      },
       "no": "034"
     },
     {
@@ -1696,6 +1969,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Generalsekretär/Geschäftsführer SVP Schweiz: von 2001 bis 2008; Vizepräsident SVP Kanton Zürich: 2009 - 2019; Verfassungsrat Kanton Zürich: von Juni 2000 bis Februar 2005; Kantonsrat: von Mai 2011 bis November 2012",
+      "portrait": {
+        "src": "/portraits/4125.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Gregor_Rutz_2012.jpg"
+      },
       "no": "035"
     },
     {
@@ -1728,6 +2009,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Exekutive Stadt Altstätten: von Januar 1993 bis Dezember 2012",
+      "portrait": {
+        "src": "/portraits/4052.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Markus_Ritter_(2023).jpg"
+      },
       "no": "036"
     },
     {
@@ -1770,6 +2059,14 @@
       "ovr": 75,
       "rarity": "rare",
       "mandates": "Mitglied der Geschäftsleitung Die Mitte Graubünden; Legislative des Kantons (Grossrat): von Mai 2006 bis November 2011",
+      "portrait": {
+        "src": "/portraits/4070.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_Candinas_(2019,_cropped).jpg"
+      },
       "no": "037"
     },
     {
@@ -1822,6 +2119,14 @@
       "ovr": 74,
       "rarity": "ultra",
       "mandates": "Rechnungs- und Geschäftsprüfungskomm. Grub AR: Juni 2000  -Mai 2005; 1. Vizepräsident der FDP Schweiz: seit April 2016; Vorstandsmitglied der Fraktion der FDP.Die Liberalen: seit Dez. 2011; Vorstandsmitglied Verein FDP Kampagnen: Seit Frühjahr 2022.; Exekutive der Gemeinde Grub AR: Juni 2005 - Mai 2008; Vorstandsmitlied der FDP Schweiz: April 2012 - April 2016; Präsident der Jungfreisinnigen AR: Sept. 2007 -Juni 2010; Vorstandsmitglied der Jungfreisinnigen Schweiz: 2011 - 2016; Parteileitungsmitglied FDP AR: seit April 2007; Ehrenpräsident der Jungfreisinnigen AR: seit Juni 2010; Vorstandsmitglied FDP Grub AR: seit April 2000; Vizepräsident FDP Grub AR: seit April 2005; Mitglied des IPU Committees on the Human rights of Parlamentarians: seit 2017",
+      "portrait": {
+        "src": "/portraits/4075.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Caroni_(2023).jpg"
+      },
       "no": "038"
     },
     {
@@ -1854,6 +2159,14 @@
       "ovr": 74,
       "rarity": "rare",
       "mandates": "Mitglied der Kommission Tiefbau, Verkehr und Wasser (TVW) der Gemeinde Frutigen: 2010 bis 2013; Vizepräsident der glp Schweiz: 2016 bis 2017; Vizepräsident der glp-Fraktion: 2015 bis 2017; Co-Präsident der glp Kanton Bern: 2012 bis 2016; Präsident der glp Thun/Berner Oberland: 2009 bis 2012; Präsident glp Schweiz: seit August 2017",
+      "portrait": {
+        "src": "/portraits/4083.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:J%C3%BCrg_Grossen_2019.jpg"
+      },
       "no": "039"
     },
     {
@@ -1886,6 +2199,14 @@
       "ovr": 74,
       "rarity": "rare",
       "mandates": "Législatif cantonal (Grand Conseil): depuis mai 1998 jusqu'à novembre 2011; Conseil communal de Genolier: depuis décembre 1994 jusqu'à décembre 2024",
+      "portrait": {
+        "src": "/portraits/4077.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Olivier_Feller_(2019).jpg"
+      },
       "no": "040"
     },
     {
@@ -1928,6 +2249,14 @@
       "ovr": 74,
       "rarity": "ultra",
       "mandates": "Geschäftsleitungsmitglied Grünliberale Partei Schweiz; Vorstandsmitglied der Grünliberalen Kanton Zürich: April 2005 bis 2020; Geschäftsleitungsmitglied Grünliberale Partei Kanton Zürich von 2005 bis 2020; Co-Präsidentin der Grünliberalen Kanton Zürich: 2005 bis 2011; Vorstandsmitglied der Grünliberalen Stadt Zürich: 2005 bis 2009",
+      "portrait": {
+        "src": "/portraits/3897.webp",
+        "author": "Marzili58",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Tiana_Angelina_Moser_(2019).jpg"
+      },
       "no": "041"
     },
     {
@@ -1965,6 +2294,14 @@
       "ovr": 74,
       "rarity": "rare",
       "mandates": "Organe législatif cantonal: de novembre 2001 à novembre 2011; Organe exécutif de la commune de Gletterens: de 2004 à 2009; Présidente du PS de la Broye: 2008-2017; Parti socialiste suisse",
+      "portrait": {
+        "src": "/portraits/4109.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Val%C3%A9rie_Piller_Carrard_(2019).jpg"
+      },
       "no": "042"
     },
     {
@@ -1997,6 +2334,14 @@
       "ovr": 73,
       "rarity": "rare",
       "mandates": "Vizepräsidentin und Mitglied der Geschäftsleitung der glp Schweiz: 2016-2020, Geschäftsleitungsmitglied glp Kanton Bern: seit 2008; Legislative der Stadt Bern: von Januar 2009 bis Dezember 2011",
+      "portrait": {
+        "src": "/portraits/4102.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Kathrin_Bertschy_(2019).jpg"
+      },
       "no": "043"
     },
     {
@@ -2054,6 +2399,14 @@
       "ovr": 73,
       "rarity": "uncommon",
       "mandates": "Député au Grand conseil vaudois: depuis juillet 2002 jusqu'à novembre 2015, président durant la législature 2013- 2014; Conseiller municipal de la Commune de Montreux: depuis janvier 2001 jusqu'à juin 2011; Conseiller communal de janvier 1998 à décembre 2000.; Syndic de la Commune de Montreux: dès juillet 2011",
+      "portrait": {
+        "src": "/portraits/4194.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Laurent_Wehrli_(2023).jpg"
+      },
       "no": "044"
     },
     {
@@ -2086,6 +2439,14 @@
       "ovr": 73,
       "rarity": "rare",
       "mandates": "Mitglied des Vorstandes SVP Frauen Kanton Bern; Legislative Kanton Bern (Grossrat): von Juni 2010 bis Oktober 2011; Legislative Stadt Burgdorf (Stadtrat): von Januar 2009 bis Dezember 2015; Geschäftsprüfungskommission (GPK) Stadt Burgdorf: von Januar 2009 bis Dezember 2011; Präsidentin SVP Burgdorf: von August 2008 bis 2012; Mitglied des Vorstandes SVP Burgdorf: 2012 bis 2018; Sekretärin SVP Emmental: von 2009 bis 2012; Vizepräsidentin SVP Schweiz: von Mai 2010 bis April 2015; Mitglied Parteileitung SVP Schweiz: April 2015 bis 2020; Mitglied des Vorstandes SVP Emmental: seit 2012",
+      "portrait": {
+        "src": "/portraits/4065.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nadja_Pieren_parlament.ch_2781.jpg"
+      },
       "no": "045"
     },
     {
@@ -2143,6 +2504,14 @@
       "ovr": 73,
       "rarity": "uncommon",
       "mandates": "Exécutif communal (Conseiller communal): depuis 1991 jusqu'à 2006 (syndic 2001-2006); Législatif cantonal (Grand Conseil): de 1996 à 2015 (Président 2009)",
+      "portrait": {
+        "src": "/portraits/4169.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pierre-Andr%C3%A9_Page_(2023).jpg"
+      },
       "no": "046"
     },
     {
@@ -2200,6 +2569,14 @@
       "ovr": 72,
       "rarity": "uncommon",
       "mandates": "Co-président du groupe de travail Politique familiale du PDC Suisse; Groupe parlementaire latin du Centre; Vice-président commune de Saillon: de janvier 1993 à décembre 1996; Président commune de Saillon: de janvier 1997 à septembre 2003; Vice-président du PDC du Valais romand: de janvier 2014 à novembre 2017",
+      "portrait": {
+        "src": "/portraits/4220.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Roduit_(2019).jpg"
+      },
       "no": "047"
     },
     {
@@ -2247,6 +2624,14 @@
       "ovr": 72,
       "rarity": "uncommon",
       "mandates": "Députée au Grand Conseil genevois: 1997-2009; Conseillère municipale de la Ville de Genève: juin 2011 - novembre 2015; Présidente du parti socialiste genevois (2004-2008)",
+      "portrait": {
+        "src": "/portraits/4195.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Laurence_Fehlmann_Rielle_(2019).jpg"
+      },
       "no": "048"
     },
     {
@@ -2304,6 +2689,14 @@
       "ovr": 72,
       "rarity": "rare",
       "mandates": "Député",
+      "portrait": {
+        "src": "/portraits/10839.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Mauro_Poggia.jpg"
+      },
       "no": "049"
     },
     {
@@ -2341,6 +2734,14 @@
       "ovr": 72,
       "rarity": "rare",
       "mandates": "Politische Wahlkampfleiterin der SP Schweiz: Januar bis November 2019; Mitglied der Geschäftsleitung SP Kanton Bern: 2010 bis März 2016; Legislative der Stadt Langenthal (Stadtrat): Januar 2005 bis August 2010; Legislative des Kantons Bern (Grossrätin): Juni 2006 bis Januar 2013; Vizepräsidentin der SP Bundeshausfraktion: seit Dezember 2015",
+      "portrait": {
+        "src": "/portraits/4130.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nadine_Masshardt_2019.jpg"
+      },
       "no": "050"
     },
     {
@@ -2403,6 +2804,14 @@
       "ovr": 72,
       "rarity": "uncommon",
       "mandates": "Co-Präsidentin SP Kanton Zürich",
+      "portrait": {
+        "src": "/portraits/4199.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Priska_Seiler_Graf_(2019).jpg"
+      },
       "no": "051"
     },
     {
@@ -2455,6 +2864,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Mitglied Vorstand SVP Kanton Zürich; Mitglied Vorstand SVP Bezirk Uster; Spezialkommission NFA: 2007; Gemeindepräsident & Finanzvorstand der Gemeinde Volketswil: 2002-2017; Mitglied des Gemeindepräsidentenverbandes des Bezirks Uster: 2002-2017; Kantonsrat des Standes Zürich: 1999 bis 2016; Mitglied Kommission für Justiz und öffentliche Sicherheit: 1999 bis 2003; Präsident der Kommission für Staat und Gemeinden: 2003 bis 2007; Vizepräsident Aufsichtskommission über die wirtschaftlichen Unternehmen (ZKB, EKZ, GVZ): 2007 bis 2010; Mitglied der Geschäftsleitung: 2008 bis 2014; Vizepräsident der Parl. Untersuchungskomm. BVK (PUK BVK): 2010 bis 2012; Kantonsratspräsident: 2013 bis 2014; Mitglied der Finanzkommission: 2014 bis 2015",
+      "portrait": {
+        "src": "/portraits/4177.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Bruno_Walliser_1.jpg"
+      },
       "no": "052"
     },
     {
@@ -2502,6 +2919,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Stabschef SVP Schweiz; Kantonsrat des Kantons Luzern: von Juni 2015 bis November 2015",
+      "portrait": {
+        "src": "/portraits/4162.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Franz_Gr%C3%BCter_(2023).jpg"
+      },
       "no": "053"
     },
     {
@@ -2549,6 +2974,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Municipal à Lignerolle: de 1994 à 2005, puis de 2011 à 2021, Député au Grand Conseil vaudois: de septembre 2008 à novembre 2015, Président du Parlement vaudois: de juillet 2014 'à juin 2015, Conseiller national depuis 2015",
+      "portrait": {
+        "src": "/portraits/4168.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jacques_Nicolet,_2023.jpg"
+      },
       "no": "054"
     },
     {
@@ -2616,6 +3049,14 @@
       "ovr": 71,
       "rarity": "rare",
       "mandates": "Mitglied des Vorstandes FDP Attinghausen; Geschäftsleitung FDP Uri; Regierungsrat des Kantons Uri: 1.06.2004 - 31.05.2016; Gemeinderat Attinghausen: 1988 - 2002; Gemeindepräsident Attinghausen: 1999 - 2002; Landammann des Kantons Uri: 2012 - 2014",
+      "portrait": {
+        "src": "/portraits/4151.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Josef_Dittli_(2019).jpg"
+      },
       "no": "055"
     },
     {
@@ -2673,6 +3114,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Präsidentin Die Mitte Ortspartei Rickenbach: seit November 2014; Co-Vizepräsidentin CSV Luzern: seit November 2018; Legislative des Kantons Luzern: von Juni 2011 bis November 2019",
+      "portrait": {
+        "src": "/portraits/4305.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Priska_Wismer-Felder_(2023).jpg"
+      },
       "no": "056"
     },
     {
@@ -2715,6 +3164,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Président Mouvement Citoyens Genevois: depuis avril 2011 jusqu'à avril 2016; Législatif cantonal: depuis septembre 2005 jusqu'à novembre 2013; Conseiller municipal (Ville de Lancy): depuis 2007 jusqu'à 2016; député",
+      "portrait": {
+        "src": "/portraits/4137.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Portrait_de_Roger_Golay.jpg"
+      },
       "no": "057"
     },
     {
@@ -2762,6 +3219,14 @@
       "ovr": 71,
       "rarity": "uncommon",
       "mandates": "Präsidium; Vizeammann in Wiliberg: von 1992 bis 2000; Grossrat Kt. Aargau: von 1997 bis 2015; Kommission Bildung, Kultur und Sport: von 1997 bis 2005; Kommission Fachhochschule: von 1997 bis 2001; Kommissionspräsident GPK: von 2005 bis 2009; Kommissionsmitglied Volkswirtschaft und Abgaben: von 2009 bis 2015",
+      "portrait": {
+        "src": "/portraits/4158.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Burgherr_(2019).jpg"
+      },
       "no": "058"
     },
     {
@@ -2819,6 +3284,14 @@
       "ovr": 70,
       "rarity": "rare",
       "mandates": "Vorstandsmitglied CVP Oberwallis",
+      "portrait": {
+        "src": "/portraits/4204.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Beat_Rieder_(2023).jpg"
+      },
       "no": "059"
     },
     {
@@ -2876,6 +3349,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Conseil général, Commune du Landeron (NE): de 1996 à 2001 et de 2004 à 2006 (président en 1998/99); Grand Conseil du canton de Neuchâtel: de 1997 à 2008; Conseil général, commune d'Hauterive (NE): de 2008 à 2012; Chef de la communication du PLR Suisse: 2008-2010; Viceprésident du PLR neuchâtelois: 2009-2012; Président du groupe au Grand Conseil: 2001-2005; Secrétaire cantonal du PLR neuchâtelois: 1996-1999; PLR neuchâtelois, comité politique et conseil cantonal, membre (ès fonction); PLR international, vice-président",
+      "portrait": {
+        "src": "/portraits/4254.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Damien_Cottier_(2019).jpg"
+      },
       "no": "060"
     },
     {
@@ -2938,6 +3419,14 @@
       "ovr": 70,
       "rarity": "rare",
       "mandates": "Mitglied der kantonalen Steuerrekurskommission",
+      "portrait": {
+        "src": "/portraits/4206.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Erich_Ettlin_(2019).jpg"
+      },
       "no": "061"
     },
     {
@@ -2980,6 +3469,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Vice-président de l'UDC du Valais romand; Membre du Comité central de l'UDC Suisse; Député au Grand Conseil: 2005-2015; Conseiller communal à Savièse: 2009-2015",
+      "portrait": {
+        "src": "/portraits/4154.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jean-Luc_Addor_(2023).jpg"
+      },
       "no": "062"
     },
     {
@@ -3032,6 +3529,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Vizepräsidentin GLP Schweiz",
+      "portrait": {
+        "src": "/portraits/4252.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Katja_Christ_(2019).jpg"
+      },
       "no": "063"
     },
     {
@@ -3089,6 +3594,14 @@
       "ovr": 70,
       "rarity": "rare",
       "mandates": "Mitglied der Geschäftsleitung der FDP Graubünden; Legislative des Kantons (Grossrat): von Mai 1994 bis Dezember 2002; Exekutive des Kantons (Regierungsrat): von Januar 2003 bis Dezember 2011",
+      "portrait": {
+        "src": "/portraits/4078.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_Schmid_(2019).jpg"
+      },
       "no": "064"
     },
     {
@@ -3131,6 +3644,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Mitglied Kommission AVW Kanton Aargau: von 2009 bis 2015 (Präsident: von 2013 bis 2015); Geschäftsleitung FDP Aargau; Einwohnerrat Wohlen: von 1998 bis 2006; Präsident GPK Wohlen: von 1998 bis 2001; Gemeinderat Wohlen: von 2007 bis 2013; Vize-Ammann Wohlen: von 2010 bis 2013; Präsident der Strategiekommission Wohlen: von 2007 bis 2013; Mitglied Grosser Rat Kanton Aargau: von 2009 bis 2015; Parteipräsident FDP Aargau: von 2013 bis 2017; Grünliberale Partei Schweiz",
+      "portrait": {
+        "src": "/portraits/4208.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Matthias_Jauslin_(2023).jpg"
+      },
       "no": "065"
     },
     {
@@ -3178,6 +3699,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Legislative der Stadt Zürich (Gemeinderat): von April 1998 bis November 2015; Legislative des Kantons Zürich (Kantonsrat): von April 2015 bis November 2015",
+      "portrait": {
+        "src": "/portraits/4175.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mauro_Tuena_(2023).jpg"
+      },
       "no": "066"
     },
     {
@@ -3225,6 +3754,14 @@
       "ovr": 70,
       "rarity": "uncommon",
       "mandates": "Einwohnerrat Kriens: 1990 bis 2001; Kantonsrat Luzern: 2007 bis 2018",
+      "portrait": {
+        "src": "/portraits/4221.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Michael_T%C3%B6ngi_(2023).jpg"
+      },
       "no": "067"
     },
     {
@@ -3312,6 +3849,14 @@
       "ovr": 70,
       "rarity": "rare",
       "mandates": "SVP Kanton Bern; SVP Verwaltungskreis Mittelland; SVP Wahlkreis Mittelland-Nord;  SVP Kanton Bern; SVP Region Fraubrunnen; Fachkommission Landwirtschaft der SVP-Bundeshausfraktion; SVP Schweiz; Fachkommission Landwirtschaft der SVP-Bundeshausfraktion",
+      "portrait": {
+        "src": "/portraits/4172.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Werner_Salzmann_(2019).jpg"
+      },
       "no": "068"
     },
     {
@@ -3349,6 +3894,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Präsident SVP Aargau; Mitglied Parteileitung SVP Schweiz; Mitglied Fraktionsvorstand SVP Bundeshausfraktion",
+      "portrait": {
+        "src": "/portraits/4161.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Glarner_2019.jpg"
+      },
       "no": "069"
     },
     {
@@ -3386,6 +3939,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Conseillère Municipale à Epalinges depuis le 1.7.2021, Conseillère communale à Epalinges de 2005 à juin 2021, Députée au Grand Conseil Vaudois de 2012 à 2017",
+      "portrait": {
+        "src": "/portraits/4219.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Brigitte_Crottaz_(2023).jpg"
+      },
       "no": "070"
     },
     {
@@ -3453,6 +4014,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Membro del Gruppo Operativo dei Verdi del Ticino,  Vicepresidente del gruppo dei Verdi: da dicembre 2019",
+      "portrait": {
+        "src": "/portraits/4268.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Greta_Gysin.jpg"
+      },
       "no": "071"
     },
     {
@@ -3490,6 +4059,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Kantonsrat: von Mai 1995 bis Mai 2014",
+      "portrait": {
+        "src": "/portraits/4141.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Hans-Peter_Portmann_(2019).jpg"
+      },
       "no": "072"
     },
     {
@@ -3532,6 +4109,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Conseillère d'Etat VD",
+      "portrait": {
+        "src": "/portraits/4257.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_de_Quattro_(2019).jpg"
+      },
       "no": "073"
     },
     {
@@ -3579,6 +4164,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Conseiller général à Vuarrens: de 1998 à 2005; Conseiller communal à Crissier: de 2007 à 2012; Député au Grand Conseil vaudois: de 2007 à 2015",
+      "portrait": {
+        "src": "/portraits/4156.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Micha%C3%ABl_Buffat_(2019).jpg"
+      },
       "no": "074"
     },
     {
@@ -3626,6 +4219,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Gemeinderätin, Fraktionspräsidentin Stadt Zürich: bis November 2015; SP Frauen, Mitglied der Geschäftsleitung",
+      "portrait": {
+        "src": "/portraits/4197.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Min_Li_Marti_(2023).jpg"
+      },
       "no": "075"
     },
     {
@@ -3668,6 +4269,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Legislative des Kantons Thurgau (Grosser Rat): von Mai 1992 bis Juli 2002; Ortsvorsteher (Gemeindepräsident) von Zihlschlacht (TG): von Mai 1994 bis Dezember 1996",
+      "portrait": {
+        "src": "/portraits/4222.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nicolo_Paganini_(2019).jpg"
+      },
       "no": "076"
     },
     {
@@ -3705,6 +4314,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Kantonsrat des Kantons Zürich: von Oktober 2004 bis November 2015; Wahlbüro Gemeinde Flurlingen: von 1991 bis 1998",
+      "portrait": {
+        "src": "/portraits/4202.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Regine_Sauter_(2019).jpg"
+      },
       "no": "077"
     },
     {
@@ -3747,6 +4364,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Parteileitungsausschuss SVP CH; Vize–Fraktionspräsidentin; Parteileitung SVP Baselland; Parteivorstand SVP Bubendorf; Exekutive Gemeinde Bubendorf: Gemeinderätin von Juli 2008 bis Juni 2016; Legislative Kanton Baselland: Landrätin von Juli 2011 bis November 2015",
+      "portrait": {
+        "src": "/portraits/4173.webp",
+        "author": "Sollberger Simeon",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Sandra_Sollberger_2018.jpg"
+      },
       "no": "078"
     },
     {
@@ -3784,6 +4409,14 @@
       "ovr": 69,
       "rarity": "uncommon",
       "mandates": "Mitglied Parteileitungsausschuss, Parteileitung, Parteivorstand, Vorstand Fraktion",
+      "portrait": {
+        "src": "/portraits/4144.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Matter.jpg"
+      },
       "no": "079"
     },
     {
@@ -3816,6 +4449,14 @@
       "ovr": 68,
       "rarity": "uncommon",
       "mandates": "FDP-Liberale Bundeshausfraktion; Präsident der FDP Kanton Zürich: 2008 - 2016; Kantonsrat Zürich: von Mai 1999 bis Dezember 2013; Fraktionspräsident: von Juli 2005 bis Mai 2008; FDP-Liberale Bundeshausfraktion",
+      "portrait": {
+        "src": "/portraits/4142.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Beat_Walti_(2019).jpg"
+      },
       "no": "080"
     },
     {
@@ -3873,6 +4514,14 @@
       "ovr": 68,
       "rarity": "uncommon",
       "mandates": "Gemeinderätin Stadt Zürich: September: 2017 - April 2019; Kantonsrätin Kanton Zürich: seit Mai 2019; Co-Präsidentin Grünliberale Kanton Zürich: seit November 2018",
+      "portrait": {
+        "src": "/portraits/4267.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Corina_Gredig.jpg"
+      },
       "no": "081"
     },
     {
@@ -3920,6 +4569,14 @@
       "ovr": 68,
       "rarity": "uncommon",
       "mandates": "Schweizerische Volkspartei Stadt Bern: Vizepräsident; Vorstand SVP Kanton Bern; Legislative des Kantons Bern (Grosser Rat): Mitglied; Justizkommission des Grossen Rates: Mitglied; Stadtrat Bern: Mitglied",
+      "portrait": {
+        "src": "/portraits/4163.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Erich_Hess_(2023).jpg"
+      },
       "no": "082"
     },
     {
@@ -3962,6 +4619,14 @@
       "ovr": 68,
       "rarity": "uncommon",
       "mandates": "Vizepräsidentin Grüne Partei Schweiz; Mitglied des Europarats (Vizepräsidentin)",
+      "portrait": {
+        "src": "/portraits/4184.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Sibel_Arslan_(2023).jpg"
+      },
       "no": "083"
     },
     {
@@ -4034,6 +4699,14 @@
       "ovr": 68,
       "rarity": "rare",
       "mandates": "Grossratspräsident: 2014; Grossrat des Kantons Aargau: von 2001 bis 2015; Nationalrat: von 2015 bis 2019; Mitglied des Vorstands der FDP.Die Liberalen Schweiz: 2018/2019; Präsident Jungfreisinnige Aargau: von 1999 bis 2002; Vizepräsident der FDP.Die Liberalen Aargau: von 2004 bis 2010; Präsident der FDP.Die Liberalen Aargau: von 2010 bis 2013; Präsident der FDP.Die Liberalen Schweiz: seit Oktober 2021; Mitglied der Geschäftsleitung der FDP.Die Liberalen Aargau: seit 1999",
+      "portrait": {
+        "src": "/portraits/4189.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thierry_Burkart_(2018).jpg"
+      },
       "no": "084"
     },
     {
@@ -4081,6 +4754,14 @@
       "ovr": 67,
       "rarity": "rare",
       "mandates": "Legislative des Kantons Luzern: von 2007 bis 2015; Nationalrätin: von 2015 bis 2019; Präsidentin Mitte-Fraktion: seit 2020",
+      "portrait": {
+        "src": "/portraits/4181.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Gm%C3%BCr-Sch%C3%B6nenberger_(2019).jpg"
+      },
       "no": "085"
     },
     {
@@ -4118,6 +4799,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Vorstand SVP Kanton Zürich; Vorstand SVP Bezirk Dielsdorf; Kantonsrat des Kantons Zürich: vom Mai 2003 bis November 2015; Sozialbehörde der Gemeinde Regensdorf: seit Mai 2010",
+      "portrait": {
+        "src": "/portraits/4174.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Steinemann_(2019,_cropped).jpg"
+      },
       "no": "086"
     },
     {
@@ -4160,6 +4849,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Présidente des Vert.e.s genevois.e.s ; Députée suppléante du Grand Conseil de Genève: 2013-2015; Députée titulaire du Grand Conseil de Genève: 2015-2019; Secrétaire générale des Vert.e.s genevois.e.s",
+      "portrait": {
+        "src": "/portraits/4272.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Delphine_Klopfenstein_Broggini_(2019).jpg"
+      },
       "no": "087"
     },
     {
@@ -4207,6 +4904,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Grossrätin Kanton Aargau: von Januar 2010 bis November 2017; Fraktionspräsidentin der Grünen Fraktion im Grossen Rat: von April 2014 bis November 2017; Vizepräsidentin Grüne Schweiz: von April 2012 bis April 2015",
+      "portrait": {
+        "src": "/portraits/4218.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Ir%C3%A8ne_K%C3%A4lin_(2019).jpg"
+      },
       "no": "088"
     },
     {
@@ -4254,6 +4959,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Vizepräsident SP Schweiz; Gemeinderat der Stadt Chur (2005-2011); Grossrat Kanton Graubünden (2010-2018); Präsident SP Graubünden (2009-2016)",
+      "portrait": {
+        "src": "/portraits/4281.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jon_Pult_(2019).jpg"
+      },
       "no": "089"
     },
     {
@@ -4286,6 +4999,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Mitglied des Parteileitungsausschusses SVP Schweiz: seit März 2018; Vize-Präsidentin SVP Schweiz: seit März 2018; Vize-Präsidentin SVP Graubünden: seit 2016",
+      "portrait": {
+        "src": "/portraits/4167.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Magdalena_Martullo-Blocher_(2023).jpg"
+      },
       "no": "090"
     },
     {
@@ -4323,6 +5044,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Présidence UDC du canton de Berne depuis 2021 et Vice-Présidence UDC Jura bernois depuis 2023; Membre du Conseil du Jura bernois 2006-2015 et 2022-2023; Député du canton de Berne 2010-2015 et 2022-2023; Conseiller municipal de Cortébert: de 1998 à 2010; Maire de la Municipalité de Cortébert (BE) depuis 2015",
+      "portrait": {
+        "src": "/portraits/4157.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Manfred_B%C3%BChler_(2023).jpg"
+      },
       "no": "091"
     },
     {
@@ -4360,6 +5089,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Vize Präsident EVP Schweiz; Legislative der Gemeinde: Gemeinderat Winterthur 2002 bis 2014; Legislative des Kantons: Kantonsrat Zürich 2014 bis 2017",
+      "portrait": {
+        "src": "/portraits/4214.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nik_Gugger_(2021).jpg"
+      },
       "no": "092"
     },
     {
@@ -4402,6 +5139,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Vice-président PS Suisse; Conseil communal (législatif) de Lausanne: de juillet 2011 à juin 2012; Grand Conseil (législatif) du canton de Vaud: de juillet 2012 à juin 2017",
+      "portrait": {
+        "src": "/portraits/4213.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Samuel_Bendahan_(2019).jpg"
+      },
       "no": "093"
     },
     {
@@ -4454,6 +5199,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "CVP - Die Mitte Altdorf; Legislative des Kantons Uri: von Juni 2012 bis Mai 2020; Die Mitte Uri",
+      "portrait": {
+        "src": "/portraits/4292.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Simon_Stadler.jpg"
+      },
       "no": "094"
     },
     {
@@ -4491,6 +5244,14 @@
       "ovr": 67,
       "rarity": "uncommon",
       "mandates": "Exekutive Schulgemeinde Appenzell: 1998-2006; Legislative Kanton Appenzell Innerrhoden: 2005-2011; Exekutive Kanton Appenzell Innerrhoden: Säckelmeister 2011-2018 (Regierungsrat)",
+      "portrait": {
+        "src": "/portraits/4282.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Rechsteiner_(2019).jpg"
+      },
       "no": "095"
     },
     {
@@ -4548,6 +5309,14 @@
       "ovr": 66,
       "rarity": "common",
       "mandates": "Deputato Gran Consiglio Canton Ticino: da aprile 2011 al 30 novembre 2019; Consigliere Comunale Comune di Gordola: da aprile 1996 a marzo 2000; Municipale Comune di Gordola: a partire da aprile 2000; Membro Direzione PS Ticino",
+      "portrait": {
+        "src": "/portraits/4312.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Bruno_Storni_(2019).jpg"
+      },
       "no": "096"
     },
     {
@@ -4585,6 +5354,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": "; ; ; Parteivorstand der SVP Schweiz; Präsident SVP Kanton Solothurn; Kantonsratspräsident: 2012; Ratsleitung (Büro); Kantonsrat; Vizepräsident der SVP Fraktion: von 2005 bis 2011; Präsident SVP-Fraktion: von 2013 bis 2015; Ratsleitung (Büro): von 2010 bis Oktober 2015; Gemeinderat;;;",
+      "portrait": {
+        "src": "/portraits/4164.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christian_Imark.jpg"
+      },
       "no": "097"
     },
     {
@@ -4647,6 +5424,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": "Député au Grand Conseil neuchâtelois: de 2009 à 2019; Membre du Conseil général de La Chaux-de-Fonds: de 2005 à 2009; Vice-président du groupe des Verts suisses: depuis décembre 2019",
+      "portrait": {
+        "src": "/portraits/4260.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Fabien_Fivaz_(2023).jpg"
+      },
       "no": "098"
     },
     {
@@ -4679,6 +5464,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": "Mitglied der Geschäftsleitung SVP Kanton Schwyz; Mitglied vom Vorstand der SVP Ybrig; Präsident SVP Schweiz",
+      "portrait": {
+        "src": "/portraits/4160.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dettling_(2019).jpg"
+      },
       "no": "099"
     },
     {
@@ -4711,6 +5504,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4190.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dobler_(2023).jpg"
+      },
       "no": "100"
     },
     {
@@ -4748,6 +5549,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": "Co-Präsidium SP Schweiz: ab Oktober 2020 (Entschädigung pro Jahr: CHF 35'000 plus CHF 5'000 Spesen); Legislative der Gemeinde Winterthur (Grosser Gemeinderat): von Mai 2010 bis Mai 2011; Legislative des Kantons (Kantonsrat): von Mai 2011 bis November 2015; Co- Präsidium SP Winterthur: März 2014 - März 2019; Mitglied Geschäftsleitung SP Kt. Zürich: Mai 2014 - Mai 2016; Vizepräsidentin JUSO Schweiz: August 2009 - März 2013",
+      "portrait": {
+        "src": "/portraits/4198.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mattea_Meyer_(2023).jpg"
+      },
       "no": "101"
     },
     {
@@ -4780,6 +5589,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": "Die Mitte Kanton Zürich, Mitglied Präsidium; Die Mitte Bezirk Horgen, Vorstandsmitglied; Gemeinderat Wädenswil: 2002-2006; Stadtrat Wädenswil: 2006-2010; Kantonsrat Zürich: 2007-2018; Stadtpräsident Wädenswil: seit 2010; Die Mitte Schweiz",
+      "portrait": {
+        "src": "/portraits/4225.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Philipp_Kutter_2019.jpg"
+      },
       "no": "102"
     },
     {
@@ -4827,6 +5644,14 @@
       "ovr": 66,
       "rarity": "uncommon",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4228.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Samira_Marti_(2023).jpg"
+      },
       "no": "103"
     },
     {
@@ -4859,6 +5684,14 @@
       "ovr": 65,
       "rarity": "uncommon",
       "mandates": "Vizepräsidentin der SVP Amriswil; Kantonsrätin: von April 2012 bis Oktober 2017",
+      "portrait": {
+        "src": "/portraits/4216.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Diane_Gutjhar.jpg"
+      },
       "no": "104"
     },
     {
@@ -4901,6 +5734,14 @@
       "ovr": 65,
       "rarity": "uncommon",
       "mandates": "Mitglied Geschäftsleitung der Sozialdemokratischen Partei des Bezirks Pfäffikon; Head of International Affairs Social Democratic Party of Switzerland; Legislative Stadt Illnau-Effretikon: von November 2010 bis März 2016; Legislative Kanton Zürich: von August 2017 bis Mai 2018; Präsident Europäische Bewegung Sektion Zürich: seit Mai 2022",
+      "portrait": {
+        "src": "/portraits/4223.webp",
+        "author": "Parliamentary Services / STF, ALESSANDRO DELLA VALLE",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Fabian_Molina_(2023).jpg"
+      },
       "no": "105"
     },
     {
@@ -4963,6 +5804,14 @@
       "ovr": 65,
       "rarity": "common",
       "mandates": "Alternative-die Grüne des Kantons Zug (Präsidentin): von August 2005 bis März 2007; Exekutive des Kantons Zug (Frau Landammann): von Januar 2017 bis Dezember 2018; Exekutive des Kantons Zug (Regierungsrätin): von Januar 2007 bis Dezember 2018; Zentralschweizer BVG- und Stiftungsaufsicht, ZBSA (Präsidentin): von Juli 2008 bis Dezember 2018; Schweizerische SozialdirektorInnenkonferenz, SODK (Vorstand): von Juli 2012 bis Dezember 2018; Zentralschweizer SoziadirektorInnenkonferenz, ZGSDK-S (Präsidentin): von April 2010 bis Dezember 2018; Fischereikonkordat Zugersee (Präsidentin): von Januar 2007 bis Dezember 2018; Legislative des Kantons Zug (Fraktionschefin): von Januar 1997 bis Dezember 2002; Legislative des Kantons Zug (Kantonsrätin): von Dezember 1994 bis Dezember 2002.",
+      "portrait": {
+        "src": "/portraits/4298.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Manuela_Weichelt-Picard_(2023).jpg"
+      },
       "no": "106"
     },
     {
@@ -4995,6 +5844,14 @@
       "ovr": 65,
       "rarity": "uncommon",
       "mandates": "Membre du comité directeur du PLR VS; Vice-président du PLR suisse: dès avril 2016",
+      "portrait": {
+        "src": "/portraits/4193.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Philippe_Nantermod_2_(2019).jpg"
+      },
       "no": "107"
     },
     {
@@ -5042,6 +5899,14 @@
       "ovr": 64,
       "rarity": "rare",
       "mandates": "Präsident FDP.Die Liberalen Hitzkirch: von 2008 bis Dezember 2016; Geschäftsleitung FDP.Die Liberalen Luzern: von 2012 bis 2020",
+      "portrait": {
+        "src": "/portraits/4207.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Damian_M%C3%BCller_(2019,_cropped).jpg"
+      },
       "no": "108"
     },
     {
@@ -5099,6 +5964,14 @@
       "ovr": 64,
       "rarity": "uncommon",
       "mandates": "1999 – 2003 Mitglied des Verfassungsrats von Basel-Stadt, Präsidentin der Kommission Finanzverfassung; 2001 – 2005 Mitglied des Grossen Rates von Basel-Stadt, Mitglied der Bildungs- und Kulturkommission; 2005 – 2020 Regierungsrätin des Kantons Basel-Stadt, Vorsteherin des Finanzdepartements; 2004/2005 Fraktionspräsidentin der SP Basel-Stadt im Grossen Rat",
+      "portrait": {
+        "src": "/portraits/4239.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Eva_Herzog_(2019).jpg"
+      },
       "no": "109"
     },
     {
@@ -5156,6 +6029,14 @@
       "ovr": 64,
       "rarity": "uncommon",
       "mandates": "Ortsvorsteher Buhwil: 1988 - 1996; Gemeindeammann Kradolf-Schönenberg: 1996 - 2006; Mitglied Grosser Rat: 1996 - 2006; Präsident der SVP-Fraktion: 2000 - 2006; Präsident Verband Thurgauer Gemeinden: 2004 - 2006; Regierungsrat: 2006 - 2020",
+      "portrait": {
+        "src": "/portraits/4241.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jakob_Stark_(2023).jpg"
+      },
       "no": "110"
     },
     {
@@ -5223,6 +6104,14 @@
       "ovr": 64,
       "rarity": "uncommon",
       "mandates": "Mitglied Präsidium Die Mitte Schweiz; Präsidentin Die Mitte Aargau",
+      "portrait": {
+        "src": "/portraits/4249.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marianne_Binder-Keller_(2019).jpg"
+      },
       "no": "111"
     },
     {
@@ -5285,6 +6174,14 @@
       "ovr": 64,
       "rarity": "uncommon",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4303.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marianne_Maret_(2021).jpg"
+      },
       "no": "112"
     },
     {
@@ -5337,6 +6234,14 @@
       "ovr": 64,
       "rarity": "common",
       "mandates": "LDP Basel-Stadt; LDP Basel-Stadt; Bürgergemeinderat der Stadt Basel; Bürgergemeinderat der Stadt Basel; Grossrätin Kanton Basel-Stadt von Oktober 2006 bis Juni 2020; Verfassungsrätin von 2001 bis 2005",
+      "portrait": {
+        "src": "/portraits/4324.webp",
+        "author": "Lucia Hunziker",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:PvFalkentsein_by_Lucia_Hunziker_(cropped).jpg"
+      },
       "no": "113"
     },
     {
@@ -5389,6 +6294,14 @@
       "ovr": 64,
       "rarity": "uncommon",
       "mandates": "Mitglied des Präsidium der CVP Kanton Zug: von 1996 bis 2000, von 2003 bis 2008, von 2012 bis 2014 und seit 2015; Legislative Kanton Zug: von 1990 bis 2002; Exekutive Gemeinde Menzingen: von 2000 bis 2002; Exekutive Kanton Zug: von 2003 bis 2015; Vorstandsmitglied FDK: von 2005 bis 2015; Präsident FDK: von 2013 bis 2016; Präsident der Konferenz der NFA-Geberkantone: von 2005 bis 2011",
+      "portrait": {
+        "src": "/portraits/4153.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Peter_Hegglin_(2019).jpg"
+      },
       "no": "114"
     },
     {
@@ -5436,6 +6349,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": "Vizepräsident SVP Bezirk Lenzburg",
+      "portrait": {
+        "src": "/portraits/4317.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Alois_Huber_(2023).jpg"
+      },
       "no": "115"
     },
     {
@@ -5488,6 +6409,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": "Oberrheinrat; Präsident der Bezirkspartei Zurzach seit 2017; Grossrat 2017 bis 2022, Kommission Volkswirtschaft und Abgaben; Präsident Pro WiBa; Politischer Beirat Auto-Schweiz; Stiftungsrat Gen Suisse; Advisory board Biotechnet Switzerland",
+      "portrait": {
+        "src": "/portraits/4333.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Meier,_2023.jpg"
+      },
       "no": "116"
     },
     {
@@ -5530,6 +6459,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": "Esecutivo del Comune di Bregaglia: sindaco dal 1. gennaio 2010 al 30 giugno 2020; Esecutivo della Regione Maloja: vicepresidente dal 1. gennaio 2016 al 30 giugno 2020; Membro della direzione del partito FDP Graubünden; Vicepresidente FDP Oberengadin - Bregaglia",
+      "portrait": {
+        "src": "/portraits/4265.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Anna_Giacometti_(2023).jpg"
+      },
       "no": "117"
     },
     {
@@ -5587,6 +6524,14 @@
       "ovr": 63,
       "rarity": "uncommon",
       "mandates": "Mitglied Fraktionsvorstand",
+      "portrait": {
+        "src": "/portraits/4237.webp",
+        "author": "Unknown author Unknown author",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Benedikt_W%C3%BCrth.jpg"
+      },
       "no": "118"
     },
     {
@@ -5659,6 +6604,14 @@
       "ovr": 63,
       "rarity": "uncommon",
       "mandates": "Président du Parlement jurassien en 2006; Président du Gouvernement jurassien en 2010, 2014 et 2016; Vice-Présidence au PDC depuis le 24 avril 2017; Député au Parlement jurassien: de 1999 à 2006; Ministre du Gouvernement jurassien: de 2006 à 2019; Président de la Conférence suisse des directeurs cantonaux des finances (CDF): de 2016 à 2019",
+      "portrait": {
+        "src": "/portraits/4240.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Charles_Juillard_(2019).jpg"
+      },
       "no": "119"
     },
     {
@@ -5701,6 +6654,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": "Conseil municipal Ville de Genève",
+      "portrait": {
+        "src": "/portraits/11404.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Sormanni.jpg"
+      },
       "no": "120"
     },
     {
@@ -5758,6 +6719,14 @@
       "ovr": 63,
       "rarity": "uncommon",
       "mandates": "SP Kantonalpartei Solothurn; Gemeinderätin Solothurn: seit 2005; Kantonsrätin",
+      "portrait": {
+        "src": "/portraits/4283.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Franziska_Roth_(2019).jpg"
+      },
       "no": "121"
     },
     {
@@ -5825,6 +6794,14 @@
       "ovr": 63,
       "rarity": "uncommon",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4243.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Heidi_Z%27graggen_(2019).jpg"
+      },
       "no": "122"
     },
     {
@@ -5887,6 +6864,14 @@
       "ovr": 63,
       "rarity": "uncommon",
       "mandates": "Presidente UDC Svizzera dal 23.08.2020 Vicepresidente dell’UDC Svizzera: dal 2018; Municipale della Città di Lugano",
+      "portrait": {
+        "src": "/portraits/4159.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marco_Chiesa_(2018,_cropped).jpg"
+      },
       "no": "123"
     },
     {
@@ -5929,6 +6914,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4236.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_Haab.jpg"
+      },
       "no": "124"
     },
     {
@@ -5976,6 +6969,14 @@
       "ovr": 63,
       "rarity": "common",
       "mandates": "FDP.Die Liberalen Frauen Schweiz - Präsidentin FDP; Die Liberalen Schweiz - Vorstandsmitglied FDP; Die Liberalen St. Gallen - Vorstandsmitglied; Kantonsrätin SG: von September 2018 bis Mai 2020 Nationalrätin seit Dezember 2019",
+      "portrait": {
+        "src": "/portraits/4296.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Susanne_Vincenz-Stauffacher_(2023).jpg"
+      },
       "no": "125"
     },
     {
@@ -6018,6 +7019,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4263.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Gafner_(2019).jpg"
+      },
       "no": "126"
     },
     {
@@ -6065,6 +7074,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4323.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Weber_Koppenburg_(2023).jpg"
+      },
       "no": "127"
     },
     {
@@ -6112,6 +7129,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "PLR Genève; PLR Suisse",
+      "portrait": {
+        "src": "/portraits/10803.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Cyril_Aellen_(2023).jpg"
+      },
       "no": "128"
     },
     {
@@ -6154,6 +7179,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Syndic de la commune de Corcelles-le-Jorat",
+      "portrait": {
+        "src": "/portraits/4329.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Ruch_(2022).jpg"
+      },
       "no": "129"
     },
     {
@@ -6211,6 +7244,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "SP Schweiz; SP Kanton Luzern; Kantonsrat Luzern; Grosser Stadtrat Luzern",
+      "portrait": {
+        "src": "/portraits/10821.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:DavidRoth_2023.jpg"
+      },
       "no": "130"
     },
     {
@@ -6258,6 +7299,14 @@
       "ovr": 62,
       "rarity": "uncommon",
       "mandates": "Gemeinderat Hergiswil: 2000 bis 2006; Gemeindepräsident Hergiswil: 2006 bis 2010; Regierungsrat Nidwalden: 2010 bis 2016; Landammann: 2015/2016",
+      "portrait": {
+        "src": "/portraits/4152.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Hans_Wicki_(2019).jpg"
+      },
       "no": "131"
     },
     {
@@ -6305,6 +7354,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Parteileitung SVP CH, Vorstand SVP Kanton Bern, SVP Mittelland-Nord, SVP Sektion Kirchlindach; Grossrat des Kt. Bern: von 2010 bis 2019, Nationalrat seit 2019",
+      "portrait": {
+        "src": "/portraits/4310.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Lars_Guggisberg.jpg"
+      },
       "no": "132"
     },
     {
@@ -6357,6 +7414,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Legislative des Kantons Bern von Juni 2006 bis Mai 2020; Parlamentspräsident Kanton Bern 2015 bis 2016",
+      "portrait": {
+        "src": "/portraits/4331.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marc_Jost_(2023).jpg"
+      },
       "no": "133"
     },
     {
@@ -6414,6 +7479,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Députée, Présidente du Grand Conseil neuchâtelois; Co-présidente des Femmes socialistes suisses",
+      "portrait": {
+        "src": "/portraits/10829.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martine_Docourt_(2023).jpg"
+      },
       "no": "134"
     },
     {
@@ -6471,6 +7544,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Gemeindepräsident Tübach (seit 2006); Kantonsrat St.Gallen (2003-2023)",
+      "portrait": {
+        "src": "/portraits/4335.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Michael_G%C3%B6tte_(2023_2).jpg"
+      },
       "no": "135"
     },
     {
@@ -6523,6 +7604,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Membro di direzione UDC Svizzera e Presidente Sezione Ticino; Sindaco del Comune di Tresa, 6988 Ponte Tresa",
+      "portrait": {
+        "src": "/portraits/4311.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Piero_Marchesi_(2023).jpg"
+      },
       "no": "136"
     },
     {
@@ -6570,6 +7659,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Gemeinderat",
+      "portrait": {
+        "src": "/portraits/10846.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:R%C3%A9my_Wyssmann_(cropped).jpg"
+      },
       "no": "137"
     },
     {
@@ -6612,6 +7709,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Présidente PLR-Troinex dès sa constitution en 2013, puis jusqu'en 2016; Assemblée constituante genevoise: de 2008 à 2012; Grand Conseil de la République et canton de Genève: de 2013 à 2018; Membre du comité directeur du PLR-Genève: depuis décembre 2019",
+      "portrait": {
+        "src": "/portraits/4256.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Simone_de_Montmollin_(2019).jpg"
+      },
       "no": "138"
     },
     {
@@ -6659,6 +7764,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4334.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Bl%C3%A4si_(2023).jpg"
+      },
       "no": "139"
     },
     {
@@ -6706,6 +7819,14 @@
       "ovr": 62,
       "rarity": "common",
       "mandates": "Kantonsrätin; Gemeindepräsidentin; Vizepräsidentin Die Mitte Schweiz; Fraktionspräsidentin; Kantonsratspräsidentin",
+      "portrait": {
+        "src": "/portraits/10819.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Yvonne_B%C3%BCrgin_(2023)2.jpg"
+      },
       "no": "140"
     },
     {
@@ -6748,6 +7869,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "PLR Svizzero; Sindaco del comune di Comano; Membro del Gran Consiglio ticinese; PLRT; PLR nazionale",
+      "portrait": {
+        "src": "/portraits/4259.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Alex_Farinelli_(2019).jpg"
+      },
       "no": "141"
     },
     {
@@ -6785,6 +7914,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Leiterin der GLP Arbeitsgruppe Energie; Exekutive (Präsidentin) der Gemeinde Otelfingen: seit Juli 2018; Legislative des Kantons Zürich von Mai 2011 bis November 2019",
+      "portrait": {
+        "src": "/portraits/4287.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Schaffner_(2019).jpg"
+      },
       "no": "142"
     },
     {
@@ -6822,6 +7959,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "FDP Frauen Kanton Zürich, Co-Präsidium; Präsidium FDP Frauen Schweiz",
+      "portrait": {
+        "src": "/portraits/10804.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Bettina_Balmer_(2023).jpg"
+      },
       "no": "143"
     },
     {
@@ -6864,6 +8009,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4246.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christine_Badertscher_(2019).jpg"
+      },
       "no": "144"
     },
     {
@@ -6896,6 +8049,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Conseiller général (législatif) de la ville de Sion: de 2005 à 2008; Conseiller municipal (exécutif) de la ville de Sion: de 2009 à 2019; Député au Grand Conseil (législatif) du canton du Valais: de 2013 à 2016",
+      "portrait": {
+        "src": "/portraits/4253.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christophe_Clivaz_(2019).jpg"
+      },
       "no": "145"
     },
     {
@@ -6928,6 +8089,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Kantonsrat",
+      "portrait": {
+        "src": "/portraits/10838.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Erich_Vontobel.jpg"
+      },
       "no": "146"
     },
     {
@@ -6990,6 +8159,14 @@
       "ovr": 61,
       "rarity": "uncommon",
       "mandates": "Vizepräsidentin und Mitglied Parteileitung SVP Kanton St.Gallen Mitglied Parteivorstand SVP Schweiz",
+      "portrait": {
+        "src": "/portraits/4261.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Esther_Friedli_(2019).jpg"
+      },
       "no": "147"
     },
     {
@@ -7047,6 +8224,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Kantonsrätin; Bürgerrätin; Einbürgerungskommission Grenchen; BBZ Schulkommission",
+      "portrait": {
+        "src": "/portraits/11506.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Farah_Rumy_(2023).jpg"
+      },
       "no": "148"
     },
     {
@@ -7099,6 +8284,14 @@
       "ovr": 61,
       "rarity": "uncommon",
       "mandates": "Legislative des Kantons Bern: von 2002 bis September 2012",
+      "portrait": {
+        "src": "/portraits/4224.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Flavia_Wasserfallen_(2019).jpg"
+      },
       "no": "149"
     },
     {
@@ -7141,6 +8334,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Vorstand Grüne Baselland; Vorstand Grüne Region Gelterkinden",
+      "portrait": {
+        "src": "/portraits/4315.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Florence_Brenzikofer_(2019).jpg"
+      },
       "no": "150"
     },
     {
@@ -7183,6 +8384,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4245.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Gerhard_Andrey_(2021).jpg"
+      },
       "no": "151"
     },
     {
@@ -7220,6 +8429,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Membre de la présidence Le Centre suisse; Vice-présidente du Centre Fribourg; Conseillère communale à Bulle: depuis avril 2011; Vice-présidente de l'Association régionale de la Gruyère: depuis avril 2016; Présidente de l'agglomération mobul: depuis avril 2016; Députée au Grand Conseil fribourgeois: d'octobre 2016 à novembre 2019",
+      "portrait": {
+        "src": "/portraits/4284.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marie-France_Roth_Pasquier_(2023).jpg"
+      },
       "no": "152"
     },
     {
@@ -7277,6 +8494,14 @@
       "ovr": 61,
       "rarity": "uncommon",
       "mandates": "Grüne Glarus Süd; Gemeinderat Glarus Süd; Landrat des Kantons Glarus; Kantonsschulrat der Kantonsschule Glarus",
+      "portrait": {
+        "src": "/portraits/4244.webp",
+        "author": "Alessandro della Valle",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mathias_Zopfi.jpg"
+      },
       "no": "153"
     },
     {
@@ -7324,6 +8549,14 @@
       "ovr": 61,
       "rarity": "uncommon",
       "mandates": "Regierungsrat des Kantons Zug: von Januar 2003 bis Dezember 2018; Kantonsrat des Kantons Zug: von Januar 1995 bis Dezember 2002",
+      "portrait": {
+        "src": "/portraits/4309.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Matthias_Michel_(2019).jpg"
+      },
       "no": "154"
     },
     {
@@ -7361,6 +8594,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Kantonalpräsidium Obwalden; Präsidentin Bürgerliche Frauen Schweiz",
+      "portrait": {
+        "src": "/portraits/4285.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Monika_R%C3%BCegger-Hurschler.jpg"
+      },
       "no": "155"
     },
     {
@@ -7403,6 +8644,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Kantonsrat Zürich",
+      "portrait": {
+        "src": "/portraits/10818.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nicole_Barandun_(2023).jpg"
+      },
       "no": "156"
     },
     {
@@ -7450,6 +8699,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "SVP Schweiz; SVP Thurgau",
+      "portrait": {
+        "src": "/portraits/10843.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pascal_Schmid_(2023).jpg"
+      },
       "no": "157"
     },
     {
@@ -7492,6 +8749,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Gemeindvizepräsidentin; Landrat; Die Mitte-Fraktion; Die Mitte Schweiz; Die Mitte NW",
+      "portrait": {
+        "src": "/portraits/10815.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Regina_Durrer-Knobel_(2023).jpg"
+      },
       "no": "158"
     },
     {
@@ -7534,6 +8799,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Gemeinderat; Mitte Stadt Bern ",
+      "portrait": {
+        "src": "/portraits/10811.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Reto_Nause_(2023).jpg"
+      },
       "no": "159"
     },
     {
@@ -7571,6 +8844,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Député au Grand Conseil du canton du Valais: de 2013 à 2019; Président du groupe PDC du Valais central du Grand Conseil du canton du Valais: de 2017 à 2019",
+      "portrait": {
+        "src": "/portraits/4271.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Kamerzin_(2019).jpg"
+      },
       "no": "160"
     },
     {
@@ -7618,6 +8899,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Già Presidente della Commissione regionale dei trasporti del Bellinzonese, CRTB (09.05.2012-18.02.2025); Già Vicesindaco (03.05.2021-14.04.2024) e già Municipale (01.04.2012-02.05.2021) della Città di Bellinzona",
+      "portrait": {
+        "src": "/portraits/10807.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Simone_Gianini_(2023).jpg"
+      },
       "no": "161"
     },
     {
@@ -7660,6 +8949,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4278.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Sophie_Michaud_Gigon_(2019).jpg"
+      },
       "no": "162"
     },
     {
@@ -7702,6 +8999,14 @@
       "ovr": 61,
       "rarity": "common",
       "mandates": "Sozialvorsteherin Gemeinde Flühli Sörenberg; Kantonsrätin Luzern; Kantonsrat Luzern",
+      "portrait": {
+        "src": "/portraits/10849.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Vroni_Thalmann-Bieri_portrait.jpg"
+      },
       "no": "163"
     },
     {
@@ -7759,6 +9064,14 @@
       "ovr": 60,
       "rarity": "uncommon",
       "mandates": "Grand Conseil neuchâtelois: de 2007 à 2019; Conseil général de la Ville de Neuchâtel: de 2016 à 2021; Vice-président du Parti Socialiste Suisse",
+      "portrait": {
+        "src": "/portraits/4270.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Baptiste_Hurni_(2019).jpg"
+      },
       "no": "164"
     },
     {
@@ -7811,6 +9124,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrat des Kantons Zürich (2015-2022); Präsident SVP des Kantons Zürich (2020-2022); Mitglied Parteivorstand SVP CH und SVP ZH; Präsident Junge SVP CH (2016-2020); Stv. Generalsekretär der Jungen SVP CH (2014-2016); Präsident SVP Volketswil (2012-2020); Kassier der SVP Bezirk Uster (2019-2020); Aktuar der SVP Bezirk Uster (2012-2019); Vizepräsident der SVP Volketswil (2011-2012)",
+      "portrait": {
+        "src": "/portraits/4326.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Fischer_(2023).jpg"
+      },
       "no": "165"
     },
     {
@@ -7848,6 +9169,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4266.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Giezendanner_(2019).jpg"
+      },
       "no": "166"
     },
     {
@@ -7885,6 +9214,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Député au Grand Conseil genevois: du 5 novembre 2009 au 21 novembre 2019",
+      "portrait": {
+        "src": "/portraits/4255.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christian_Dandr%C3%A8s_(2019).jpg"
+      },
       "no": "167"
     },
     {
@@ -7917,6 +9254,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Präsidentin SP Kanton Aargau: 2018 bis 2022; GL-Mitglied SP Schweiz: 2018–2020; GL-Mitglied SP Kanton Aargau: 2014 bis 2022; Grossrätin Kanton Aargau: 2017–2019; Einwohnerrätin Aarau: 2006–2017; Stadträtin Aarau",
+      "portrait": {
+        "src": "/portraits/4295.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Gabriela_Suter_(2019).jpg"
+      },
       "no": "168"
     },
     {
@@ -7964,6 +9309,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Consigliere Comunale; Vicepresidente il Centro Ticino",
+      "portrait": {
+        "src": "/portraits/11505.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Giorgio_Fonio_(2023).jpg"
+      },
       "no": "169"
     },
     {
@@ -7996,6 +9349,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrätin Kt. Thurgau; Geschäftsprüfungs- und Finanzkommission Kt. Thurgau",
+      "portrait": {
+        "src": "/portraits/10806.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Kris_Vietze_(2023).jpg"
+      },
       "no": "170"
     },
     {
@@ -8028,6 +9389,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/11508.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Maya_Bally_(2023).jpg"
+      },
       "no": "171"
     },
     {
@@ -8070,6 +9439,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "SVP Oberwallis (seit 2009); SVP Bezirk Brig (seit 2009); SVP Brig-Glis (seit 2013); Zentralvorstand SVP Schweiz (2010-2020); Generalsekretär SVP Oberwallis (2010-2020); Fraktionspräsident SVP Oberwallis (2015-2021); Grossrat (2013-2021); Stadtrat Brig-Glis (seit 2019); Kommission für Institutionen und Familienfragen (IF) des Kantons Wallis (2017-2021); Präsident Justizkommission (JUKO) des Kantons Wallis (2015-2017); Vizepräsident Justizkommission (JUKO) des Kantons Wallis (2013-2015); Parteileitungsausschuss SVP Schweiz (seit 2024)",
+      "portrait": {
+        "src": "/portraits/4319.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Michael_Graber_(2021,_parl.ch).jpg"
+      },
       "no": "172"
     },
     {
@@ -8117,6 +9494,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10836.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nicolas_Kolly_(2023).jpg"
+      },
       "no": "173"
     },
     {
@@ -8159,6 +9544,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrat Zürich; Gemeinderat Stadt Zürich; Vorstand der SVP Küsnacht; Eidgenössische und Kantonale Delegierte der SVP",
+      "portrait": {
+        "src": "/portraits/10833.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nina_Fehr_D%C3%BCsel.jpg"
+      },
       "no": "174"
     },
     {
@@ -8206,6 +9599,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrätin; SP Kreuzlingen; Gemeinderat Kreuzlingen; SP Thurgau; SP Thurgau",
+      "portrait": {
+        "src": "/portraits/10826.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nina_Schl%C3%A4fli.jpg"
+      },
       "no": "175"
     },
     {
@@ -8243,6 +9644,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Präsidiumsmitglied CVP Oberwallis; Grossrat des Kantons Wallis: von März 2009 bis Dezember 2018; Grossratssuppleant des Kantons Wallis: von März 2004 bis März 2005; Gemeinderat Naters",
+      "portrait": {
+        "src": "/portraits/4230.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Philipp_Matthias_Bregy_(2019).jpg"
+      },
       "no": "176"
     },
     {
@@ -8280,6 +9689,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Gemeindeammann von Escholzmatt-Marbach; Gemeindeammann von Marbach; Kantonsrat Kanton Luzern; UNESCO Biosphäre Entlebuch",
+      "portrait": {
+        "src": "/portraits/10814.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Pius_Kaufmann_portrait.jpg"
+      },
       "no": "177"
     },
     {
@@ -8317,6 +9734,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrat",
+      "portrait": {
+        "src": "/portraits/10845.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Roman_B%C3%BCrgi.jpg"
+      },
       "no": "178"
     },
     {
@@ -8359,6 +9784,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Vize-Fraktionspräsidentin SP Basel-Stadt bis Ende Januar 2021; Parteivorstand SP Basel-Stadt (seit 2009); Grossrätin Kanton Basel-Stadt von 2012 bis Januar 2021 (Präsidentin Gesundheits-und Sozialkommission, Mitglied Finanzkommission); Bürgergemeinderätin von 2013 bis 2018",
+      "portrait": {
+        "src": "/portraits/4318.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Sarah_Wyss_(2021).jpg"
+      },
       "no": "179"
     },
     {
@@ -8396,6 +9829,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Grossrätin; Grossrätin; Erziehungsrätin des Kantons Aargau; Vorstand educationsuisse; Co-Präsidentin Schweizerische Gesellschaft für angewandte Berufsbildungsforschung; Vorstand Schweizerische Konferenz der Höheren Fachschulen; Vorstand Cinéconomie",
+      "portrait": {
+        "src": "/portraits/10813.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Simona_Brizzi.jpg"
+      },
       "no": "180"
     },
     {
@@ -8438,6 +9879,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Vizepräsidentin SP Schweiz; Legislative des Kantons Bern: von März 2018 bis November 2019; Legislative der Stadt Bern: von Januar 2017 bis Mai 2018; Präsidentin Juso Schweiz: von Juni 2016 bis August 2019; Co-Präsidentin SP Frauen Schweiz: seit März 2020",
+      "portrait": {
+        "src": "/portraits/4262.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Tamara_Funiciello_(2019).jpg"
+      },
       "no": "181"
     },
     {
@@ -8475,6 +9924,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Conseil communal de Courroux; Parlement jurassien; UDC Jura",
+      "portrait": {
+        "src": "/portraits/10847.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Stettler_portrait_(cropped).jpg"
+      },
       "no": "182"
     },
     {
@@ -8507,6 +9964,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10822.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Ursula_Zybach_portrait.jpg"
+      },
       "no": "183"
     },
     {
@@ -8544,6 +10009,14 @@
       "ovr": 60,
       "rarity": "common",
       "mandates": "Kantonsrat St. Gallen; SVP Kanton St. Gallen",
+      "portrait": {
+        "src": "/portraits/10848.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Walter_Gartmann_portrait.jpg"
+      },
       "no": "184"
     },
     {
@@ -8576,6 +10049,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10851.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Zryd_portrait_(cropped).jpg"
+      },
       "no": "185"
     },
     {
@@ -8608,6 +10089,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Grossrat des Kantons Aargau",
+      "portrait": {
+        "src": "/portraits/10801.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christoph_Riner_portrait_(cropped).jpg"
+      },
       "no": "186"
     },
     {
@@ -8640,6 +10129,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "autre",
+      "portrait": {
+        "src": "/portraits/10850.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Didier_Calame_(2023).jpg"
+      },
       "no": "187"
     },
     {
@@ -8672,6 +10169,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Conseiller communal (exécutif) à Venthône (janvier 2009 à décembre 2020), Député au Grand-conseil valaisan (avril 2013 à avril 2021)",
+      "portrait": {
+        "src": "/portraits/4320.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Emmanuel_Amoos_(2023).jpg"
+      },
       "no": "188"
     },
     {
@@ -8704,6 +10209,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Grossrat Kanton Bern; SVP Frutigen",
+      "portrait": {
+        "src": "/portraits/10834.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Ernst_Wandfluh_(2023).jpg"
+      },
       "no": "189"
     },
     {
@@ -8736,6 +10249,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "SVP Mittelland Süd Präsident; SVP Schweiz Delegierter",
+      "portrait": {
+        "src": "/portraits/10852.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Hans_J%C3%B6rg_R%C3%BCegsegger_(2023).jpg"
+      },
       "no": "190"
     },
     {
@@ -8768,6 +10289,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Kantonal Schwyzerischer Gewerbeverband; Verein Berufsbildung Zentralschweiz; FDP.Die Liberalen Kanton Schwyz",
+      "portrait": {
+        "src": "/portraits/10808.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Heinz_Theiler_(2023).jpg"
+      },
       "no": "191"
     },
     {
@@ -8800,6 +10329,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10817.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chappuis_(2021).jpg"
+      },
       "no": "192"
     },
     {
@@ -8837,6 +10374,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10827.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jean_Tschopp_(2023).jpg"
+      },
       "no": "193"
     },
     {
@@ -8874,6 +10419,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Députée au Grand conseil vaudois; Présidente du Parti socialiste vaudois; Vice-présidente du Parti socialiste vaudois; Co-présidente des Femmes socialistes",
+      "portrait": {
+        "src": "/portraits/10820.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Jessica_Jaccoud.jpg"
+      },
       "no": "194"
     },
     {
@@ -8906,6 +10459,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Legislative des Kantons Bern: von 01.06.2014 bis 24.11.2019; Mitglied des Vorstandes Grüne Seeland",
+      "portrait": {
+        "src": "/portraits/4247.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Kilian_Baumann_(2023).jpg"
+      },
       "no": "195"
     },
     {
@@ -8943,6 +10504,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Organe législatif de la Ville de Lausanne: de décembre 2015 à juin 2017; Organe législatif du Canton de Vaud: de juillet 2017 à novembre 2019",
+      "portrait": {
+        "src": "/portraits/4280.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:L%C3%A9onore_Porchet_(2023).jpg"
+      },
       "no": "196"
     },
     {
@@ -8975,6 +10544,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4313.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Maja_Riniker_(2023).jpg"
+      },
       "no": "197"
     },
     {
@@ -9007,6 +10584,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Vorstand SVP Thurgau; Vorstand SVP Bezirk Weinfelden; Mitglied Stadtparlament Weinfelden; SVP Schweiz",
+      "portrait": {
+        "src": "/portraits/4293.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Manuel_Strupler.jpg"
+      },
       "no": "198"
     },
     {
@@ -9039,6 +10624,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Präsidentin Grüne Kanton Zürich; Legislative des Kantons Zürich: von Mai 2019 bis November 2019; Vorstand Grüne Kanton Zürich; Vorstand Grüne Bezirk Hinwil; Vorstand Grüne Hinwil",
+      "portrait": {
+        "src": "/portraits/4288.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Marionna_Schlatter_(2019).jpg"
+      },
       "no": "199"
     },
     {
@@ -9071,6 +10664,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Zürcher Landwirtschaftliche Kreditkasse ZLK; Zürcher Bauernverband ZBV; Kantonsrat Zürich; Zürcher Obstbauverein; SVP Kanton Zürich",
+      "portrait": {
+        "src": "/portraits/10831.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_H%C3%BCbscher.jpg"
+      },
       "no": "200"
     },
     {
@@ -9103,6 +10704,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10809.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Nadine_Gobet_portrait.jpg"
+      },
       "no": "201"
     },
     {
@@ -9140,6 +10749,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Gran Consiglio Ticino",
+      "portrait": {
+        "src": "/portraits/10842.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Paolo_Pamini_(parl.ch).jpg"
+      },
       "no": "202"
     },
     {
@@ -9177,6 +10794,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Conseil communal de la commune d'Echichens de 2006 à 2009 / Grand Conseil vaudois de 2007 à 2021",
+      "portrait": {
+        "src": "/portraits/4327.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Rapha%C3%ABl_Mahaim_(2023).jpg"
+      },
       "no": "203"
     },
     {
@@ -9214,6 +10839,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Kantonsrat; Finanzkommission Kanton Solothurn; Mitglied des Auslandschweizerrates",
+      "portrait": {
+        "src": "/portraits/10810.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Simon_Michel_(2023).jpg"
+      },
       "no": "204"
     },
     {
@@ -9251,6 +10884,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Vizefraktionspräsidentin SVP Schweiz",
+      "portrait": {
+        "src": "/portraits/4314.webp",
+        "author": "Services du parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Stefanie_Heimgartner.jpg"
+      },
       "no": "205"
     },
     {
@@ -9283,6 +10924,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Grossrat; Gemeinderat; Gemeinde",
+      "portrait": {
+        "src": "/portraits/10832.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Knutti_%C3%A0_la_tribune_CN.jpg"
+      },
       "no": "206"
     },
     {
@@ -9315,6 +10964,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Vice-Président Le Centre Suisse/Die Mitte Schweiz; Législatif communal Ville de Genève: 2007 à 2009; Législatif cantonal: 2009 à 2019; Président du PDC Genève 2018 à 2020; Membre de la Présidence du Centre Suisse (Mitte Schweiz) depuis 2021",
+      "portrait": {
+        "src": "/portraits/4275.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Vincent_Maitre_(2019).jpg"
+      },
       "no": "207"
     },
     {
@@ -9352,6 +11009,14 @@
       "ovr": 59,
       "rarity": "common",
       "mandates": "Syndic; Député; Conseiller Communal; Conseil d'administration de STRID SA; Lignum Vaud; Président du groupe UDC au Grand Conseil; Comité de la société des remontées mécaniques de Sainte-Croix/Les Rasses; Comité de la société de la Piscine des Replans; EFS/FUS Entrepreneurs forestiers Suisse",
+      "portrait": {
+        "src": "/portraits/10840.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Yvan_Pahud_(parl.ch,_cropped).jpg"
+      },
       "no": "208"
     },
     {
@@ -9389,6 +11054,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Präsident Jungfreisinnige Schweiz: 2016 - 2019; Präsident Jungfreisinnige Kanton Zürich: 2013 - 2016; Mitglied Stadtparlament Zürich: seit 2018; Mitglied der Spezialkommission Hochbau/Stadtentwicklung der Stadt Zürich: seit 2018",
+      "portrait": {
+        "src": "/portraits/4290.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andri_Silberschmidt_(2023).jpg"
+      },
       "no": "209"
     },
     {
@@ -9421,6 +11094,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Vizepräsidentin GRÜNE St.Gallen; Legislative der Stadt St.Gallen: von März 2013 bis November 2019",
+      "portrait": {
+        "src": "/portraits/4286.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Franziska_Ryser_(2019).jpg"
+      },
       "no": "210"
     },
     {
@@ -9453,6 +11134,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Kantonsrat; SP Kanton Luzern; Sportförderungskommission Kanton Luzern",
+      "portrait": {
+        "src": "/portraits/10828.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Hasan_Candan_portrait.jpg"
+      },
       "no": "211"
     },
     {
@@ -9500,6 +11189,14 @@
       "ovr": 58,
       "rarity": "uncommon",
       "mandates": "Conseil général de Bulle: de 2012 à février 2016; Conseil communal de Bulle: de 2016 à décembre 2019; Grand Conseil du Canton de Fribourg: de 2016 à décembre 2019",
+      "portrait": {
+        "src": "/portraits/4306.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Johanna_Gapany_(2019).jpg"
+      },
       "no": "212"
     },
     {
@@ -9532,6 +11229,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Vorstandsmitglied SVP Kanton St. Gallen; Ehrenpräsident JSVP Kanton St. Gallen; Vorstandsmitglied SVP Kreis Rheintal; Vorstandsmitglied SVP Berneck; Legislative Kanton St. Gallen: von März 2012 bis Februar 2019",
+      "portrait": {
+        "src": "/portraits/4229.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mike_Egger_(2019).jpg"
+      },
       "no": "213"
     },
     {
@@ -9564,6 +11269,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Gemeinderat Stadt Zürich; Kantonsrat Kt. Zürich",
+      "portrait": {
+        "src": "/portraits/11507.webp",
+        "author": "Assemblea Federale Svizzera",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Patrick_H%C3%A4ssig_(2023)_(cropped).jpg"
+      },
       "no": "214"
     },
     {
@@ -9596,6 +11309,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10844.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Roman_Hug_portrait.jpg"
+      },
       "no": "215"
     },
     {
@@ -9628,6 +11349,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "membre; président conseil ; membre conseil; UDC Vaud; Udc arrondissement Morges",
+      "portrait": {
+        "src": "/portraits/10835.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Sylvain_Freymond.jpg"
+      },
       "no": "216"
     },
     {
@@ -9670,6 +11399,14 @@
       "ovr": 58,
       "rarity": "common",
       "mandates": "Gemeindepräsidentin Hagenbuch; Vorstand Gemeindepräsidenten Bezirk Winterthur; Paritätische Kommission KESB Bezirk Winterthur; Vorstand Sozialkonferenz Kanton Zürich; Bezirkspräsidentin SVP Winterthur 2016 - 2020; Gemeinderätin",
+      "portrait": {
+        "src": "/portraits/4234.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Therese_Schl%C3%A4pfer_(2023).jpg"
+      },
       "no": "217"
     },
     {
@@ -9702,6 +11439,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": "Mitglied der Geschäftsleitung SP Queer",
+      "portrait": {
+        "src": "/portraits/10824.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Anna_Rosenwasser_(2023).jpg"
+      },
       "no": "218"
     },
     {
@@ -9734,6 +11479,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": "Yverdon-les-Bains; Conseil d'administration STRID SA; OUESTRAIL; ATE Suisse",
+      "portrait": {
+        "src": "/portraits/10825.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Brenda_Tuosto_(2023).jpg"
+      },
       "no": "219"
     },
     {
@@ -9766,6 +11519,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": "Die Mitte Gemeinde Schwyz; Die Mitte Schwyz",
+      "portrait": {
+        "src": "/portraits/10816.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Dominik_Blunschy_(2023).jpg"
+      },
       "no": "220"
     },
     {
@@ -9798,6 +11559,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10823.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Estelle_Revaz.jpg"
+      },
       "no": "221"
     },
     {
@@ -9830,6 +11599,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10812.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Islam_Alijaj_(2023).jpg"
+      },
       "no": "222"
     },
     {
@@ -9862,6 +11639,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": "Landrat Kt. Glarus; Gemeinderat Glarus",
+      "portrait": {
+        "src": "/portraits/10841.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Markus_Schnyder_(2023).jpg"
+      },
       "no": "223"
     },
     {
@@ -9919,6 +11704,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/10805.webp",
+        "author": "Genfer01",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Broulis.jpg"
+      },
       "no": "224"
     },
     {
@@ -9951,6 +11744,14 @@
       "ovr": 57,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/14809.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Ueli_Schmezer_(parl.ch).jpg"
+      },
       "no": "225"
     },
     {
@@ -9998,6 +11799,14 @@
       "ovr": 56,
       "rarity": "common",
       "mandates": "Membre du Comité directeur Le Centre Fribourg; Députée au Grand Conseil fribourgeois (1992-2001); Conseillère d'Etat du canton de Fribourg, directrice de l'instruction publique, de la culture et du sport (2002-2013), présidente de la CDIP (2006-2013); Présidente de la Conférence intercantonale des directeurs et directrices de l'instruction publique (2006-2013)",
+      "portrait": {
+        "src": "/portraits/4325.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chassot_(parl.ch).jpg"
+      },
       "no": "226"
     },
     {
@@ -10030,6 +11839,14 @@
       "ovr": 56,
       "rarity": "common",
       "mandates": "SVP Kiesen-Oppligen; SVP Mittelland-Süd; SVP Kanton Bern",
+      "portrait": {
+        "src": "/portraits/10830.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Katja_Riem_portrait.jpg"
+      },
       "no": "227"
     },
     {
@@ -10072,6 +11889,14 @@
       "ovr": 56,
       "rarity": "common",
       "mandates": "Kantonsrat Schaffhausen; Geschäftsleitung SP Schaffhausen",
+      "portrait": {
+        "src": "/portraits/14105.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Linda_De_Ventura.jpg"
+      },
       "no": "228"
     },
     {
@@ -10124,6 +11949,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": "Regierungsrat / Landammann; Konferenzmitglied Konferenz der kantonalen Gesundheitsdirektorinnen und -direktoren, GDK; Konferenzmitglied Konferenz der kantonalen Finanzdirektorinnen und -direktoren, FDK; Kantonsvertreter Konkordatsrat Schweizer Salinen; Kantonsvertreter Swisslos Interkantonale Landeslotterie Genossenschaft; Konferenzmitglied Gesundheitsdirektorenkonferenz der Ostschweizer Kantone und des FL, GDK-Ost; Konferenzmitglied Finanzdirektorenkonferenz Ostschweiz, FDK-Ost",
+      "portrait": {
+        "src": "/portraits/10802.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_M%C3%BChlemann_(2023).jpg"
+      },
       "no": "229"
     },
     {
@@ -10156,6 +11989,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": "SVP Bezirk Zofingen; Grossrat Kanton Aargau",
+      "portrait": {
+        "src": "/portraits/14803.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Christian_Glur_(2024).jpg"
+      },
       "no": "230"
     },
     {
@@ -10203,6 +12044,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": "Grünliberale Partei, Oberhofen am Thunersee; Junge Grünliberale Kanton Bern",
+      "portrait": {
+        "src": "/portraits/14810.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Fabienne_St%C3%A4mpfli_(parl.ch).jpg"
+      },
       "no": "231"
     },
     {
@@ -10275,6 +12124,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": "Membre du comité directeur des Femmes socialistes suisses",
+      "portrait": {
+        "src": "/portraits/4332.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mathilde_Crevoisier_(2023).jpg"
+      },
       "no": "232"
     },
     {
@@ -10307,6 +12164,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/4289.webp",
+        "author": "Services du Parlement",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Meret_Schneider_(2019).jpg"
+      },
       "no": "233"
     },
     {
@@ -10339,6 +12204,14 @@
       "ovr": 55,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/16109.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Rudi_Berli_(parl.ch).jpg"
+      },
       "no": "234"
     },
     {
@@ -10376,6 +12249,14 @@
       "ovr": 54,
       "rarity": "common",
       "mandates": "Membre du Conseil communal de Lausanne 2011 à 2024",
+      "portrait": {
+        "src": "/portraits/15004.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Beno%C3%AEt_Gaillard.jpg"
+      },
       "no": "235"
     },
     {
@@ -10413,6 +12294,14 @@
       "ovr": 54,
       "rarity": "common",
       "mandates": "Députée au Grand Conseil neuchâtelois; Conseillère générale à Val-de-Ruz; Conseillère générale à la Chaux-de-Fonds; Présidente du Grand Conseil neuchâtelois",
+      "portrait": {
+        "src": "/portraits/15304.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Clarence_Chollet.jpg"
+      },
       "no": "236"
     },
     {
@@ -10465,6 +12354,14 @@
       "ovr": 54,
       "rarity": "common",
       "mandates": "Kantonsrat Schaffhausen; Grossstadtrat Stadt Schaffhausen; FDP Stadt Schaffhausen",
+      "portrait": {
+        "src": "/portraits/15601.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Severin_Br%C3%BCngger_(parl.ch).jpg"
+      },
       "no": "237"
     },
     {
@@ -10497,6 +12394,14 @@
       "ovr": 53,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/16706.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Edgar_Bischof_(2026).jpg"
+      },
       "no": "238"
     },
     {
@@ -10529,6 +12434,14 @@
       "ovr": 52,
       "rarity": "common",
       "mandates": "Gemeinderätin ",
+      "portrait": {
+        "src": "/portraits/17404.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Andrea_de_Meuron_(parl.ch).jpg"
+      },
       "no": "239"
     },
     {
@@ -10561,6 +12474,14 @@
       "ovr": 52,
       "rarity": "common",
       "mandates": "Stadträtin",
+      "portrait": {
+        "src": "/portraits/17101.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Portmann_(parl.ch).jpg"
+      },
       "no": "240"
     },
     {
@@ -10593,6 +12514,14 @@
       "ovr": 51,
       "rarity": "common",
       "mandates": "Co-Präsident Aktion Vierviertel",
+      "portrait": {
+        "src": "/portraits/16902.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Arb%C3%ABr_Bullakaj.jpg"
+      },
       "no": "241"
     },
     {
@@ -10630,6 +12559,14 @@
       "ovr": 51,
       "rarity": "common",
       "mandates": "Gemeinderat; Kantonsrat",
+      "portrait": {
+        "src": "/portraits/16804.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Laura_Gantenbein_(2026).jpg"
+      },
       "no": "242"
     },
     {
@@ -10667,6 +12604,14 @@
       "ovr": 51,
       "rarity": "common",
       "mandates": "Député au Parlement jurassien ; Conseiller communal de Glovelier",
+      "portrait": {
+        "src": "/portraits/16905.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Lo%C3%AFc_Dobler_(2026).jpg"
+      },
       "no": "243"
     },
     {
@@ -10704,6 +12649,14 @@
       "ovr": 51,
       "rarity": "common",
       "mandates": "Gemeinderat Glattfelden; Kantonsrat",
+      "portrait": {
+        "src": "/portraits/17301.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Mich%C3%A8le_D%C3%BCnki-B%C3%A4ttig_(2026).jpg"
+      },
       "no": "244"
     },
     {
@@ -10736,6 +12689,14 @@
       "ovr": 51,
       "rarity": "common",
       "mandates": "Landrat Baselland; Landratsfraktion SP BL; Bildungs-, Kultur- und Sportkommission BL; SP Münchenstein; Gemeinde Münchenstein",
+      "portrait": {
+        "src": "/portraits/17201.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Miriam_Locher.jpg"
+      },
       "no": "245"
     },
     {
@@ -10768,6 +12729,14 @@
       "ovr": 50,
       "rarity": "common",
       "mandates": null,
+      "portrait": {
+        "src": "/portraits/17401.webp",
+        "author": "Parliamentary Services",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": "http://www.parlament.ch",
+        "source": "https://commons.wikimedia.org/wiki/File:Anna-B%C3%A9atrice_Schmaltz_(2026).jpg"
+      },
       "no": "246"
     }
   ]
