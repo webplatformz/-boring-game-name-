@@ -83,11 +83,11 @@ export function useGame(): Game {
   }, [])
 
   // ── the rip sequence: tap → pack zooms → strip rips off in one pull → cards deal in ──
+  // Cards stay face-down until the user taps them.
   const rip = useCallback(() => {
     patch({ ripped: true })
     after(PACK_RIP_MS, () => {
-      patch({ screen: 'reveal', ripped: false })
-      after(340, () => patch({ faceUp: true }))
+      patch({ screen: 'reveal', ripped: false, faceUp: false })
     })
   }, [patch, after])
 
@@ -136,9 +136,9 @@ export function useGame(): Game {
       finishPack()
       return
     }
-    // Deal the current card off the deck (tinder-style swipe out), then flip the next one face-up.
+    // Deal the current card off the deck (tinder-style swipe out); the next card
+    // stays face-down until the user taps it.
     patch({ outgoing: s.pack[s.revealIdx], revealIdx: next, faceUp: false })
-    after(450, () => patch({ faceUp: true }))
     after(470, () => patch({ outgoing: null }))
   }, [patch, after, finishPack])
 
@@ -166,9 +166,15 @@ export function useGame(): Game {
   )
   const onPointerUp = useCallback(() => {
     if (!stateRef.current.dragging) return
-    const past = Math.abs(stateRef.current.drag) > 70 || moved.current < 6
+    const isTap = moved.current < 6
+    const swiped = Math.abs(stateRef.current.drag) > 70
     patch({ dragging: false, drag: 0 })
-    if (past) advance()
+    // First tap on a face-down card flips it; subsequent tap/swipe advances.
+    if (!stateRef.current.faceUp) {
+      if (isTap) patch({ faceUp: true })
+      return
+    }
+    if (swiped || isTap) advance()
   }, [patch, advance])
 
   return {

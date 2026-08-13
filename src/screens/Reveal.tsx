@@ -78,7 +78,7 @@ export function Reveal({ game }: { game: Game }) {
       </div>
 
       <div style={{ textAlign: 'center', fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>
-        TAP TO TURN THE NEXT CARD
+        {faceUp ? 'TAP OR SWIPE FOR THE NEXT CARD' : 'TAP TO TURN THE CARD'}
       </div>
     </div>
   )
