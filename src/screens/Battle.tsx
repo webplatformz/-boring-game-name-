@@ -17,8 +17,6 @@ const MONO = "'IBM Plex Mono',monospace"
  * smaller than the full-size card so both fit one viewport with the
  * action buttons below. */
 const FIGHT_CARD_W = Math.min(0.6 * CARD_MAX_W, 210)
-/** Even smaller pair shown side by side on the result screen. */
-const RESULT_CARD_W = Math.min(0.5 * CARD_MAX_W, 170)
 
 /**
  * CardFront/CardGlow are laid out with fixed px font sizes sized for the
@@ -76,24 +74,19 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
 
       {step === 'pick' && <Picker ownedList={ownedList} onPick={battle.pickPlayerCard} onGoHome={game.goHome} />}
 
-      {(step === 'fight' || step === 'reveal') && playerCard && oppCard && (
-        <Fight
-          revealed={step === 'reveal'}
+      {/* fight/reveal/result share one persistent Arena instance so the cards
+       * never unmount+remount between them — that full-tree swap was the
+       * cause of the jarring instant cut into the result screen. Only the
+       * footer content (buttons → status → banner) changes underneath. */}
+      {(step === 'fight' || step === 'reveal' || step === 'result') && playerCard && oppCard && (
+        <Arena
+          step={step}
           playerCard={playerCard}
           oppCard={oppCard}
           playerAction={playerAction}
           oppAction={oppAction}
-          onChoose={battle.chooseAction}
-        />
-      )}
-
-      {step === 'result' && result && playerCard && oppCard && (
-        <Result
           result={result}
-          playerCard={playerCard}
-          oppCard={oppCard}
-          playerAction={playerAction}
-          oppAction={oppAction}
+          onChoose={battle.chooseAction}
           onFightAgain={battle.reset}
         />
       )}
@@ -163,28 +156,37 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
   )
 }
 
-// ── fight / reveal: opponent stacked above the player's own card ───────────
+// ── fight / reveal / result: one persistent arena, opponent stacked above
+// the player's own card ─────────────────────────────────────────────────
 // Vertical stacking (rather than side by side) is deliberate — this app is
 // mobile-width first, and two full-height cards side by side would be
 // cramped. The player's card always anchors the bottom so it's unambiguous
-// which one is "yours".
+// which one is "yours". Kept as a single component across all three steps
+// (rather than swapping between separate Fight/Result components) so the
+// cards themselves never unmount — only the footer content changes.
 
-function Fight({
-  revealed,
+function Arena({
+  step,
   playerCard,
   oppCard,
   playerAction,
   oppAction,
+  result,
   onChoose,
+  onFightAgain,
 }: {
-  revealed: boolean
+  step: 'fight' | 'reveal' | 'result'
   playerCard: Member
   oppCard: Member
   playerAction: Action | null
   oppAction: Action | null
+  result: BattleResult | null
   onChoose: (action: Action) => void
+  onFightAgain: () => void
 }) {
   const locked = playerAction !== null
+  const revealed = step === 'reveal' || step === 'result'
+  const won = result?.winner === 'player'
 
   return (
     // No overflowY:auto here — that would force overflow-x to 'auto' too
@@ -198,9 +200,22 @@ function Fight({
         width={FIGHT_CARD_W}
         highlightStat={revealed ? statFor(oppAction) : null}
         actionLabel={revealed ? oppAction : null}
+        bump={step === 'reveal' && oppAction === 'attack' ? 'down' : null}
+        dimmed={step === 'result' && won}
       />
 
-      <div style={{ flex: 'none', fontFamily: AB, fontSize: 13, letterSpacing: '.1em', color: '#5C7391' }}>VS</div>
+      <div
+        style={{
+          flex: 'none',
+          fontFamily: AB,
+          fontSize: 13,
+          letterSpacing: '.1em',
+          color: '#5C7391',
+          animation: step === 'reveal' ? 'vsFlash 420ms ease-out' : undefined,
+        }}
+      >
+        VS
+      </div>
 
       <BattleCard
         label="YOUR CARD"
@@ -209,10 +224,14 @@ function Fight({
         width={FIGHT_CARD_W}
         highlightStat={revealed ? statFor(playerAction) : null}
         actionLabel={revealed ? playerAction : null}
+        bump={step === 'reveal' && playerAction === 'attack' ? 'up' : null}
+        dimmed={step === 'result' && !won}
       />
 
-      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 320, marginTop: 6, minHeight: 52 }}>
-        {!locked ? (
+      {/* Footer swaps content (buttons → locking/resolving status → result
+       * banner) but stays the same box, so nothing else jumps around it. */}
+      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 320, marginTop: 6, minHeight: 68 }}>
+        {step === 'fight' && !locked && (
           <div style={{ display: 'flex', gap: 10, width: '100%' }}>
             <button onClick={() => onChoose('attack')} style={actionButtonStyle('#FF3D8B')}>
               ATTACK
@@ -221,7 +240,9 @@ function Fight({
               DEFEND
             </button>
           </div>
-        ) : (
+        )}
+
+        {step !== 'result' && locked && (
           <div
             style={{
               fontFamily: MONO,
@@ -231,7 +252,22 @@ function Fight({
               animation: 'glowPulse 1000ms ease-in-out infinite',
             }}
           >
-            {revealed ? 'RESOLVING…' : 'LOCKING IN…'}
+            {step === 'reveal' ? 'RESOLVING…' : 'LOCKING IN…'}
+          </div>
+        )}
+
+        {step === 'result' && result && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, animation: 'riseIn 320ms ease-out' }}>
+            <div style={{ fontFamily: AB, fontSize: 22, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
+              {won ? 'YOU WON!' : 'YOU LOST'}
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>{result.reason}</div>
+            <button
+              onClick={onFightAgain}
+              style={{ marginTop: 2, padding: '13px 26px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
+            >
+              FIGHT AGAIN
+            </button>
           </div>
         )}
       </div>
@@ -267,6 +303,8 @@ function BattleCard({
   width,
   highlightStat,
   actionLabel,
+  bump,
+  dimmed = false,
 }: {
   label: string
   labelColor: string
@@ -274,17 +312,31 @@ function BattleCard({
   width: number
   highlightStat: 'atk' | 'def' | null
   actionLabel: Action | null
+  bump: 'up' | 'down' | null
+  dimmed?: boolean
 }) {
   const t = TIERS[member.rarity]
   return (
-    <div style={{ flex: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+    <div
+      style={{
+        flex: 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 6,
+        opacity: dimmed ? 0.55 : 1,
+        transition: 'opacity 300ms ease-out',
+      }}
+    >
       <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: labelColor }}>{label}</div>
-      <ScaledCard
-        width={width}
-        member={member}
-        highlightStat={highlightStat}
-        style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${t.c}8c` }}
-      />
+      <div style={{ animation: bump ? `${bump === 'up' ? 'bumpUp' : 'bumpDown'} 560ms ease-out` : undefined }}>
+        <ScaledCard
+          width={width}
+          member={member}
+          highlightStat={highlightStat}
+          style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${t.c}8c` }}
+        />
+      </div>
       {actionLabel && (
         <div
           style={{
@@ -298,55 +350,6 @@ function BattleCard({
           {actionLabel === 'attack' ? 'ATTACKED' : 'DEFENDED'}
         </div>
       )}
-    </div>
-  )
-}
-
-// ── result: win/lose banner + both cards, then rematch ──────────────────────
-
-function Result({
-  result,
-  playerCard,
-  oppCard,
-  playerAction,
-  oppAction,
-  onFightAgain,
-}: {
-  result: BattleResult
-  playerCard: Member
-  oppCard: Member
-  playerAction: Action | null
-  oppAction: Action | null
-  onFightAgain: () => void
-}) {
-  const won = result.winner === 'player'
-
-  return (
-    // Same reasoning as Fight: no overflowY:auto, so CardGlow's bleed isn't
-    // clipped by a forced overflow-x:auto. riseIn plays on mount, i.e. right
-    // when the step switches from 'reveal' to 'result'.
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '10px 0', animation: 'riseIn 360ms ease-out' }}>
-      <div style={{ fontFamily: AB, fontSize: 28, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2', textAlign: 'center' }}>
-        {won ? 'YOU WON!' : 'YOU LOST'}
-      </div>
-      <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>{result.reason}</div>
-
-      <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
-        <div style={{ opacity: won ? 1 : 0.55 }}>
-          <ScaledCard width={RESULT_CARD_W} member={playerCard} highlightStat={statFor(playerAction)} />
-        </div>
-        <div style={{ fontFamily: AB, fontSize: 13, color: '#5C7391' }}>VS</div>
-        <div style={{ opacity: won ? 0.55 : 1 }}>
-          <ScaledCard width={RESULT_CARD_W} member={oppCard} highlightStat={statFor(oppAction)} />
-        </div>
-      </div>
-
-      <button
-        onClick={onFightAgain}
-        style={{ marginTop: 6, padding: '14px 28px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
-      >
-        FIGHT AGAIN
-      </button>
     </div>
   )
 }
