@@ -97,3 +97,47 @@ export function persistPrefs(prefs: CollectionPrefs): void {
     /* ignore quota / private-mode failures */
   }
 }
+
+// ── battle mode record ──────────────────────────────────────────────────────
+// Kept apart from the save, same reasoning as collection prefs: a corrupt or
+// absent value should never cost the player their packs/cards.
+
+export interface BattleRecord {
+  wins: number
+  losses: number
+}
+
+const BATTLE_KEY = 'bundeshaus-battle-v1'
+
+export const DEFAULT_BATTLE_RECORD: BattleRecord = {
+  wins: 0,
+  losses: 0,
+}
+
+// A valid count is a finite, non-negative integer — guards against corrupt
+// localStorage values like negatives, fractions, NaN or Infinity.
+function isValidCount(n: unknown): n is number {
+  return typeof n === 'number' && Number.isInteger(n) && n >= 0
+}
+
+export function loadBattleRecord(): BattleRecord {
+  try {
+    const raw = localStorage.getItem(BATTLE_KEY)
+    if (!raw) return DEFAULT_BATTLE_RECORD
+    const r = JSON.parse(raw) as Partial<BattleRecord>
+    return {
+      wins: isValidCount(r.wins) ? r.wins : DEFAULT_BATTLE_RECORD.wins,
+      losses: isValidCount(r.losses) ? r.losses : DEFAULT_BATTLE_RECORD.losses,
+    }
+  } catch {
+    return DEFAULT_BATTLE_RECORD
+  }
+}
+
+export function persistBattleRecord(record: BattleRecord): void {
+  try {
+    localStorage.setItem(BATTLE_KEY, JSON.stringify(record))
+  } catch {
+    /* ignore quota / private-mode failures */
+  }
+}

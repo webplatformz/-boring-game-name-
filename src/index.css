@@ -265,6 +265,70 @@ a:hover {
   }
 }
 
+/* Battle mode: pulses a soft glow, in the stat's own colour, around the
+   ATK/DEF number that decided a round. Colour supplied via --stat-glow. */
+@keyframes statHighlight {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--stat-glow) 55%, transparent);
+    background: color-mix(in srgb, var(--stat-glow) 10%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px color-mix(in srgb, var(--stat-glow) 65%, transparent);
+    background: color-mix(in srgb, var(--stat-glow) 22%, transparent);
+  }
+}
+
+/* Battle mode: the attacking card lunges toward its opponent and springs
+   back, like a physical clash. Direction (up/down) depends on whether the
+   attacker is the top (opponent) or bottom (player) card in the stack. */
+@keyframes bumpDown {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(34px) scale(1.06);
+  }
+  55% {
+    transform: translateY(-10px) scale(0.98);
+  }
+  75% {
+    transform: translateY(4px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes bumpUp {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-34px) scale(1.06);
+  }
+  55% {
+    transform: translateY(10px) scale(0.98);
+  }
+  75% {
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+/* Brief flash on the VS divider at the moment of impact. */
+@keyframes vsFlash {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.6);
+    opacity: 1;
+  }
+}
+
 /* Hide scrollbars on the horizontal chip rails while keeping them scrollable. */
 .no-scrollbar {
   scrollbar-width: none;
