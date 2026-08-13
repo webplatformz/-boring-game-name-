@@ -4,7 +4,7 @@ import type { Game } from '../game/useGame'
 import type { Member, RarityKey } from '../data/members'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
 import { Flag } from '../components/Flag'
-import { CardFront } from '../components/CardFront'
+import { CardModal } from '../components/CardModal'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -16,7 +16,6 @@ export function Collection({ game }: { game: Game }) {
   const [sortDir, setSortDir] = useState(-1) // -1 = desc, 1 = asc
   const [selectedRarities, setSelectedRarities] = useState<Set<RarityKey>>(new Set(RARITY_ORDER))
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
-  const [closingCard, setClosingCard] = useState(false)
   const [openCantonDropdown, setOpenCantonDropdown] = useState(false)
   const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set())
 
@@ -75,11 +74,6 @@ export function Collection({ game }: { game: Game }) {
       setSortKey(k)
       setSortDir(k === 'name' ? 1 : -1)
     }
-  }
-
-  const openCard = (m: Member) => {
-    setClosingCard(false)
-    setOpenCardMember(m)
   }
 
   const hasCards = ownedList.length > 0
@@ -264,7 +258,7 @@ export function Collection({ game }: { game: Game }) {
                 return (
                   <div
                     key={r.member.id}
-                    onClick={() => openCard(r.member)}
+                    onClick={() => setOpenCardMember(r.member)}
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '1fr 40px 40px 44px',
@@ -347,46 +341,7 @@ export function Collection({ game }: { game: Game }) {
         </div>
       )}
 
-      {openCardMember && (
-        <div
-          onClick={() => setClosingCard(true)}
-          onAnimationEnd={(e) => {
-            // Ignore bubbled animation events from the card art's own loops.
-            if (e.target !== e.currentTarget) return
-            if (closingCard) {
-              setOpenCardMember(null)
-              setClosingCard(false)
-            }
-          }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 50,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 18,
-            padding: '20px 20px 40px',
-            background: 'rgba(4,7,12,.86)',
-            backdropFilter: 'blur(4px)',
-            cursor: 'pointer',
-            pointerEvents: closingCard ? 'none' : 'auto',
-            animation: closingCard ? 'sinkOut 200ms ease-in forwards' : 'riseIn 200ms ease-out',
-          }}
-        >
-          <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>
-            <CardFront
-              member={openCardMember}
-              foil
-              style={{
-                boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[openCardMember.rarity].c}8c`,
-              }}
-            />
-          </div>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>TAP TO CLOSE</div>
-        </div>
-      )}
+      <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>
   )
 }

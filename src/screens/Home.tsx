@@ -1,14 +1,18 @@
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
+import type { Member } from '../data/members'
 import { LEGISLATURE, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
 import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
+import { CardModal } from '../components/CardModal'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 export function Home({ game }: { game: Game }) {
+  const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const { packs, owned, refillAt } = game.state
   const ownedList = Object.keys(owned)
     .map((id) => MEMBERS_BY_ID.get(Number(id)))
@@ -91,7 +95,13 @@ export function Home({ game }: { game: Game }) {
             <div style={{ width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg,#FFC53D,#FF3D8B)' }} />
           </div>
         </div>
-        <div style={tile}>
+        <button
+          type="button"
+          onClick={() => best && setOpenCardMember(best)}
+          disabled={!best}
+          style={{ ...tile, textAlign: 'left', cursor: best ? 'pointer' : 'default' }}
+          aria-label={best ? `Show card for ${best.name}` : undefined}
+        >
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>BEST PULL</div>
           <div style={{ fontFamily: AB, fontSize: 17, lineHeight: 1.05, marginTop: 3, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {best ? best.name : '—'}
@@ -99,8 +109,10 @@ export function Home({ game }: { game: Game }) {
           <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '.1em', marginTop: 4, color: best ? TIERS[best.rarity].ovrTint : '#5C7391' }}>
             {best ? `${TIERS[best.rarity].label} · ${best.ovr} OVR` : 'RIP A PACK'}
           </div>
-        </div>
+        </button>
       </div>
+
+      <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>
   )
 }
