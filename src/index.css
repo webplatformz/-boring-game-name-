@@ -1,0 +1,119 @@
+/* ── reset ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #070c13;
+  color: #eaf2ff;
+  font-family: Archivo, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+a {
+  color: #ffc53d;
+  text-decoration: none;
+}
+a:hover {
+  color: #ff5fa2;
+}
+
+/* ── animations (ported from the design prototype) ─────────────────────── */
+@keyframes slide {
+  0% {
+    background-position: -160% 0;
+  }
+  100% {
+    background-position: 260% 0;
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(-6%);
+  }
+  50% {
+    transform: translateY(6%);
+  }
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 197, 61, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 197, 61, 0);
+  }
+}
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes shimmerText {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hide scrollbars on the horizontal chip rails while keeping them scrollable. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── interactive affordances ───────────────────────────────────────────── */
+.hoverlift {
+  transition: transform 0.18s ease;
+}
+.hoverlift:hover {
+  transform: translateY(-3px);
+}
+.hovertext {
+  transition: color 0.15s ease;
+}
+.hovertext:hover {
+  color: #eaf2ff;
+}
