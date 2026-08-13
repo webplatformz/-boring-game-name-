@@ -1,24 +1,36 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
 import type { Game } from '../game/useGame'
 import type { Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
+import type { SortKey } from '../game/storage'
+import { loadPrefs, persistPrefs } from '../game/storage'
 import { Flag } from '../components/Flag'
 import { CardModal } from '../components/CardModal'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
-type SortKey = 'ovr' | 'atk' | 'def' | 'name'
-
 export function Collection({ game }: { game: Game }) {
-  const [sortKey, setSortKey] = useState<SortKey>('ovr')
-  const [sortDir, setSortDir] = useState(-1) // -1 = desc, 1 = asc
-  const [selectedRarities, setSelectedRarities] = useState<Set<RarityKey>>(new Set(RARITY_ORDER))
+  // Read once per mount so the chips come back exactly as they were left,
+  // including after switching tabs (which unmounts this screen).
+  const [savedPrefs] = useState(loadPrefs)
+  const [sortKey, setSortKey] = useState<SortKey>(savedPrefs.sortKey)
+  const [sortDir, setSortDir] = useState<-1 | 1>(savedPrefs.sortDir) // -1 = desc, 1 = asc
+  const [selectedRarities, setSelectedRarities] = useState<Set<RarityKey>>(new Set(savedPrefs.rarities))
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const [openCantonDropdown, setOpenCantonDropdown] = useState(false)
-  const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set())
+  const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set(savedPrefs.cantons))
+
+  useEffect(() => {
+    persistPrefs({
+      sortKey,
+      sortDir,
+      rarities: [...selectedRarities],
+      cantons: [...selectedCantons],
+    })
+  }, [sortKey, sortDir, selectedRarities, selectedCantons])
 
   // Owned members
   const ownedList = useMemo(() => {
@@ -70,7 +82,7 @@ export function Collection({ game }: { game: Game }) {
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) {
-      setSortDir(-sortDir)
+      setSortDir(sortDir === 1 ? -1 : 1)
     } else {
       setSortKey(k)
       setSortDir(k === 'name' ? 1 : -1)

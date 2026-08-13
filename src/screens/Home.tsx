@@ -85,7 +85,12 @@ export function Home({ game }: { game: Game }) {
 
       {/* stat tiles */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-        <div style={tile}>
+        <button
+          type="button"
+          onClick={game.goCollection}
+          style={{ ...tile, textAlign: 'left', cursor: 'pointer' }}
+          aria-label="Open the collection"
+        >
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>COLLECTED</div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 3 }}>
             <span style={{ fontFamily: AB, fontSize: 26, lineHeight: 1, color: '#EAF2FF' }}>{ownedCount}</span>
@@ -94,7 +99,7 @@ export function Home({ game }: { game: Game }) {
           <div style={{ marginTop: 9, height: 5, borderRadius: 99, background: 'rgba(234,242,255,.12)', overflow: 'hidden' }}>
             <div style={{ width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg,#FFC53D,#FF3D8B)' }} />
           </div>
-        </div>
+        </button>
         <button
           type="button"
           onClick={() => best && setOpenCardMember(best)}

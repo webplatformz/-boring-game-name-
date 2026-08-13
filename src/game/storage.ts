@@ -1,5 +1,8 @@
 // localStorage-backed persistence for the player's packs + owned counts.
 
+import type { RarityKey } from '../theme'
+import { RARITY_ORDER } from '../theme'
+
 export interface SaveState {
   /** Unopened packs remaining. */
   packs: number
@@ -38,6 +41,58 @@ export function loadSave(): SaveState {
 export function persist(state: SaveState): void {
   try {
     localStorage.setItem(KEY, JSON.stringify(state))
+  } catch {
+    /* ignore quota / private-mode failures */
+  }
+}
+
+// ── collection view preferences ─────────────────────────────────────────────
+// Kept apart from the save so a corrupt/absent value never costs the player
+// their cards.
+
+export type SortKey = 'ovr' | 'atk' | 'def' | 'name'
+
+export interface CollectionPrefs {
+  sortKey: SortKey
+  /** -1 = descending, 1 = ascending. */
+  sortDir: -1 | 1
+  /** Rarity chips currently switched on. */
+  rarities: RarityKey[]
+  /** Selected cantons, empty = no canton filter. */
+  cantons: string[]
+}
+
+const PREFS_KEY = 'bundeshaus-collection-v1'
+const SORT_KEYS: SortKey[] = ['ovr', 'atk', 'def', 'name']
+
+export const DEFAULT_PREFS: CollectionPrefs = {
+  sortKey: 'ovr',
+  sortDir: -1,
+  rarities: RARITY_ORDER,
+  cantons: [],
+}
+
+export function loadPrefs(): CollectionPrefs {
+  try {
+    const raw = localStorage.getItem(PREFS_KEY)
+    if (!raw) return DEFAULT_PREFS
+    const p = JSON.parse(raw) as Partial<CollectionPrefs>
+    return {
+      sortKey: SORT_KEYS.includes(p.sortKey as SortKey) ? (p.sortKey as SortKey) : DEFAULT_PREFS.sortKey,
+      sortDir: p.sortDir === 1 ? 1 : -1,
+      rarities: Array.isArray(p.rarities)
+        ? p.rarities.filter((r): r is RarityKey => RARITY_ORDER.includes(r as RarityKey))
+        : DEFAULT_PREFS.rarities,
+      cantons: Array.isArray(p.cantons) ? p.cantons.filter((c): c is string => typeof c === 'string') : [],
+    }
+  } catch {
+    return DEFAULT_PREFS
+  }
+}
+
+export function persistPrefs(prefs: CollectionPrefs): void {
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs))
   } catch {
     /* ignore quota / private-mode failures */
   }
