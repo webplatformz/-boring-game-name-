@@ -4,51 +4,76 @@ import type { Member } from '../data/members'
 import { portraitUrl } from '../data/members'
 import { Silhouette } from './Silhouette'
 
-const MONO = "'IBM Plex Mono',monospace"
+// The portraits are square (512²), light-background studio shots. Anchoring the
+// image to the top of the card puts the face in the upper two thirds and leaves
+// the bottom block free for the name/stats. The mask feathers the photo's edges
+// into the rarity-tinted background so the light backdrop doesn't box the card.
+const MASK = 'radial-gradient(128% 82% at 50% 32%,#000 44%,rgba(0,0,0,.55) 76%,transparent 96%)'
 
-/** Member photo filling the card's portrait area, falling back to the Silhouette. */
+/**
+ * The member's photo, on the card's rarity-tinted deep background. Falls back to
+ * the neutral {@link Silhouette} if the image is missing or fails to load.
+ */
 export function Portrait({ member, deep }: { member: Member; deep: string }) {
   const [failed, setFailed] = useState(false)
   if (!member.portrait || failed) return <Silhouette deep={deep} />
 
+  if (failed) return <Silhouette deep={deep} />
+
+  const wrap: CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    overflow: 'hidden',
+    background: `radial-gradient(120% 80% at 50% 12%, ${deep} 0%, #0A0F18 82%)`,
+  }
+  const img: CSSProperties = {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    aspectRatio: '1 / 1',
+    objectFit: 'cover',
+    objectPosition: 'center top',
+    maskImage: MASK,
+    WebkitMaskImage: MASK,
+  }
+
   return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        overflow: 'hidden',
-        background: `radial-gradient(120% 80% at 50% 12%, ${deep} 0%, #0A0F18 82%)`,
-      }}
-    >
+    <div style={wrap}>
       <img
         src={portraitUrl(member)}
-        alt=""
+        alt={`Portrait of ${member.name}`}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
         onError={() => setFailed(true)}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%' }}
+        style={img}
       />
     </div>
   )
 }
 
-/** Required licence credit line for the member's portrait. */
+/**
+ * Attribution line for a portrait. The Commons sources are CC BY / CC BY-SA,
+ * which require crediting the author wherever the image is used.
+ */
 export function PortraitCredit({ member, style }: { member: Member; style?: CSSProperties }) {
-  const p = member.portrait
-  if (!p) return null
-  const credit = p.attribution ? `${p.author} — ${p.attribution.replace(/^https?:\/\//, '')}` : p.author
+  const { author, licence } = member.portrait
   return (
     <div
       style={{
-        fontFamily: MONO,
-        fontSize: 7,
-        letterSpacing: '.04em',
-        color: 'rgba(234,242,255,.35)',
+        fontFamily: "'IBM Plex Mono',monospace",
+        fontSize: 6.5,
+        letterSpacing: '.08em',
+        lineHeight: 1.2,
+        color: '#4A5F7D',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         ...style,
       }}
     >
-      © {credit} · {p.licence}
+      {`PHOTO: ${author} · ${licence} · WIKIMEDIA COMMONS`.toUpperCase()}
     </div>
   )
 }

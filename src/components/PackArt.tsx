@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { PACK_CLIP } from '../theme'
 import { SwissCross } from './CardBack'
 
@@ -7,6 +7,8 @@ const MONO = "'IBM Plex Mono',monospace"
 
 export const PACK_W = 212
 export const PACK_H = 318
+/** Height of the perforated band that gets torn off when opening. */
+export const PACK_TOP_H = 38
 
 export const packBodyBg = 'linear-gradient(168deg,#1B2A44 0%,#101B2E 46%,#0A121F 100%)'
 
@@ -65,19 +67,27 @@ export function PackLabel() {
 }
 
 /** Tear label ("TEAR ↓") pinned top-right of the pack. */
-export function TearTab({ dark = false }: { dark?: boolean }) {
-  const color = dark ? '#3A2A05' : '#FFD87A'
-  const arrow = dark ? '#3A2A05' : '#FFC53D'
+export function TearTab() {
   return (
     <div style={{ position: 'absolute', right: 11, top: 9, display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ fontFamily: MONO, fontSize: 7.5, letterSpacing: '.18em', color }}>TEAR</span>
-      <span style={{ fontFamily: AB, fontSize: 9, color: arrow }}>↓</span>
+      <span style={{ fontFamily: MONO, fontSize: 7.5, letterSpacing: '.18em', color: '#FFD87A' }}>TEAR</span>
+      <span style={{ fontFamily: AB, fontSize: 9, color: '#FFC53D' }}>↓</span>
     </div>
   )
 }
 
 /** The complete, sealed pack shown on Home. */
 export function PackFace({ style }: { style?: CSSProperties }) {
+  return (
+    <PackShell style={style}>
+      <PackTop />
+      <PackLabel />
+    </PackShell>
+  )
+}
+
+/** Pack silhouette + body gradient + foil sheen. Content is layered on top. */
+export function PackShell({ style, children }: { style?: CSSProperties; children?: ReactNode }) {
   const shape: CSSProperties = {
     position: 'relative',
     width: PACK_W,
@@ -90,11 +100,18 @@ export function PackFace({ style }: { style?: CSSProperties }) {
   return (
     <div style={shape}>
       <PackFoil />
-      {/* top glow */}
+      {children}
+    </div>
+  )
+}
+
+/** Top band art — gold glow, perforation dashes and the tear tab. */
+export function PackTop() {
+  return (
+    <>
       <div
         style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 32, background: 'linear-gradient(180deg,rgba(255,197,61,.17),transparent)' }}
       />
-      {/* perforation dashes + line */}
       <div
         style={{ position: 'absolute', left: 0, right: 0, top: 31, height: 8, background: 'repeating-linear-gradient(90deg,rgba(7,12,19,.85) 0 4px,transparent 4px 9px)' }}
       />
@@ -102,7 +119,6 @@ export function PackFace({ style }: { style?: CSSProperties }) {
         style={{ position: 'absolute', left: 0, right: 0, top: 36, height: 1, background: 'repeating-linear-gradient(90deg,rgba(255,197,61,.75) 0 5px,transparent 5px 10px)' }}
       />
       <TearTab />
-      <PackLabel />
-    </div>
+    </>
   )
 }

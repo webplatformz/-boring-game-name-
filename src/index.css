@@ -76,6 +76,16 @@ a:hover {
     transform: none;
   }
 }
+@keyframes sinkOut {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
 @keyframes popIn {
   from {
     opacity: 0;
@@ -148,6 +158,14 @@ a:hover {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Full-viewport screen: content panes scroll internally instead of the page,
+   so the fixed tab bar always stays reachable. dvh keeps mobile browser
+   chrome from cutting off the bottom. */
+.screen-fill {
+  height: 100vh;
+  height: 100dvh;
 }
 
 /* ── responsive shell width ────────────────────────────────────────────── */

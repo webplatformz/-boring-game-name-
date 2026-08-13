@@ -5,7 +5,7 @@ import type { Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
 import { Flag } from '../components/Flag'
-import { CardFront } from '../components/CardFront'
+import { CardModal } from '../components/CardModal'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -80,9 +80,12 @@ export function Collection({ game }: { game: Game }) {
   const hasCards = ownedList.length > 0
 
   return (
-    <div style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 16, animation: 'riseIn 300ms ease-out' }}>
+    <div
+      className="screen-fill"
+      style={{ padding: '22px 20px 90px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
+    >
       {/* header */}
-      <div>
+      <div style={{ flex: 'none' }}>
         <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>THE COLLECTION</div>
         <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
           {ownedList.length} OF {MEMBERS.length} MEMBERS
@@ -92,7 +95,7 @@ export function Collection({ game }: { game: Game }) {
       {hasCards ? (
         <>
           {/* rarity filter chips */}
-          <div style={{ display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4, paddingLeft: 0 }} className="no-scrollbar">
+          <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4, paddingLeft: 0 }} className="no-scrollbar">
             {RARITY_ORDER.map((r) => {
               const t = TIERS[r]
               const on = selectedRarities.has(r)
@@ -120,7 +123,7 @@ export function Collection({ game }: { game: Game }) {
           </div>
 
           {/* sort chips */}
-          <div style={{ display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
+          <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
             {(['ovr', 'atk', 'def', 'name'] as SortKey[]).map((k) => {
               const on = sortKey === k
               const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : 'NAME'
@@ -150,7 +153,7 @@ export function Collection({ game }: { game: Game }) {
           </div>
 
           {/* canton filter dropdown */}
-          <div style={{ position: 'relative', display: 'inline-block' }}>
+          <div style={{ flex: 'none', position: 'relative', display: 'inline-block' }}>
             <button
               onClick={() => setOpenCantonDropdown(!openCantonDropdown)}
               style={{
@@ -239,9 +242,9 @@ export function Collection({ game }: { game: Game }) {
           </div>
 
           {/* table */}
-          <div style={{ marginTop: 12, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}>
+          <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginTop: 12, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}>
             {/* header row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 40px 40px 44px', gap: 8, padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}>
+            <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: '1fr 40px 40px 44px', gap: 8, padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>MEMBER</div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FF9EC4', textAlign: 'right' }}>ATK</div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#8FEDE3', textAlign: 'right' }}>DEF</div>
@@ -249,78 +252,80 @@ export function Collection({ game }: { game: Game }) {
             </div>
 
             {/* rows */}
-            {sorted.map((r) => {
-              const t = TIERS[r.member.rarity]
-              const pc = partyColors(r.member.partyCode)
-              return (
-                <div
-                  key={r.member.id}
-                  onClick={() => setOpenCardMember(r.member)}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 40px 40px 44px',
-                    gap: 8,
-                    padding: '11px 12px',
-                    borderBottom: '1px solid rgba(234,242,255,.07)',
-                    borderLeft: `3px solid ${t.c}`,
-                    cursor: 'pointer',
-                    transition: 'background 150ms',
-                  }}
-                >
-                  {/* member cell */}
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {r.member.name}
+            <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
+              {sorted.map((r) => {
+                const t = TIERS[r.member.rarity]
+                const pc = partyColors(r.member.partyCode)
+                return (
+                  <div
+                    key={r.member.id}
+                    onClick={() => setOpenCardMember(r.member)}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 40px 40px 44px',
+                      gap: 8,
+                      padding: '11px 12px',
+                      borderBottom: '1px solid rgba(234,242,255,.07)',
+                      borderLeft: `3px solid ${t.c}`,
+                      cursor: 'pointer',
+                      transition: 'background 150ms',
+                    }}
+                  >
+                    {/* member cell */}
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {r.member.name}
+                        </div>
+                        {r.count > 1 && (
+                          <div
+                            style={{
+                              flex: 'none',
+                              padding: '1px 5px',
+                              borderRadius: 99,
+                              background: 'rgba(255,197,61,.16)',
+                              border: '1px solid rgba(255,197,61,.4)',
+                              fontFamily: MONO,
+                              fontSize: 8,
+                              color: '#FFD87A',
+                            }}
+                          >
+                            ×{r.count}
+                          </div>
+                        )}
                       </div>
-                      {r.count > 1 && (
-                        <div
+                      <div style={{ display: 'flex', gap: 6, marginTop: 3, alignItems: 'center' }}>
+                        <span
                           style={{
-                            flex: 'none',
-                            padding: '1px 5px',
-                            borderRadius: 99,
-                            background: 'rgba(255,197,61,.16)',
-                            border: '1px solid rgba(255,197,61,.4)',
-                            fontFamily: MONO,
+                            padding: '2px 5px',
+                            borderRadius: 4,
+                            background: pc[0],
+                            fontFamily: AB,
                             fontSize: 8,
-                            color: '#FFD87A',
+                            color: pc[1],
                           }}
                         >
-                          ×{r.count}
-                        </div>
-                      )}
+                          {r.member.party}
+                        </span>
+                        <Flag canton={r.member.canton} height={10} />
+                        <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{r.member.cantonName}</span>
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', gap: 6, marginTop: 3, alignItems: 'center' }}>
-                      <span
-                        style={{
-                          padding: '2px 5px',
-                          borderRadius: 4,
-                          background: pc[0],
-                          fontFamily: AB,
-                          fontSize: 8,
-                          color: pc[1],
-                        }}
-                      >
-                        {r.member.party}
-                      </span>
-                      <Flag canton={r.member.canton} height={10} />
-                      <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{r.member.cantonName}</span>
-                    </div>
-                  </div>
 
-                  {/* stats */}
-                  <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>
-                    {r.member.atk}
+                    {/* stats */}
+                    <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>
+                      {r.member.atk}
+                    </div>
+                    <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>
+                      {r.member.def}
+                    </div>
+                    <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>
+                      {r.member.ovr}
+                    </div>
                   </div>
-                  <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>
-                    {r.member.def}
-                  </div>
-                  <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>
-                    {r.member.ovr}
-                  </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </>
       ) : (
@@ -337,37 +342,7 @@ export function Collection({ game }: { game: Game }) {
         </div>
       )}
 
-      {openCardMember && (
-        <div
-          onClick={() => setOpenCardMember(null)}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 50,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 18,
-            padding: '20px 20px 40px',
-            background: 'rgba(4,7,12,.86)',
-            backdropFilter: 'blur(4px)',
-            cursor: 'pointer',
-            animation: 'riseIn 200ms ease-out',
-          }}
-        >
-          <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>
-            <CardFront
-              member={openCardMember}
-              foil
-              style={{
-                boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[openCardMember.rarity].c}8c`,
-              }}
-            />
-          </div>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>TAP TO CLOSE</div>
-        </div>
-      )}
+      <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>
   )
 }
