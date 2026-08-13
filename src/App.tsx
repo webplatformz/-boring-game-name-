@@ -1,14 +1,17 @@
 import { useGame } from './game/useGame'
+import { useBattle } from './game/useBattle'
 import { Home } from './screens/Home'
 import { Tear } from './screens/Tear'
 import { Reveal } from './screens/Reveal'
 import { Collection } from './screens/Collection'
+import { Battle } from './screens/Battle'
 import { TabBar } from './components/TabBar'
 
 export function App() {
   const game = useGame()
+  const battle = useBattle()
   const { screen } = game.state
-  const showTabs = screen === 'home' || screen === 'collection'
+  const showTabs = screen === 'home' || screen === 'collection' || screen === 'battle'
 
   return (
     <div
@@ -34,6 +37,7 @@ export function App() {
         {screen === 'tear' && <Tear state={game.state} />}
         {screen === 'reveal' && <Reveal game={game} />}
         {screen === 'collection' && <Collection game={game} />}
+        {screen === 'battle' && <Battle game={game} battle={battle} />}
         {showTabs && <TabBar game={game} />}
       </div>
     </div>

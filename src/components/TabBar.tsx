@@ -18,35 +18,45 @@ function tabStyle(on: boolean): CSSProperties {
   }
 }
 
-// The active pill slides between the two columns instead of snapping. Widths
-// are derived from the rail's 5px padding and 6px gap.
-function pillStyle(index: number): CSSProperties {
+// The active pill slides between the columns instead of snapping. Width is
+// derived from the rail's 5px padding and 6px gaps; translateX shifts by the
+// pill's own width + one gap per column (works for any column count, since
+// percentages here resolve against the pill's own width, not the rail's).
+function pillStyle(index: number, count: number): CSSProperties {
+  const gapPx = 6
+  const paddingPx = 5
   return {
     position: 'absolute',
     left: 5,
     top: 5,
     bottom: 5,
-    width: 'calc(50% - 8px)',
+    width: `calc((100% - ${paddingPx * 2}px - ${(count - 1) * gapPx}px) / ${count})`,
     borderRadius: 10,
     background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)',
-    transform: index ? 'translateX(calc(100% + 6px))' : 'none',
+    transform: index ? `translateX(calc(${index * 100}% + ${index * gapPx}px))` : 'none',
     transition: 'transform 300ms cubic-bezier(.4,.1,.2,1)',
   }
 }
 
 export function TabBar({ game }: { game: Game }) {
   const s = game.state.screen
+  const tabs: { screen: 'home' | 'collection' | 'battle'; label: string; onClick: () => void }[] = [
+    { screen: 'home', label: 'PACKS', onClick: game.goHome },
+    { screen: 'collection', label: 'COLLECTION', onClick: game.goCollection },
+    { screen: 'battle', label: 'BATTLE', onClick: game.goBattle },
+  ]
+  const activeIndex = Math.max(0, tabs.findIndex((t) => t.screen === s))
+
   return (
     <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
       <div className="app-shell-width" style={{ padding: '10px 20px 18px', background: 'linear-gradient(180deg,transparent,#070C13 40%)', pointerEvents: 'auto' }}>
-        <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, padding: 5, borderRadius: 14, background: '#0B121D', border: '1px solid rgba(234,242,255,.1)' }}>
-          <div style={pillStyle(s === 'collection' ? 1 : 0)} />
-          <button onClick={game.goHome} style={tabStyle(s === 'home')}>
-            PACKS
-          </button>
-          <button onClick={game.goCollection} style={tabStyle(s === 'collection')}>
-            COLLECTION
-          </button>
+        <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: `repeat(${tabs.length}, 1fr)`, gap: 6, padding: 5, borderRadius: 14, background: '#0B121D', border: '1px solid rgba(234,242,255,.1)' }}>
+          <div style={pillStyle(activeIndex, tabs.length)} />
+          {tabs.map((t) => (
+            <button key={t.screen} onClick={t.onClick} style={tabStyle(s === t.screen)}>
+              {t.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>

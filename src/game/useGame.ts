@@ -4,7 +4,7 @@ import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
 import { drawPack } from './pack'
 import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
 
-export type Screen = 'home' | 'tear' | 'reveal' | 'collection'
+export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'battle'
 
 export interface GameState {
   screen: Screen
@@ -46,6 +46,7 @@ export interface Game {
   finishPack: () => void
   goHome: () => void
   goCollection: () => void
+  goBattle: () => void
   cardHandlers: {
     onPointerDown: (e: React.PointerEvent) => void
     onPointerMove: (e: React.PointerEvent) => void
@@ -144,6 +145,7 @@ export function useGame(): Game {
 
   const goHome = useCallback(() => patch({ screen: 'home' }), [patch])
   const goCollection = useCallback(() => patch({ screen: 'collection' }), [patch])
+  const goBattle = useCallback(() => patch({ screen: 'battle' }), [patch])
 
   // ── swipe / tap on the top reveal card ──
   const onPointerDown = useCallback(
@@ -184,6 +186,7 @@ export function useGame(): Game {
     finishPack,
     goHome,
     goCollection,
+    goBattle,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel: onPointerUp },
   }
 }

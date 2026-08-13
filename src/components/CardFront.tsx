@@ -107,10 +107,13 @@ export function CardFront({
   member: m,
   foil = false,
   style,
+  highlightStat = null,
 }: {
   member: Member
   foil?: boolean
   style?: CSSProperties
+  /** Battle mode: draws attention to the stat that decided a round. No-op elsewhere. */
+  highlightStat?: 'atk' | 'def' | null
 }) {
   if (m.rarity === 'mythic') return <MythicCardFront member={m} foil={foil} style={style} />
 
@@ -230,11 +233,11 @@ export function CardFront({
         </div>
 
         <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
-            <div style={{ flex: 'none' }}>
+            <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'atk', '#FF5FA2') }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#FF9EC4' }}>ATK</div>
               <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#FF5FA2' }}>{m.atk}</div>
             </div>
-            <div style={{ flex: 'none' }}>
+            <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'def', '#2FD3C4') }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#8FEDE3' }}>DEF</div>
               <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#2FD3C4' }}>{m.def}</div>
             </div>
@@ -272,6 +275,19 @@ function Bar({ pct, from, to }: { pct: number; from: string; to: string }) {
       <div style={{ width: `${pct}%`, height: '100%', background: `linear-gradient(90deg,${from},${to})` }} />
     </div>
   )
+}
+
+// Battle mode: pulses a soft glow (in the stat's own colour) around whichever
+// number decided the round. Returns {} when not active, so it's a no-op style.
+function statHighlightStyle(active: boolean, color: string): CSSProperties {
+  if (!active) return {}
+  return {
+    borderRadius: 10,
+    padding: '2px 6px',
+    margin: '-2px -6px',
+    animation: 'statHighlight 1100ms ease-in-out infinite',
+    ['--stat-glow' as string]: color,
+  }
 }
 
 function Stat({ label, value, accent = false }: { label: string; value: string | number; accent?: boolean }) {
