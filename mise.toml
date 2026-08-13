@@ -1,0 +1,5 @@
+[tools]
+deno = "latest"
+# sharp (used by scripts/fetch-portraits.mjs) needs a modern Node runtime;
+# its prebuilt darwin-arm64 binary is not installable on Node 18.10.
+node = "22"

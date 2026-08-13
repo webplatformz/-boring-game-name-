@@ -10,6 +10,8 @@
 //  - Committees come from MemberCommittee (count + names + chair flag drive
 //    the CMTE stat and the Detail screen later).
 //  - Vote counts come from the Voting collection.
+//  - Portraits come from Wikimedia Commons via scripts/fetch-portraits.mjs; the
+//    caches it writes supply each member's author/licence credit.
 //  - Rarity is percentile-ranked over a composite score (tenure + committee
 //    workload + chair role + chamber), so the distribution stays stable across
 //    rebuilds instead of drifting with cohort clusters.
@@ -117,15 +119,45 @@ const parseMsDate = (s) => {
 }
 const yearsSince = (ms) => (ms == null ? null : (NOW - ms) / YEAR_MS)
 
-async function readRaw(name) {
+async function readRaw(name, hint = 'npm run data:fetch') {
   const path = join(RAW_DIR, name)
   try {
     return JSON.parse(await readFile(path, 'utf8'))
   } catch (e) {
     if (e.code === 'ENOENT') {
-      throw new Error(`Missing raw cache: ${name}. Run \`npm run data:fetch\` first.`)
+      throw new Error(`Missing raw cache: ${name}. Run \`${hint}\` first.`)
     }
     throw e
+  }
+}
+
+// ── portraits ─────────────────────────────────────────────────────────────
+// Both caches are written by scripts/fetch-portraits.mjs. The join key is
+// Wikidata P1307 ("Swiss parliament ID"), which is the same PersonNumber we use
+// as the member id here.
+function buildPortraitIndex(wikidata, imageinfo) {
+  const titleById = new Map()
+  for (const b of wikidata?.results?.bindings ?? []) {
+    const pid = b?.pid?.value
+    const img = b?.img?.value
+    if (!pid || !img || titleById.has(pid)) continue
+    const tail = img.split('/').pop()
+    titleById.set(pid, 'File:' + decodeURIComponent(tail).replace(/_/g, ' '))
+  }
+
+  return (id) => {
+    const info = imageinfo[titleById.get(String(id))]
+    if (!info) return null
+    return {
+      src: `/portraits/${id}.webp`,
+      author: info.author,
+      licence: info.licence,
+      licenceUrl: info.licenceUrl || null,
+      // Required credit line for the bare "Attribution" licence used by the
+      // official Parliamentary Services portraits.
+      attribution: info.attribution || null,
+      source: info.descriptionUrl,
+    }
   }
 }
 
@@ -137,6 +169,11 @@ async function main() {
     readRaw('committees.json'),
     readRaw('vote-counts-current.json'),
   ])
+  const [wikidataPortraits, commonsImageinfo] = await Promise.all([
+    readRaw('wikidata-portraits.json', 'npm run portraits'),
+    readRaw('commons-imageinfo.json', 'npm run portraits'),
+  ])
+  const portraitFor = buildPortraitIndex(wikidataPortraits, commonsImageinfo)
   process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${Object.keys(voteCounts).length} current-legislature vote counts\n`)
 
   // Earliest join across all past legislatures.
@@ -221,6 +258,7 @@ async function main() {
       ovr,
       rarity: r._rarity,
       mandates: r.m.Mandates || null,
+      portrait: portraitFor(r.m.PersonNumber),
     }
   })
 
@@ -231,12 +269,23 @@ async function main() {
   // ── report ──
   const dist = {}
   for (const m of built) dist[m.rarity] = (dist[m.rarity] || 0) + 1
+  const missingPortraits = built.filter((m) => !m.portrait)
+  if (missingPortraits.length) {
+    throw new Error(
+      `No portrait for ${missingPortraits.length} member(s): ` +
+        missingPortraits.map((m) => `${m.id} ${m.name}`).join(', ') +
+        '\nRun `npm run portraits` to refresh the Commons caches.',
+    )
+  }
+
   const meta = {
     source: 'Swiss Federal Assembly OData web service (ws.parlament.ch)',
+    portraitSource:
+      'Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.',
     generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
-    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99. Portraits are placeholders.',
+    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99.',
   }
 
   await mkdir(dirname(OUT), { recursive: true })
