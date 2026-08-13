@@ -2,6 +2,8 @@
 import raw from './members.json'
 import type { RarityKey } from '../theme'
 
+export type { RarityKey }
+
 export interface Committee {
   abbr: string
   name: string
