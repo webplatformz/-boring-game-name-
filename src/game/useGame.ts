@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
-import { PACK_GROW_MS } from '../theme'
+import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
 import { drawPack } from './pack'
 import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
 
@@ -17,8 +17,6 @@ export interface GameState {
   dragging: boolean
   faceUp: boolean
   outgoing: Member | null
-  tear: number
-  tearing: boolean
   ripped: boolean
   /** Pack has zoomed up from its Home size to card size; gates the tear. */
   grown: boolean
@@ -37,8 +35,6 @@ const INITIAL: GameState = {
   dragging: false,
   faceUp: false,
   outgoing: null,
-  tear: 0,
-  tearing: false,
   ripped: false,
   grown: false,
 }
@@ -70,7 +66,6 @@ export function useGame(): Game {
 
   // Timers + gesture scratch state, all in refs so re-renders don't disturb them.
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
-  const auto = useRef(false)
   const x0 = useRef(0)
   const moved = useRef(0)
   const stateRef = useRef(state)
@@ -87,31 +82,23 @@ export function useGame(): Game {
     return () => list.forEach(clearTimeout)
   }, [])
 
-  // ── the rip sequence: tap → strip pulls → rips → cards deal in ──
+  // ── the rip sequence: tap → pack zooms → strip rips off in one pull → cards deal in ──
   const rip = useCallback(() => {
     const pack = drawPack()
-    patch({ tearing: false, ripped: true, tear: 150, pack, revealIdx: 0, faceUp: false, outgoing: null })
-    after(540, () => {
-      auto.current = false
-      patch({ screen: 'reveal', ripped: false, tear: 0 })
+    patch({ ripped: true, pack, revealIdx: 0, faceUp: false, outgoing: null })
+    after(PACK_RIP_MS, () => {
+      patch({ screen: 'reveal', ripped: false })
       after(340, () => patch({ faceUp: true }))
     })
   }, [patch, after])
 
-  const autoTear = useCallback(() => {
-    if (auto.current) return
-    auto.current = true
-    patch({ tearing: false, tear: 74 })
-    after(420, rip)
-  }, [patch, after, rip])
-
   const ripNow = useCallback(() => {
     if (stateRef.current.packs <= 0) return
-    patch({ screen: 'tear', tear: 0, ripped: false, grown: false })
+    patch({ screen: 'tear', ripped: false, grown: false })
     // Let the pack mount at Home size for a frame, zoom it to card size, then tear.
     after(30, () => patch({ grown: true }))
-    after(30 + PACK_GROW_MS + 160, autoTear)
-  }, [patch, after, autoTear])
+    after(30 + PACK_GROW_MS + 160, rip)
+  }, [patch, after, rip])
 
   const finishPack = useCallback(() => {
     setState((s) => {

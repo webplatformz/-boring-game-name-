@@ -64,6 +64,9 @@ export const CARD_MAX_W = 330
 // Duration of the pack zoom (Home size → card size) that precedes the tear.
 export const PACK_GROW_MS = 520
 
+// Duration of the single, continuous pull that rips the strip clean off.
+export const PACK_RIP_MS = 640
+
 // Zig-zag pack silhouette (tear-notched top & bottom edges).
 export const PACK_CLIP =
   'polygon(0% 0.00%,6.25% 1.67%,12.50% 0.00%,18.75% 1.67%,25.00% 0.00%,31.25% 1.67%,37.50% 0.00%,43.75% 1.67%,50.00% 0.00%,56.25% 1.67%,62.50% 0.00%,68.75% 1.67%,75.00% 0.00%,81.25% 1.67%,87.50% 0.00%,93.75% 1.67%,100.00% 0.00%,100.00% 100.00%,93.75% 98.33%,87.50% 100.00%,81.25% 98.33%,75.00% 100.00%,68.75% 98.33%,62.50% 100.00%,56.25% 98.33%,50.00% 100.00%,43.75% 98.33%,37.50% 100.00%,31.25% 98.33%,25.00% 100.00%,18.75% 98.33%,12.50% 100.00%,6.25% 98.33%,0.00% 100.00%)'
@@ -71,3 +74,9 @@ export const PACK_CLIP =
 // Same zig-zag top edge as PACK_CLIP, scaled for the 38px tear strip (5.31px notch = 13.98%).
 export const PACK_STRIP_CLIP =
   'polygon(0% 0.00%,6.25% 13.98%,12.50% 0.00%,18.75% 13.98%,25.00% 0.00%,31.25% 13.98%,37.50% 0.00%,43.75% 13.98%,50.00% 0.00%,56.25% 13.98%,62.50% 0.00%,68.75% 13.98%,75.00% 0.00%,81.25% 13.98%,87.50% 0.00%,93.75% 13.98%,100.00% 0.00%,100% 100%,0% 100%)'
+
+// Pack body once the strip is off: the top band is gone and the new top edge is
+// a ragged rip that sits just above the strip's bottom, so the sealed pack still
+// reads as one piece. Same point count as PACK_CLIP so the two can be tweened.
+export const PACK_TORN_CLIP =
+  'polygon(0.00% 11.01%,6.25% 10.19%,12.50% 11.70%,18.75% 10.41%,25.00% 11.45%,31.25% 10.31%,37.50% 11.82%,43.75% 10.57%,50.00% 11.26%,56.25% 10.13%,62.50% 11.60%,68.75% 10.69%,75.00% 11.73%,81.25% 10.25%,87.50% 11.35%,93.75% 10.50%,100.00% 11.16%,100.00% 100.00%,93.75% 98.33%,87.50% 100.00%,81.25% 98.33%,75.00% 100.00%,68.75% 98.33%,62.50% 100.00%,56.25% 98.33%,50.00% 100.00%,43.75% 98.33%,37.50% 100.00%,31.25% 98.33%,25.00% 100.00%,18.75% 98.33%,12.50% 100.00%,6.25% 98.33%,0.00% 100.00%)'

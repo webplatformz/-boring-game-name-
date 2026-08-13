@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { CARD_MAX_W, PACK_GROW_MS, PACK_STRIP_CLIP } from '../theme'
+import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP } from '../theme'
 import type { GameState } from '../game/useGame'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
 import { PACK_SIZE } from '../game/pack'
@@ -26,10 +26,10 @@ function useCardScale() {
 }
 
 export function Tear({ state }: { state: GameState }) {
-  const { tear, tearing, ripped, grown } = state
-  const tearPct = Math.min(100, (tear / 60) * 100)
+  const { ripped, grown } = state
   const { ref: sizerRef, scale } = useCardScale()
 
+  // One uninterrupted pull: the strip goes from seated to gone in a single move.
   const stripStyle: CSSProperties = {
     position: 'absolute',
     left: 0,
@@ -40,26 +40,22 @@ export function Tear({ state }: { state: GameState }) {
     overflow: 'hidden',
     background: packBodyBg,
     clipPath: PACK_STRIP_CLIP,
-    ...(ripped
-      ? {
-          transform: 'translateY(300px) translateX(26px) rotate(16deg)',
-          opacity: 0,
-          transition: 'transform 520ms cubic-bezier(.3,.7,.2,1),opacity 460ms ease-out',
-        }
-      : {
-          transform: `translateY(${tear}px) rotate(${tear * 0.02}deg)`,
-          transition: tearing ? 'none' : 'transform 400ms cubic-bezier(.34,1.4,.64,1)',
-        }),
+    transform: ripped ? 'translateY(330px) translateX(30px) rotate(17deg)' : 'none',
+    opacity: ripped ? 0 : 1,
+    transition: `transform ${PACK_RIP_MS}ms cubic-bezier(.5,.02,.35,1),opacity ${PACK_RIP_MS * 0.45}ms ease-in ${PACK_RIP_MS * 0.5}ms`,
   }
 
+  // The strip's band is cut out of the body from the start (the strip covers it
+  // while sealed), so pulling the strip away leaves a real hole with a torn edge.
   const bodyStyle: CSSProperties = {
     position: 'absolute',
     left: 0,
     top: 0,
+    clipPath: PACK_TORN_CLIP,
     ...(ripped
-      ? { transform: 'scale(.93) translateY(10px)', opacity: 0.18, transition: 'transform 500ms ease-out,opacity 500ms ease-out' }
+      ? { transform: 'scale(.93) translateY(10px)', opacity: 0.18, transition: `transform ${PACK_RIP_MS}ms ease-out,opacity ${PACK_RIP_MS}ms ease-in,filter ${PACK_RIP_MS}ms ease-out` }
       : { transition: 'transform 300ms ease-out' }),
-    filter: `drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 ${ripped ? 60 : 10 + tearPct * 0.25}px rgba(255,197,61,${ripped ? 0.75 : 0.18 + tearPct * 0.004}))`,
+    filter: `drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 ${ripped ? 60 : 10}px rgba(255,197,61,${ripped ? 0.75 : 0.18}))`,
   }
 
   // Sizer holds the final (card-sized) footprint so nothing reflows while the
@@ -99,6 +95,10 @@ export function Tear({ state }: { state: GameState }) {
 
           {/* the pack body */}
           <PackShell style={bodyStyle}>
+            {/* lit lip along the ragged edge — only paints where the body survives */}
+            <div
+              style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: 'linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,197,61,.14) 45%,transparent)' }}
+            />
             <PackLabel />
           </PackShell>
         </div>
