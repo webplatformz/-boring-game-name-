@@ -117,6 +117,28 @@ export function Home({ game }: { game: Game }) {
         </button>
       </div>
 
+      {/* Trade-in banner */}
+      <button
+        onClick={game.goTrade}
+        style={{
+          padding: '14px 16px',
+          borderRadius: 13,
+          background: 'rgba(234,242,255,.05)',
+          border: '1px solid rgba(234,242,255,.12)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          cursor: 'pointer',
+          textAlign: 'left',
+        }}
+      >
+        <div>
+          <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF' }}>CARD DUPLICATES?</div>
+          <div style={{ fontFamily: MONO, fontSize: 9.5, color: '#7690AE', marginTop: 2 }}>Trade in 5 cards → get 1 higher rarity</div>
+        </div>
+        <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>TRADE IN →</div>
+      </button>
+
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>
   )

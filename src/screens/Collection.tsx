@@ -97,11 +97,29 @@ export function Collection({ game }: { game: Game }) {
       style={{ padding: '22px 20px 90px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
-      <div style={{ flex: 'none' }}>
-        <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>THE COLLECTION</div>
-        <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
-          {ownedList.length} OF {MEMBERS.length} MEMBERS
+      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>THE COLLECTION</div>
+          <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
+            {ownedList.length} OF {MEMBERS.length} MEMBERS
+          </div>
         </div>
+        <button
+          onClick={game.goTrade}
+          style={{
+            padding: '8px 14px',
+            borderRadius: 10,
+            background: 'rgba(255,197,61,.12)',
+            border: '1px solid rgba(255,197,61,.35)',
+            color: '#FFD87A',
+            fontFamily: MONO,
+            fontSize: 9.5,
+            letterSpacing: '.12em',
+            cursor: 'pointer',
+          }}
+        >
+          TRADE IN →
+        </button>
       </div>
 
       {hasCards ? (

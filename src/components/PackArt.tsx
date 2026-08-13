@@ -35,8 +35,8 @@ export function PackFoil() {
   )
 }
 
-/** Bottom label block — Swiss cross, wordmark, "5 CARDS · NO DUPES". */
-export function PackLabel() {
+/** Bottom label block — Swiss cross, wordmark, subtext. */
+export function PackLabel({ subtext = '5 CARDS · NO DUPES', rarityColor }: { subtext?: string; rarityColor?: string }) {
   return (
     <div
       style={{
@@ -60,8 +60,8 @@ export function PackLabel() {
         <br />
         PACK
       </div>
-      <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg,rgba(255,197,61,.6),transparent)' }} />
-      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'center' }}>5 CARDS · NO DUPES</div>
+      <div style={{ width: '100%', height: 1, background: `linear-gradient(90deg,${rarityColor ?? 'rgba(255,197,61,.6)'},transparent)` }} />
+      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: rarityColor ?? '#FFD87A', textAlign: 'center' }}>{subtext}</div>
     </div>
   )
 }

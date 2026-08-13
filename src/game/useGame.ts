@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
+import type { RarityKey } from '../theme'
 import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
-import { drawPack } from './pack'
+import { drawPack, drawTradePackCard, getNextRarity } from './pack'
 import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
 
-export type Screen = 'home' | 'tear' | 'reveal' | 'collection'
+export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade'
 
 export interface GameState {
   screen: Screen
@@ -20,6 +21,10 @@ export interface GameState {
   ripped: boolean
   /** Pack has zoomed up from its Home size to card size; gates the tear. */
   grown: boolean
+  /** True if currently opening a trade-in pack. */
+  isTradePack?: boolean
+  /** Rarity of cards traded in to create this special pack. */
+  tradeRarity?: RarityKey | null
 }
 
 const save = loadSave()
@@ -46,6 +51,8 @@ export interface Game {
   finishPack: () => void
   goHome: () => void
   goCollection: () => void
+  goTrade: () => void
+  executeTrade: (tradedMemberIds: number[], sourceRarity: RarityKey) => void
   cardHandlers: {
     onPointerDown: (e: React.PointerEvent) => void
     onPointerMove: (e: React.PointerEvent) => void
@@ -105,10 +112,27 @@ export function useGame(): Game {
     setState((s) => {
       const owned = { ...s.owned }
       for (const m of s.pack) owned[m.id] = (owned[m.id] || 0) + 1
-      const packs = Math.max(0, s.packs - 1)
-      const refillAt = packs <= 0 ? Date.now() + REFILL_COOLDOWN_MS : s.refillAt
+      let packs = s.packs
+      let refillAt = s.refillAt
+      if (!s.isTradePack) {
+        packs = Math.max(0, s.packs - 1)
+        refillAt = packs <= 0 ? Date.now() + REFILL_COOLDOWN_MS : s.refillAt
+      }
       persist({ owned, packs, refillAt })
-      return { ...s, owned, packs, refillAt, screen: 'home', pack: [], revealIdx: 0, outgoing: null, faceUp: false }
+      const returnScreen = s.isTradePack ? 'trade' : 'home'
+      return {
+        ...s,
+        owned,
+        packs,
+        refillAt,
+        screen: returnScreen,
+        pack: [],
+        revealIdx: 0,
+        outgoing: null,
+        faceUp: false,
+        isTradePack: false,
+        tradeRarity: null,
+      }
     })
   }, [])
 
@@ -144,6 +168,45 @@ export function useGame(): Game {
 
   const goHome = useCallback(() => patch({ screen: 'home' }), [patch])
   const goCollection = useCallback(() => patch({ screen: 'collection' }), [patch])
+  const goTrade = useCallback(() => patch({ screen: 'trade' }), [patch])
+
+  const executeTrade = useCallback(
+    (tradedMemberIds: number[], sourceRarity: RarityKey) => {
+      const targetRarity = getNextRarity(sourceRarity)
+      if (!targetRarity || tradedMemberIds.length !== 5) return
+
+      const currentOwned = { ...stateRef.current.owned }
+      // Deduct traded cards
+      for (const id of tradedMemberIds) {
+        if (currentOwned[id] && currentOwned[id] > 0) {
+          currentOwned[id] -= 1
+          if (currentOwned[id] === 0) delete currentOwned[id]
+        } else {
+          return // invalid trade attempt
+        }
+      }
+
+      const pack = drawTradePackCard(targetRarity)
+      persist({ owned: currentOwned, packs: stateRef.current.packs, refillAt: stateRef.current.refillAt })
+
+      patch({
+        owned: currentOwned,
+        screen: 'tear',
+        ripped: false,
+        grown: false,
+        pack,
+        revealIdx: 0,
+        faceUp: false,
+        outgoing: null,
+        isTradePack: true,
+        tradeRarity: sourceRarity,
+      })
+
+      after(30, () => patch({ grown: true }))
+      after(30 + PACK_GROW_MS + 160, rip)
+    },
+    [patch, after, rip],
+  )
 
   // ── swipe / tap on the top reveal card ──
   const onPointerDown = useCallback(
@@ -184,6 +247,8 @@ export function useGame(): Game {
     finishPack,
     goHome,
     goCollection,
+    goTrade,
+    executeTrade,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel: onPointerUp },
   }
 }

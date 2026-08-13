@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP } from '../theme'
+import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP, TIERS } from '../theme'
 import type { GameState } from '../game/useGame'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
 import { CardBack } from '../components/CardBack'
-import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -27,12 +26,12 @@ function useCardScale() {
 }
 
 export function Tear({ state }: { state: GameState }) {
-  const { ripped, grown, pack } = state
+  const { ripped, grown, pack, isTradePack, tradeRarity } = state
   const { ref: sizerRef, scale } = useCardScale()
 
-  // The cards sitting inside the sealed pack, top card first. They mount hidden
-  // and surface as the wrapper comes apart, so the reveal deck is already there
-  // when the screen switches instead of popping in from nowhere.
+  const rarityTier = tradeRarity ? TIERS[tradeRarity] : null
+
+  // The cards sitting inside the sealed pack, top card first.
   const deck = pack
     .slice(0, 4)
     .map((m, depth) => ({ m, depth }))
@@ -76,7 +75,7 @@ export function Tear({ state }: { state: GameState }) {
     ...(ripped
       ? { transform: 'scale(.93) translateY(10px)', opacity: 0.18, transition: `transform ${PACK_RIP_MS}ms ease-out,opacity ${PACK_RIP_MS}ms ease-in,filter ${PACK_RIP_MS}ms ease-out` }
       : { transition: 'transform 300ms ease-out' }),
-    filter: `drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 ${ripped ? 60 : 10}px rgba(255,197,61,${ripped ? 0.75 : 0.18}))`,
+    filter: `drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 ${ripped ? 60 : 10}px ${rarityTier?.c ?? 'rgba(255,197,61,.18)'})`,
   }
 
   // Sizer holds the final (card-sized) footprint so nothing reflows while the
@@ -104,13 +103,15 @@ export function Tear({ state }: { state: GameState }) {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 26, padding: '30px 20px', touchAction: 'none', userSelect: 'none' }}>
       <div style={{ textAlign: 'center', ...introStyle(60) }}>
         <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em' }}>TEARING IT OPEN</div>
-        <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>FIVE MEMBERS INCOMING</div>
+        <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier ? rarityTier.c : '#5C7391' }}>
+          {isTradePack ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK` : 'FIVE MEMBERS INCOMING'}
+        </div>
       </div>
 
       <div ref={sizerRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '2 / 3' }}>
         {deck.map(({ m, depth }) => (
           <div key={m.id} style={cardStyle(depth)}>
-            <CardBack style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,197,61,${depth === 0 ? 0.45 : 0.2})` }} />
+            <CardBack style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.75),0 0 0 1px ${rarityTier?.c ?? 'rgba(255,197,61,.45)'}` }} />
           </div>
         ))}
 
@@ -123,25 +124,28 @@ export function Tear({ state }: { state: GameState }) {
 
           {/* the pack body */}
           <PackShell style={bodyStyle}>
-            {/* lit lip along the ragged edge — only paints where the body survives */}
+            {/* lit lip along the ragged edge */}
             <div
-              style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: 'linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,197,61,.14) 45%,transparent)' }}
+              style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${rarityTier?.c ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
             />
-            <PackLabel />
+            <PackLabel
+              subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : '5 CARDS · NO DUPES'}
+              rarityColor={rarityTier?.c}
+            />
           </PackShell>
         </div>
       </div>
 
       {/* incoming pips */}
       <div style={{ display: 'flex', gap: 5, alignItems: 'center', ...introStyle(140) }}>
-        {Array.from({ length: PACK_SIZE }).map((_, i) => (
+        {Array.from({ length: pack.length }).map((_, i) => (
           <div
             key={i}
             style={{
               width: 5,
               height: 5,
               borderRadius: 99,
-              background: ripped ? 'rgba(255,197,61,.85)' : 'rgba(234,242,255,.18)',
+              background: ripped ? (rarityTier?.c ?? 'rgba(255,197,61,.85)') : 'rgba(234,242,255,.18)',
               transition: `background 260ms ease-out ${i * 34}ms`,
             }}
           />

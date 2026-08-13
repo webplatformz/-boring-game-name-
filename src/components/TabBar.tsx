@@ -18,34 +18,38 @@ function tabStyle(on: boolean): CSSProperties {
   }
 }
 
-// The active pill slides between the two columns instead of snapping. Widths
-// are derived from the rail's 5px padding and 6px gap.
+// The active pill slides between the three columns instead of snapping.
 function pillStyle(index: number): CSSProperties {
   return {
     position: 'absolute',
     left: 5,
     top: 5,
     bottom: 5,
-    width: 'calc(50% - 8px)',
+    width: 'calc(33.333% - 4.66px)',
     borderRadius: 10,
     background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)',
-    transform: index ? 'translateX(calc(100% + 6px))' : 'none',
+    transform: `translateX(calc(${index * 100}% + ${index * 6}px))`,
     transition: 'transform 300ms cubic-bezier(.4,.1,.2,1)',
   }
 }
 
 export function TabBar({ game }: { game: Game }) {
   const s = game.state.screen
+  const tabIndex = s === 'home' ? 0 : s === 'collection' ? 1 : s === 'trade' ? 2 : 0
+
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none', zIndex: 100 }}>
       <div className="app-shell-width" style={{ padding: '10px 20px 18px', background: 'linear-gradient(180deg,transparent,#070C13 40%)', pointerEvents: 'auto' }}>
-        <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, padding: 5, borderRadius: 14, background: '#0B121D', border: '1px solid rgba(234,242,255,.1)' }}>
-          <div style={pillStyle(s === 'collection' ? 1 : 0)} />
+        <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, padding: 5, borderRadius: 14, background: '#0B121D', border: '1px solid rgba(234,242,255,.1)' }}>
+          <div style={pillStyle(tabIndex)} />
           <button onClick={game.goHome} style={tabStyle(s === 'home')}>
             PACKS
           </button>
           <button onClick={game.goCollection} style={tabStyle(s === 'collection')}>
             COLLECTION
+          </button>
+          <button onClick={game.goTrade} style={tabStyle(s === 'trade')}>
+            TRADE
           </button>
         </div>
       </div>

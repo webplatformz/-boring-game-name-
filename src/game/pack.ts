@@ -1,4 +1,5 @@
 import { MEMBERS, type Member } from '../data/members'
+import type { RarityKey } from '../theme'
 import { RARITY_ORDER, TIERS } from '../theme'
 
 export const PACK_SIZE = 5
@@ -30,3 +31,20 @@ export function drawPack(size = PACK_SIZE): Member[] {
   picked.sort((a, b) => RARITY_ORDER.indexOf(a.rarity) - RARITY_ORDER.indexOf(b.rarity))
   return picked
 }
+
+export function getNextRarity(rarity: RarityKey): RarityKey | null {
+  const idx = RARITY_ORDER.indexOf(rarity)
+  if (idx < 0 || idx >= RARITY_ORDER.length - 1) return null
+  return RARITY_ORDER[idx + 1]
+}
+
+/**
+ * Draw a single random card of the specified target rarity for a trade-in pack.
+ */
+export function drawTradePackCard(targetRarity: RarityKey): Member[] {
+  const pool = MEMBERS.filter((m) => m.rarity === targetRarity)
+  if (pool.length === 0) return []
+  const hit = Math.floor(Math.random() * pool.length)
+  return [pool[hit]]
+}
+
