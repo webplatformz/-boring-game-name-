@@ -45,20 +45,21 @@ export function PackLabel() {
         padding: '16px 15px 22px',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         gap: 9,
         background: 'linear-gradient(180deg,transparent,rgba(7,12,19,.88) 46%)',
       }}
     >
       <SwissCross size={36} />
-      <div style={{ fontFamily: AB, fontSize: 24, lineHeight: 0.95, color: '#fff', letterSpacing: '-.03em' }}>
+      <div style={{ fontFamily: AB, fontSize: 24, lineHeight: 0.95, color: '#fff', letterSpacing: '-.03em', textAlign: 'center' }}>
         BUNDES
         <br />
         HAUS
         <br />
         PACK
       </div>
-      <div style={{ height: 1, background: 'linear-gradient(90deg,rgba(255,197,61,.6),transparent)' }} />
-      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A' }}>10 CARDS · NO DUPES</div>
+      <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg,rgba(255,197,61,.6),transparent)' }} />
+      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'center' }}>10 CARDS · NO DUPES</div>
     </div>
   )
 }
