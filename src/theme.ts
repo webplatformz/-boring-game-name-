@@ -55,7 +55,7 @@ export const SWEEP =
   'linear-gradient(100deg,transparent 32%,rgba(255,255,255,.85) 48%,transparent 62%)'
 
 // Current legislature number, shown on card chrome ("NR · 52").
-export const SESSION = 52
+export const LEGISLATURE = 52
 
 // Max on-screen width of a revealed card. The pack zooms up to this width
 // before the tear starts, so the two screens line up.

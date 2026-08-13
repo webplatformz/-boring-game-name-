@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
-import { TIERS } from '../theme'
+import { LEGISLATURE, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
 import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
@@ -30,7 +30,7 @@ export function Home({ game }: { game: Game }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <SwissCross size={24} />
-          <div style={{ fontFamily: AB, fontSize: 14, letterSpacing: '-.01em' }}>SESSION 52</div>
+          <div style={{ fontFamily: AB, fontSize: 14, letterSpacing: '-.01em' }}>LEGISLATURE {LEGISLATURE}</div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 11px', borderRadius: 99, background: 'rgba(255,197,61,.1)', border: '1px solid rgba(255,197,61,.35)' }}>
           <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A' }}>PACKS</span>

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
-import { SESSION, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
+import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
 import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
 
@@ -82,7 +82,7 @@ function tagStyle(label: string, c: string, ink: string): CSSProperties {
     color: fg,
   }
 }
-const sessionTagStyle: CSSProperties = {
+const legislatureTagStyle: CSSProperties = {
   pointerEvents: 'none',
   padding: '3px 12px 3px 14px',
   borderRadius: '99px 0 0 99px',
@@ -191,7 +191,7 @@ export function CardFront({
         }}
       >
         <div style={tagStyle(t.label, t.c, t.ink)}>{t.label}</div>
-        <div style={sessionTagStyle}>S {SESSION}</div>
+        <div style={legislatureTagStyle}>L {LEGISLATURE}</div>
       </div>
 
       {/* bottom block: name, sub, ATK/DEF, stat grid */}
