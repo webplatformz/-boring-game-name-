@@ -33,7 +33,7 @@ export function PackFoil() {
   )
 }
 
-/** Bottom label block — Swiss cross, wordmark, "10 CARDS · NO DUPES". */
+/** Bottom label block — Swiss cross, wordmark, "5 CARDS · NO DUPES". */
 export function PackLabel() {
   return (
     <div
@@ -59,7 +59,7 @@ export function PackLabel() {
         PACK
       </div>
       <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg,rgba(255,197,61,.6),transparent)' }} />
-      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'center' }}>10 CARDS · NO DUPES</div>
+      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'center' }}>5 CARDS · NO DUPES</div>
     </div>
   )
 }

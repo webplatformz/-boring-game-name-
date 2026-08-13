@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import { PACK_CLIP } from '../theme'
 import type { GameState } from '../game/useGame'
 import { PackFoil, PackLabel, TearTab, PACK_W, PACK_H, packBodyBg } from '../components/PackArt'
+import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -51,7 +52,7 @@ export function Tear({ state }: { state: GameState }) {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 26, padding: '30px 20px', touchAction: 'none', userSelect: 'none' }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em' }}>TEARING IT OPEN</div>
-        <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>TEN MEMBERS INCOMING</div>
+        <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>FIVE MEMBERS INCOMING</div>
       </div>
 
       <div style={{ position: 'relative', width: PACK_W, height: PACK_H }}>
@@ -72,7 +73,7 @@ export function Tear({ state }: { state: GameState }) {
 
       {/* incoming pips */}
       <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-        {Array.from({ length: 10 }).map((_, i) => (
+        {Array.from({ length: PACK_SIZE }).map((_, i) => (
           <div
             key={i}
             style={{

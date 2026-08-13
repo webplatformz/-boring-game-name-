@@ -57,7 +57,7 @@ export function Home({ game }: { game: Game }) {
           BUILD THE HOUSE.
         </div>
         <div style={{ marginTop: 9, fontSize: 13.5, lineHeight: 1.5, color: '#9FB6D2' }}>
-          Ten members per pack, no repeats inside it. Rarity is years served — the veterans are the chase cards.
+          Five members per pack, no repeats inside it. Rarity is years served — the veterans are the chase cards.
         </div>
       </div>
 

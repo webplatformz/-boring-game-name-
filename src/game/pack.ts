@@ -1,7 +1,7 @@
 import { MEMBERS, type Member } from '../data/members'
 import { RARITY_ORDER, TIERS } from '../theme'
 
-export const PACK_SIZE = 10
+export const PACK_SIZE = 5
 
 /**
  * Draw a pack: rarity-weighted sampling with no duplicates inside one pack,
