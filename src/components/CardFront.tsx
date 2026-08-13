@@ -107,7 +107,7 @@ export function CardFront({
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
-  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'}`
+  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'} · ${m.chamber} · ${SESSION}`
 
   const face: CSSProperties = {
     position: 'absolute',
@@ -138,40 +138,35 @@ export function CardFront({
 
       {/* top-left: OVR, party, flag, chamber */}
       <div style={{ position: 'absolute', left: 16, top: 12, zIndex: 5 }}>
-        <div style={{ fontFamily: AB, fontSize: 60, lineHeight: 0.86, letterSpacing: '-.04em', color: ovrInk }}>
+        <div style={{ fontFamily: AB, fontSize: 72, lineHeight: 0.86, letterSpacing: '-.04em', color: ovrInk }}>
           {m.ovr}
         </div>
         <div
           style={{
-            display: 'inline-block',
-            marginTop: 6,
-            padding: '4px 9px',
-            borderRadius: 5,
-            fontFamily: AB,
-            fontSize: 10,
-            letterSpacing: '.1em',
-            background: pc[0],
-            color: pc[1],
-            boxShadow: '0 2px 6px rgba(0,0,0,.35)',
+            display: 'inline-flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 22,
+            marginTop: 12,
+            marginRight: 8,
+            marginLeft: 4,
           }}
         >
-          {m.party}
-        </div>
-        <div style={{ marginTop: 9, display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'flex-start' }}>
-          <Flag canton={m.canton} name={m.cantonName} />
           <div
             style={{
-              padding: '3px 7px',
-              borderRadius: 4,
-              background: '#0A0F18',
-              fontFamily: MONO,
-              fontSize: 9,
+              padding: '4px 9px',
+              borderRadius: 5,
+              fontFamily: AB,
+              fontSize: 10,
               letterSpacing: '.1em',
-              color: '#8FEDE3',
+              background: pc[0],
+              color: pc[1],
+              boxShadow: '0 2px 6px rgba(0,0,0,.35)',
             }}
           >
-            {m.chamber} · {SESSION}
+            {m.party}
           </div>
+          <Flag canton={m.canton} name={m.cantonName} />
         </div>
       </div>
 
