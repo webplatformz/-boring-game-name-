@@ -1,8 +1,8 @@
 import type { CSSProperties } from 'react'
 
 /**
- * Portrait placeholder — a neutral head-and-shoulders silhouette on the card's
- * rarity-tinted deep background. Stands in until real member photos are wired.
+ * Portrait fallback — a neutral head-and-shoulders silhouette on the card's
+ * rarity-tinted deep background. Used when a member's photo can't be loaded.
  */
 export function Silhouette({ deep }: { deep: string }) {
   const wrap: CSSProperties = {
