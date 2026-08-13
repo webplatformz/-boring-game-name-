@@ -72,10 +72,6 @@ function tagStyle(label: string, c: string, ink: string): CSSProperties {
   const fg =
     label === 'COMMON' ? '#0A0F18' : label === 'RARE' ? '#EAF2FF' : label === 'ULTRA RARE' ? '#ffffff' : ink
   return {
-    position: 'absolute',
-    right: 0,
-    top: 20,
-    zIndex: 5,
     pointerEvents: 'none',
     padding: '5px 12px 5px 14px',
     borderRadius: '99px 0 0 99px',
@@ -85,6 +81,18 @@ function tagStyle(label: string, c: string, ink: string): CSSProperties {
     letterSpacing: '.2em',
     color: fg,
   }
+}
+const sessionTagStyle: CSSProperties = {
+  pointerEvents: 'none',
+  padding: '3px 12px 3px 14px',
+  borderRadius: '99px 0 0 99px',
+  background: 'rgba(7,12,19,.55)',
+  border: '1px solid rgba(234,242,255,.16)',
+  borderRight: 'none',
+  fontFamily: MONO,
+  fontSize: 8.5,
+  letterSpacing: '.16em',
+  color: '#8FA3BD',
 }
 
 /**
@@ -107,7 +115,7 @@ export function CardFront({
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
-  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'} · ${m.chamber} · ${SESSION}`
+  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'} · ${m.chamber}`
 
   const face: CSSProperties = {
     position: 'absolute',
@@ -170,7 +178,21 @@ export function CardFront({
         </div>
       </div>
 
-      <div style={tagStyle(t.label, t.c, t.ink)}>{t.label}</div>
+      <div
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: 20,
+          zIndex: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-end',
+          gap: 6,
+        }}
+      >
+        <div style={tagStyle(t.label, t.c, t.ink)}>{t.label}</div>
+        <div style={sessionTagStyle}>S {SESSION}</div>
+      </div>
 
       {/* bottom block: name, sub, ATK/DEF, stat grid */}
       <div
