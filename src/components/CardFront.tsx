@@ -41,17 +41,17 @@ function bandStyle(animate: boolean): CSSProperties {
   if (!animate) return { display: 'none' }
   return {
     position: 'absolute',
-    left: 0,
-    right: 0,
+    left: -60,
+    right: -60,
     top: 'calc(100% - 183px)',
     bottom: 0,
     pointerEvents: 'none',
     overflow: 'hidden',
-    opacity: 0.15,
+    opacity: 0.28,
     background: STRIPES,
     maskImage: 'linear-gradient(180deg,transparent 0,#000 14px)',
     WebkitMaskImage: 'linear-gradient(180deg,transparent 0,#000 14px)',
-    animation: 'drift 11s ease-in-out infinite',
+    animation: 'stripePan 3.5s linear infinite',
   }
 }
 function hairlineStyle(animate: boolean): CSSProperties {

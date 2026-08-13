@@ -11,13 +11,22 @@ export function App() {
   const showTabs = screen === 'home' || screen === 'collection'
 
   return (
-    <div style={{ minHeight: '100vh', background: '#070C13', display: 'flex', justifyContent: 'center' }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        // Painted against the viewport so the gradient always spans the whole
+        // window, regardless of the content column's width.
+        background: 'radial-gradient(120% 55% at 50% 0%, #16233A 0%, #070C13 58%)',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div
         className="app-shell-width"
         style={{
           minHeight: '100vh',
           position: 'relative',
-          background: 'radial-gradient(120% 55% at 50% 0%, #16233A 0%, #070C13 58%)',
           overflow: 'hidden',
         }}
       >

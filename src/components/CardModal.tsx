@@ -20,14 +20,30 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
   if (!member) return null
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+    <div
+      onClick={() => setClosing(true)}
+      onAnimationEnd={(e) => {
+        // Ignore bubbled animation events from the card art's own loops.
+        if (e.target !== e.currentTarget) return
+        if (closing) onClose()
+      }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 50,
+        display: 'flex',
+        justifyContent: 'center',
+        background: 'rgba(4,7,12,.86)',
+        backdropFilter: 'blur(4px)',
+        cursor: 'pointer',
+        pointerEvents: closing ? 'none' : 'auto',
+        // `backwards` applies the first keyframe before the animation starts,
+        // otherwise the opaque backdrop flashes for a frame on mount. The
+        // backdrop only fades — transforming a backdrop-filtered layer flickers.
+        animation: closing ? 'fadeOut 200ms ease-in forwards' : 'fadeIn 200ms ease-out backwards',
+      }}
+    >
       <div
-        onClick={() => setClosing(true)}
-        onAnimationEnd={(e) => {
-          // Ignore bubbled animation events from the card art's own loops.
-          if (e.target !== e.currentTarget) return
-          if (closing) onClose()
-        }}
         style={{
           width: '100%',
           maxWidth: 430,
@@ -37,11 +53,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
           justifyContent: 'center',
           gap: 18,
           padding: '20px 20px 40px',
-          background: 'rgba(4,7,12,.86)',
-          backdropFilter: 'blur(4px)',
-          cursor: 'pointer',
-          pointerEvents: closing ? 'none' : 'auto',
-          animation: closing ? 'sinkOut 200ms ease-in forwards' : 'riseIn 200ms ease-out',
+          animation: closing ? 'sinkOut 200ms ease-in forwards' : 'riseIn 200ms ease-out backwards',
         }}
       >
         <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>

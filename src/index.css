@@ -48,13 +48,16 @@ a:hover {
     background-position: 260% 0;
   }
 }
-@keyframes drift {
-  0%,
-  100% {
-    transform: translateY(-6%);
+/* Rainbow foil band: pans the 115° stripes horizontally. One stripe period is
+   54px along the gradient axis, which is 54 / sin(115deg) ≈ 59.58px along x,
+   so shifting by that amount loops seamlessly with no vertical drift. The band
+   is overhung sideways (see bandStyle) to hide the vacated edge. */
+@keyframes stripePan {
+  from {
+    transform: translateX(0);
   }
-  50% {
-    transform: translateY(6%);
+  to {
+    transform: translateX(59.58px);
   }
 }
 @keyframes pulseGlow {
@@ -74,6 +77,22 @@ a:hover {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 @keyframes sinkOut {
