@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { CSSProperties, RefObject } from 'react'
 import type { RarityKey } from '../theme'
-import { HOLO, TIERS } from '../theme'
+import { TIERS } from '../theme'
 
 const alpha = (a: number) =>
   Math.round(Math.min(1, Math.max(0, a)) * 255)
@@ -28,12 +28,12 @@ export function CardGlow({ rarity, style }: { rarity: RarityKey; style?: CSSProp
   const rays = g >= 0.65 // rays from rare upwards
   const isMythic = rarity === 'mythic'
   const rayPaint = isMythic
-    ? HOLO
+    ? 'conic-gradient(from 8deg,transparent 0 15deg,#73e8ff 29deg,transparent 52deg,transparent 82deg,#ff78dc 101deg,transparent 127deg,transparent 164deg,#ffe49b 184deg,transparent 216deg,transparent 250deg,#b38cff 273deg,transparent 303deg,transparent 326deg,#67f4dc 340deg,transparent 356deg)'
     : `conic-gradient(from 0deg,transparent 0deg,${t.c} 24deg,transparent 52deg,transparent 90deg,${t.c} 114deg,transparent 142deg,transparent 180deg,${t.c} 204deg,transparent 232deg,transparent 270deg,${t.c} 294deg,transparent 322deg)`
   // The mythic signature colour is near-white, which blooms grey — so its
   // backdrop borrows the prismatic hues of the foil instead.
   const bloomPaint = isMythic
-    ? `radial-gradient(closest-side,#FFD700${alpha(0.62 * g)},#FF3D8B${alpha(0.52 * g)} 38%,#8B5CF6${alpha(0.4 * g)} 58%,#7CF2FF${alpha(0.26 * g)} 72%,transparent 84%)`
+    ? `radial-gradient(closest-side,#FFF0B0${alpha(0.68 * g)},#6BDBFF${alpha(0.56 * g)} 32%,#B783FF${alpha(0.48 * g)} 50%,#FF62C8${alpha(0.3 * g)} 66%,#57F0DC${alpha(0.2 * g)} 76%,transparent 86%)`
     : `radial-gradient(closest-side,${t.c}${alpha(0.85 * g)},${t.c}${alpha(0.52 * g)} 42%,${t.c}${alpha(0.22 * g)} 62%,transparent 80%)`
 
   return (
@@ -54,7 +54,7 @@ export function CardGlow({ rarity, style }: { rarity: RarityKey; style?: CSSProp
             position: 'absolute',
             inset: isMythic ? '-8%' : '-14%',
             background: rayPaint,
-            opacity: (isMythic ? 0.3 : 0.58) * g,
+            opacity: (isMythic ? 0.43 : 0.58) * g,
             filter: `blur(${isMythic ? 7 : 5}px) saturate(${isMythic ? 1.9 : 1.7})`,
             mixBlendMode: 'screen',
             maskImage: isMythic ? RAY_MASK_SOFT : RAY_MASK,

@@ -1,8 +1,9 @@
 import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
-import { HOLO, HOLO_SWEEP, LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
+import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
 import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
+import { MythicCardFront } from './MythicCardFront'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -68,12 +69,7 @@ function hairlineStyle(animate: boolean): CSSProperties {
   }
 }
 function tagStyle(label: string, c: string, ink: string): CSSProperties {
-  const bg =
-    label === 'MYTHIC'
-      ? 'linear-gradient(90deg,#FF3D8B,#FFC53D,#7CF2FF,#8B5CF6,#FF3D8B)'
-      : label === 'LEGENDARY'
-        ? 'linear-gradient(90deg,rgba(255,197,61,.15),#FFC53D)'
-        : c
+  const bg = label === 'LEGENDARY' ? 'linear-gradient(90deg,rgba(255,197,61,.15),#FFC53D)' : c
   const fg =
     label === 'COMMON' ? '#0A0F18' : label === 'RARE' ? '#EAF2FF' : label === 'ULTRA RARE' ? '#ffffff' : ink
   return {
@@ -81,7 +77,6 @@ function tagStyle(label: string, c: string, ink: string): CSSProperties {
     padding: '5px 12px 5px 14px',
     borderRadius: '99px 0 0 99px',
     background: bg,
-    ...(label === 'MYTHIC' ? { backgroundSize: '300% 100%', animation: 'slide 4.8s linear infinite' } : null),
     fontFamily: AB,
     fontSize: 10,
     letterSpacing: '.2em',
@@ -89,89 +84,6 @@ function tagStyle(label: string, c: string, ink: string): CSSProperties {
   }
 }
 
-// Mythic-only extras layered on top of the standard foil recipe: a slow
-// rotating rainbow-and-gold sheen, a diagonal glint, a breathing aura, and a
-// handful of twinkling sparkle points — "incredibly shiny" for the 7 Federal
-// Council cards. The sheen/glint are masked to fade out over the card's
-// centre (where the portrait sits) so the photo stays readable; the shine
-// concentrates toward the edges and corners instead.
-const CENTRE_MASK = 'radial-gradient(58% 56% at 50% 38%,transparent 20%,#000 82%)'
-
-function holoSpinStyle(mythic: boolean): CSSProperties {
-  if (!mythic) return { display: 'none' }
-  return {
-    position: 'absolute',
-    inset: '-45%',
-    pointerEvents: 'none',
-    background: HOLO,
-    opacity: 0.14,
-    mixBlendMode: 'color-dodge',
-    maskImage: CENTRE_MASK,
-    WebkitMaskImage: CENTRE_MASK,
-    animation: 'holoSpin 11.2s linear infinite',
-  }
-}
-function holoGlintStyle(mythic: boolean, animate: boolean): CSSProperties {
-  if (!mythic) return { display: 'none' }
-  return {
-    position: 'absolute',
-    inset: 0,
-    pointerEvents: 'none',
-    overflow: 'hidden',
-    opacity: animate ? 0.32 : 0.12,
-    background: HOLO_SWEEP,
-    backgroundSize: '220% 100%',
-    mixBlendMode: 'screen',
-    maskImage: CENTRE_MASK,
-    WebkitMaskImage: CENTRE_MASK,
-    animation: animate ? 'holoGlint 3.64s linear infinite' : undefined,
-  }
-}
-// A slow breathing gold-white glow near the top of the card — an "aura"
-// rather than a shine, so it reads as ceremonial rather than distracting.
-function auraStyle(mythic: boolean): CSSProperties {
-  if (!mythic) return { display: 'none' }
-  return {
-    position: 'absolute',
-    inset: 0,
-    pointerEvents: 'none',
-    background: 'radial-gradient(130% 85% at 50% 6%,rgba(255,222,150,.5),transparent 62%)',
-    mixBlendMode: 'soft-light',
-    animation: 'mythicAura 4.2s ease-in-out infinite',
-  }
-}
-const SPARKLE_POINTS: [number, number][] = [
-  [14, 16],
-  [84, 12],
-  [60, 32],
-  [90, 60],
-  [18, 68],
-  [48, 90],
-]
-function Sparkles({ mythic }: { mythic: boolean }) {
-  if (!mythic) return null
-  return (
-    <>
-      {SPARKLE_POINTS.map(([x, y], i) => (
-        <div
-          key={i}
-          style={{
-            position: 'absolute',
-            left: `${x}%`,
-            top: `${y}%`,
-            width: 5,
-            height: 5,
-            borderRadius: '50%',
-            background: '#fff',
-            boxShadow: '0 0 7px 2px rgba(255,255,255,.9)',
-            pointerEvents: 'none',
-            animation: `sparkleTwinkle ${3.1 + (i % 3) * 0.85}s ease-in-out ${i * 0.5}s infinite`,
-          }}
-        />
-      ))}
-    </>
-  )
-}
 const legislatureTagStyle: CSSProperties = {
   pointerEvents: 'none',
   padding: '3px 12px 3px 14px',
@@ -200,9 +112,10 @@ export function CardFront({
   foil?: boolean
   style?: CSSProperties
 }) {
+  if (m.rarity === 'mythic') return <MythicCardFront member={m} foil={foil} style={style} />
+
   const t = TIERS[m.rarity]
-  const isMythic = m.rarity === 'mythic'
-  const animate = foil && (m.rarity === 'ultra' || m.rarity === 'legend' || isMythic)
+  const animate = foil && (m.rarity === 'ultra' || m.rarity === 'legend')
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
@@ -234,11 +147,6 @@ export function CardFront({
       <div style={wedgeFoilStyle(t.wedge, animate)} />
       <div style={bandStyle(animate)} />
       <div style={hairlineStyle(animate)} />
-      <div style={holoSpinStyle(isMythic)} />
-      <div style={holoGlintStyle(isMythic, animate)} />
-      <div style={auraStyle(isMythic)} />
-      <Sparkles mythic={isMythic} />
-
       {/* top-left: OVR, party, flag, chamber */}
       <div style={{ position: 'absolute', left: 16, top: 12, zIndex: 5 }}>
         <div style={{ fontFamily: AB, fontSize: 72, lineHeight: 0.86, letterSpacing: '-.04em', color: ovrInk }}>
@@ -321,8 +229,7 @@ export function CardFront({
           </div>
         </div>
 
-        {!isMythic && (
-          <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
             <div style={{ flex: 'none' }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#FF9EC4' }}>ATK</div>
               <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#FF5FA2' }}>{m.atk}</div>
@@ -335,8 +242,7 @@ export function CardFront({
               <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
               <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
             </div>
-          </div>
-        )}
+        </div>
 
         <div
           style={{

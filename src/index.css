@@ -132,32 +132,94 @@ a:hover {
     transform: rotate(360deg);
   }
 }
-@keyframes holoGlint {
-  0% {
-    background-position: -160% 0;
-  }
-  100% {
-    background-position: 260% 0;
+@keyframes mythicEdgeSpin {
+  to {
+    transform: rotate(360deg);
   }
 }
-@keyframes sparkleTwinkle {
+@keyframes mythicLightPass {
+  0%,
+  58% {
+    transform: translateX(-180%) skewX(-16deg);
+    opacity: 0;
+  }
+  66% {
+    opacity: 0.42;
+  }
+  84% {
+    transform: translateX(390%) skewX(-16deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(390%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+@keyframes mythicOrbit {
   0%,
   100% {
-    opacity: 0.15;
-    transform: scale(0.7);
+    opacity: 0.55;
+    filter: hue-rotate(0deg);
   }
   50% {
     opacity: 0.9;
-    transform: scale(1.15);
+    filter: hue-rotate(24deg);
   }
 }
-@keyframes mythicAura {
+@keyframes mythicPrismShift {
   0%,
   100% {
-    opacity: 0.3;
+    background-position: 0% 20%;
+    filter: hue-rotate(0deg) saturate(1.15);
   }
   50% {
-    opacity: 0.75;
+    background-position: 100% 80%;
+    filter: hue-rotate(28deg) saturate(1.45);
+  }
+}
+@keyframes mythicTagShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 10px rgba(99, 232, 255, 0.28);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 15px rgba(255, 122, 207, 0.42);
+  }
+}
+.mythic-edge-spin {
+  animation: mythicEdgeSpin 8s linear infinite;
+}
+.mythic-light-pass {
+  position: absolute;
+  z-index: 4;
+  top: -8%;
+  bottom: -8%;
+  left: -22%;
+  width: 24%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(99, 229, 255, 0.46), rgba(255, 255, 255, 0.76), rgba(255, 120, 222, 0.34), transparent);
+  mix-blend-mode: screen;
+  filter: blur(3px);
+  animation: mythicLightPass 4.8s ease-in-out infinite;
+}
+.mythic-orbit {
+  animation: mythicOrbit 5.5s ease-in-out infinite;
+}
+.mythic-prism-shift {
+  animation: mythicPrismShift 5.2s ease-in-out infinite;
+}
+.mythic-rarity-tag {
+  animation: mythicTagShift 3.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mythic-edge-spin,
+  .mythic-light-pass,
+  .mythic-orbit,
+  .mythic-prism-shift,
+  .mythic-rarity-tag {
+    animation: none;
   }
 }
 @keyframes glowPulse {

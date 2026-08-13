@@ -60,14 +60,6 @@ export const STRIPES =
 export const SWEEP =
   'linear-gradient(100deg,transparent 32%,rgba(255,255,255,.85) 48%,transparent 62%)'
 
-// Mythic-only extras: a slow-rotating rainbow-and-gold sheen and a diagonal
-// glint, layered on top of the standard foil recipe above for a shinier,
-// more "divine chrome" finish than the plain rainbow used elsewhere.
-export const HOLO =
-  'conic-gradient(from 0deg,#FF3D8B,#FFD700,#FFFFFF,#7CF2FF,#8B5CF6,#FF3D8B)'
-export const HOLO_SWEEP =
-  'linear-gradient(100deg,transparent 20%,rgba(255,255,255,.95) 44%,rgba(255,222,150,.95) 50%,rgba(255,255,255,.95) 56%,transparent 80%)'
-
 // Current legislature number, shown on card chrome ("NR · 52").
 export const LEGISLATURE = 52
 
