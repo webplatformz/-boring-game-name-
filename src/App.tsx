@@ -13,9 +13,8 @@ export function App() {
   return (
     <div style={{ minHeight: '100vh', background: '#070C13', display: 'flex', justifyContent: 'center' }}>
       <div
+        className="app-shell-width"
         style={{
-          width: '100%',
-          maxWidth: 430,
           minHeight: '100vh',
           position: 'relative',
           background: 'radial-gradient(120% 55% at 50% 0%, #16233A 0%, #070C13 58%)',

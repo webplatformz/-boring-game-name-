@@ -130,9 +130,11 @@ async function main() {
       'MemberCouncil',
       `$filter=${encodeURIComponent(`Active eq true and Language eq '${LANG}'`)}`,
     )
-    return all.filter((m) => m.CouncilAbbreviation === 'NR' || m.CouncilAbbreviation === 'SR')
+    // NR/SR = sitting parliamentarians. BR = the 7 Federal Councillors, folded
+    // in as the "mythic" tier by build-members.mjs.
+    return all.filter((m) => ['NR', 'SR', 'BR'].includes(m.CouncilAbbreviation))
   })
-  process.stdout.write(`  ${active.length} sitting members (NR/SR)\n`)
+  process.stdout.write(`  ${active.length} sitting members (NR/SR/BR)\n`)
 
   const personNumbers = [...new Set(active.map((m) => m.PersonNumber))]
 

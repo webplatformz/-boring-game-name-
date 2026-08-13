@@ -1,6 +1,15 @@
 [
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1fd71286-4b38-4100-b65d-009adad0eaa0',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1fd71286-4b38-4100-b65d-009adad0eaa0',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1767225600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a09a5ff3-e616-44d9-b478-06750706b03e',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a09a5ff3-e616-44d9-b478-06750706b03e',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -25,6 +34,15 @@
     },
     "PersonNumber": 3871,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f3df1580-1ca0-4d9e-b417-0ce395355c30',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f3df1580-1ca0-4d9e-b417-0ce395355c30',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1767225600000)/"
   },
   {
     "__metadata": {
@@ -73,6 +91,24 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b69ec460-03ad-4921-9225-232380dc7295',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b69ec460-03ad-4921-9225-232380dc7295',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4032,
+    "DateJoining": "/Date(1275264000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'88ab9777-0347-443f-b9dc-2fade2731722',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'88ab9777-0347-443f-b9dc-2fade2731722',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1196640000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fe0a562-5718-46bc-94af-33a5b7738198',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fe0a562-5718-46bc-94af-33a5b7738198',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -91,6 +127,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54478da-c8ad-4cde-8dd2-3cf6478828d3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54478da-c8ad-4cde-8dd2-3cf6478828d3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1070236800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'786e7432-4220-4041-a781-4adea09950b8',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'786e7432-4220-4041-a781-4adea09950b8',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -100,21 +145,21 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'facab4d9-ff28-401f-9604-4d407f7b089b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'facab4d9-ff28-401f-9604-4d407f7b089b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1180915200000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26bb3ac3-e7a5-41c0-8675-4f06ce074a56',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26bb3ac3-e7a5-41c0-8675-4f06ce074a56',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 491,
     "DateJoining": "/Date(1070236800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bee4de89-9227-4e79-959a-5d25cce04c3f',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bee4de89-9227-4e79-959a-5d25cce04c3f',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4051,
-    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -181,6 +226,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b6b38511-b940-4fdf-af81-821b07be416b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b6b38511-b940-4fdf-af81-821b07be416b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4032,
+    "DateJoining": "/Date(1704067200000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'70ea8fa8-a6f2-406b-9b93-82d3b2eaad87',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'70ea8fa8-a6f2-406b-9b93-82d3b2eaad87',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -223,15 +277,6 @@
     },
     "PersonNumber": 4040,
     "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db0bde0b-e0e9-4e97-a5b0-9eed00ba0175',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db0bde0b-e0e9-4e97-a5b0-9eed00ba0175',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4046,
-    "DateJoining": "/Date(1306713600000)/"
   },
   {
     "__metadata": {
@@ -285,6 +330,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 3912,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'36d9355b-92cd-4954-a5f3-9f8f0086b7a9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'36d9355b-92cd-4954-a5f3-9f8f0086b7a9',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4032,
     "DateJoining": "/Date(1323043200000)/"
   },
   {
@@ -370,11 +424,29 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4f08ffc9-c6ff-4de2-8786-9f8f0089442d',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4f08ffc9-c6ff-4de2-8786-9f8f0089442d',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0fe597f-a491-4afa-a825-9f8f0088fbf7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0fe597f-a491-4afa-a825-9f8f0088fbf7',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4046,
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0fe597f-a491-4afa-a825-9f8f0088fbf7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0fe597f-a491-4afa-a825-9f8f0088fbf7',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fac29b22-6fd6-4c4e-8b97-9f8f00894443',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fac29b22-6fd6-4c4e-8b97-9f8f00894443',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
     "DateJoining": "/Date(1323043200000)/"
   },
   {
@@ -384,24 +456,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 825,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'569cf6ba-5b5d-4e27-a364-9f8f00b7ca32',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'569cf6ba-5b5d-4e27-a364-9f8f00b7ca32',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4051,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a2fbef72-7caf-47e1-8654-9f8f00bec4f0',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a2fbef72-7caf-47e1-8654-9f8f00bec4f0',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4052,
     "DateJoining": "/Date(1323043200000)/"
   },
   {
@@ -451,38 +505,20 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0289b338-f064-4774-aad3-a536009cb369',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0289b338-f064-4774-aad3-a536009cb369',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4032,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8ed30378-e1ca-43df-8cf8-a536009cb373',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8ed30378-e1ca-43df-8cf8-a536009cb373',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 806,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fb019409-bf41-434b-8dd9-a536009cb375',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fb019409-bf41-434b-8dd9-a536009cb375',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4046,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e238b3e9-9799-44e4-8142-a536009cb376',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e238b3e9-9799-44e4-8142-a536009cb376',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4052,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81bf4752-4674-4f21-8eaf-a536009cb376',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81bf4752-4674-4f21-8eaf-a536009cb376',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4051,
     "DateJoining": "/Date(1448841600000)/"
   },
   {
@@ -532,11 +568,29 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'626a57ba-db96-49af-97ef-a536009cb389',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'626a57ba-db96-49af-97ef-a536009cb389',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'27974bf7-c981-4d7c-a4f6-a536009cb38c',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'27974bf7-c981-4d7c-a4f6-a536009cb38c',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 3901,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fc986e41-749f-439d-b9ae-a536009cb38c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fc986e41-749f-439d-b9ae-a536009cb38c',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
     "DateJoining": "/Date(1448841600000)/"
   },
   {
@@ -586,6 +640,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29f3fb6c-68b2-4df6-bc07-a571010cf155',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29f3fb6c-68b2-4df6-bc07-a571010cf155',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1451606400000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0da0670d-f0ca-41b4-8968-a6e9818c1203',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0da0670d-f0ca-41b4-8968-a6e9818c1203',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -601,6 +664,15 @@
     },
     "PersonNumber": 3891,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fac8f63-93c6-4ee1-aa9e-a7f400f9a575',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fac8f63-93c6-4ee1-aa9e-a7f400f9a575',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1509494400000)/"
   },
   {
     "__metadata": {
@@ -619,6 +691,15 @@
     },
     "PersonNumber": 1106,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7bfcc908-2067-441d-beed-a9b501287386',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7bfcc908-2067-441d-beed-a9b501287386',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1546300800000)/"
   },
   {
     "__metadata": {
@@ -658,20 +739,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b891382a-614c-40cb-b628-aaee00fbeef4',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b891382a-614c-40cb-b628-aaee00fbeef4',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4051,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'51a32dbc-fb42-4c61-a5e3-aaee00fc5549',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'51a32dbc-fb42-4c61-a5e3-aaee00fc5549',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 3890,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dfcdb979-b52a-40fe-8142-aaee00fc5553',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dfcdb979-b52a-40fe-8142-aaee00fc5553',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4032,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -690,24 +771,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 3897,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'54180684-ac90-490a-a7a6-aaee00fe8c13',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'54180684-ac90-490a-a7a6-aaee00fe8c13',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4052,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'395a7601-e7c4-4dda-b9fc-aaee00fe8c13',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'395a7601-e7c4-4dda-b9fc-aaee00fe8c13',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4046,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -811,12 +874,12 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b01ab88a-f76e-46f9-b344-ab8f718bf450',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b01ab88a-f76e-46f9-b344-ab8f718bf450',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ef077d43-1281-419c-9bfa-ab2000f5bcbc',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ef077d43-1281-419c-9bfa-ab2000f5bcbc',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4052,
-    "DateJoining": "/Date(1701648000000)/"
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1577836800000)/"
   },
   {
     "__metadata": {
@@ -835,6 +898,51 @@
     },
     "PersonNumber": 1138,
     "DateJoining": "/Date(1070236800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'55edd88d-6bb8-4d48-ad87-ac8e0102e7e2',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'55edd88d-6bb8-4d48-ad87-ac8e0102e7e2',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1609459200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'58290d05-f0ee-4ae2-875d-ac8e010337dc',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'58290d05-f0ee-4ae2-875d-ac8e010337dc',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1609459200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fd67ea8-05a7-46b5-b5ad-ae2200a22477',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fd67ea8-05a7-46b5-b5ad-ae2200a22477',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1640995200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'892e9999-16a5-44b1-9d65-ae2200a27211',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'892e9999-16a5-44b1-9d65-ae2200a27211',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1640995200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd51572a6-e9f7-48c8-87fe-af890107ea6b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd51572a6-e9f7-48c8-87fe-af890107ea6b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1672531200000)/"
   },
   {
     "__metadata": {
@@ -853,6 +961,15 @@
     },
     "PersonNumber": 491,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be452b8-0c47-4918-9678-b8ad9792b2db',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be452b8-0c47-4918-9678-b8ad9792b2db',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 1108,
+    "DateJoining": "/Date(1735689600000)/"
   },
   {
     "__metadata": {
@@ -982,21 +1099,21 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fd65072e-6c6c-4f7e-9711-eebe649ed11a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fd65072e-6c6c-4f7e-9711-eebe649ed11a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4046,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7cb5dcf1-31f1-4bda-b826-f4ae89cf90ab',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7cb5dcf1-31f1-4bda-b826-f4ae89cf90ab',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4040,
     "DateJoining": "/Date(1290988800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'67c86053-40c1-4080-86ee-f60aa44a3eb3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'67c86053-40c1-4080-86ee-f60aa44a3eb3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 3828,
+    "DateJoining": "/Date(1196640000000)/"
   },
   {
     "__metadata": {
@@ -1027,6 +1144,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e71d44b-4a59-4fbe-b106-1147e4dc7e34',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e71d44b-4a59-4fbe-b106-1147e4dc7e34',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1735689600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db9e1b37-d261-45d1-8bad-119a69ee7493',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db9e1b37-d261-45d1-8bad-119a69ee7493',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -1045,12 +1171,12 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7f7d6795-a912-434d-9727-2a02301e37f6',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7f7d6795-a912-434d-9727-2a02301e37f6',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3f087d07-d651-4c60-828a-29c3241424d8',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3f087d07-d651-4c60-828a-29c3241424d8',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4101,
-    "DateJoining": "/Date(1701648000000)/"
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1767225600000)/"
   },
   {
     "__metadata": {
@@ -1069,6 +1195,15 @@
     },
     "PersonNumber": 4070,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ee8278ec-0b10-4831-bf0e-31a5bfc2d379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ee8278ec-0b10-4831-bf0e-31a5bfc2d379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1704067200000)/"
   },
   {
     "__metadata": {
@@ -1108,11 +1243,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0926668-abe9-4270-8d6a-6c8d360764d5',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0926668-abe9-4270-8d6a-6c8d360764d5',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bee4de89-9227-4e79-959a-5d25cce04c3f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bee4de89-9227-4e79-959a-5d25cce04c3f',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4097,
+    "PersonNumber": 4051,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -1135,21 +1270,48 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cc7f7731-b40a-4313-807c-9a6bc01057c3',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cc7f7731-b40a-4313-807c-9a6bc01057c3',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4109,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd3349df3-55c0-41d6-9c9d-9ce965efebfe',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd3349df3-55c0-41d6-9c9d-9ce965efebfe',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4053,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db0bde0b-e0e9-4e97-a5b0-9eed00ba0175',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db0bde0b-e0e9-4e97-a5b0-9eed00ba0175',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4046,
+    "DateJoining": "/Date(1306713600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4f08ffc9-c6ff-4de2-8786-9f8f0089442d',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4f08ffc9-c6ff-4de2-8786-9f8f0089442d',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4046,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'569cf6ba-5b5d-4e27-a364-9f8f00b7ca32',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'569cf6ba-5b5d-4e27-a364-9f8f00b7ca32',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4051,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a2fbef72-7caf-47e1-8654-9f8f00bec4f0',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a2fbef72-7caf-47e1-8654-9f8f00bec4f0',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4052,
+    "DateJoining": "/Date(1323043200000)/"
   },
   {
     "__metadata": {
@@ -1203,6 +1365,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4060,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'71fae973-62a4-4cbc-b46f-9f9400e56798',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'71fae973-62a4-4cbc-b46f-9f9400e56798',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
     "DateJoining": "/Date(1323043200000)/"
   },
   {
@@ -1288,42 +1459,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8da4206c-40a7-4517-9aff-9f98010844a4',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8da4206c-40a7-4517-9aff-9f98010844a4',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4097,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccd2287a-2e14-4dc3-983c-9f9b01101643',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccd2287a-2e14-4dc3-983c-9f9b01101643',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4101,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'82c0ad5c-60e0-4a31-85de-9f9b0113e964',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'82c0ad5c-60e0-4a31-85de-9f9b0113e964',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4102,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8d5ab572-d1f6-4f51-b9b3-9f9c00cc6266',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8d5ab572-d1f6-4f51-b9b3-9f9c00cc6266',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4109,
-    "DateJoining": "/Date(1323043200000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bcb92239-7012-437a-a1bc-9f9d00a52e30',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bcb92239-7012-437a-a1bc-9f9d00a52e30',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -1348,6 +1483,33 @@
     },
     "PersonNumber": 4077,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fb019409-bf41-434b-8dd9-a536009cb375',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fb019409-bf41-434b-8dd9-a536009cb375',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4046,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e238b3e9-9799-44e4-8142-a536009cb376',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e238b3e9-9799-44e4-8142-a536009cb376',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4052,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81bf4752-4674-4f21-8eaf-a536009cb376',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81bf4752-4674-4f21-8eaf-a536009cb376',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4051,
+    "DateJoining": "/Date(1448841600000)/"
   },
   {
     "__metadata": {
@@ -1477,51 +1639,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7d48d01-0572-4059-9eb6-a536009cb379',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7d48d01-0572-4059-9eb6-a536009cb379',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4101,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ac74a46f-5ac1-4419-a4e3-a536009cb379',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ac74a46f-5ac1-4419-a4e3-a536009cb379',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4102,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4097,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4097,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86dfeae2-62c3-43c5-8b75-a536009cb37a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86dfeae2-62c3-43c5-8b75-a536009cb37a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4109,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd5eedbf0-beb5-4d7e-8a1b-a53600c76fdc',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd5eedbf0-beb5-4d7e-8a1b-a53600c76fdc',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -1540,12 +1657,30 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0a95892f-8a09-44b6-b70d-a53600c9c697',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0a95892f-8a09-44b6-b70d-a53600c9c697',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6b6c9b77-e869-4411-ac7f-a53600c9c698',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6b6c9b77-e869-4411-ac7f-a53600c9c698',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4078,
     "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf2b60b-4de0-42a3-8baf-a9b50129938f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf2b60b-4de0-42a3-8baf-a9b50129938f',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1546300800000)/"
   },
   {
     "__metadata": {
@@ -1594,29 +1729,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f5c1985-e1eb-47b4-a3d2-aaee00fb7697',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f5c1985-e1eb-47b4-a3d2-aaee00fb7697',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4101,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f1e1a601-7a46-41de-bfb3-aaee00fb7697',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f1e1a601-7a46-41de-bfb3-aaee00fb7697',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4102,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'58d73790-371f-47a4-92c1-aaee00fbeef4',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'58d73790-371f-47a4-92c1-aaee00fbeef4',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4077,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b891382a-614c-40cb-b628-aaee00fbeef4',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b891382a-614c-40cb-b628-aaee00fbeef4',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4051,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -1648,33 +1774,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4097,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4097,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dc0bdb86-3373-4bb9-85b1-aaee00fe8c13',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dc0bdb86-3373-4bb9-85b1-aaee00fe8c13',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4109,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd5f93c3f-722a-4e7f-a3a3-aaee00fe8c13',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd5f93c3f-722a-4e7f-a3a3-aaee00fe8c13',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -1684,11 +1783,29 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'54180684-ac90-490a-a7a6-aaee00fe8c13',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'54180684-ac90-490a-a7a6-aaee00fe8c13',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4052,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'72c6295a-c1a0-44aa-b3ad-aaee00fe8c13',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'72c6295a-c1a0-44aa-b3ad-aaee00fe8c13',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4065,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'395a7601-e7c4-4dda-b9fc-aaee00fe8c13',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'395a7601-e7c4-4dda-b9fc-aaee00fe8c13',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4046,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -1747,12 +1864,30 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b01ab88a-f76e-46f9-b344-ab8f718bf450',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b01ab88a-f76e-46f9-b344-ab8f718bf450',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4052,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccf89c8c-100b-430a-937e-ac62929c4f03',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccf89c8c-100b-430a-937e-ac62929c4f03',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4057,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8dd7d431-4bba-4c90-a3d5-af7400c37338',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8dd7d431-4bba-4c90-a3d5-af7400c37338',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4062,
+    "DateJoining": "/Date(1672531200000)/"
   },
   {
     "__metadata": {
@@ -1765,11 +1900,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'45cbe575-53eb-42a3-aa40-c3db85ef8311',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'45cbe575-53eb-42a3-aa40-c3db85ef8311',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fd65072e-6c6c-4f7e-9711-eebe649ed11a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fd65072e-6c6c-4f7e-9711-eebe649ed11a',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4102,
+    "PersonNumber": 4046,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -1792,15 +1927,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'672047f5-91b4-4b7c-8606-28f62efc0658',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'672047f5-91b4-4b7c-8606-28f62efc0658',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4161,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'350514de-8a42-4b66-952f-290403d00ef8',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'350514de-8a42-4b66-952f-290403d00ef8',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -1810,38 +1936,20 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7f7d6795-a912-434d-9727-2a02301e37f6',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7f7d6795-a912-434d-9727-2a02301e37f6',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4101,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fde1cc9-2fcc-4590-8f47-2a7694a7e60b',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fde1cc9-2fcc-4590-8f47-2a7694a7e60b',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4137,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4160,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4160,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4160,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -1873,11 +1981,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'90c14710-1e75-4218-90b6-7071c54276eb',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'90c14710-1e75-4218-90b6-7071c54276eb',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0926668-abe9-4270-8d6a-6c8d360764d5',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd0926668-abe9-4270-8d6a-6c8d360764d5',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4158,
+    "PersonNumber": 4097,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -1906,6 +2014,60 @@
     },
     "PersonNumber": 4154,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cc7f7731-b40a-4313-807c-9a6bc01057c3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cc7f7731-b40a-4313-807c-9a6bc01057c3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4109,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8da4206c-40a7-4517-9aff-9f98010844a4',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8da4206c-40a7-4517-9aff-9f98010844a4',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4097,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'98332705-6a74-4422-adde-9f98011be4f2',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'98332705-6a74-4422-adde-9f98011be4f2',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4100,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccd2287a-2e14-4dc3-983c-9f9b01101643',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ccd2287a-2e14-4dc3-983c-9f9b01101643',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4101,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'82c0ad5c-60e0-4a31-85de-9f9b0113e964',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'82c0ad5c-60e0-4a31-85de-9f9b0113e964',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4102,
+    "DateJoining": "/Date(1323043200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8d5ab572-d1f6-4f51-b9b3-9f9c00cc6266',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8d5ab572-d1f6-4f51-b9b3-9f9c00cc6266',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4109,
+    "DateJoining": "/Date(1323043200000)/"
   },
   {
     "__metadata": {
@@ -2008,11 +2170,65 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7d48d01-0572-4059-9eb6-a536009cb379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7d48d01-0572-4059-9eb6-a536009cb379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4101,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ac74a46f-5ac1-4419-a4e3-a536009cb379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ac74a46f-5ac1-4419-a4e3-a536009cb379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4102,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4097,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f2985427-cae3-4fce-ae60-a536009cb379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4097,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b2041d45-ed0e-4fc7-bc94-a536009cb379',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b2041d45-ed0e-4fc7-bc94-a536009cb379',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4100,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bd4d8bff-12b2-410a-8488-a536009cb37a',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bd4d8bff-12b2-410a-8488-a536009cb37a',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4125,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86dfeae2-62c3-43c5-8b75-a536009cb37a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86dfeae2-62c3-43c5-8b75-a536009cb37a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4109,
     "DateJoining": "/Date(1448841600000)/"
   },
   {
@@ -2152,51 +2368,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13c72d2f-26f1-488c-84f7-a53600fa701a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13c72d2f-26f1-488c-84f7-a53600fa701a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4157,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'83da1153-8846-461b-a634-a53600fbc5db',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'83da1153-8846-461b-a634-a53600fbc5db',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4158,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be59a44-2e26-4fec-b005-a53600fe3866',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be59a44-2e26-4fec-b005-a53600fe3866',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4159,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6e5b58fc-c4a5-41b3-ab82-a53600ff1065',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6e5b58fc-c4a5-41b3-ab82-a53600ff1065',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4160,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bec35f5-0325-4d60-9155-a53601000e5a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bec35f5-0325-4d60-9155-a53601000e5a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4161,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7d341feb-1a6d-4809-83c3-a8c6ceac283f',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7d341feb-1a6d-4809-83c3-a8c6ceac283f',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -2215,11 +2386,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5c85cc39-2ada-44d5-a608-aaee00fb7697',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5c85cc39-2ada-44d5-a608-aaee00fb7697',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f5c1985-e1eb-47b4-a3d2-aaee00fb7697',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f5c1985-e1eb-47b4-a3d2-aaee00fb7697',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4158,
+    "PersonNumber": 4101,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2233,20 +2404,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8754b6f4-6698-4fa1-8bc1-aaee00fbeef9',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8754b6f4-6698-4fa1-8bc1-aaee00fbeef9',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f1e1a601-7a46-41de-bfb3-aaee00fb7697',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f1e1a601-7a46-41de-bfb3-aaee00fb7697',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4160,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1d610698-06e1-4bce-a01d-aaee00fbeef9',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1d610698-06e1-4bce-a01d-aaee00fbeef9',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4159,
+    "PersonNumber": 4102,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2269,20 +2431,29 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'231cef8d-489e-4746-8a91-aaee00fc5566',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'231cef8d-489e-4746-8a91-aaee00fc5566',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4161,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'208d7fab-19a2-434f-a153-aaee00fd6375',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'208d7fab-19a2-434f-a153-aaee00fd6375',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4118,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4097,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9377631-de02-4bd8-add2-aaee00fd6375',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4097,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2301,6 +2472,24 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4144,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dc0bdb86-3373-4bb9-85b1-aaee00fe8c13',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dc0bdb86-3373-4bb9-85b1-aaee00fe8c13',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4109,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a5339257-a21a-4c7a-8fa5-aaee00fe8c13',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a5339257-a21a-4c7a-8fa5-aaee00fe8c13',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4100,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2386,12 +2575,12 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5b401235-912a-46ee-8748-af7300f4e20d',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5b401235-912a-46ee-8748-af7300f4e20d',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'294608b1-5490-4782-b30d-af7400c3036e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'294608b1-5490-4782-b30d-af7400c3036e',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4157,
-    "DateJoining": "/Date(1677456000000)/"
+    "PersonNumber": 4100,
+    "DateJoining": "/Date(1672531200000)/"
   },
   {
     "__metadata": {
@@ -2404,11 +2593,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bccd4675-3868-4831-bcd9-c3d3b92bbef5',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bccd4675-3868-4831-bcd9-c3d3b92bbef5',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'45cbe575-53eb-42a3-aa40-c3db85ef8311',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'45cbe575-53eb-42a3-aa40-c3db85ef8311',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4159,
+    "PersonNumber": 4102,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2418,24 +2607,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4156,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8c1eadc4-ca19-41d2-b9b9-ff6a02d409ee',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8c1eadc4-ca19-41d2-b9b9-ff6a02d409ee',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4157,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a6793598-a093-4df7-835b-1c9e20aaa4f6',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a6793598-a093-4df7-835b-1c9e20aaa4f6',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4194,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2458,6 +2629,42 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'672047f5-91b4-4b7c-8606-28f62efc0658',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'672047f5-91b4-4b7c-8606-28f62efc0658',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4161,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4160,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4160,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cf81cc6-cf86-449d-8a46-4923bf1d41c3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4160,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c0a98aef-e28a-4415-9c6e-4f52167fcd99',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c0a98aef-e28a-4415-9c6e-4f52167fcd99',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -2472,15 +2679,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4174,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db3a9005-f12d-435a-8821-523128623f10',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db3a9005-f12d-435a-8821-523128623f10',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4198,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2503,11 +2701,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e093b2a8-d7d1-441d-9411-64c93e2ba738',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e093b2a8-d7d1-441d-9411-64c93e2ba738',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'90c14710-1e75-4218-90b6-7071c54276eb',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'90c14710-1e75-4218-90b6-7071c54276eb',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4193,
+    "PersonNumber": 4158,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2517,15 +2715,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4175,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'91249d4c-b1fd-4f6f-8731-852552c63eb1',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'91249d4c-b1fd-4f6f-8731-852552c63eb1',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4195,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2545,6 +2734,51 @@
     },
     "PersonNumber": 4184,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13c72d2f-26f1-488c-84f7-a53600fa701a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13c72d2f-26f1-488c-84f7-a53600fa701a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4157,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'83da1153-8846-461b-a634-a53600fbc5db',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'83da1153-8846-461b-a634-a53600fbc5db',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4158,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be59a44-2e26-4fec-b005-a53600fe3866',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7be59a44-2e26-4fec-b005-a53600fe3866',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4159,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6e5b58fc-c4a5-41b3-ab82-a53600ff1065',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6e5b58fc-c4a5-41b3-ab82-a53600ff1065',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4160,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bec35f5-0325-4d60-9155-a53601000e5a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bec35f5-0325-4d60-9155-a53601000e5a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4161,
+    "DateJoining": "/Date(1448841600000)/"
   },
   {
     "__metadata": {
@@ -2683,51 +2917,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'46894ca9-9c67-4bee-96cd-a5360129d7ed',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'46894ca9-9c67-4bee-96cd-a5360129d7ed',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4193,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'79707286-e201-403e-b11d-a536012aad4f',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'79707286-e201-403e-b11d-a536012aad4f',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4194,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'238c4912-3941-44d4-8ea0-a536012bb703',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'238c4912-3941-44d4-8ea0-a536012bb703',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4195,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2870b9ab-308c-479f-8ab3-a536012e0a4f',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2870b9ab-308c-479f-8ab3-a536012e0a4f',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4197,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54d9273-dfc0-4012-b93e-a536012ed8e5',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54d9273-dfc0-4012-b93e-a536012ed8e5',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4198,
-    "DateJoining": "/Date(1448841600000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd638efe7-8785-4754-a6f3-a582d1ff3366',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd638efe7-8785-4754-a6f3-a582d1ff3366',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -2755,6 +2944,24 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5c85cc39-2ada-44d5-a608-aaee00fb7697',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5c85cc39-2ada-44d5-a608-aaee00fb7697',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4158,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8754b6f4-6698-4fa1-8bc1-aaee00fbeef9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8754b6f4-6698-4fa1-8bc1-aaee00fbeef9',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4160,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'940f2684-0c9a-41d6-9bdf-aaee00fbeef9',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'940f2684-0c9a-41d6-9bdf-aaee00fbeef9',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -2764,11 +2971,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'812fbff0-e967-4ab2-b241-aaee00fbeef9',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'812fbff0-e967-4ab2-b241-aaee00fbeef9',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1d610698-06e1-4bce-a01d-aaee00fbeef9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1d610698-06e1-4bce-a01d-aaee00fbeef9',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4195,
+    "PersonNumber": 4159,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2787,6 +2994,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4181,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'231cef8d-489e-4746-8a91-aaee00fc5566',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'231cef8d-489e-4746-8a91-aaee00fc5566',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4161,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2827,24 +3043,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8cb04676-efe0-4298-9c71-aaee00fd637a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8cb04676-efe0-4298-9c71-aaee00fd637a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4198,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5dcb72ed-55bc-4a19-aa71-aaee00fd637a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5dcb72ed-55bc-4a19-aa71-aaee00fd637a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4197,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ebcd57ff-d9bf-4b57-921a-aaee00fe8c17',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ebcd57ff-d9bf-4b57-921a-aaee00fe8c17',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -2859,15 +3057,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4168,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1b261c76-6a81-4300-afea-aaee00fe8c17',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1b261c76-6a81-4300-afea-aaee00fe8c17',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4193,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -2917,12 +3106,12 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5df487b8-a89b-4f5e-b806-ab02009632c1',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5df487b8-a89b-4f5e-b806-ab02009632c1',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5b401235-912a-46ee-8748-af7300f4e20d',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5b401235-912a-46ee-8748-af7300f4e20d',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4194,
-    "DateJoining": "/Date(1575244800000)/"
+    "PersonNumber": 4157,
+    "DateJoining": "/Date(1677456000000)/"
   },
   {
     "__metadata": {
@@ -2931,6 +3120,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4168,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bccd4675-3868-4831-bcd9-c3d3b92bbef5',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'bccd4675-3868-4831-bcd9-c3d3b92bbef5',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4159,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -2962,20 +3160,29 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c90c7a1d-ca14-4515-9ff6-ed3305404503',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c90c7a1d-ca14-4515-9ff6-ed3305404503',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4197,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b6166298-179e-4f92-8233-f9cfd7458b45',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b6166298-179e-4f92-8233-f9cfd7458b45',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4167,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8c1eadc4-ca19-41d2-b9b9-ff6a02d409ee',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8c1eadc4-ca19-41d2-b9b9-ff6a02d409ee',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4157,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a6793598-a093-4df7-835b-1c9e20aaa4f6',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a6793598-a093-4df7-835b-1c9e20aaa4f6',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4194,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3034,11 +3241,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fb0c20c-0b54-4201-84e6-53f8e0b48321',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fb0c20c-0b54-4201-84e6-53f8e0b48321',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db3a9005-f12d-435a-8821-523128623f10',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db3a9005-f12d-435a-8821-523128623f10',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4225,
+    "PersonNumber": 4198,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3057,6 +3264,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4208,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e093b2a8-d7d1-441d-9411-64c93e2ba738',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e093b2a8-d7d1-441d-9411-64c93e2ba738',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4193,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3066,6 +3282,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4199,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'91249d4c-b1fd-4f6f-8731-852552c63eb1',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'91249d4c-b1fd-4f6f-8731-852552c63eb1',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4195,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3094,6 +3319,51 @@
     },
     "PersonNumber": 4221,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'46894ca9-9c67-4bee-96cd-a5360129d7ed',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'46894ca9-9c67-4bee-96cd-a5360129d7ed',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4193,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'79707286-e201-403e-b11d-a536012aad4f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'79707286-e201-403e-b11d-a536012aad4f',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4194,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'238c4912-3941-44d4-8ea0-a536012bb703',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'238c4912-3941-44d4-8ea0-a536012bb703',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4195,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2870b9ab-308c-479f-8ab3-a536012e0a4f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2870b9ab-308c-479f-8ab3-a536012e0a4f',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4197,
+    "DateJoining": "/Date(1448841600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54d9273-dfc0-4012-b93e-a536012ed8e5',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c54d9273-dfc0-4012-b93e-a536012ed8e5',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4198,
+    "DateJoining": "/Date(1448841600000)/"
   },
   {
     "__metadata": {
@@ -3232,51 +3502,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2c0a1817-7ad6-4651-bc0a-a8cf0127161c',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2c0a1817-7ad6-4651-bc0a-a8cf0127161c',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4224,
-    "DateJoining": "/Date(1527552000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3403f0b9-e1d8-4d67-8d5a-a8e1012420fb',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3403f0b9-e1d8-4d67-8d5a-a8e1012420fb',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4225,
-    "DateJoining": "/Date(1528675200000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e25fee2a-cccc-4b9b-9f29-a9a7008f18fe',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e25fee2a-cccc-4b9b-9f29-a9a7008f18fe',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4228,
-    "DateJoining": "/Date(1544400000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'20d8608b-147e-44e1-8750-a9b4012e6961',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'20d8608b-147e-44e1-8750-a9b4012e6961',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4229,
-    "DateJoining": "/Date(1551657600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fc46706-9f8d-432b-9ac8-a9de00e8a782',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fc46706-9f8d-432b-9ac8-a9de00e8a782',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4230,
-    "DateJoining": "/Date(1551657600000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4c25c946-4ce7-4c3b-ab8f-aaee00fb7697',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4c25c946-4ce7-4c3b-ab8f-aaee00fb7697',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3291,24 +3516,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4213,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cd0581b1-b1b3-46c2-bbb1-aaee00fb769c',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cd0581b1-b1b3-46c2-bbb1-aaee00fb769c',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4230,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0f16359f-630a-41a4-8caa-aaee00fbeef9',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0f16359f-630a-41a4-8caa-aaee00fbeef9',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4229,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -3318,6 +3525,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4219,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'812fbff0-e967-4ab2-b241-aaee00fbeef9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'812fbff0-e967-4ab2-b241-aaee00fbeef9',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4195,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -3349,24 +3565,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4228,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4228,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'35638574-1a8f-47d0-8416-aaee00fd637a',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'35638574-1a8f-47d0-8416-aaee00fd637a',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3376,11 +3574,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd44b2d9f-a36e-4095-864a-aaee00fd637a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd44b2d9f-a36e-4095-864a-aaee00fd637a',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8cb04676-efe0-4298-9c71-aaee00fd637a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8cb04676-efe0-4298-9c71-aaee00fd637a',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4225,
+    "PersonNumber": 4198,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5dcb72ed-55bc-4a19-aa71-aaee00fd637a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5dcb72ed-55bc-4a19-aa71-aaee00fd637a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4197,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -3412,6 +3619,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1b261c76-6a81-4300-afea-aaee00fe8c17',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'1b261c76-6a81-4300-afea-aaee00fe8c17',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4193,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f5dedf9e-0023-45ad-8b37-aaee00fef244',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f5dedf9e-0023-45ad-8b37-aaee00fef244',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3439,15 +3655,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4018aa4c-95b5-4be0-91c7-aaee00fef249',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4018aa4c-95b5-4be0-91c7-aaee00fef249',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4224,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'34489196-ef71-4cfe-b16c-aaee00ffbc54',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'34489196-ef71-4cfe-b16c-aaee00ffbc54',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3466,30 +3673,21 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5df487b8-a89b-4f5e-b806-ab02009632c1',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'5df487b8-a89b-4f5e-b806-ab02009632c1',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4194,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a1ffa622-9e5c-4097-b433-ab110127dc7d',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a1ffa622-9e5c-4097-b433-ab110127dc7d',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4206,
     "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'10fdbe84-823b-4f32-a498-b02e27f5cb8c',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'10fdbe84-823b-4f32-a498-b02e27f5cb8c',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4228,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'603b8176-58b9-4a13-b253-b355d5f66680',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'603b8176-58b9-4a13-b253-b355d5f66680',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4229,
-    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -3529,29 +3727,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd269cf51-b952-45b4-82c6-bb5ddbd5e48e',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd269cf51-b952-45b4-82c6-bb5ddbd5e48e',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c90c7a1d-ca14-4515-9ff6-ed3305404503',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c90c7a1d-ca14-4515-9ff6-ed3305404503',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4224,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4230,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4230,
+    "PersonNumber": 4197,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3574,15 +3754,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c19dd4e6-17f1-44c7-99d6-11899d1132a2',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c19dd4e6-17f1-44c7-99d6-11899d1132a2',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4254,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'173fde10-1a82-4324-9353-1578bf62fce7',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'173fde10-1a82-4324-9353-1578bf62fce7',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3601,11 +3772,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0af6364f-26ad-410b-89ae-2f0fb7a878ad',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0af6364f-26ad-410b-89ae-2f0fb7a878ad',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fb0c20c-0b54-4201-84e6-53f8e0b48321',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2fb0c20c-0b54-4201-84e6-53f8e0b48321',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4256,
+    "PersonNumber": 4225,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3616,6 +3787,15 @@
     },
     "PersonNumber": 4240,
     "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'118cb214-4a21-485f-8f74-7ad9c7c801b4',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'118cb214-4a21-485f-8f74-7ad9c7c801b4',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4238,
+    "DateJoining": "/Date(1704067200000)/"
   },
   {
     "__metadata": {
@@ -3673,6 +3853,51 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2c0a1817-7ad6-4651-bc0a-a8cf0127161c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2c0a1817-7ad6-4651-bc0a-a8cf0127161c',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4224,
+    "DateJoining": "/Date(1527552000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3403f0b9-e1d8-4d67-8d5a-a8e1012420fb',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3403f0b9-e1d8-4d67-8d5a-a8e1012420fb',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4225,
+    "DateJoining": "/Date(1528675200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e25fee2a-cccc-4b9b-9f29-a9a7008f18fe',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e25fee2a-cccc-4b9b-9f29-a9a7008f18fe',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4228,
+    "DateJoining": "/Date(1544400000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'20d8608b-147e-44e1-8750-a9b4012e6961',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'20d8608b-147e-44e1-8750-a9b4012e6961',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4229,
+    "DateJoining": "/Date(1551657600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fc46706-9f8d-432b-9ac8-a9de00e8a782',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8fc46706-9f8d-432b-9ac8-a9de00e8a782',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4230,
+    "DateJoining": "/Date(1551657600000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd601a0ae-b9ef-4a55-bbb8-aa4f00945d1c',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd601a0ae-b9ef-4a55-bbb8-aa4f00945d1c',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3697,6 +3922,15 @@
     },
     "PersonNumber": 4237,
     "DateJoining": "/Date(1559520000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3a6ceb7f-cdac-48f9-b575-aaed0120164d',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3a6ceb7f-cdac-48f9-b575-aaed0120164d',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4238,
+    "DateJoining": "/Date(1575244800000)/"
   },
   {
     "__metadata": {
@@ -3799,65 +4033,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cd0581b1-b1b3-46c2-bbb1-aaee00fb769c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cd0581b1-b1b3-46c2-bbb1-aaee00fb769c',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4254,
+    "PersonNumber": 4230,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0f16359f-630a-41a4-8caa-aaee00fbeef9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0f16359f-630a-41a4-8caa-aaee00fbeef9',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4254,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'648fc3d5-1351-44e3-993d-aaed013092d8',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'648fc3d5-1351-44e3-993d-aaed013092d8',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4255,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'78a00c49-ae3b-49d3-89e8-aaed01314a35',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'78a00c49-ae3b-49d3-89e8-aaed01314a35',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4256,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e5dab405-a51a-418d-b5a2-aaed0131a749',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e5dab405-a51a-418d-b5a2-aaed0131a749',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4257,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9cbba58e-d112-4360-b10b-aaed01327c93',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9cbba58e-d112-4360-b10b-aaed01327c93',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4259,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'617fdac5-1dd0-4dcf-a122-aaed0132f522',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'617fdac5-1dd0-4dcf-a122-aaed0132f522',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4260,
+    "PersonNumber": 4229,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -3871,11 +4060,47 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4228,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'04188f6e-e9ea-4629-837a-aaee00fd637a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4228,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd44b2d9f-a36e-4095-864a-aaee00fd637a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd44b2d9f-a36e-4095-864a-aaee00fd637a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4225,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd4aeb816-ad49-4b36-87bd-aaee00fef249',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd4aeb816-ad49-4b36-87bd-aaee00fef249',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4234,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4018aa4c-95b5-4be0-91c7-aaee00fef249',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4018aa4c-95b5-4be0-91c7-aaee00fef249',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4224,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -3889,20 +4114,38 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7582fd30-9dcf-4ebc-b6ed-ab4cebd8d9de',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7582fd30-9dcf-4ebc-b6ed-ab4cebd8d9de',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4b930476-fc73-4487-998d-af7400c33ce7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4b930476-fc73-4487-998d-af7400c33ce7',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4260,
+    "PersonNumber": 4238,
+    "DateJoining": "/Date(1672531200000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'10fdbe84-823b-4f32-a498-b02e27f5cb8c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'10fdbe84-823b-4f32-a498-b02e27f5cb8c',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4228,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e4dd0833-a9cd-43d4-8a0f-c2eac321ee3b',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e4dd0833-a9cd-43d4-8a0f-c2eac321ee3b',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'603b8176-58b9-4a13-b253-b355d5f66680',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'603b8176-58b9-4a13-b253-b355d5f66680',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4255,
+    "PersonNumber": 4229,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd269cf51-b952-45b4-82c6-bb5ddbd5e48e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd269cf51-b952-45b4-82c6-bb5ddbd5e48e',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4224,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3916,6 +4159,24 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4230,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'97279d0e-b0d7-4186-b7aa-deb81d324c81',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4230,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6faa069a-4607-4d58-ae7a-e3cad466bb6c',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6faa069a-4607-4d58-ae7a-e3cad466bb6c',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -3925,29 +4186,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bd1249f-81d9-4cc2-93c4-eb532ca34618',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bd1249f-81d9-4cc2-93c4-eb532ca34618',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4260,
-    "DateJoining": "/Date(1748822400000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9675be47-6e1f-483e-a23e-ef2418bb8e6d',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9675be47-6e1f-483e-a23e-ef2418bb8e6d',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4253,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a7de07b9-4df1-4167-8390-f7ad40b86d7e',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a7de07b9-4df1-4167-8390-f7ad40b86d7e',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4257,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3961,20 +4204,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c14534d8-d03b-4c7c-922d-fc5c1d9e76c6',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c14534d8-d03b-4c7c-922d-fc5c1d9e76c6',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4259,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e2e90007-7203-4d79-96c2-098537760a77',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e2e90007-7203-4d79-96c2-098537760a77',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4262,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c19dd4e6-17f1-44c7-99d6-11899d1132a2',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c19dd4e6-17f1-44c7-99d6-11899d1132a2',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4254,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -3997,11 +4240,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b45da391-8eb6-4c02-b5db-2eb0246e5a30',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b45da391-8eb6-4c02-b5db-2eb0246e5a30',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0af6364f-26ad-410b-89ae-2f0fb7a878ad',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0af6364f-26ad-410b-89ae-2f0fb7a878ad',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4283,
+    "PersonNumber": 4256,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -4078,21 +4321,66 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3c071fb8-3c1d-4628-aba6-955355073d49',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3c071fb8-3c1d-4628-aba6-955355073d49',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4284,
-    "DateJoining": "/Date(1701648000000)/"
+    "PersonNumber": 4254,
+    "DateJoining": "/Date(1575244800000)/"
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f46dccc6-879d-41cd-bf7e-a18c4686444e',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f46dccc6-879d-41cd-bf7e-a18c4686444e',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fdd8eced-3a43-4ddd-bc8d-aaed012fbd3b',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 4287,
-    "DateJoining": "/Date(1701648000000)/"
+    "PersonNumber": 4254,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'648fc3d5-1351-44e3-993d-aaed013092d8',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'648fc3d5-1351-44e3-993d-aaed013092d8',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4255,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'78a00c49-ae3b-49d3-89e8-aaed01314a35',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'78a00c49-ae3b-49d3-89e8-aaed01314a35',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4256,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e5dab405-a51a-418d-b5a2-aaed0131a749',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e5dab405-a51a-418d-b5a2-aaed0131a749',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4257,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9cbba58e-d112-4360-b10b-aaed01327c93',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9cbba58e-d112-4360-b10b-aaed01327c93',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4259,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'617fdac5-1dd0-4dcf-a122-aaed0132f522',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'617fdac5-1dd0-4dcf-a122-aaed0132f522',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4260,
+    "DateJoining": "/Date(1575244800000)/"
   },
   {
     "__metadata": {
@@ -4222,6 +4510,222 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7582fd30-9dcf-4ebc-b6ed-ab4cebd8d9de',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7582fd30-9dcf-4ebc-b6ed-ab4cebd8d9de',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4260,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cd5ffd1-722c-4178-bb46-abce69c3d021',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cd5ffd1-722c-4178-bb46-abce69c3d021',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4266,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4280,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4280,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'223d160a-3aa0-4294-b52b-b00c00be1709',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'223d160a-3aa0-4294-b52b-b00c00be1709',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4261,
+    "DateJoining": "/Date(1685404800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f215be3-fd94-4b9a-ac29-b8785fcb2d62',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f215be3-fd94-4b9a-ac29-b8785fcb2d62',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4265,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e4dd0833-a9cd-43d4-8a0f-c2eac321ee3b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e4dd0833-a9cd-43d4-8a0f-c2eac321ee3b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4255,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29d80487-6618-49ca-a7cb-d528c7b3c5c6',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29d80487-6618-49ca-a7cb-d528c7b3c5c6',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4272,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f6203949-7591-41c8-9eda-e45bb4cd4dff',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f6203949-7591-41c8-9eda-e45bb4cd4dff',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4270,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bd1249f-81d9-4cc2-93c4-eb532ca34618',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9bd1249f-81d9-4cc2-93c4-eb532ca34618',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4260,
+    "DateJoining": "/Date(1748822400000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a7de07b9-4df1-4167-8390-f7ad40b86d7e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a7de07b9-4df1-4167-8390-f7ad40b86d7e',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4257,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c14534d8-d03b-4c7c-922d-fc5c1d9e76c6',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c14534d8-d03b-4c7c-922d-fc5c1d9e76c6',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4259,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'33f39354-93ec-4cae-a69f-03a79373d514',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'33f39354-93ec-4cae-a69f-03a79373d514',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4306,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e6561a6-5f67-45f4-adf3-13fae3b1aa1f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e6561a6-5f67-45f4-adf3-13fae3b1aa1f',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4295,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dbcfe272-4079-40d1-b7e0-19e258f8e3e5',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dbcfe272-4079-40d1-b7e0-19e258f8e3e5',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4288,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b45da391-8eb6-4c02-b5db-2eb0246e5a30',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b45da391-8eb6-4c02-b5db-2eb0246e5a30',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4283,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c141dc65-9e16-4dc8-a9b4-55e9fb755f2a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c141dc65-9e16-4dc8-a9b4-55e9fb755f2a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4303,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4545fe82-6e0a-41ca-950d-56270cf77c73',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4545fe82-6e0a-41ca-950d-56270cf77c73',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4296,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ab3699df-ab2c-4120-97be-7111dad24202',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ab3699df-ab2c-4120-97be-7111dad24202',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4289,
+    "DateJoining": "/Date(1733097600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a6cc0b-4344-41a5-b0a2-839bb816f054',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a6cc0b-4344-41a5-b0a2-839bb816f054',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4311,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abb587d3-9ce1-41be-85a3-8a2cc7f62472',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abb587d3-9ce1-41be-85a3-8a2cc7f62472',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4292,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3c071fb8-3c1d-4628-aba6-955355073d49',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3c071fb8-3c1d-4628-aba6-955355073d49',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4284,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd7b8d58e-1e5b-4059-baa0-96fc46c935c7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd7b8d58e-1e5b-4059-baa0-96fc46c935c7',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4293,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f46dccc6-879d-41cd-bf7e-a18c4686444e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f46dccc6-879d-41cd-bf7e-a18c4686444e',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4287,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9b6468b-f926-48cb-8ce0-aaed0141f55d',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd9b6468b-f926-48cb-8ce0-aaed0141f55d',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -4273,213 +4777,6 @@
     },
     "PersonNumber": 4287,
     "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cd5ffd1-722c-4178-bb46-abce69c3d021',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4cd5ffd1-722c-4178-bb46-abce69c3d021',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4266,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4280,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c9c72a07-0c80-4cbb-95ec-af948203acff',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4280,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'223d160a-3aa0-4294-b52b-b00c00be1709',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'223d160a-3aa0-4294-b52b-b00c00be1709',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4261,
-    "DateJoining": "/Date(1685404800000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f215be3-fd94-4b9a-ac29-b8785fcb2d62',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9f215be3-fd94-4b9a-ac29-b8785fcb2d62',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4265,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c53af9aa-b50d-4878-ae99-c053c0c3b0c2',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c53af9aa-b50d-4878-ae99-c053c0c3b0c2',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4285,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'509f8050-cc26-42ae-9b09-c13d3b4c783d',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'509f8050-cc26-42ae-9b09-c13d3b4c783d',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4282,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29d80487-6618-49ca-a7cb-d528c7b3c5c6',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'29d80487-6618-49ca-a7cb-d528c7b3c5c6',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4272,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f6203949-7591-41c8-9eda-e45bb4cd4dff',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'f6203949-7591-41c8-9eda-e45bb4cd4dff',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4270,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a42e5429-bbe7-4f9e-8b67-fb5bdf8516db',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a42e5429-bbe7-4f9e-8b67-fb5bdf8516db',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4286,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'33f39354-93ec-4cae-a69f-03a79373d514',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'33f39354-93ec-4cae-a69f-03a79373d514',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4306,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e6561a6-5f67-45f4-adf3-13fae3b1aa1f',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3e6561a6-5f67-45f4-adf3-13fae3b1aa1f',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4295,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dbcfe272-4079-40d1-b7e0-19e258f8e3e5',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'dbcfe272-4079-40d1-b7e0-19e258f8e3e5',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4288,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b77ab0ac-a86d-4949-88d6-49d94124669b',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b77ab0ac-a86d-4949-88d6-49d94124669b',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4312,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cee36951-dffa-4463-a98b-533dc481548b',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cee36951-dffa-4463-a98b-533dc481548b',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4315,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c141dc65-9e16-4dc8-a9b4-55e9fb755f2a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c141dc65-9e16-4dc8-a9b4-55e9fb755f2a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4303,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4545fe82-6e0a-41ca-950d-56270cf77c73',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4545fe82-6e0a-41ca-950d-56270cf77c73',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4296,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ab3699df-ab2c-4120-97be-7111dad24202',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ab3699df-ab2c-4120-97be-7111dad24202',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4289,
-    "DateJoining": "/Date(1733097600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a6cc0b-4344-41a5-b0a2-839bb816f054',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a6cc0b-4344-41a5-b0a2-839bb816f054',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4311,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e779cb1d-549b-43c6-818f-86d3d86c9b9c',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e779cb1d-549b-43c6-818f-86d3d86c9b9c',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4314,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abb587d3-9ce1-41be-85a3-8a2cc7f62472',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abb587d3-9ce1-41be-85a3-8a2cc7f62472',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4292,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd7b8d58e-1e5b-4059-baa0-96fc46c935c7',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd7b8d58e-1e5b-4059-baa0-96fc46c935c7',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4293,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7184aabe-6c18-484b-8fc3-9e0e85700a35',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7184aabe-6c18-484b-8fc3-9e0e85700a35',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4318,
-    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -4600,20 +4897,191 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a76f05-d9bb-4321-bbe1-ab0900b35af0',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a76f05-d9bb-4321-bbe1-ab0900b35af0',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4312,
-    "DateJoining": "/Date(1575244800000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8457604e-9118-478c-95af-ab0900b4d293',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'8457604e-9118-478c-95af-ab0900b4d293',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4310,
+    "DateJoining": "/Date(1575244800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c53af9aa-b50d-4878-ae99-c053c0c3b0c2',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c53af9aa-b50d-4878-ae99-c053c0c3b0c2',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4285,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'509f8050-cc26-42ae-9b09-c13d3b4c783d',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'509f8050-cc26-42ae-9b09-c13d3b4c783d',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4282,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'89e74a64-8073-4225-96b5-e1398febfbf7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'89e74a64-8073-4225-96b5-e1398febfbf7',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4305,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db76a0e2-337d-4cfe-8810-edfaaad69587',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db76a0e2-337d-4cfe-8810-edfaaad69587',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4290,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7ba03dd9-6593-41f4-820d-f455ed211b9f',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7ba03dd9-6593-41f4-820d-f455ed211b9f',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4309,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13b93b6b-d2ef-4197-83d9-fa38499842a7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13b93b6b-d2ef-4197-83d9-fa38499842a7',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4298,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a42e5429-bbe7-4f9e-8b67-fb5bdf8516db',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a42e5429-bbe7-4f9e-8b67-fb5bdf8516db',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4286,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3cae4020-aad2-48d8-a9d3-ff360fd04801',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3cae4020-aad2-48d8-a9d3-ff360fd04801',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4310,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cbe047e8-d7bd-4da8-ba0a-06e7d136eb2e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cbe047e8-d7bd-4da8-ba0a-06e7d136eb2e',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4323,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86e91572-3e37-4217-bcad-189ed9073dc7',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86e91572-3e37-4217-bcad-189ed9073dc7',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10801,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'643b4b81-5dc7-4af9-8ae0-2ceb078ac7e3',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'643b4b81-5dc7-4af9-8ae0-2ceb078ac7e3',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4329,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b77ab0ac-a86d-4949-88d6-49d94124669b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b77ab0ac-a86d-4949-88d6-49d94124669b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4312,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cee36951-dffa-4463-a98b-533dc481548b',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cee36951-dffa-4463-a98b-533dc481548b',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4315,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b4b47919-6c62-4641-8a9c-5d1959da79bb',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b4b47919-6c62-4641-8a9c-5d1959da79bb',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4335,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9fa3dabb-bd8b-4f29-b5df-617ffb5fa0e2',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9fa3dabb-bd8b-4f29-b5df-617ffb5fa0e2',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4331,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e779cb1d-549b-43c6-818f-86d3d86c9b9c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e779cb1d-549b-43c6-818f-86d3d86c9b9c',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4314,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7184aabe-6c18-484b-8fc3-9e0e85700a35',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7184aabe-6c18-484b-8fc3-9e0e85700a35',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4318,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b3618270-c211-410e-85d1-9f05a1b27935',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b3618270-c211-410e-85d1-9f05a1b27935',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4325,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81fccddf-2fda-4b8d-af63-9ff2ed7a62bd',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81fccddf-2fda-4b8d-af63-9ff2ed7a62bd',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4326,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a76f05-d9bb-4321-bbe1-ab0900b35af0',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'26a76f05-d9bb-4321-bbe1-ab0900b35af0',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4312,
     "DateJoining": "/Date(1575244800000)/"
   },
   {
@@ -4660,177 +5128,6 @@
     },
     "PersonNumber": 4318,
     "DateJoining": "/Date(1608249600000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b38fcf88-78d6-42eb-af60-af2e5bb2c36e',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b38fcf88-78d6-42eb-af60-af2e5bb2c36e',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4313,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75cb2b86-a5e5-41fb-ab0e-dd93372cfcff',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75cb2b86-a5e5-41fb-ab0e-dd93372cfcff',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4317,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'89e74a64-8073-4225-96b5-e1398febfbf7',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'89e74a64-8073-4225-96b5-e1398febfbf7',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4305,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db76a0e2-337d-4cfe-8810-edfaaad69587',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'db76a0e2-337d-4cfe-8810-edfaaad69587',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4290,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7ba03dd9-6593-41f4-820d-f455ed211b9f',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7ba03dd9-6593-41f4-820d-f455ed211b9f',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4309,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13b93b6b-d2ef-4197-83d9-fa38499842a7',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'13b93b6b-d2ef-4197-83d9-fa38499842a7',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4298,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3cae4020-aad2-48d8-a9d3-ff360fd04801',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'3cae4020-aad2-48d8-a9d3-ff360fd04801',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4310,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cbe047e8-d7bd-4da8-ba0a-06e7d136eb2e',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'cbe047e8-d7bd-4da8-ba0a-06e7d136eb2e',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4323,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86e91572-3e37-4217-bcad-189ed9073dc7',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'86e91572-3e37-4217-bcad-189ed9073dc7',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10801,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'643b4b81-5dc7-4af9-8ae0-2ceb078ac7e3',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'643b4b81-5dc7-4af9-8ae0-2ceb078ac7e3',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4329,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'77a4d35c-09e0-4ffe-9c3d-3f1f862fb34c',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'77a4d35c-09e0-4ffe-9c3d-3f1f862fb34c',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10806,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'689cf5ac-4180-4606-a43d-44712086cc02',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'689cf5ac-4180-4606-a43d-44712086cc02',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10805,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e71c758b-4136-41a5-8a7f-4e375e1d630a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e71c758b-4136-41a5-8a7f-4e375e1d630a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10807,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b4b47919-6c62-4641-8a9c-5d1959da79bb',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b4b47919-6c62-4641-8a9c-5d1959da79bb',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4335,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9fa3dabb-bd8b-4f29-b5df-617ffb5fa0e2',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9fa3dabb-bd8b-4f29-b5df-617ffb5fa0e2',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4331,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fca9a302-ae3d-4abc-a0ec-9072586cab60',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fca9a302-ae3d-4abc-a0ec-9072586cab60',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10804,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b3618270-c211-410e-85d1-9f05a1b27935',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b3618270-c211-410e-85d1-9f05a1b27935',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4325,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81fccddf-2fda-4b8d-af63-9ff2ed7a62bd',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'81fccddf-2fda-4b8d-af63-9ff2ed7a62bd',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 4326,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'02371d54-a9ff-42c3-aff1-a27af5929c92',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'02371d54-a9ff-42c3-aff1-a27af5929c92',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10803,
-    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -4906,21 +5203,21 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7c7a28de-1b2c-456a-b6c6-aeb9e7a12f3a',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7c7a28de-1b2c-456a-b6c6-aeb9e7a12f3a',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10802,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7afeca59-dd42-4a84-807f-af11007c3f03',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7afeca59-dd42-4a84-807f-af11007c3f03',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 4331,
     "DateJoining": "/Date(1669593600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b38fcf88-78d6-42eb-af60-af2e5bb2c36e',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b38fcf88-78d6-42eb-af60-af2e5bb2c36e',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4313,
+    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -5014,6 +5311,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75cb2b86-a5e5-41fb-ab0e-dd93372cfcff',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75cb2b86-a5e5-41fb-ab0e-dd93372cfcff',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 4317,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'106ab5cc-5c06-4d48-8db4-f7f19e164203',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'106ab5cc-5c06-4d48-8db4-f7f19e164203',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5086,11 +5392,29 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'859c987d-5ecb-4e7c-86c6-53f9f6e713fc',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'859c987d-5ecb-4e7c-86c6-53f9f6e713fc',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'77a4d35c-09e0-4ffe-9c3d-3f1f862fb34c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'77a4d35c-09e0-4ffe-9c3d-3f1f862fb34c',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 10819,
+    "PersonNumber": 10806,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'689cf5ac-4180-4606-a43d-44712086cc02',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'689cf5ac-4180-4606-a43d-44712086cc02',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10805,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e71c758b-4136-41a5-8a7f-4e375e1d630a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e71c758b-4136-41a5-8a7f-4e375e1d630a',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10807,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5104,20 +5428,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fedcaff-3ca8-41d1-bb22-5a1b8c299f21',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fedcaff-3ca8-41d1-bb22-5a1b8c299f21',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'859c987d-5ecb-4e7c-86c6-53f9f6e713fc',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'859c987d-5ecb-4e7c-86c6-53f9f6e713fc',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 10824,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7aa2356a-a0a2-45b4-b399-5e3282e9cb88',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7aa2356a-a0a2-45b4-b399-5e3282e9cb88',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10823,
+    "PersonNumber": 10819,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5131,6 +5446,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fca9a302-ae3d-4abc-a0ec-9072586cab60',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'fca9a302-ae3d-4abc-a0ec-9072586cab60',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10804,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'94564e19-77dc-4ad1-aef8-a14de7a12255',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'94564e19-77dc-4ad1-aef8-a14de7a12255',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5140,11 +5464,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'23e2ddca-505d-4da0-8cdf-a73a8bc58e99',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'23e2ddca-505d-4da0-8cdf-a73a8bc58e99',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'02371d54-a9ff-42c3-aff1-a27af5929c92',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'02371d54-a9ff-42c3-aff1-a27af5929c92',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 10826,
+    "PersonNumber": 10803,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5158,29 +5482,11 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a40e0e08-be92-4e2c-9ab8-b65d24e83f22',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a40e0e08-be92-4e2c-9ab8-b65d24e83f22',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7c7a28de-1b2c-456a-b6c6-aeb9e7a12f3a',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7c7a28de-1b2c-456a-b6c6-aeb9e7a12f3a',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 10827,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'347959d3-4abf-4da6-87ce-b81888275293',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'347959d3-4abf-4da6-87ce-b81888275293',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10825,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ffdc0c90-8b84-42d8-83a2-beed247d7303',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ffdc0c90-8b84-42d8-83a2-beed247d7303',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10822,
+    "PersonNumber": 10802,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5266,15 +5572,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75133251-79c4-47ec-ac4a-4e88bfc486f6',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75133251-79c4-47ec-ac4a-4e88bfc486f6',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10848,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c4fceffa-3ad2-412d-b8b2-50b3a2f8d065',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c4fceffa-3ad2-412d-b8b2-50b3a2f8d065',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5284,11 +5581,20 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd8b0d9df-48ad-46b2-a9d6-60414fdf2480',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd8b0d9df-48ad-46b2-a9d6-60414fdf2480',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fedcaff-3ca8-41d1-bb22-5a1b8c299f21',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'4fedcaff-3ca8-41d1-bb22-5a1b8c299f21',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 10843,
+    "PersonNumber": 10824,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7aa2356a-a0a2-45b4-b399-5e3282e9cb88',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7aa2356a-a0a2-45b4-b399-5e3282e9cb88',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10823,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5311,15 +5617,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e0b0926a-2328-4ddf-bf65-754f88e104a0',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e0b0926a-2328-4ddf-bf65-754f88e104a0',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10846,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abea25fa-a47a-4b98-84a4-7d70392d1208',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'abea25fa-a47a-4b98-84a4-7d70392d1208',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5329,20 +5626,47 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'674a60a2-7f73-4956-8722-96d34c329cbd',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'674a60a2-7f73-4956-8722-96d34c329cbd',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10847,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6b345bf0-112e-4c20-b18b-9fdbf241d59d',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'6b345bf0-112e-4c20-b18b-9fdbf241d59d',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 10833,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'23e2ddca-505d-4da0-8cdf-a73a8bc58e99',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'23e2ddca-505d-4da0-8cdf-a73a8bc58e99',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10826,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a40e0e08-be92-4e2c-9ab8-b65d24e83f22',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'a40e0e08-be92-4e2c-9ab8-b65d24e83f22',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10827,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'347959d3-4abf-4da6-87ce-b81888275293',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'347959d3-4abf-4da6-87ce-b81888275293',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10825,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ffdc0c90-8b84-42d8-83a2-beed247d7303',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'ffdc0c90-8b84-42d8-83a2-beed247d7303',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10822,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5365,15 +5689,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c8c81d7e-9da1-43d0-9990-da3ad62f3344',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c8c81d7e-9da1-43d0-9990-da3ad62f3344',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10845,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'37ddec31-0f4a-442d-9ce9-dca9398549c4',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'37ddec31-0f4a-442d-9ce9-dca9398549c4',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5388,15 +5703,6 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 10834,
-    "DateJoining": "/Date(1701648000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7efc0f0-66db-487c-b49f-f7af20d73204',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7efc0f0-66db-487c-b49f-f7af20d73204',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 10844,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5455,15 +5761,6 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0db23e08-73bb-4fe5-9793-371422324bfc',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0db23e08-73bb-4fe5-9793-371422324bfc',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 15004,
-    "DateJoining": "/Date(1746403200000)/"
-  },
-  {
-    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'85ff8e52-05ca-4cad-9236-376d5fa50af7',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'85ff8e52-05ca-4cad-9236-376d5fa50af7',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5473,12 +5770,30 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9996d2e7-4910-4a66-9883-6833324ebe65',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9996d2e7-4910-4a66-9883-6833324ebe65',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75133251-79c4-47ec-ac4a-4e88bfc486f6',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'75133251-79c4-47ec-ac4a-4e88bfc486f6',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 15601,
-    "DateJoining": "/Date(1757289600000)/"
+    "PersonNumber": 10848,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'463a3361-34dd-4d6a-ae4e-59bec420298c',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'463a3361-34dd-4d6a-ae4e-59bec420298c',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 14904,
+    "DateJoining": "/Date(1743465600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd8b0d9df-48ad-46b2-a9d6-60414fdf2480',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'd8b0d9df-48ad-46b2-a9d6-60414fdf2480',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10843,
+    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -5496,6 +5811,15 @@
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
     "PersonNumber": 11505,
+    "DateJoining": "/Date(1701648000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e0b0926a-2328-4ddf-bf65-754f88e104a0',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'e0b0926a-2328-4ddf-bf65-754f88e104a0',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 10846,
     "DateJoining": "/Date(1701648000000)/"
   },
   {
@@ -5518,12 +5842,12 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7779ec8e-0b05-47cc-849d-92727c320a08',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7779ec8e-0b05-47cc-849d-92727c320a08',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'674a60a2-7f73-4956-8722-96d34c329cbd',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'674a60a2-7f73-4956-8722-96d34c329cbd',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 15304,
-    "DateJoining": "/Date(1748822400000)/"
+    "PersonNumber": 10847,
+    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -5545,39 +5869,21 @@
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'57c61b2d-9b08-45c3-9467-e5bbfba503d1',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'57c61b2d-9b08-45c3-9467-e5bbfba503d1',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c8c81d7e-9da1-43d0-9990-da3ad62f3344',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'c8c81d7e-9da1-43d0-9990-da3ad62f3344',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 16706,
-    "DateJoining": "/Date(1773964800000)/"
+    "PersonNumber": 10845,
+    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'194083e4-34ee-4da0-bf80-f41fae832975',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'194083e4-34ee-4da0-bf80-f41fae832975',Language='DE')",
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7efc0f0-66db-487c-b49f-f7af20d73204',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'b7efc0f0-66db-487c-b49f-f7af20d73204',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
     },
-    "PersonNumber": 16804,
-    "DateJoining": "/Date(1777248000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'469a6c33-e4e0-45c8-9f3e-f8196b6445d9',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'469a6c33-e4e0-45c8-9f3e-f8196b6445d9',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 16902,
-    "DateJoining": "/Date(1777248000000)/"
-  },
-  {
-    "__metadata": {
-      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0d60fc7d-38be-4752-8538-fe89ff42abed',Language='DE')",
-      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0d60fc7d-38be-4752-8538-fe89ff42abed',Language='DE')",
-      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
-    },
-    "PersonNumber": 16109,
-    "DateJoining": "/Date(1764547200000)/"
+    "PersonNumber": 10844,
+    "DateJoining": "/Date(1701648000000)/"
   },
   {
     "__metadata": {
@@ -5617,6 +5923,15 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0db23e08-73bb-4fe5-9793-371422324bfc',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0db23e08-73bb-4fe5-9793-371422324bfc',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 15004,
+    "DateJoining": "/Date(1746403200000)/"
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2686fce6-9a95-4e7b-baeb-4b09b3b592cd',Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'2686fce6-9a95-4e7b-baeb-4b09b3b592cd',Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
@@ -5632,5 +5947,59 @@
     },
     "PersonNumber": 17404,
     "DateJoining": "/Date(1780272000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9996d2e7-4910-4a66-9883-6833324ebe65',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'9996d2e7-4910-4a66-9883-6833324ebe65',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 15601,
+    "DateJoining": "/Date(1757289600000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7779ec8e-0b05-47cc-849d-92727c320a08',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'7779ec8e-0b05-47cc-849d-92727c320a08',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 15304,
+    "DateJoining": "/Date(1748822400000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'57c61b2d-9b08-45c3-9467-e5bbfba503d1',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'57c61b2d-9b08-45c3-9467-e5bbfba503d1',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 16706,
+    "DateJoining": "/Date(1773964800000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'194083e4-34ee-4da0-bf80-f41fae832975',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'194083e4-34ee-4da0-bf80-f41fae832975',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 16804,
+    "DateJoining": "/Date(1777248000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'469a6c33-e4e0-45c8-9f3e-f8196b6445d9',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'469a6c33-e4e0-45c8-9f3e-f8196b6445d9',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 16902,
+    "DateJoining": "/Date(1777248000000)/"
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0d60fc7d-38be-4752-8538-fe89ff42abed',Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncilHistory(ID=guid'0d60fc7d-38be-4752-8538-fe89ff42abed',Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncilHistory"
+    },
+    "PersonNumber": 16109,
+    "DateJoining": "/Date(1764547200000)/"
   }
 ]

@@ -445,6 +445,117 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1108,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 1108,
+    "Language": "DE",
+    "IdPredecessor": "fabd5ed4-30be-4c35-9139-c592e905a41c",
+    "PersonNumber": 1108,
+    "PersonIdCode": 2621,
+    "Active": true,
+    "FirstName": "Guy",
+    "LastName": "Parmelin",
+    "GenderAsString": "m",
+    "Canton": 22,
+    "CantonName": "Waadt",
+    "CantonAbbreviation": "VD",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 13,
+    "PartyName": "Schweizerische Volkspartei",
+    "PartyAbbreviation": "SVP",
+    "MilitaryRank": 3,
+    "MilitaryRankText": "Korporal",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Bursins",
+    "BirthPlace_Canton": "VD",
+    "Mandates": "Vice-président du Groupe parlementaire UDC aux Chambres Fédérales",
+    "AdditionalMandate": null,
+    "AdditionalActivity": null,
+    "OfficialName": "Parmelin",
+    "DateJoining": "/Date(1767225600000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1449619200000)/",
+    "DateOath": "/Date(1767225600000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785937340757)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Bursins (VD)",
+    "DateOfBirth": "/Date(-320198400000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1109,Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=1109,Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
@@ -885,6 +996,117 @@
     "NumberOfChildren": null,
     "Citizenship": "Galgenen (SZ)",
     "DateOfBirth": "/Date(-252806400000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=3828,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 3828,
+    "Language": "DE",
+    "IdPredecessor": "af83e1dc-f269-4e5f-a161-bebcfbf36ff6",
+    "PersonNumber": 3828,
+    "PersonIdCode": 2664,
+    "Active": true,
+    "FirstName": "Ignazio",
+    "LastName": "Cassis",
+    "GenderAsString": "m",
+    "Canton": 27,
+    "CantonName": "Tessin",
+    "CantonAbbreviation": "TI",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 15,
+    "PartyName": "FDP.Die Liberalen",
+    "PartyAbbreviation": "FDP-Liberale",
+    "MilitaryRank": 12,
+    "MilitaryRankText": "Major",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Sessa",
+    "BirthPlace_Canton": "TI",
+    "Mandates": "Legislativo del comune Collina d'Oro: da aprile 2004 ad aprile 2014",
+    "AdditionalMandate": null,
+    "AdditionalActivity": "Co-presidente dell'intergruppo parlamentare Italianità; Co-presidente dell'intergruppo parlamentare Plurilinguismo CH",
+    "OfficialName": "Cassis",
+    "DateJoining": "/Date(1767225600000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1505865600000)/",
+    "DateOath": "/Date(1767225600000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785937522023)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Sessa (TI),Biasca (TI)",
+    "DateOfBirth": "/Date(-275184000000)/",
     "DateOfDeath": null
   },
   {
@@ -1773,6 +1995,117 @@
     "NumberOfChildren": 1,
     "Citizenship": "Rüthi (SG)",
     "DateOfBirth": "/Date(-133574400000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4032,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 4032,
+    "Language": "DE",
+    "IdPredecessor": "d544a1f9-eb6e-45cc-96b0-9fc2010de678",
+    "PersonNumber": 4032,
+    "PersonIdCode": 2745,
+    "Active": true,
+    "FirstName": "Beat",
+    "LastName": "Jans",
+    "GenderAsString": "m",
+    "Canton": 12,
+    "CantonName": "Basel-Stadt",
+    "CantonAbbreviation": "BS",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 12,
+    "PartyName": "Sozialdemokratische Partei der Schweiz",
+    "PartyAbbreviation": "SP",
+    "MilitaryRank": 27,
+    "MilitaryRankText": "-",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Basel",
+    "BirthPlace_Canton": "BS",
+    "Mandates": "Legislative Kanton BS: von Februar 2001 bis Mai 2011; Präsident SP Kanton Basel-Stadt: von Mai 1999 bis November 2005; Vizepräsident der SP Schweiz: seit Dezember 2015",
+    "AdditionalMandate": null,
+    "AdditionalActivity": null,
+    "OfficialName": "Jans",
+    "DateJoining": "/Date(1704067200000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1702425600000)/",
+    "DateOath": "/Date(1704067200000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785937934480)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Riehen (BS),Mosen (LU)",
+    "DateOfBirth": "/Date(-172713600000)/",
     "DateOfDeath": null
   },
   {
@@ -2883,6 +3216,117 @@
     "NumberOfChildren": null,
     "Citizenship": "Thürnen (BL)",
     "DateOfBirth": "/Date(-72144000000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4062,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 4062,
+    "Language": "DE",
+    "IdPredecessor": "65f8b52b-faa1-4568-bf14-872b71fdb9d7",
+    "PersonNumber": 4062,
+    "PersonIdCode": 2769,
+    "Active": true,
+    "FirstName": "Karin",
+    "LastName": "Keller-Sutter",
+    "GenderAsString": "f",
+    "Canton": 17,
+    "CantonName": "St. Gallen",
+    "CantonAbbreviation": "SG",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 15,
+    "PartyName": "FDP.Die Liberalen",
+    "PartyAbbreviation": "FDP-Liberale",
+    "MilitaryRank": 27,
+    "MilitaryRankText": "-",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Niederuzwil",
+    "BirthPlace_Canton": "SG",
+    "Mandates": "Legislative der Gemeinde Wil (SG): von Januar 1993 bis April 2000; Gemeinderatspräsidentin Wil (SG): von Januar 1997 bis Januar 1998; Kantonsrätin: von Mai 1996 bis April 2000; Regierungsrätin: von Juli 2000 bis Mai 2012; Regierungspräsidentin: von Juni 2006 bis Juni 2007 und von Juni 2011 bis Mai 2012; Präsidentin FDP Kanton St. Gallen: von Juni 1997 bis Juni 2000; Mitglied des Fraktionsvorstandes FDP-Die Liberalen der eidg. Räte: seit Dezember 2013",
+    "AdditionalMandate": null,
+    "AdditionalActivity": "Präsidentin der Konferenz der kantonalen Justiz- und Polizeidirektoren (KKJPD): von November 2010 bis März 2012; Präsidentin der Parlamentarischen Gruppe für die Textilwirtschaft; Co-Präsidentin der Parlamentarischen Gruppe \"Internationales Genf\"; UK-Swiss Friendship Association",
+    "OfficialName": "Keller-Sutter",
+    "DateJoining": "/Date(1767225600000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1543968000000)/",
+    "DateOath": "/Date(1767225600000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785937254070)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Kirchberg (SG) (SG),Jonschwil (SG)",
+    "DateOfBirth": "/Date(-190252800000)/",
     "DateOfDeath": null
   },
   {
@@ -4104,6 +4548,117 @@
     "NumberOfChildren": 3,
     "Citizenship": "Schüpfheim (LU),Ruswil (LU)",
     "DateOfBirth": "/Date(-362793600000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4100,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 4100,
+    "Language": "DE",
+    "IdPredecessor": "abe20754-90d6-46e5-b3b1-013650b39694",
+    "PersonNumber": 4100,
+    "PersonIdCode": 3010,
+    "Active": true,
+    "FirstName": "Albert",
+    "LastName": "Rösti",
+    "GenderAsString": "m",
+    "Canton": 2,
+    "CantonName": "Bern",
+    "CantonAbbreviation": "BE",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 13,
+    "PartyName": "Schweizerische Volkspartei",
+    "PartyAbbreviation": "SVP",
+    "MilitaryRank": 2,
+    "MilitaryRankText": "Gefreiter",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Frutigen",
+    "BirthPlace_Canton": "BE",
+    "Mandates": "SVP Wahlkreisverband Thun: Vizepräsident Februar 2007 - Februar 2014, im Vorstand seit März 2014; Exekutive der Gemeinde (Gemeinderat) Uetendorf: 2008 - 2013; Vorstandsmitglied SVP Fraktion: Februar 2012 - August 2020; Wahlleiter SVP Schweiz: 2013 - 2015; Präsident SVP Schweiz: April 2016 - August 2020; Gemeindepräsident Uetendorf: seit Januar 2014; Vorstand SVP Sektion Uetendorf: seit September 2000; Vorstandsmitglied SVP Kanton Bern: seit Februar 2012; Zentralvorstandsmitglied bzw. Vorstandsmitglied SVP Schweiz: seit Januar 2011",
+    "AdditionalMandate": null,
+    "AdditionalActivity": "Mitglied bei der Parlamentarischen Gruppe Schweiz-Ungarn; Mitglied bei der Parlamentarischen Gruppe Schweiz-Israel",
+    "OfficialName": "Rösti",
+    "DateJoining": "/Date(1672531200000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1670371200000)/",
+    "DateOath": "/Date(1672531200000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785938059927)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Frutigen (BE)",
+    "DateOfBirth": "/Date(-75859200000)/",
     "DateOfDeath": null
   },
   {
@@ -11434,6 +11989,117 @@
   },
   {
     "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4238,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 4238,
+    "Language": "DE",
+    "IdPredecessor": "1d7e52e9-8f74-49b2-a28c-c6561077b7a3",
+    "PersonNumber": 4238,
+    "PersonIdCode": 3193,
+    "Active": true,
+    "FirstName": "Elisabeth",
+    "LastName": "Baume-Schneider",
+    "GenderAsString": "f",
+    "Canton": 26,
+    "CantonName": "Jura",
+    "CantonAbbreviation": "JU",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 12,
+    "PartyName": "Sozialdemokratische Partei der Schweiz",
+    "PartyAbbreviation": "SP",
+    "MilitaryRank": 27,
+    "MilitaryRankText": "-",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "St. Imier",
+    "BirthPlace_Canton": "BE",
+    "Mandates": "Députée au Parlement jurassien: de 1995 à 2002 avec présidence du Parlement en 2000; Cheffe du Département de la Formation, de la Culture et des Sports; Ministre au Gouvernement jurassien: de 2003 à 2015",
+    "AdditionalMandate": null,
+    "AdditionalActivity": null,
+    "OfficialName": "Baume-Schneider",
+    "DateJoining": "/Date(1704067200000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1670371200000)/",
+    "DateOath": "/Date(1704067200000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1785937430080)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Les Breuleux (JU)",
+    "DateOfBirth": "/Date(-190080000000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
       "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4239,Language='DE')",
       "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=4239,Language='DE')",
       "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
@@ -16421,7 +17087,7 @@
     "DateElection": "/Date(1697932800000)/",
     "DateOath": "/Date(1701648000000)/",
     "DateResignation": null,
-    "Modified": "/Date(1781628330893)/",
+    "Modified": "/Date(1786614058020)/",
     "NumberOfChildren": null,
     "Citizenship": "Zillis-Reischen (GR)",
     "DateOfBirth": "/Date(-77328000000)/",
@@ -25860,6 +26526,117 @@
     "NumberOfChildren": null,
     "Citizenship": "Schüpfen (BE)",
     "DateOfBirth": "/Date(700444800000)/",
+    "DateOfDeath": null
+  },
+  {
+    "__metadata": {
+      "id": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')",
+      "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')",
+      "type": "itsystems.Pd.DataServices.DataModel.MemberCouncil"
+    },
+    "MembersParty": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MembersParty"
+      }
+    },
+    "Persons": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/Persons"
+      }
+    },
+    "MembersParlGroup": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MembersParlGroup"
+      }
+    },
+    "MembersCommittee": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MembersCommittee"
+      }
+    },
+    "BusinessRoles": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/BusinessRoles"
+      }
+    },
+    "Citizenships": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/Citizenships"
+      }
+    },
+    "MembersCommitteeHistory": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MembersCommitteeHistory"
+      }
+    },
+    "MemberCouncilHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MemberCouncilHistories"
+      }
+    },
+    "Votings": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/Votings"
+      }
+    },
+    "Transcripts": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/Transcripts"
+      }
+    },
+    "MemberPartyHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MemberPartyHistories"
+      }
+    },
+    "MemberParlGroupHistories": {
+      "__deferred": {
+        "uri": "https://ws.parlament.ch/OData.svc/MemberCouncil(ID=14904,Language='DE')/MemberParlGroupHistories"
+      }
+    },
+    "ID": 14904,
+    "Language": "DE",
+    "IdPredecessor": "ef439e9b-821f-4246-9f07-a9ad00ad6ede",
+    "PersonNumber": 14904,
+    "PersonIdCode": 14904,
+    "Active": true,
+    "FirstName": "Martin",
+    "LastName": "Pfister",
+    "GenderAsString": "m",
+    "Canton": 9,
+    "CantonName": "Zug",
+    "CantonAbbreviation": "ZG",
+    "Council": 99,
+    "CouncilName": "Bundesrat",
+    "CouncilAbbreviation": "BR",
+    "ParlGroupNumber": null,
+    "ParlGroupName": null,
+    "ParlGroupAbbreviation": null,
+    "ParlGroupFunction": null,
+    "ParlGroupFunctionText": null,
+    "Party": 1586,
+    "PartyName": "Die Mitte",
+    "PartyAbbreviation": "M-E",
+    "MilitaryRank": 14,
+    "MilitaryRankText": "Oberst",
+    "MaritalStatus": null,
+    "MaritalStatusText": null,
+    "Nationality": "Schweiz",
+    "BirthPlace_City": "Waldkirch",
+    "BirthPlace_Canton": "SG",
+    "Mandates": null,
+    "AdditionalMandate": null,
+    "AdditionalActivity": null,
+    "OfficialName": "Pfister Martin",
+    "DateJoining": "/Date(1743465600000)/",
+    "DateLeaving": null,
+    "DateElection": "/Date(1741737600000)/",
+    "DateOath": "/Date(1743465600000)/",
+    "DateResignation": null,
+    "Modified": "/Date(1780924981520)/",
+    "NumberOfChildren": null,
+    "Citizenship": "Waldkirch (SG)",
+    "DateOfBirth": "/Date(-202694400000)/",
     "DateOfDeath": null
   },
   {

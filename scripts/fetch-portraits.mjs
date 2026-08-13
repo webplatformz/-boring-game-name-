@@ -28,7 +28,11 @@ import sharp from 'sharp'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUT = join(__dirname, '..', 'public', 'portraits')
 const RAW_DIR = join(__dirname, '..', 'src', 'data', 'raw')
-const MEMBERS = join(__dirname, '..', 'src', 'data', 'members.json')
+// Source the member list from the raw fetch cache rather than the built
+// members.json: build-members.mjs refuses to run when a portrait is missing,
+// so bootstrapping a newly-added member's portrait must not depend on a
+// members.json that already includes them.
+const MEMBERS_RAW = join(RAW_DIR, 'members-council.json')
 
 // Wikimedia blocks generic/absent user agents outright, and their API policy
 // asks for a descriptive one that identifies the project.
@@ -285,7 +289,8 @@ ${body}
 async function main() {
   await mkdir(OUT, { recursive: true })
 
-  const members = JSON.parse(await readFile(MEMBERS, 'utf8')).members
+  const membersRaw = JSON.parse(await readFile(MEMBERS_RAW, 'utf8'))
+  const members = membersRaw.map((m) => ({ id: m.PersonNumber, name: `${m.FirstName} ${m.LastName}` }))
   process.stdout.write(`portraits: ${members.length} members\n`)
 
   const wikidata = await cached('wikidata-portraits.json', fetchWikidata)

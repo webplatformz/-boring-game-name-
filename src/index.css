@@ -95,6 +95,52 @@ a:hover {
     background-position: 100% 50%;
   }
 }
+@keyframes holoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes holoGlint {
+  0% {
+    background-position: -160% 0;
+  }
+  100% {
+    background-position: 260% 0;
+  }
+}
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+@keyframes mythicAura {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+@keyframes swipeOutLeft {
+  from {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-160%) translateY(-14px) rotate(-22deg);
+    opacity: 0;
+  }
+}
 
 /* Hide scrollbars on the horizontal chip rails while keeping them scrollable. */
 .no-scrollbar {
@@ -102,6 +148,29 @@ a:hover {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ── responsive shell width ────────────────────────────────────────────── */
+/* Mobile-first layout capped at phone width; on wider viewports the
+   background fills the screen but content grows into a readable column
+   instead of leaving dead space or stretching table rows edge-to-edge. */
+.app-shell-width {
+  width: 100%;
+  max-width: 430px;
+}
+@media (min-width: 700px) {
+  .app-shell-width {
+    max-width: min(92vw, 760px);
+  }
+}
+
+/* On desktop the "rip it open" button should match the pack deck's width
+   above it instead of stretching to the full (wider) content column. */
+@media (min-width: 700px) {
+  .rip-btn {
+    max-width: 212px;
+    align-self: center;
+  }
 }
 
 /* ── interactive affordances ───────────────────────────────────────────── */

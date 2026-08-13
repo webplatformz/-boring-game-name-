@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
 import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
 import type { Game } from '../game/useGame'
-import type { Member, RarityKey } from '../data/members'
+import type { Member } from '../data/members'
+import type { RarityKey } from '../theme'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
 import { Flag } from '../components/Flag'
 import { CardFront } from '../components/CardFront'
@@ -45,14 +46,8 @@ export function Collection({ game }: { game: Game }) {
   const sorted = useMemo(() => {
     const cmp = filtered.slice()
     cmp.sort((a, b) => {
-      let av: string | number = a.member[sortKey]
-      let bv: string | number = b.member[sortKey]
-
-      // Special handling for rarity (use order index)
-      if (sortKey === 'rarity') {
-        av = RARITY_ORDER.indexOf(a.member.rarity)
-        bv = RARITY_ORDER.indexOf(b.member.rarity)
-      }
+      const av: string | number = a.member[sortKey]
+      const bv: string | number = b.member[sortKey]
 
       if (av < bv) return -1 * sortDir
       if (av > bv) return 1 * sortDir

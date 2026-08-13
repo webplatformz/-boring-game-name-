@@ -36,7 +36,7 @@ export interface Member {
   parlGroup: string | null
   canton: string
   cantonName: string
-  chamber: 'NR' | 'SR'
+  chamber: 'NR' | 'SR' | 'BR'
   chamberName: string
   years: number
   age: number

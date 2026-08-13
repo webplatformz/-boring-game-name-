@@ -142,7 +142,7 @@ export function useGame(): Game {
       finishPack()
       return
     }
-    // Deal the current card off the deck, then flip the next one face-up.
+    // Deal the current card off the deck (tinder-style swipe out), then flip the next one face-up.
     patch({ outgoing: s.pack[s.revealIdx], revealIdx: next, faceUp: false })
     after(450, () => patch({ faceUp: true }))
     after(470, () => patch({ outgoing: null }))

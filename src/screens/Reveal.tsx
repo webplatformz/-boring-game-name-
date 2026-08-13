@@ -107,7 +107,5 @@ const outgoingStyle: CSSProperties = {
   inset: 0,
   zIndex: 20,
   pointerEvents: 'none',
-  transform: 'translateX(-150%) translateY(10px) rotate(-13deg)',
-  opacity: 0,
-  transition: 'transform 420ms cubic-bezier(.4,.05,.6,1),opacity 420ms ease-in',
+  animation: 'swipeOutLeft 420ms cubic-bezier(.4,.05,.6,1) forwards',
 }

@@ -13,6 +13,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 
 | Member | Source file | Author | Licence |
 | --- | --- | --- | --- |
+| Albert Rösti | [Albert Rösti (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Albert_R%C3%B6sti_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Alex Farinelli | [Alex Farinelli (2019).jpg](https://commons.wikimedia.org/wiki/File:Alex_Farinelli_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Alois Huber | [Alois Huber (2023).jpg](https://commons.wikimedia.org/wiki/File:Alois_Huber_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Andrea Caroni | [Andrea Caroni (2023).jpg](https://commons.wikimedia.org/wiki/File:Andrea_Caroni_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
@@ -32,6 +33,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Barbara Portmann | [Barbara Portmann (parl.ch).jpg](https://commons.wikimedia.org/wiki/File:Barbara_Portmann_(parl.ch).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Barbara Schaffner | [Barbara Schaffner (2019).jpg](https://commons.wikimedia.org/wiki/File:Barbara_Schaffner_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Barbara Steinemann | [Barbara Steinemann (2019, cropped).jpg](https://commons.wikimedia.org/wiki/File:Barbara_Steinemann_(2019,_cropped).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
+| Beat Jans | [Beat Jans (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Beat_Jans_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Beat Rieder | [Beat Rieder (2023).jpg](https://commons.wikimedia.org/wiki/File:Beat_Rieder_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Beat Walti | [Beat Walti (2019).jpg](https://commons.wikimedia.org/wiki/File:Beat_Walti_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Benedikt Würth | [Benedikt Würth.jpg](https://commons.wikimedia.org/wiki/File:Benedikt_W%C3%BCrth.jpg) | Unknown author Unknown author — credit: http://www.parlament.ch | Attribution |
@@ -76,6 +78,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Didier Calame | [Didier Calame (2023).jpg](https://commons.wikimedia.org/wiki/File:Didier_Calame_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Dominik Blunschy | [Dominik Blunschy (2023).jpg](https://commons.wikimedia.org/wiki/File:Dominik_Blunschy_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Edgar Bischof | [Edgar Bischof (2026).jpg](https://commons.wikimedia.org/wiki/File:Edgar_Bischof_(2026).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
+| Elisabeth Baume-Schneider | [Élisabeth Baume-Schneider (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:%C3%89lisabeth_Baume-Schneider_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Elisabeth Schneider-Schneiter | [Elisabeth Schneider-Schneiter 2020.jpg](https://commons.wikimedia.org/wiki/File:Elisabeth_Schneider-Schneiter_2020.jpg) | Services du parlement — credit: http://www.parlament.ch | Attribution |
 | Emmanuel Amoos | [Emmanuel Amoos (2023).jpg](https://commons.wikimedia.org/wiki/File:Emmanuel_Amoos_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Erich Ettlin | [Erich Ettlin (2019).jpg](https://commons.wikimedia.org/wiki/File:Erich_Ettlin_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
@@ -101,6 +104,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Giorgio Fonio | [Giorgio Fonio (2023).jpg](https://commons.wikimedia.org/wiki/File:Giorgio_Fonio_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Gregor Rutz | [Gregor Rutz 2012.jpg](https://commons.wikimedia.org/wiki/File:Gregor_Rutz_2012.jpg) | Services du parlement — credit: http://www.parlament.ch | Attribution |
 | Greta Gysin | [Greta Gysin.jpg](https://commons.wikimedia.org/wiki/File:Greta_Gysin.jpg) | Unknown author Unknown author — credit: http://www.parlament.ch | Attribution |
+| Guy Parmelin | [Guy Parmelin (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Guy_Parmelin_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Hannes Germann | [Hannes Germann (2019).jpg](https://commons.wikimedia.org/wiki/File:Hannes_Germann_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Hans Jörg Rüegsegger | [Hans Jörg Rüegsegger (2023).jpg](https://commons.wikimedia.org/wiki/File:Hans_J%C3%B6rg_R%C3%BCegsegger_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Hans Wicki | [Hans Wicki (2019).jpg](https://commons.wikimedia.org/wiki/File:Hans_Wicki_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
@@ -108,6 +112,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Hasan Candan | [Hasan Candan portrait.jpg](https://commons.wikimedia.org/wiki/File:Hasan_Candan_portrait.jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Heidi Z'graggen | [Heidi Z'graggen (2019).jpg](https://commons.wikimedia.org/wiki/File:Heidi_Z%27graggen_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Heinz Theiler | [Heinz Theiler (2023).jpg](https://commons.wikimedia.org/wiki/File:Heinz_Theiler_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
+| Ignazio Cassis | [Ignazio Cassis (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Ignazio_Cassis_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Irène Kälin | [Irène Kälin (2019).jpg](https://commons.wikimedia.org/wiki/File:Ir%C3%A8ne_K%C3%A4lin_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Isabelle Chappuis | [Isabelle Chappuis (2021).jpg](https://commons.wikimedia.org/wiki/File:Isabelle_Chappuis_(2021).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Isabelle Chassot | [Isabelle Chassot (parl.ch).jpg](https://commons.wikimedia.org/wiki/File:Isabelle_Chassot_(parl.ch).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
@@ -123,6 +128,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Jon Pult | [Jon Pult (2019).jpg](https://commons.wikimedia.org/wiki/File:Jon_Pult_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Josef Dittli | [Josef Dittli (2019).jpg](https://commons.wikimedia.org/wiki/File:Josef_Dittli_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Jürg Grossen | [Jürg Grossen 2019.jpg](https://commons.wikimedia.org/wiki/File:J%C3%BCrg_Grossen_2019.jpg) | Services du parlement — credit: http://www.parlament.ch | Attribution |
+| Karin Keller-Sutter | [Karin Keller-Sutter (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Karin_Keller-Sutter_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Katharina Prelicz-Huber | [Katharina Prelicz (2020).jpg](https://commons.wikimedia.org/wiki/File:Katharina_Prelicz_(2020).jpg) | Parlament — credit: http://www.parlament.ch | Attribution |
 | Kathrin Bertschy | [Kathrin Bertschy (2019).jpg](https://commons.wikimedia.org/wiki/File:Kathrin_Bertschy_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Katja Christ | [Katja Christ (2019).jpg](https://commons.wikimedia.org/wiki/File:Katja_Christ_(2019).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
@@ -159,6 +165,7 @@ Do not edit these files by hand — run `npm run portraits -- --force` instead.
 | Martin Candinas | [Martin Candinas (2019, cropped).jpg](https://commons.wikimedia.org/wiki/File:Martin_Candinas_(2019,_cropped).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Martin Haab | [Martin Haab.jpg](https://commons.wikimedia.org/wiki/File:Martin_Haab.jpg) | Services du parlement — credit: http://www.parlament.ch | Attribution |
 | Martin Hübscher | [Martin Hübscher.jpg](https://commons.wikimedia.org/wiki/File:Martin_H%C3%BCbscher.jpg) | Assemblea Federale Svizzera — credit: http://www.parlament.ch | Attribution |
+| Martin Pfister | [Martin Pfister (2026) (cropped).jpg](https://commons.wikimedia.org/wiki/File:Martin_Pfister_(2026)_(cropped).jpg) | Schweizerische Bundeskanzlei | Attribution |
 | Martin Schmid | [Martin Schmid (2019).jpg](https://commons.wikimedia.org/wiki/File:Martin_Schmid_(2019).jpg) | Services du Parlement — credit: http://www.parlament.ch | Attribution |
 | Martine Docourt | [Martine Docourt (2023).jpg](https://commons.wikimedia.org/wiki/File:Martine_Docourt_(2023).jpg) | Parliamentary Services — credit: http://www.parlament.ch | Attribution |
 | Mathias Zopfi | [Mathias Zopfi.jpg](https://commons.wikimedia.org/wiki/File:Mathias_Zopfi.jpg) | Alessandro della Valle — credit: http://www.parlament.ch | Attribution |

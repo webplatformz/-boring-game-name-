@@ -14,7 +14,9 @@
 //    caches it writes supply each member's author/licence credit.
 //  - Rarity is percentile-ranked over a composite score (tenure + committee
 //    workload + chair role + chamber), so the distribution stays stable across
-//    rebuilds instead of drifting with cohort clusters.
+//    rebuilds instead of drifting with cohort clusters. The 7 sitting Federal
+//    Councillors (chamber 'BR') sit outside that ranking entirely — they are
+//    assigned the "mythic" rarity directly (see Pass 2 below).
 //  - ATK/DEF/OVR are game-invented but *derived deterministically* from real
 //    signals so a given member always scores the same:
 //      ATK ← age + number of votes cast
@@ -84,6 +86,7 @@ const RARITY_FACTOR = {
   rare: 1.4,
   ultra: 1.7,
   legend: 2.0,
+  mythic: 2.3,
 }
 const MIN_OVR_RAW = 90 // realistic floor: freshman common (~atk 45 + def 45) × 1.0
 const MAX_OVR_RAW = 340 // realistic ceiling: strong legend (~atk 85 + def 85) × 2.0
@@ -221,8 +224,14 @@ async function main() {
     return rec
   })
 
-  // Pass 2: percentile-bin rarity across cohort.
-  assignRarities(raw)
+  // Pass 2: percentile-bin rarity across the NR/SR cohort. The 7 Federal
+  // Councillors (chamber 'BR') are a fixed, non-percentile set — they get the
+  // "mythic" rarity outright rather than competing for a percentile slot,
+  // which would otherwise nudge everyone else's cutoffs.
+  const regular = raw.filter((r) => r.chamber !== 'BR')
+  const federalCouncil = raw.filter((r) => r.chamber === 'BR')
+  assignRarities(regular)
+  for (const r of federalCouncil) r._rarity = 'mythic'
 
   // Pass 3: derive stats now that rarity is known.
   const built = raw.map((r) => {
@@ -285,7 +294,7 @@ async function main() {
     generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
-    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99.',
+    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. The 7 Federal Councillors (chamber BR) are assigned "mythic" directly, outside the percentile ranking. OVR = (ATK+DEF)*rarityFactor mapped to 50–99.',
   }
 
   await mkdir(dirname(OUT), { recursive: true })

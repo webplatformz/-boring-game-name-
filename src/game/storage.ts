@@ -10,8 +10,8 @@ export interface SaveState {
 }
 
 const KEY = 'bundeshaus-pack-v1'
-export const STARTING_PACKS = 5
-export const REFILL_COOLDOWN_MS = 60_000
+export const STARTING_PACKS = 10
+export const REFILL_COOLDOWN_MS = 15_000
 
 export function loadSave(): SaveState {
   try {

@@ -1,7 +1,7 @@
 // Design tokens ported from the Claude Design prototype (app-prototype.dc.html).
 // Colours, rarity tiers and foil recipes live here so screens stay declarative.
 
-export type RarityKey = 'common' | 'uncommon' | 'rare' | 'ultra' | 'legend'
+export type RarityKey = 'common' | 'uncommon' | 'rare' | 'ultra' | 'legend' | 'mythic'
 
 export interface Tier {
   label: string
@@ -25,9 +25,13 @@ export const TIERS: Record<RarityKey, Tier> = {
   rare: { label: 'RARE', c: '#3B7BFF', deep: '#1B3A6B', ink: '#08183A', wedge: 'linear-gradient(135deg,#3B7BFF,#2FD3C4)', weight: 14, ovrTint: '#7FA8FF' },
   ultra: { label: 'ULTRA RARE', c: '#8B5CF6', deep: '#3B2470', ink: '#1A0B33', wedge: 'linear-gradient(135deg,#8B5CF6,#FF3D8B)', weight: 5, ovrTint: '#C4A6FF' },
   legend: { label: 'LEGENDARY', c: '#FFC53D', deep: '#5C3A08', ink: '#0A0F18', wedge: 'linear-gradient(135deg,#FFC53D,#FF3D8B 60%,#8B5CF6)', weight: 1, ovrTint: '#FFD87A' },
+  // Above legendary: the seven sitting Federal Councillors. Fixed membership
+  // (not a percentile score), so it gets a hand-set slot at the very top —
+  // a prismatic chrome finish instead of a single signature colour.
+  mythic: { label: 'MYTHIC', c: '#F4F7FF', deep: '#3B0A1E', ink: '#1A0010', wedge: 'linear-gradient(135deg,#FFFFFF,#FFD700 25%,#FF3D8B 55%,#7CF2FF 80%,#8B5CF6)', weight: 0.15, ovrTint: '#FFFFFF' },
 }
 
-export const RARITY_ORDER: RarityKey[] = ['common', 'uncommon', 'rare', 'ultra', 'legend']
+export const RARITY_ORDER: RarityKey[] = ['common', 'uncommon', 'rare', 'ultra', 'legend', 'mythic']
 
 // Party chip colours keyed by the `partyCode` the data pipeline emits.
 // [background, foreground]. Extended beyond the prototype's six to cover every
@@ -53,6 +57,14 @@ export const STRIPES =
   'repeating-linear-gradient(115deg,#7CF2FF 0 4px,#2FD3C4 4px 9px,#FFF6D0 9px 12px,#FFC53D 12px 18px,#FF3D8B 18px 24px,#8B5CF6 24px 31px,transparent 31px 54px)'
 export const SWEEP =
   'linear-gradient(100deg,transparent 32%,rgba(255,255,255,.85) 48%,transparent 62%)'
+
+// Mythic-only extras: a slow-rotating rainbow-and-gold sheen and a diagonal
+// glint, layered on top of the standard foil recipe above for a shinier,
+// more "divine chrome" finish than the plain rainbow used elsewhere.
+export const HOLO =
+  'conic-gradient(from 0deg,#FF3D8B,#FFD700,#FFFFFF,#7CF2FF,#8B5CF6,#FF3D8B)'
+export const HOLO_SWEEP =
+  'linear-gradient(100deg,transparent 20%,rgba(255,255,255,.95) 44%,rgba(255,222,150,.95) 50%,rgba(255,255,255,.95) 56%,transparent 80%)'
 
 // Current legislature number, shown on card chrome ("NR · 52").
 export const SESSION = 52

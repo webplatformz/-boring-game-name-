@@ -75,7 +75,7 @@ export function Home({ game }: { game: Game }) {
         </button>
       </div>
 
-      <button onClick={game.ripNow} disabled={!canRip} style={openBtn(canRip)}>
+      <button onClick={game.ripNow} disabled={!canRip} className="rip-btn" style={openBtn(canRip)}>
         {canRip ? 'RIP IT OPEN' : refillAt ? `NEXT PACK IN ${countdown}` : 'NO PACKS LEFT'}
       </button>
 

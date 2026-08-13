@@ -3,15 +3,16 @@
     "source": "Swiss Federal Assembly OData web service (ws.parlament.ch)",
     "portraitSource": "Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.",
     "generatedAt": "2026-08-12",
-    "count": 246,
+    "count": 253,
     "rarity": {
       "legend": 5,
       "ultra": 15,
+      "mythic": 7,
       "rare": 34,
       "uncommon": 69,
       "common": 123
     },
-    "note": "MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. OVR = (ATK+DEF)*rarityFactor mapped to 50–99."
+    "note": "MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. The 7 Federal Councillors (chamber BR) are assigned \"mythic\" directly, outside the percentile ranking. OVR = (ATK+DEF)*rarityFactor mapped to 50–99."
   },
   "members": [
     {
@@ -370,6 +371,40 @@
       "no": "005"
     },
     {
+      "id": 1108,
+      "first": "Guy",
+      "last": "Parmelin",
+      "name": "Guy Parmelin",
+      "gender": "m",
+      "party": "SVP",
+      "partyCode": "SVP",
+      "partyRaw": "SVP",
+      "parlGroup": null,
+      "canton": "VD",
+      "cantonName": "Waadt",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 23,
+      "age": 67,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 62,
+      "def": 67,
+      "ovr": 91,
+      "rarity": "mythic",
+      "mandates": "Vice-président du Groupe parlementaire UDC aux Chambres Fédérales",
+      "portrait": {
+        "src": "/portraits/1108.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Guy_Parmelin_(2026)_(cropped).jpg"
+      },
+      "no": "006"
+    },
+    {
       "id": 3999,
       "first": "Katharina",
       "last": "Prelicz-Huber",
@@ -422,7 +457,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Katharina_Prelicz_(2020).jpg"
       },
-      "no": "006"
+      "no": "007"
     },
     {
       "id": 3890,
@@ -472,7 +507,41 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Hurter_(2023).jpg"
       },
-      "no": "007"
+      "no": "008"
+    },
+    {
+      "id": 3828,
+      "first": "Ignazio",
+      "last": "Cassis",
+      "name": "Ignazio Cassis",
+      "gender": "m",
+      "party": "FDP",
+      "partyCode": "FDP",
+      "partyRaw": "FDP-Liberale",
+      "parlGroup": null,
+      "canton": "TI",
+      "cantonName": "Tessin",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 19,
+      "age": 65,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 61,
+      "def": 62,
+      "ovr": 88,
+      "rarity": "mythic",
+      "mandates": "Legislativo del comune Collina d'Oro: da aprile 2004 ad aprile 2014",
+      "portrait": {
+        "src": "/portraits/3828.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Ignazio_Cassis_(2026)_(cropped).jpg"
+      },
+      "no": "009"
     },
     {
       "id": 491,
@@ -522,7 +591,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Pierre-Yves_Maillard_(2019).jpg"
       },
-      "no": "008"
+      "no": "010"
     },
     {
       "id": 1138,
@@ -562,7 +631,109 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martin_B%C3%A4umle_(2019).jpg"
       },
-      "no": "009"
+      "no": "011"
+    },
+    {
+      "id": 4032,
+      "first": "Beat",
+      "last": "Jans",
+      "name": "Beat Jans",
+      "gender": "m",
+      "party": "SP",
+      "partyCode": "SP",
+      "partyRaw": "SP",
+      "parlGroup": null,
+      "canton": "BS",
+      "cantonName": "Basel-Stadt",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 16,
+      "age": 62,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 59,
+      "def": 59,
+      "ovr": 86,
+      "rarity": "mythic",
+      "mandates": "Legislative Kanton BS: von Februar 2001 bis Mai 2011; Präsident SP Kanton Basel-Stadt: von Mai 1999 bis November 2005; Vizepräsident der SP Schweiz: seit Dezember 2015",
+      "portrait": {
+        "src": "/portraits/4032.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Beat_Jans_(2026)_(cropped).jpg"
+      },
+      "no": "012"
+    },
+    {
+      "id": 4062,
+      "first": "Karin",
+      "last": "Keller-Sutter",
+      "name": "Karin Keller-Sutter",
+      "gender": "f",
+      "party": "FDP",
+      "partyCode": "FDP",
+      "partyRaw": "FDP-Liberale",
+      "parlGroup": null,
+      "canton": "SG",
+      "cantonName": "St. Gallen",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 15,
+      "age": 63,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 59,
+      "def": 58,
+      "ovr": 85,
+      "rarity": "mythic",
+      "mandates": "Legislative der Gemeinde Wil (SG): von Januar 1993 bis April 2000; Gemeinderatspräsidentin Wil (SG): von Januar 1997 bis Januar 1998; Kantonsrätin: von Mai 1996 bis April 2000; Regierungsrätin: von Juli 2000 bis Mai 2012; Regierungspräsidentin: von Juni 2006 bis Juni 2007 und von Juni 2011 bis Mai 2012; Präsidentin FDP Kanton St. Gallen: von Juni 1997 bis Juni 2000; Mitglied des Fraktionsvorstandes FDP-Die Liberalen der eidg. Räte: seit Dezember 2013",
+      "portrait": {
+        "src": "/portraits/4062.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Karin_Keller-Sutter_(2026)_(cropped).jpg"
+      },
+      "no": "013"
+    },
+    {
+      "id": 4100,
+      "first": "Albert",
+      "last": "Rösti",
+      "name": "Albert Rösti",
+      "gender": "m",
+      "party": "SVP",
+      "partyCode": "SVP",
+      "partyRaw": "SVP",
+      "parlGroup": null,
+      "canton": "BE",
+      "cantonName": "Bern",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 15,
+      "age": 59,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 57,
+      "def": 58,
+      "ovr": 84,
+      "rarity": "mythic",
+      "mandates": "SVP Wahlkreisverband Thun: Vizepräsident Februar 2007 - Februar 2014, im Vorstand seit März 2014; Exekutive der Gemeinde (Gemeinderat) Uetendorf: 2008 - 2013; Vorstandsmitglied SVP Fraktion: Februar 2012 - August 2020; Wahlleiter SVP Schweiz: 2013 - 2015; Präsident SVP Schweiz: April 2016 - August 2020; Gemeindepräsident Uetendorf: seit Januar 2014; Vorstand SVP Sektion Uetendorf: seit September 2000; Vorstandsmitglied SVP Kanton Bern: seit Februar 2012; Zentralvorstandsmitglied bzw. Vorstandsmitglied SVP Schweiz: seit Januar 2011",
+      "portrait": {
+        "src": "/portraits/4100.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Albert_R%C3%B6sti_(2026)_(cropped).jpg"
+      },
+      "no": "014"
     },
     {
       "id": 3912,
@@ -607,7 +778,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christian_Wasserfallen_(2023).jpg"
       },
-      "no": "010"
+      "no": "015"
     },
     {
       "id": 3901,
@@ -652,7 +823,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Lukas_Reimann_(2023).jpg"
       },
-      "no": "011"
+      "no": "016"
     },
     {
       "id": 1106,
@@ -712,7 +883,41 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Brigitte_H%C3%A4berli-Koller_(cropped,_St%C3%A4nderatspr%C3%A4sidentin).jpg"
       },
-      "no": "012"
+      "no": "017"
+    },
+    {
+      "id": 4238,
+      "first": "Elisabeth",
+      "last": "Baume-Schneider",
+      "name": "Elisabeth Baume-Schneider",
+      "gender": "f",
+      "party": "SP",
+      "partyCode": "SP",
+      "partyRaw": "SP",
+      "parlGroup": null,
+      "canton": "JU",
+      "cantonName": "Jura",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 7,
+      "age": 63,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 59,
+      "def": 48,
+      "ovr": 81,
+      "rarity": "mythic",
+      "mandates": "Députée au Parlement jurassien: de 1995 à 2002 avec présidence du Parlement en 2000; Cheffe du Département de la Formation, de la Culture et des Sports; Ministre au Gouvernement jurassien: de 2003 à 2015",
+      "portrait": {
+        "src": "/portraits/4238.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:%C3%89lisabeth_Baume-Schneider_(2026)_(cropped).jpg"
+      },
+      "no": "018"
     },
     {
       "id": 3891,
@@ -782,7 +987,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Daniel_Jositsch_(2015,_cropped).jpg"
       },
-      "no": "013"
+      "no": "019"
     },
     {
       "id": 4058,
@@ -842,7 +1047,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_Badran_(2018,_cropped).jpg"
       },
-      "no": "014"
+      "no": "020"
     },
     {
       "id": 4025,
@@ -902,7 +1107,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Roland_Rino_B%C3%BCchel_(2023).jpg"
       },
-      "no": "015"
+      "no": "021"
     },
     {
       "id": 4055,
@@ -967,7 +1172,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Stefan_Engler.jpg"
       },
-      "no": "016"
+      "no": "022"
     },
     {
       "id": 4051,
@@ -1032,7 +1237,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_de_Courten_(2019).jpg"
       },
-      "no": "017"
+      "no": "023"
     },
     {
       "id": 4124,
@@ -1087,7 +1292,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Peter_Schilliger_(2023).jpg"
       },
-      "no": "018"
+      "no": "024"
     },
     {
       "id": 3871,
@@ -1142,7 +1347,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Pirmin_Bischof_(2019).jpg"
       },
-      "no": "019"
+      "no": "025"
     },
     {
       "id": 4101,
@@ -1192,7 +1397,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christine_Bulliard-Marbach_(2019).jpg"
       },
-      "no": "020"
+      "no": "026"
     },
     {
       "id": 4056,
@@ -1252,7 +1457,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Daniel_F%C3%A4ssler_(2019).jpg"
       },
-      "no": "021"
+      "no": "027"
     },
     {
       "id": 4040,
@@ -1302,7 +1507,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Elisabeth_Schneider-Schneiter_2020.jpg"
       },
-      "no": "022"
+      "no": "028"
     },
     {
       "id": 4072,
@@ -1362,7 +1567,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Fabio_Regazzi_(2019).jpg"
       },
-      "no": "023"
+      "no": "029"
     },
     {
       "id": 4053,
@@ -1427,7 +1632,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Aeschi_(2023).jpg"
       },
-      "no": "024"
+      "no": "030"
     },
     {
       "id": 4118,
@@ -1472,7 +1677,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christian_Lohr_(2019).jpg"
       },
-      "no": "025"
+      "no": "031"
     },
     {
       "id": 4097,
@@ -1517,7 +1722,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Leo_M%C3%BCller_(2021).jpg"
       },
-      "no": "026"
+      "no": "032"
     },
     {
       "id": 4046,
@@ -1572,7 +1777,41 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Lorenzo_Quadri_(2019).jpg"
       },
-      "no": "027"
+      "no": "033"
+    },
+    {
+      "id": 14904,
+      "first": "Martin",
+      "last": "Pfister",
+      "name": "Martin Pfister",
+      "gender": "m",
+      "party": "Die Mitte",
+      "partyCode": "MITTE",
+      "partyRaw": "M-E",
+      "parlGroup": null,
+      "canton": "ZG",
+      "cantonName": "Zug",
+      "chamber": "BR",
+      "chamberName": "Bundesrat",
+      "years": 1,
+      "age": 63,
+      "committees": [],
+      "committeeCount": 0,
+      "voteCount": 0,
+      "atk": 59,
+      "def": 41,
+      "ovr": 77,
+      "rarity": "mythic",
+      "mandates": null,
+      "portrait": {
+        "src": "/portraits/14904.webp",
+        "author": "Schweizerische Bundeskanzlei",
+        "licence": "Attribution",
+        "licenceUrl": null,
+        "attribution": null,
+        "source": "https://commons.wikimedia.org/wiki/File:Martin_Pfister_(2026)_(cropped).jpg"
+      },
+      "no": "034"
     },
     {
       "id": 4116,
@@ -1642,7 +1881,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Petra_G%C3%B6ssi_(2019).jpg"
       },
-      "no": "028"
+      "no": "035"
     },
     {
       "id": 4063,
@@ -1702,7 +1941,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Stefan_M%C3%BCller-Altermatt_(2019).jpg"
       },
-      "no": "029"
+      "no": "036"
     },
     {
       "id": 4121,
@@ -1747,7 +1986,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Barbara_Gysi.jpg"
       },
-      "no": "030"
+      "no": "037"
     },
     {
       "id": 4094,
@@ -1787,7 +2026,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Lorenz_Hess_(2023).jpg"
       },
-      "no": "031"
+      "no": "038"
     },
     {
       "id": 4057,
@@ -1842,7 +2081,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9dric_Wermuth_2019.jpg"
       },
-      "no": "032"
+      "no": "039"
     },
     {
       "id": 4090,
@@ -1892,7 +2131,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Amaudruz_(2019).jpg"
       },
-      "no": "033"
+      "no": "040"
     },
     {
       "id": 4060,
@@ -1932,7 +2171,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Daniela_Schneeberger_(2019).jpg"
       },
-      "no": "034"
+      "no": "041"
     },
     {
       "id": 4125,
@@ -1977,7 +2216,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Gregor_Rutz_2012.jpg"
       },
-      "no": "035"
+      "no": "042"
     },
     {
       "id": 4052,
@@ -2017,7 +2256,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Markus_Ritter_(2023).jpg"
       },
-      "no": "036"
+      "no": "043"
     },
     {
       "id": 4070,
@@ -2067,7 +2306,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martin_Candinas_(2019,_cropped).jpg"
       },
-      "no": "037"
+      "no": "044"
     },
     {
       "id": 4075,
@@ -2127,7 +2366,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andrea_Caroni_(2023).jpg"
       },
-      "no": "038"
+      "no": "045"
     },
     {
       "id": 4083,
@@ -2167,7 +2406,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:J%C3%BCrg_Grossen_2019.jpg"
       },
-      "no": "039"
+      "no": "046"
     },
     {
       "id": 4077,
@@ -2207,7 +2446,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Olivier_Feller_(2019).jpg"
       },
-      "no": "040"
+      "no": "047"
     },
     {
       "id": 3897,
@@ -2257,7 +2496,7 @@
         "attribution": null,
         "source": "https://commons.wikimedia.org/wiki/File:Tiana_Angelina_Moser_(2019).jpg"
       },
-      "no": "041"
+      "no": "048"
     },
     {
       "id": 4109,
@@ -2302,7 +2541,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Val%C3%A9rie_Piller_Carrard_(2019).jpg"
       },
-      "no": "042"
+      "no": "049"
     },
     {
       "id": 4102,
@@ -2342,7 +2581,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Kathrin_Bertschy_(2019).jpg"
       },
-      "no": "043"
+      "no": "050"
     },
     {
       "id": 4194,
@@ -2407,7 +2646,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Laurent_Wehrli_(2023).jpg"
       },
-      "no": "044"
+      "no": "051"
     },
     {
       "id": 4065,
@@ -2447,7 +2686,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nadja_Pieren_parlament.ch_2781.jpg"
       },
-      "no": "045"
+      "no": "052"
     },
     {
       "id": 4169,
@@ -2512,7 +2751,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Pierre-Andr%C3%A9_Page_(2023).jpg"
       },
-      "no": "046"
+      "no": "053"
     },
     {
       "id": 4220,
@@ -2577,7 +2816,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Roduit_(2019).jpg"
       },
-      "no": "047"
+      "no": "054"
     },
     {
       "id": 4195,
@@ -2632,7 +2871,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Laurence_Fehlmann_Rielle_(2019).jpg"
       },
-      "no": "048"
+      "no": "055"
     },
     {
       "id": 10839,
@@ -2697,7 +2936,7 @@
         "attribution": null,
         "source": "https://commons.wikimedia.org/wiki/File:Mauro_Poggia.jpg"
       },
-      "no": "049"
+      "no": "056"
     },
     {
       "id": 4130,
@@ -2742,7 +2981,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nadine_Masshardt_2019.jpg"
       },
-      "no": "050"
+      "no": "057"
     },
     {
       "id": 4199,
@@ -2812,7 +3051,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Priska_Seiler_Graf_(2019).jpg"
       },
-      "no": "051"
+      "no": "058"
     },
     {
       "id": 4177,
@@ -2872,7 +3111,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Bruno_Walliser_1.jpg"
       },
-      "no": "052"
+      "no": "059"
     },
     {
       "id": 4162,
@@ -2927,7 +3166,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Franz_Gr%C3%BCter_(2023).jpg"
       },
-      "no": "053"
+      "no": "060"
     },
     {
       "id": 4168,
@@ -2982,7 +3221,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jacques_Nicolet,_2023.jpg"
       },
-      "no": "054"
+      "no": "061"
     },
     {
       "id": 4151,
@@ -3057,7 +3296,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Josef_Dittli_(2019).jpg"
       },
-      "no": "055"
+      "no": "062"
     },
     {
       "id": 4305,
@@ -3122,7 +3361,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Priska_Wismer-Felder_(2023).jpg"
       },
-      "no": "056"
+      "no": "063"
     },
     {
       "id": 4137,
@@ -3172,7 +3411,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Portrait_de_Roger_Golay.jpg"
       },
-      "no": "057"
+      "no": "064"
     },
     {
       "id": 4158,
@@ -3227,7 +3466,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Burgherr_(2019).jpg"
       },
-      "no": "058"
+      "no": "065"
     },
     {
       "id": 4204,
@@ -3292,7 +3531,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Beat_Rieder_(2023).jpg"
       },
-      "no": "059"
+      "no": "066"
     },
     {
       "id": 4254,
@@ -3357,7 +3596,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Damien_Cottier_(2019).jpg"
       },
-      "no": "060"
+      "no": "067"
     },
     {
       "id": 4206,
@@ -3427,7 +3666,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Erich_Ettlin_(2019).jpg"
       },
-      "no": "061"
+      "no": "068"
     },
     {
       "id": 4154,
@@ -3477,7 +3716,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jean-Luc_Addor_(2023).jpg"
       },
-      "no": "062"
+      "no": "069"
     },
     {
       "id": 4252,
@@ -3537,7 +3776,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Katja_Christ_(2019).jpg"
       },
-      "no": "063"
+      "no": "070"
     },
     {
       "id": 4078,
@@ -3602,7 +3841,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martin_Schmid_(2019).jpg"
       },
-      "no": "064"
+      "no": "071"
     },
     {
       "id": 4208,
@@ -3652,7 +3891,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Matthias_Jauslin_(2023).jpg"
       },
-      "no": "065"
+      "no": "072"
     },
     {
       "id": 4175,
@@ -3707,7 +3946,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mauro_Tuena_(2023).jpg"
       },
-      "no": "066"
+      "no": "073"
     },
     {
       "id": 4221,
@@ -3762,7 +4001,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Michael_T%C3%B6ngi_(2023).jpg"
       },
-      "no": "067"
+      "no": "074"
     },
     {
       "id": 4172,
@@ -3857,7 +4096,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Werner_Salzmann_(2019).jpg"
       },
-      "no": "068"
+      "no": "075"
     },
     {
       "id": 4161,
@@ -3902,7 +4141,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andreas_Glarner_2019.jpg"
       },
-      "no": "069"
+      "no": "076"
     },
     {
       "id": 4219,
@@ -3947,7 +4186,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Brigitte_Crottaz_(2023).jpg"
       },
-      "no": "070"
+      "no": "077"
     },
     {
       "id": 4268,
@@ -4022,7 +4261,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Greta_Gysin.jpg"
       },
-      "no": "071"
+      "no": "078"
     },
     {
       "id": 4141,
@@ -4067,7 +4306,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Hans-Peter_Portmann_(2019).jpg"
       },
-      "no": "072"
+      "no": "079"
     },
     {
       "id": 4257,
@@ -4117,7 +4356,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_de_Quattro_(2019).jpg"
       },
-      "no": "073"
+      "no": "080"
     },
     {
       "id": 4156,
@@ -4172,7 +4411,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Micha%C3%ABl_Buffat_(2019).jpg"
       },
-      "no": "074"
+      "no": "081"
     },
     {
       "id": 4197,
@@ -4227,7 +4466,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Min_Li_Marti_(2023).jpg"
       },
-      "no": "075"
+      "no": "082"
     },
     {
       "id": 4222,
@@ -4277,7 +4516,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nicolo_Paganini_(2019).jpg"
       },
-      "no": "076"
+      "no": "083"
     },
     {
       "id": 4202,
@@ -4322,7 +4561,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Regine_Sauter_(2019).jpg"
       },
-      "no": "077"
+      "no": "084"
     },
     {
       "id": 4173,
@@ -4372,7 +4611,7 @@
         "attribution": null,
         "source": "https://commons.wikimedia.org/wiki/File:Sandra_Sollberger_2018.jpg"
       },
-      "no": "078"
+      "no": "085"
     },
     {
       "id": 4144,
@@ -4417,7 +4656,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Matter.jpg"
       },
-      "no": "079"
+      "no": "086"
     },
     {
       "id": 4142,
@@ -4457,7 +4696,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Beat_Walti_(2019).jpg"
       },
-      "no": "080"
+      "no": "087"
     },
     {
       "id": 4267,
@@ -4522,7 +4761,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Corina_Gredig.jpg"
       },
-      "no": "081"
+      "no": "088"
     },
     {
       "id": 4163,
@@ -4577,7 +4816,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Erich_Hess_(2023).jpg"
       },
-      "no": "082"
+      "no": "089"
     },
     {
       "id": 4184,
@@ -4627,7 +4866,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Sibel_Arslan_(2023).jpg"
       },
-      "no": "083"
+      "no": "090"
     },
     {
       "id": 4189,
@@ -4707,7 +4946,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thierry_Burkart_(2018).jpg"
       },
-      "no": "084"
+      "no": "091"
     },
     {
       "id": 4181,
@@ -4762,7 +5001,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andrea_Gm%C3%BCr-Sch%C3%B6nenberger_(2019).jpg"
       },
-      "no": "085"
+      "no": "092"
     },
     {
       "id": 4174,
@@ -4807,7 +5046,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Barbara_Steinemann_(2019,_cropped).jpg"
       },
-      "no": "086"
+      "no": "093"
     },
     {
       "id": 4272,
@@ -4857,7 +5096,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Delphine_Klopfenstein_Broggini_(2019).jpg"
       },
-      "no": "087"
+      "no": "094"
     },
     {
       "id": 4218,
@@ -4912,7 +5151,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Ir%C3%A8ne_K%C3%A4lin_(2019).jpg"
       },
-      "no": "088"
+      "no": "095"
     },
     {
       "id": 4281,
@@ -4967,7 +5206,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jon_Pult_(2019).jpg"
       },
-      "no": "089"
+      "no": "096"
     },
     {
       "id": 4167,
@@ -5007,7 +5246,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Magdalena_Martullo-Blocher_(2023).jpg"
       },
-      "no": "090"
+      "no": "097"
     },
     {
       "id": 4157,
@@ -5052,7 +5291,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Manfred_B%C3%BChler_(2023).jpg"
       },
-      "no": "091"
+      "no": "098"
     },
     {
       "id": 4214,
@@ -5097,7 +5336,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nik_Gugger_(2021).jpg"
       },
-      "no": "092"
+      "no": "099"
     },
     {
       "id": 4213,
@@ -5147,7 +5386,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Samuel_Bendahan_(2019).jpg"
       },
-      "no": "093"
+      "no": "100"
     },
     {
       "id": 4292,
@@ -5207,7 +5446,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Simon_Stadler.jpg"
       },
-      "no": "094"
+      "no": "101"
     },
     {
       "id": 4282,
@@ -5252,7 +5491,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Rechsteiner_(2019).jpg"
       },
-      "no": "095"
+      "no": "102"
     },
     {
       "id": 4312,
@@ -5317,7 +5556,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Bruno_Storni_(2019).jpg"
       },
-      "no": "096"
+      "no": "103"
     },
     {
       "id": 4164,
@@ -5362,7 +5601,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christian_Imark.jpg"
       },
-      "no": "097"
+      "no": "104"
     },
     {
       "id": 4260,
@@ -5432,7 +5671,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Fabien_Fivaz_(2023).jpg"
       },
-      "no": "098"
+      "no": "105"
     },
     {
       "id": 4160,
@@ -5472,7 +5711,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dettling_(2019).jpg"
       },
-      "no": "099"
+      "no": "106"
     },
     {
       "id": 4190,
@@ -5512,7 +5751,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dobler_(2023).jpg"
       },
-      "no": "100"
+      "no": "107"
     },
     {
       "id": 4198,
@@ -5557,7 +5796,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mattea_Meyer_(2023).jpg"
       },
-      "no": "101"
+      "no": "108"
     },
     {
       "id": 4225,
@@ -5597,7 +5836,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Philipp_Kutter_2019.jpg"
       },
-      "no": "102"
+      "no": "109"
     },
     {
       "id": 4228,
@@ -5652,7 +5891,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Samira_Marti_(2023).jpg"
       },
-      "no": "103"
+      "no": "110"
     },
     {
       "id": 4216,
@@ -5692,7 +5931,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Diane_Gutjhar.jpg"
       },
-      "no": "104"
+      "no": "111"
     },
     {
       "id": 4223,
@@ -5742,7 +5981,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Fabian_Molina_(2023).jpg"
       },
-      "no": "105"
+      "no": "112"
     },
     {
       "id": 4298,
@@ -5812,7 +6051,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Manuela_Weichelt-Picard_(2023).jpg"
       },
-      "no": "106"
+      "no": "113"
     },
     {
       "id": 4193,
@@ -5852,7 +6091,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Philippe_Nantermod_2_(2019).jpg"
       },
-      "no": "107"
+      "no": "114"
     },
     {
       "id": 4207,
@@ -5907,7 +6146,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Damian_M%C3%BCller_(2019,_cropped).jpg"
       },
-      "no": "108"
+      "no": "115"
     },
     {
       "id": 4239,
@@ -5972,7 +6211,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Eva_Herzog_(2019).jpg"
       },
-      "no": "109"
+      "no": "116"
     },
     {
       "id": 4241,
@@ -6037,7 +6276,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jakob_Stark_(2023).jpg"
       },
-      "no": "110"
+      "no": "117"
     },
     {
       "id": 4249,
@@ -6112,7 +6351,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marianne_Binder-Keller_(2019).jpg"
       },
-      "no": "111"
+      "no": "118"
     },
     {
       "id": 4303,
@@ -6182,7 +6421,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marianne_Maret_(2021).jpg"
       },
-      "no": "112"
+      "no": "119"
     },
     {
       "id": 4324,
@@ -6242,7 +6481,7 @@
         "attribution": null,
         "source": "https://commons.wikimedia.org/wiki/File:PvFalkentsein_by_Lucia_Hunziker_(cropped).jpg"
       },
-      "no": "113"
+      "no": "120"
     },
     {
       "id": 4153,
@@ -6302,7 +6541,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Peter_Hegglin_(2019).jpg"
       },
-      "no": "114"
+      "no": "121"
     },
     {
       "id": 4317,
@@ -6357,7 +6596,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Alois_Huber_(2023).jpg"
       },
-      "no": "115"
+      "no": "122"
     },
     {
       "id": 4333,
@@ -6417,7 +6656,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andreas_Meier,_2023.jpg"
       },
-      "no": "116"
+      "no": "123"
     },
     {
       "id": 4265,
@@ -6467,7 +6706,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Anna_Giacometti_(2023).jpg"
       },
-      "no": "117"
+      "no": "124"
     },
     {
       "id": 4237,
@@ -6532,7 +6771,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Benedikt_W%C3%BCrth.jpg"
       },
-      "no": "118"
+      "no": "125"
     },
     {
       "id": 4240,
@@ -6612,7 +6851,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Charles_Juillard_(2019).jpg"
       },
-      "no": "119"
+      "no": "126"
     },
     {
       "id": 11404,
@@ -6662,7 +6901,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Daniel_Sormanni.jpg"
       },
-      "no": "120"
+      "no": "127"
     },
     {
       "id": 4283,
@@ -6727,7 +6966,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Franziska_Roth_(2019).jpg"
       },
-      "no": "121"
+      "no": "128"
     },
     {
       "id": 4243,
@@ -6802,7 +7041,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Heidi_Z%27graggen_(2019).jpg"
       },
-      "no": "122"
+      "no": "129"
     },
     {
       "id": 4159,
@@ -6872,7 +7111,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marco_Chiesa_(2018,_cropped).jpg"
       },
-      "no": "123"
+      "no": "130"
     },
     {
       "id": 4236,
@@ -6922,7 +7161,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martin_Haab.jpg"
       },
-      "no": "124"
+      "no": "131"
     },
     {
       "id": 4296,
@@ -6977,7 +7216,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Susanne_Vincenz-Stauffacher_(2023).jpg"
       },
-      "no": "125"
+      "no": "132"
     },
     {
       "id": 4263,
@@ -7027,7 +7266,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andreas_Gafner_(2019).jpg"
       },
-      "no": "126"
+      "no": "133"
     },
     {
       "id": 4323,
@@ -7082,7 +7321,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Weber_Koppenburg_(2023).jpg"
       },
-      "no": "127"
+      "no": "134"
     },
     {
       "id": 10803,
@@ -7137,7 +7376,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Cyril_Aellen_(2023).jpg"
       },
-      "no": "128"
+      "no": "135"
     },
     {
       "id": 4329,
@@ -7187,7 +7426,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Daniel_Ruch_(2022).jpg"
       },
-      "no": "129"
+      "no": "136"
     },
     {
       "id": 10821,
@@ -7252,7 +7491,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:DavidRoth_2023.jpg"
       },
-      "no": "130"
+      "no": "137"
     },
     {
       "id": 4152,
@@ -7307,7 +7546,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Hans_Wicki_(2019).jpg"
       },
-      "no": "131"
+      "no": "138"
     },
     {
       "id": 4310,
@@ -7362,7 +7601,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Lars_Guggisberg.jpg"
       },
-      "no": "132"
+      "no": "139"
     },
     {
       "id": 4331,
@@ -7422,7 +7661,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marc_Jost_(2023).jpg"
       },
-      "no": "133"
+      "no": "140"
     },
     {
       "id": 10829,
@@ -7487,7 +7726,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martine_Docourt_(2023).jpg"
       },
-      "no": "134"
+      "no": "141"
     },
     {
       "id": 4335,
@@ -7552,7 +7791,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Michael_G%C3%B6tte_(2023_2).jpg"
       },
-      "no": "135"
+      "no": "142"
     },
     {
       "id": 4311,
@@ -7612,7 +7851,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Piero_Marchesi_(2023).jpg"
       },
-      "no": "136"
+      "no": "143"
     },
     {
       "id": 10846,
@@ -7667,7 +7906,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:R%C3%A9my_Wyssmann_(cropped).jpg"
       },
-      "no": "137"
+      "no": "144"
     },
     {
       "id": 4256,
@@ -7717,7 +7956,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Simone_de_Montmollin_(2019).jpg"
       },
-      "no": "138"
+      "no": "145"
     },
     {
       "id": 4334,
@@ -7772,7 +8011,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Bl%C3%A4si_(2023).jpg"
       },
-      "no": "139"
+      "no": "146"
     },
     {
       "id": 10819,
@@ -7827,7 +8066,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Yvonne_B%C3%BCrgin_(2023)2.jpg"
       },
-      "no": "140"
+      "no": "147"
     },
     {
       "id": 4259,
@@ -7877,7 +8116,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Alex_Farinelli_(2019).jpg"
       },
-      "no": "141"
+      "no": "148"
     },
     {
       "id": 4287,
@@ -7922,7 +8161,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Barbara_Schaffner_(2019).jpg"
       },
-      "no": "142"
+      "no": "149"
     },
     {
       "id": 10804,
@@ -7967,7 +8206,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Bettina_Balmer_(2023).jpg"
       },
-      "no": "143"
+      "no": "150"
     },
     {
       "id": 4246,
@@ -8017,7 +8256,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christine_Badertscher_(2019).jpg"
       },
-      "no": "144"
+      "no": "151"
     },
     {
       "id": 4253,
@@ -8057,7 +8296,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christophe_Clivaz_(2019).jpg"
       },
-      "no": "145"
+      "no": "152"
     },
     {
       "id": 10838,
@@ -8097,7 +8336,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Erich_Vontobel.jpg"
       },
-      "no": "146"
+      "no": "153"
     },
     {
       "id": 4261,
@@ -8167,7 +8406,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Esther_Friedli_(2019).jpg"
       },
-      "no": "147"
+      "no": "154"
     },
     {
       "id": 11506,
@@ -8232,7 +8471,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Farah_Rumy_(2023).jpg"
       },
-      "no": "148"
+      "no": "155"
     },
     {
       "id": 4224,
@@ -8292,7 +8531,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Flavia_Wasserfallen_(2019).jpg"
       },
-      "no": "149"
+      "no": "156"
     },
     {
       "id": 4315,
@@ -8342,7 +8581,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Florence_Brenzikofer_(2019).jpg"
       },
-      "no": "150"
+      "no": "157"
     },
     {
       "id": 4245,
@@ -8392,7 +8631,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Gerhard_Andrey_(2021).jpg"
       },
-      "no": "151"
+      "no": "158"
     },
     {
       "id": 4284,
@@ -8437,7 +8676,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marie-France_Roth_Pasquier_(2023).jpg"
       },
-      "no": "152"
+      "no": "159"
     },
     {
       "id": 4244,
@@ -8502,7 +8741,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mathias_Zopfi.jpg"
       },
-      "no": "153"
+      "no": "160"
     },
     {
       "id": 4309,
@@ -8557,7 +8796,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Matthias_Michel_(2019).jpg"
       },
-      "no": "154"
+      "no": "161"
     },
     {
       "id": 4285,
@@ -8602,7 +8841,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Monika_R%C3%BCegger-Hurschler.jpg"
       },
-      "no": "155"
+      "no": "162"
     },
     {
       "id": 10818,
@@ -8652,7 +8891,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nicole_Barandun_(2023).jpg"
       },
-      "no": "156"
+      "no": "163"
     },
     {
       "id": 10843,
@@ -8707,7 +8946,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Pascal_Schmid_(2023).jpg"
       },
-      "no": "157"
+      "no": "164"
     },
     {
       "id": 10815,
@@ -8757,7 +8996,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Regina_Durrer-Knobel_(2023).jpg"
       },
-      "no": "158"
+      "no": "165"
     },
     {
       "id": 10811,
@@ -8807,7 +9046,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Reto_Nause_(2023).jpg"
       },
-      "no": "159"
+      "no": "166"
     },
     {
       "id": 4271,
@@ -8852,7 +9091,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Sidney_Kamerzin_(2019).jpg"
       },
-      "no": "160"
+      "no": "167"
     },
     {
       "id": 10807,
@@ -8907,7 +9146,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Simone_Gianini_(2023).jpg"
       },
-      "no": "161"
+      "no": "168"
     },
     {
       "id": 4278,
@@ -8957,7 +9196,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Sophie_Michaud_Gigon_(2019).jpg"
       },
-      "no": "162"
+      "no": "169"
     },
     {
       "id": 10849,
@@ -9007,7 +9246,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Vroni_Thalmann-Bieri_portrait.jpg"
       },
-      "no": "163"
+      "no": "170"
     },
     {
       "id": 4270,
@@ -9072,7 +9311,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Baptiste_Hurni_(2019).jpg"
       },
-      "no": "164"
+      "no": "171"
     },
     {
       "id": 4326,
@@ -9132,7 +9371,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Fischer_(2023).jpg"
       },
-      "no": "165"
+      "no": "172"
     },
     {
       "id": 4266,
@@ -9177,7 +9416,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Giezendanner_(2019).jpg"
       },
-      "no": "166"
+      "no": "173"
     },
     {
       "id": 4255,
@@ -9222,7 +9461,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christian_Dandr%C3%A8s_(2019).jpg"
       },
-      "no": "167"
+      "no": "174"
     },
     {
       "id": 4295,
@@ -9262,7 +9501,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Gabriela_Suter_(2019).jpg"
       },
-      "no": "168"
+      "no": "175"
     },
     {
       "id": 11505,
@@ -9317,7 +9556,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Giorgio_Fonio_(2023).jpg"
       },
-      "no": "169"
+      "no": "176"
     },
     {
       "id": 10806,
@@ -9357,7 +9596,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Kris_Vietze_(2023).jpg"
       },
-      "no": "170"
+      "no": "177"
     },
     {
       "id": 11508,
@@ -9397,7 +9636,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Maya_Bally_(2023).jpg"
       },
-      "no": "171"
+      "no": "178"
     },
     {
       "id": 4319,
@@ -9447,7 +9686,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Michael_Graber_(2021,_parl.ch).jpg"
       },
-      "no": "172"
+      "no": "179"
     },
     {
       "id": 10836,
@@ -9502,7 +9741,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nicolas_Kolly_(2023).jpg"
       },
-      "no": "173"
+      "no": "180"
     },
     {
       "id": 10833,
@@ -9552,7 +9791,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nina_Fehr_D%C3%BCsel.jpg"
       },
-      "no": "174"
+      "no": "181"
     },
     {
       "id": 10826,
@@ -9607,7 +9846,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nina_Schl%C3%A4fli.jpg"
       },
-      "no": "175"
+      "no": "182"
     },
     {
       "id": 4230,
@@ -9652,7 +9891,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Philipp_Matthias_Bregy_(2019).jpg"
       },
-      "no": "176"
+      "no": "183"
     },
     {
       "id": 10814,
@@ -9697,7 +9936,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Pius_Kaufmann_portrait.jpg"
       },
-      "no": "177"
+      "no": "184"
     },
     {
       "id": 10845,
@@ -9742,7 +9981,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Roman_B%C3%BCrgi.jpg"
       },
-      "no": "178"
+      "no": "185"
     },
     {
       "id": 4318,
@@ -9792,7 +10031,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Sarah_Wyss_(2021).jpg"
       },
-      "no": "179"
+      "no": "186"
     },
     {
       "id": 10813,
@@ -9837,7 +10076,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Simona_Brizzi.jpg"
       },
-      "no": "180"
+      "no": "187"
     },
     {
       "id": 4262,
@@ -9887,7 +10126,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Tamara_Funiciello_(2019).jpg"
       },
-      "no": "181"
+      "no": "188"
     },
     {
       "id": 10847,
@@ -9932,7 +10171,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Stettler_portrait_(cropped).jpg"
       },
-      "no": "182"
+      "no": "189"
     },
     {
       "id": 10822,
@@ -9972,7 +10211,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Ursula_Zybach_portrait.jpg"
       },
-      "no": "183"
+      "no": "190"
     },
     {
       "id": 10848,
@@ -10017,7 +10256,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Walter_Gartmann_portrait.jpg"
       },
-      "no": "184"
+      "no": "191"
     },
     {
       "id": 10851,
@@ -10057,7 +10296,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andrea_Zryd_portrait_(cropped).jpg"
       },
-      "no": "185"
+      "no": "192"
     },
     {
       "id": 10801,
@@ -10097,7 +10336,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christoph_Riner_portrait_(cropped).jpg"
       },
-      "no": "186"
+      "no": "193"
     },
     {
       "id": 10850,
@@ -10137,7 +10376,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Didier_Calame_(2023).jpg"
       },
-      "no": "187"
+      "no": "194"
     },
     {
       "id": 4320,
@@ -10177,7 +10416,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Emmanuel_Amoos_(2023).jpg"
       },
-      "no": "188"
+      "no": "195"
     },
     {
       "id": 10834,
@@ -10217,7 +10456,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Ernst_Wandfluh_(2023).jpg"
       },
-      "no": "189"
+      "no": "196"
     },
     {
       "id": 10852,
@@ -10257,7 +10496,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Hans_J%C3%B6rg_R%C3%BCegsegger_(2023).jpg"
       },
-      "no": "190"
+      "no": "197"
     },
     {
       "id": 10808,
@@ -10297,7 +10536,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Heinz_Theiler_(2023).jpg"
       },
-      "no": "191"
+      "no": "198"
     },
     {
       "id": 10817,
@@ -10337,7 +10576,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chappuis_(2021).jpg"
       },
-      "no": "192"
+      "no": "199"
     },
     {
       "id": 10827,
@@ -10382,7 +10621,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jean_Tschopp_(2023).jpg"
       },
-      "no": "193"
+      "no": "200"
     },
     {
       "id": 10820,
@@ -10427,7 +10666,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Jessica_Jaccoud.jpg"
       },
-      "no": "194"
+      "no": "201"
     },
     {
       "id": 4247,
@@ -10467,7 +10706,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Kilian_Baumann_(2023).jpg"
       },
-      "no": "195"
+      "no": "202"
     },
     {
       "id": 4280,
@@ -10512,7 +10751,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:L%C3%A9onore_Porchet_(2023).jpg"
       },
-      "no": "196"
+      "no": "203"
     },
     {
       "id": 4313,
@@ -10552,7 +10791,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Maja_Riniker_(2023).jpg"
       },
-      "no": "197"
+      "no": "204"
     },
     {
       "id": 4293,
@@ -10592,7 +10831,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Manuel_Strupler.jpg"
       },
-      "no": "198"
+      "no": "205"
     },
     {
       "id": 4288,
@@ -10632,7 +10871,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Marionna_Schlatter_(2019).jpg"
       },
-      "no": "199"
+      "no": "206"
     },
     {
       "id": 10831,
@@ -10672,7 +10911,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Martin_H%C3%BCbscher.jpg"
       },
-      "no": "200"
+      "no": "207"
     },
     {
       "id": 10809,
@@ -10712,7 +10951,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Nadine_Gobet_portrait.jpg"
       },
-      "no": "201"
+      "no": "208"
     },
     {
       "id": 10842,
@@ -10757,7 +10996,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Paolo_Pamini_(parl.ch).jpg"
       },
-      "no": "202"
+      "no": "209"
     },
     {
       "id": 4327,
@@ -10802,7 +11041,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Rapha%C3%ABl_Mahaim_(2023).jpg"
       },
-      "no": "203"
+      "no": "210"
     },
     {
       "id": 10810,
@@ -10847,7 +11086,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Simon_Michel_(2023).jpg"
       },
-      "no": "204"
+      "no": "211"
     },
     {
       "id": 4314,
@@ -10892,7 +11131,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Stefanie_Heimgartner.jpg"
       },
-      "no": "205"
+      "no": "212"
     },
     {
       "id": 10832,
@@ -10932,7 +11171,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Thomas_Knutti_%C3%A0_la_tribune_CN.jpg"
       },
-      "no": "206"
+      "no": "213"
     },
     {
       "id": 4275,
@@ -10972,7 +11211,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Vincent_Maitre_(2019).jpg"
       },
-      "no": "207"
+      "no": "214"
     },
     {
       "id": 10840,
@@ -11017,7 +11256,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Yvan_Pahud_(parl.ch,_cropped).jpg"
       },
-      "no": "208"
+      "no": "215"
     },
     {
       "id": 4290,
@@ -11062,7 +11301,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andri_Silberschmidt_(2023).jpg"
       },
-      "no": "209"
+      "no": "216"
     },
     {
       "id": 4286,
@@ -11102,7 +11341,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Franziska_Ryser_(2019).jpg"
       },
-      "no": "210"
+      "no": "217"
     },
     {
       "id": 10828,
@@ -11142,7 +11381,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Hasan_Candan_portrait.jpg"
       },
-      "no": "211"
+      "no": "218"
     },
     {
       "id": 4306,
@@ -11197,7 +11436,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Johanna_Gapany_(2019).jpg"
       },
-      "no": "212"
+      "no": "219"
     },
     {
       "id": 4229,
@@ -11237,7 +11476,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mike_Egger_(2019).jpg"
       },
-      "no": "213"
+      "no": "220"
     },
     {
       "id": 11507,
@@ -11277,7 +11516,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Patrick_H%C3%A4ssig_(2023)_(cropped).jpg"
       },
-      "no": "214"
+      "no": "221"
     },
     {
       "id": 10844,
@@ -11317,7 +11556,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Roman_Hug_portrait.jpg"
       },
-      "no": "215"
+      "no": "222"
     },
     {
       "id": 10835,
@@ -11357,7 +11596,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Sylvain_Freymond.jpg"
       },
-      "no": "216"
+      "no": "223"
     },
     {
       "id": 4234,
@@ -11407,7 +11646,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Therese_Schl%C3%A4pfer_(2023).jpg"
       },
-      "no": "217"
+      "no": "224"
     },
     {
       "id": 10824,
@@ -11447,7 +11686,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Anna_Rosenwasser_(2023).jpg"
       },
-      "no": "218"
+      "no": "225"
     },
     {
       "id": 10825,
@@ -11487,7 +11726,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Brenda_Tuosto_(2023).jpg"
       },
-      "no": "219"
+      "no": "226"
     },
     {
       "id": 10816,
@@ -11527,7 +11766,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Dominik_Blunschy_(2023).jpg"
       },
-      "no": "220"
+      "no": "227"
     },
     {
       "id": 10823,
@@ -11567,7 +11806,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Estelle_Revaz.jpg"
       },
-      "no": "221"
+      "no": "228"
     },
     {
       "id": 10812,
@@ -11607,7 +11846,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Islam_Alijaj_(2023).jpg"
       },
-      "no": "222"
+      "no": "229"
     },
     {
       "id": 10841,
@@ -11647,7 +11886,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Markus_Schnyder_(2023).jpg"
       },
-      "no": "223"
+      "no": "230"
     },
     {
       "id": 10805,
@@ -11712,7 +11951,7 @@
         "attribution": null,
         "source": "https://commons.wikimedia.org/wiki/File:Broulis.jpg"
       },
-      "no": "224"
+      "no": "231"
     },
     {
       "id": 14809,
@@ -11752,7 +11991,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Ueli_Schmezer_(parl.ch).jpg"
       },
-      "no": "225"
+      "no": "232"
     },
     {
       "id": 4325,
@@ -11807,7 +12046,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chassot_(parl.ch).jpg"
       },
-      "no": "226"
+      "no": "233"
     },
     {
       "id": 10830,
@@ -11847,7 +12086,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Katja_Riem_portrait.jpg"
       },
-      "no": "227"
+      "no": "234"
     },
     {
       "id": 14105,
@@ -11897,7 +12136,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Linda_De_Ventura.jpg"
       },
-      "no": "228"
+      "no": "235"
     },
     {
       "id": 10802,
@@ -11957,7 +12196,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Benjamin_M%C3%BChlemann_(2023).jpg"
       },
-      "no": "229"
+      "no": "236"
     },
     {
       "id": 14803,
@@ -11997,7 +12236,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Christian_Glur_(2024).jpg"
       },
-      "no": "230"
+      "no": "237"
     },
     {
       "id": 14810,
@@ -12052,7 +12291,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Fabienne_St%C3%A4mpfli_(parl.ch).jpg"
       },
-      "no": "231"
+      "no": "238"
     },
     {
       "id": 4332,
@@ -12132,7 +12371,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mathilde_Crevoisier_(2023).jpg"
       },
-      "no": "232"
+      "no": "239"
     },
     {
       "id": 4289,
@@ -12172,7 +12411,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Meret_Schneider_(2019).jpg"
       },
-      "no": "233"
+      "no": "240"
     },
     {
       "id": 16109,
@@ -12212,7 +12451,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Rudi_Berli_(parl.ch).jpg"
       },
-      "no": "234"
+      "no": "241"
     },
     {
       "id": 15004,
@@ -12257,7 +12496,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Beno%C3%AEt_Gaillard.jpg"
       },
-      "no": "235"
+      "no": "242"
     },
     {
       "id": 15304,
@@ -12302,7 +12541,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Clarence_Chollet.jpg"
       },
-      "no": "236"
+      "no": "243"
     },
     {
       "id": 15601,
@@ -12362,7 +12601,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Severin_Br%C3%BCngger_(parl.ch).jpg"
       },
-      "no": "237"
+      "no": "244"
     },
     {
       "id": 16706,
@@ -12402,7 +12641,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Edgar_Bischof_(2026).jpg"
       },
-      "no": "238"
+      "no": "245"
     },
     {
       "id": 17404,
@@ -12442,7 +12681,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Andrea_de_Meuron_(parl.ch).jpg"
       },
-      "no": "239"
+      "no": "246"
     },
     {
       "id": 17101,
@@ -12482,7 +12721,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Barbara_Portmann_(parl.ch).jpg"
       },
-      "no": "240"
+      "no": "247"
     },
     {
       "id": 16902,
@@ -12522,7 +12761,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Arb%C3%ABr_Bullakaj.jpg"
       },
-      "no": "241"
+      "no": "248"
     },
     {
       "id": 16804,
@@ -12567,7 +12806,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Laura_Gantenbein_(2026).jpg"
       },
-      "no": "242"
+      "no": "249"
     },
     {
       "id": 16905,
@@ -12612,7 +12851,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Lo%C3%AFc_Dobler_(2026).jpg"
       },
-      "no": "243"
+      "no": "250"
     },
     {
       "id": 17301,
@@ -12657,7 +12896,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Mich%C3%A8le_D%C3%BCnki-B%C3%A4ttig_(2026).jpg"
       },
-      "no": "244"
+      "no": "251"
     },
     {
       "id": 17201,
@@ -12697,7 +12936,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Miriam_Locher.jpg"
       },
-      "no": "245"
+      "no": "252"
     },
     {
       "id": 17401,
@@ -12737,7 +12976,7 @@
         "attribution": "http://www.parlament.ch",
         "source": "https://commons.wikimedia.org/wiki/File:Anna-B%C3%A9atrice_Schmaltz_(2026).jpg"
       },
-      "no": "246"
+      "no": "253"
     }
   ]
 }
