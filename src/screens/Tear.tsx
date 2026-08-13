@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP } from '../theme'
 import type { GameState } from '../game/useGame'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
+import { CardBack } from '../components/CardBack'
 import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
@@ -26,8 +27,28 @@ function useCardScale() {
 }
 
 export function Tear({ state }: { state: GameState }) {
-  const { ripped, grown } = state
+  const { ripped, grown, pack } = state
   const { ref: sizerRef, scale } = useCardScale()
+
+  // The cards sitting inside the sealed pack, top card first. They mount hidden
+  // and surface as the wrapper comes apart, so the reveal deck is already there
+  // when the screen switches instead of popping in from nowhere.
+  const deck = pack
+    .slice(0, 4)
+    .map((m, depth) => ({ m, depth }))
+    .reverse()
+
+  const cardStyle = (depth: number): CSSProperties => ({
+    position: 'absolute',
+    inset: 0,
+    zIndex: 1,
+    pointerEvents: 'none',
+    opacity: ripped ? 1 : 0,
+    transform: ripped
+      ? `translateX(${depth * 15}px) scale(${1 - depth * 0.03}) rotate(${depth * 1.1}deg)`
+      : `translateY(20px) scale(${0.88 - depth * 0.03})`,
+    transition: `opacity ${PACK_RIP_MS * 0.5}ms ease-out ${PACK_RIP_MS * 0.28 + depth * 45}ms,transform ${PACK_RIP_MS * 0.8}ms cubic-bezier(.2,.9,.2,1) ${PACK_RIP_MS * 0.22 + depth * 45}ms`,
+  })
 
   // One uninterrupted pull: the strip goes from seated to gone in a single move.
   const stripStyle: CSSProperties = {
@@ -64,6 +85,7 @@ export function Tear({ state }: { state: GameState }) {
     position: 'absolute',
     left: '50%',
     top: '50%',
+    zIndex: 2,
     width: PACK_W,
     height: PACK_H,
     marginLeft: -PACK_W / 2,
@@ -86,6 +108,12 @@ export function Tear({ state }: { state: GameState }) {
       </div>
 
       <div ref={sizerRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '2 / 3' }}>
+        {deck.map(({ m, depth }) => (
+          <div key={m.id} style={cardStyle(depth)}>
+            <CardBack style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,197,61,${depth === 0 ? 0.45 : 0.2})` }} />
+          </div>
+        ))}
+
         <div style={zoomStyle}>
           {/* the perforated tear-strip */}
           <div style={stripStyle}>

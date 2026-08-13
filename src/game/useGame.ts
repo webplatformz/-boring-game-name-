@@ -84,8 +84,7 @@ export function useGame(): Game {
 
   // ── the rip sequence: tap → pack zooms → strip rips off in one pull → cards deal in ──
   const rip = useCallback(() => {
-    const pack = drawPack()
-    patch({ ripped: true, pack, revealIdx: 0, faceUp: false, outgoing: null })
+    patch({ ripped: true })
     after(PACK_RIP_MS, () => {
       patch({ screen: 'reveal', ripped: false })
       after(340, () => patch({ faceUp: true }))
@@ -94,7 +93,9 @@ export function useGame(): Game {
 
   const ripNow = useCallback(() => {
     if (stateRef.current.packs <= 0) return
-    patch({ screen: 'tear', ripped: false, grown: false })
+    // The pack is drawn up front so the Tear screen can already stack the cards
+    // (hidden) inside the sealed pack and fade them in as it comes apart.
+    patch({ screen: 'tear', ripped: false, grown: false, pack: drawPack(), revealIdx: 0, faceUp: false, outgoing: null })
     // Let the pack mount at Home size for a frame, zoom it to card size, then tear.
     after(30, () => patch({ grown: true }))
     after(30 + PACK_GROW_MS + 160, rip)
