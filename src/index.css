@@ -160,6 +160,17 @@ a:hover {
     opacity: 0.75;
   }
 }
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
 @keyframes swipeOutLeft {
   from {
     transform: translateX(0) translateY(0) rotate(0deg);

@@ -1,8 +1,10 @@
+import { useRef } from 'react'
 import type { CSSProperties } from 'react'
 import { CARD_MAX_W, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
 import type { Member } from '../data/members'
 import { CardFront } from '../components/CardFront'
+import { FixedCardGlow } from '../components/CardGlow'
 import { CardBack } from '../components/CardBack'
 
 const AB = "'Archivo Black',sans-serif"
@@ -14,6 +16,8 @@ export function Reveal({ game }: { game: Game }) {
   // Up to four cards are live at once: the top (being revealed) and the next
   // few peeking below it. Rendered back-to-front so the top sits on top.
   const remaining = pack.slice(revealIdx, revealIdx + 4).reverse()
+  const topCard = pack[revealIdx] ?? null
+  const deckRef = useRef<HTMLDivElement>(null)
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', padding: '18px 20px 26px', touchAction: 'none', userSelect: 'none' }}>
@@ -45,7 +49,11 @@ export function Reveal({ game }: { game: Game }) {
 
       {/* the deck */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504' }}>
+        <div ref={deckRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504' }}>
+          {/* rarity glow behind the deck — only once the top card is face up,
+              so it never gives the pull away early */}
+          {topCard && faceUp && <FixedCardGlow rarity={topCard.rarity} anchor={deckRef} />}
+
           {/* the card just revealed, dealing off to the left */}
           {outgoing && (
             <div style={outgoingStyle}>

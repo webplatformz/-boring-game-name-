@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Member } from '../data/members'
 import { TIERS } from '../theme'
 import { CardFront } from './CardFront'
+import { CardGlow } from './CardGlow'
 
 const MONO = "'IBM Plex Mono',monospace"
 
@@ -57,6 +58,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
         }}
       >
         <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>
+          <CardGlow rarity={member.rarity} />
           <CardFront
             member={member}
             foil
