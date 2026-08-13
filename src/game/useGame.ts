@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
+import { PACK_GROW_MS } from '../theme'
 import { drawPack } from './pack'
 import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
 
@@ -19,6 +20,8 @@ export interface GameState {
   tear: number
   tearing: boolean
   ripped: boolean
+  /** Pack has zoomed up from its Home size to card size; gates the tear. */
+  grown: boolean
 }
 
 const save = loadSave()
@@ -37,6 +40,7 @@ const INITIAL: GameState = {
   tear: 0,
   tearing: false,
   ripped: false,
+  grown: false,
 }
 
 export interface Game {
@@ -103,8 +107,10 @@ export function useGame(): Game {
 
   const ripNow = useCallback(() => {
     if (stateRef.current.packs <= 0) return
-    patch({ screen: 'tear', tear: 0, ripped: false })
-    after(260, autoTear)
+    patch({ screen: 'tear', tear: 0, ripped: false, grown: false })
+    // Let the pack mount at Home size for a frame, zoom it to card size, then tear.
+    after(30, () => patch({ grown: true }))
+    after(30 + PACK_GROW_MS + 160, autoTear)
   }, [patch, after, autoTear])
 
   const finishPack = useCallback(() => {

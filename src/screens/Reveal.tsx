@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { TIERS } from '../theme'
+import { CARD_MAX_W, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
 import type { Member } from '../data/members'
 import { CardFront } from '../components/CardFront'
@@ -45,7 +45,7 @@ export function Reveal({ game }: { game: Game }) {
 
       {/* the deck */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: 330, aspectRatio: '336 / 504' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504' }}>
           {/* the card just revealed, dealing off to the left */}
           {outgoing && (
             <div style={outgoingStyle}>
