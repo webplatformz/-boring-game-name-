@@ -188,6 +188,17 @@ a:hover {
     box-shadow: 0 0 15px rgba(255, 122, 207, 0.42);
   }
 }
+@keyframes mythicPlatinumShine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 6px rgba(224, 220, 205, 0.12));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 9px rgba(255, 250, 229, 0.26));
+  }
+}
 .mythic-edge-spin {
   animation: mythicEdgeSpin 8s linear infinite;
 }
@@ -213,12 +224,22 @@ a:hover {
 .mythic-rarity-tag {
   animation: mythicTagShift 3.8s ease-in-out infinite;
 }
+.mythic-platinum-text {
+  background: linear-gradient(105deg, #aaa48f 0%, #d8d4c7 23%, #fffdf4 40%, #c9c4b4 54%, #eeeae0 72%, #d9c89e 86%, #aaa48f 100%);
+  background-size: 240% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: mythicPlatinumShine 5.6s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .mythic-edge-spin,
   .mythic-light-pass,
   .mythic-orbit,
   .mythic-prism-shift,
-  .mythic-rarity-tag {
+  .mythic-rarity-tag,
+  .mythic-platinum-text {
     animation: none;
   }
 }

@@ -155,13 +155,12 @@ export function MythicCardFront({ member: m, foil: animate = false, style }: { m
           }}
         >
           <div
+            className="mythic-platinum-text"
             style={{
               fontFamily: AB,
               fontSize: 49,
               lineHeight: 0.86,
               letterSpacing: '-.055em',
-              color: '#D9C89E',
-              textShadow: '0 0 14px rgba(217,200,158,.3)',
             }}
           >
             {m.ovr}
@@ -210,28 +209,26 @@ export function MythicCardFront({ member: m, foil: animate = false, style }: { m
           </div>
 
           <div
+            className="mythic-platinum-text"
             style={{
               marginTop: 8,
               fontFamily: AB,
               fontSize: lastNameSize(m.last),
               lineHeight: 0.95,
               letterSpacing: '-.035em',
-              color: '#D9C89E',
-              textShadow: '0 0 14px rgba(217,200,158,.22)',
               whiteSpace: 'nowrap',
             }}
           >
             {m.first.toUpperCase()}
           </div>
           <div
+            className="mythic-platinum-text"
             style={{
               marginTop: 3,
               fontFamily: AB,
               fontSize: lastNameSize(m.last),
               lineHeight: 0.95,
               letterSpacing: '-.035em',
-              color: '#D9C89E',
-              textShadow: '0 0 14px rgba(217,200,158,.22)',
               whiteSpace: 'nowrap',
             }}
           >
