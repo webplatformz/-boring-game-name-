@@ -14,7 +14,6 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
   const tooltipId = useId()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const leadershipCount = member.committees.filter((committee) => committee.role.includes('Präsident/in')).length
-  const visibleCommittees = member.committees.slice(0, 5)
 
   return (
     <div style={{ position: 'relative', minWidth: 0, background: '#0B121D' }}>
@@ -89,24 +88,20 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
             </div>
             {member.committees.length > 0 ? (
               <div style={{ marginTop: 8, paddingTop: 7, borderTop: '1px solid rgba(143,237,227,.2)' }}>
-                {visibleCommittees.map((committee, index) => (
-                  <div key={`${committee.abbr}-${committee.role}-${index}`} style={{ marginTop: index === 0 ? 0 : 5 }}>
-                    <div style={{ color: '#DDFBF7' }}>
-                      {committee.abbr || committee.name}
-                      {committee.chair ? ' · CHAIR' : ''}
+                <div style={{ maxHeight: 104, overflowY: 'auto', overscrollBehavior: 'contain', paddingRight: 3 }}>
+                  {member.committees.map((committee, index) => (
+                    <div key={`${committee.abbr}-${committee.role}-${index}`} style={{ marginTop: index === 0 ? 0 : 5 }}>
+                      <div style={{ color: '#DDFBF7' }}>
+                        {committee.abbr || committee.name}
+                        {committee.chair ? ' · CHAIR' : ''}
+                      </div>
+                      <div style={{ color: '#7388A5', fontSize: 8 }}>
+                        {committee.name}
+                        {committee.role ? ` · ${committee.role}` : ''}
+                      </div>
                     </div>
-                    <div style={{ color: '#7388A5', fontSize: 8 }}>
-                      {committee.name}
-                      {committee.role ? ` · ${committee.role}` : ''}
-                    </div>
-                  </div>
-                ))}
-                {member.committees.length > visibleCommittees.length && (
-                  <div style={{ marginTop: 6, color: '#7388A5' }}>
-                    +{member.committees.length - visibleCommittees.length} more assignment
-                    {member.committees.length - visibleCommittees.length === 1 ? '' : 's'}
-                  </div>
-                )}
+                  ))}
+                </div>
               </div>
             ) : (
               <div style={{ marginTop: 8, color: '#7388A5' }}>No current standing committee assignment.</div>
