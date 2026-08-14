@@ -248,11 +248,18 @@ export function Trade({ game }: { game: Game }) {
                     <div
                       style={{
                         position: 'absolute',
-                        top: 2,
+                        top: 3,
                         right: 3,
+                        width: 14,
+                        height: 14,
+                        display: 'grid',
+                        placeItems: 'center',
+                        borderRadius: '50%',
+                        background: 'rgba(255,95,162,.08)',
                         fontFamily: MONO,
-                        fontSize: 8,
-                        color: '#FF5FA2',
+                        fontSize: 10,
+                        lineHeight: 1,
+                        color: 'rgba(255,158,196,.8)',
                       }}
                     >
                       ✕
@@ -364,8 +371,8 @@ export function Trade({ game }: { game: Game }) {
           <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>
             AVAILABLE {currentTier.label} CARDS
           </span>
-          <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>
-            {ownedOfRarity.length} TYPES
+          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>
+            {ownedOfRarity.length} UNIQUE CARDS
           </span>
         </div>
 

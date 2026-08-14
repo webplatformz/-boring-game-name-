@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
 import type { Game } from '../game/useGame'
 import type { Member } from '../data/members'
@@ -21,6 +21,7 @@ export function Collection({ game }: { game: Game }) {
   const [selectedRarities, setSelectedRarities] = useState<Set<RarityKey>>(new Set(savedPrefs.rarities))
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const [openCantonDropdown, setOpenCantonDropdown] = useState(false)
+  const cantonListRef = useRef<HTMLDivElement>(null)
   const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set(savedPrefs.cantons))
 
   useEffect(() => {
@@ -31,6 +32,19 @@ export function Collection({ game }: { game: Game }) {
       cantons: [...selectedCantons],
     })
   }, [sortKey, sortDir, selectedRarities, selectedCantons])
+
+  useEffect(() => {
+    if (!openCantonDropdown) return
+
+    const handleOutsidePointer = (event: PointerEvent) => {
+      if (!cantonListRef.current?.contains(event.target as Node)) {
+        setOpenCantonDropdown(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsidePointer)
+    return () => document.removeEventListener('pointerdown', handleOutsidePointer)
+  }, [openCantonDropdown])
 
   // Owned members
   const ownedList = useMemo(() => {
@@ -138,6 +152,23 @@ export function Collection({ game }: { game: Game }) {
         <>
           {/* rarity filter chips */}
           <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4, paddingLeft: 0 }} className="no-scrollbar">
+            <button
+              onClick={() => setSelectedRarities(new Set())}
+              style={{
+                flex: 'none',
+                padding: '6px 12px',
+                borderRadius: 9,
+                fontFamily: MONO,
+                fontSize: 9,
+                letterSpacing: '.12em',
+                whiteSpace: 'nowrap',
+                background: selectedRarities.size === 0 ? 'rgba(255,197,61,.14)' : 'rgba(234,242,255,.05)',
+                border: selectedRarities.size === 0 ? '1px solid rgba(255,197,61,.5)' : '1px solid rgba(234,242,255,.12)',
+                color: selectedRarities.size === 0 ? '#FFD87A' : '#7690AE',
+              }}
+            >
+              ALL
+            </button>
             {RARITY_ORDER.map((r) => {
               const t = TIERS[r]
               const on = selectedRarities.has(r)
@@ -197,6 +228,7 @@ export function Collection({ game }: { game: Game }) {
           {/* canton filter dropdown */}
           <div style={{ flex: 'none', position: 'relative', display: 'inline-block' }}>
             <button
+              onPointerDown={(event) => event.stopPropagation()}
               onClick={() => setOpenCantonDropdown(!openCantonDropdown)}
               style={{
                 padding: '6px 10px',
@@ -211,10 +243,11 @@ export function Collection({ game }: { game: Game }) {
                 cursor: 'pointer',
               }}
             >
-              {selectedCantons.size === 0 ? 'CANTONS' : `${selectedCantons.size} C`}
+              {selectedCantons.size === 0 ? 'CANTONS ▾' : `CANTONS · ${selectedCantons.size} SELECTED ▾`}
             </button>
             {openCantonDropdown && (
               <div
+                ref={cantonListRef}
                 style={{
                   position: 'absolute',
                   top: '100%',
