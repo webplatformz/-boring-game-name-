@@ -37,7 +37,7 @@ export function Trade({ game }: { game: Game }) {
         list.push({ member: m, totalOwned: count })
       }
     }
-    return list.sort((a, b) => b.member.ovr - a.member.ovr)
+    return list.sort((a, b) => a.member.ovr - b.member.ovr)
   }, [game.state.owned, selectedRarity])
 
   // Count how many of each member ID are currently selected in slots
@@ -72,15 +72,17 @@ export function Trade({ game }: { game: Game }) {
     setSelectedMemberIds([])
   }
 
-  // Auto-fill slots up to 5 prioritizing duplicates (owned > 1)
+  // Auto-fill slots up to 5, or only duplicate copies when available.
   const handleAutoFill = () => {
-    const newSelection: number[] = []
-    const tempCounts: Record<number, number> = {}
+    const newSelection = [...selectedMemberIds]
+    const tempCounts: Record<number, number> = { ...selectedCounts }
 
     // First pass: add duplicate copies (where totalOwned > 1)
     for (const { member, totalOwned } of ownedOfRarity) {
       if (totalOwned > 1) {
-        const availableDuplicates = totalOwned - 1 // keep at least 1 copy if possible
+        const currentlySelected = tempCounts[member.id] || 0
+        const reservedCopy = currentlySelected > 0 ? 0 : 1
+        const availableDuplicates = totalOwned - currentlySelected - reservedCopy
         for (let i = 0; i < availableDuplicates && newSelection.length < 5; i++) {
           newSelection.push(member.id)
           tempCounts[member.id] = (tempCounts[member.id] || 0) + 1
@@ -89,8 +91,8 @@ export function Trade({ game }: { game: Game }) {
       if (newSelection.length >= 5) break
     }
 
-    // Second pass: if still under 5, fill with any remaining copies
-    if (newSelection.length < 5) {
+    // Regular auto-fill uses non-duplicate copies only when no duplicates remain.
+    if (!hasDupesLeft && newSelection.length < 5) {
       for (const { member, totalOwned } of ownedOfRarity) {
         const currentlyUsed = tempCounts[member.id] || 0
         const remainingOwned = totalOwned - currentlyUsed
@@ -265,11 +267,13 @@ export function Trade({ game }: { game: Game }) {
         </div>
 
         {/* Action controls for slots */}
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
           <button
             onClick={handleAutoFill}
             disabled={ownedOfRarity.length === 0}
             style={{
+              justifySelf: 'start',
+              minWidth: 112,
               padding: '6px 12px',
               borderRadius: 8,
               background: 'rgba(255,197,61,.12)',
@@ -284,24 +288,25 @@ export function Trade({ game }: { game: Game }) {
           >
             AUTO-FILL{hasDupesLeft ? ' DUPES' : ''}
           </button>
-          {selectedMemberIds.length > 0 && (
-            <button
-              onClick={handleClear}
-              style={{
-                padding: '6px 12px',
-                borderRadius: 8,
-                background: 'rgba(234,242,255,.05)',
-                border: '1px solid rgba(234,242,255,.12)',
-                fontFamily: MONO,
-                fontSize: 9,
-                letterSpacing: '.12em',
-                color: '#7690AE',
-                cursor: 'pointer',
-              }}
-            >
-              CLEAR
-            </button>
-          )}
+          <button
+            onClick={handleClear}
+            disabled={selectedMemberIds.length === 0}
+            style={{
+              justifySelf: 'end',
+              padding: '6px 12px',
+              borderRadius: 8,
+              background: 'rgba(234,242,255,.05)',
+              border: '1px solid rgba(234,242,255,.12)',
+              fontFamily: MONO,
+              fontSize: 9,
+              letterSpacing: '.12em',
+              color: '#7690AE',
+              cursor: selectedMemberIds.length > 0 ? 'pointer' : 'default',
+              opacity: selectedMemberIds.length > 0 ? 1 : 0.45,
+            }}
+          >
+            CLEAR
+          </button>
         </div>
       </div>
 
