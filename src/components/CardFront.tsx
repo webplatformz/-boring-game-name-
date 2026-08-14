@@ -6,6 +6,8 @@ import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
 import { MythicCardFront } from './MythicCardFront'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
+import { DisclosureStat, type DisclosureKind } from './DisclosureStat'
+import { CommitteeStat } from './CommitteeStat'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -123,7 +125,7 @@ export function CardFront({
    * hide their stat block regardless). */
   hideStats?: boolean
 }) {
-  const [openScore, setOpenScore] = useState<ScoreKind | null>(null)
+  const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | 'cmte' | null>(null)
 
   if (m.rarity === 'mythic') {
     return (
@@ -263,15 +265,15 @@ export function CardFront({
               <ScoreStat
                 member={m}
                 kind="atk"
-                open={openScore === 'atk'}
-                onToggle={() => setOpenScore((current) => (current === 'atk' ? null : 'atk'))}
+                open={openMetric === 'atk'}
+                onToggle={() => setOpenMetric((current) => (current === 'atk' ? null : 'atk'))}
                 highlighted={highlightStat === 'atk'}
               />
               <ScoreStat
                 member={m}
                 kind="def"
-                open={openScore === 'def'}
-                onToggle={() => setOpenScore((current) => (current === 'def' ? null : 'def'))}
+                open={openMetric === 'def'}
+                onToggle={() => setOpenMetric((current) => (current === 'def' ? null : 'def'))}
                 highlighted={highlightStat === 'def'}
               />
             </>
@@ -298,16 +300,35 @@ export function CardFront({
             gap: 1,
             background: 'rgba(234,242,255,.14)',
             borderRadius: 8,
-            overflow: 'hidden',
+            overflow: 'visible',
           }}
         >
           <Stat label="AGE" value={m.age} />
-          <Stat label="YRS" value={m.years} />
-          <Stat label="CMTE" value={m.committeeCount} />
-          <Stat label="NO." value={m.no} accent />
+          <CommitteeStat
+            member={m}
+            open={openMetric === 'cmte'}
+            onToggle={() => setOpenMetric((current) => (current === 'cmte' ? null : 'cmte'))}
+          />
+          <DisclosureStat
+            member={m}
+            kind="ties"
+            open={openMetric === 'ties'}
+            onToggle={() => setOpenMetric((current) => (current === 'ties' ? null : 'ties'))}
+          />
+          <DisclosureStat
+            member={m}
+            kind="camp"
+            open={openMetric === 'camp'}
+            onToggle={() => setOpenMetric((current) => (current === 'camp' ? null : 'camp'))}
+          />
         </div>
 
-        <PortraitCredit member={m} style={{ marginTop: -4 }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: -4 }}>
+          <PortraitCredit member={m} style={{ flex: 1, minWidth: 0 }} />
+          <div style={{ flex: 'none', fontFamily: MONO, fontSize: 6.5, letterSpacing: '.1em', color: '#8B7334' }}>
+            #{m.no}
+          </div>
+        </div>
       </div>
     </div>
   )

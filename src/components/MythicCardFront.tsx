@@ -5,6 +5,7 @@ import { LEGISLATURE, partyColors } from '../theme'
 import { Flag } from './Flag'
 import { Portrait, PortraitCredit } from './Portrait'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
+import { DisclosureStat, type DisclosureKind } from './DisclosureStat'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -76,7 +77,7 @@ export function MythicCardFront({
   highlightStat?: ScoreKind | null
   hideStats?: boolean
 }) {
-  const [openScore, setOpenScore] = useState<ScoreKind | null>(null)
+  const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | null>(null)
   const pc = partyColors(m.partyCode)
 
   const face: CSSProperties = {
@@ -262,20 +263,37 @@ export function MythicCardFront({
                   member={m}
                   kind="atk"
                   compact
-                  open={openScore === 'atk'}
-                  onToggle={() => setOpenScore((current) => (current === 'atk' ? null : 'atk'))}
+                  open={openMetric === 'atk'}
+                  onToggle={() => setOpenMetric((current) => (current === 'atk' ? null : 'atk'))}
                   highlighted={highlightStat === 'atk'}
                 />
                 <ScoreStat
                   member={m}
                   kind="def"
                   compact
-                  open={openScore === 'def'}
-                  onToggle={() => setOpenScore((current) => (current === 'def' ? null : 'def'))}
+                  open={openMetric === 'def'}
+                  onToggle={() => setOpenMetric((current) => (current === 'def' ? null : 'def'))}
                   highlighted={highlightStat === 'def'}
                 />
               </>
             )}
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 7 }}>
+            <DisclosureStat
+              member={m}
+              kind="ties"
+              compact
+              open={openMetric === 'ties'}
+              onToggle={() => setOpenMetric((current) => (current === 'ties' ? null : 'ties'))}
+            />
+            <DisclosureStat
+              member={m}
+              kind="camp"
+              compact
+              open={openMetric === 'camp'}
+              onToggle={() => setOpenMetric((current) => (current === 'camp' ? null : 'camp'))}
+            />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8, minWidth: 0 }}>

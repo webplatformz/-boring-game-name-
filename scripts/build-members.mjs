@@ -10,6 +10,11 @@
 //  - Committees come from MemberCommittee (count + names + chair flag drive
 //    the CMTE stat and the Detail screen later).
 //  - Vote counts come from the Voting collection.
+//  - Declared external interests come from PersonInterest. Counts describe
+//    disclosed links; they are never folded into ATK/DEF/OVR or rarity.
+//  - Campaign financing comes from the official EFK 2023 final-account XLSX
+//    exports normalized by scripts/import-efk-financing.mjs. Direct campaigns
+//    and shared campaign pools remain strictly separate.
 //  - Portraits come from Wikimedia Commons via scripts/fetch-portraits.mjs; the
 //    caches it writes supply each member's author/licence credit.
 //  - Rarity is percentile-ranked over a composite score (tenure + committee
@@ -216,6 +221,267 @@ const parseMsDate = (s) => {
 }
 const yearsSince = (ms) => (ms == null ? null : (NOW - ms) / YEAR_MS)
 
+// ── transparency disclosures ──────────────────────────────────────────────
+const PARLIAMENT_INTERESTS_SOURCE =
+  'https://www.parlament.ch/de/%C3%BCber-das-parlament/Seiten/faktenblatt-offenlegungspflicht.aspx'
+const EFK_FINANCING_SOURCE =
+  'https://politikfinanzierung.efk.admin.ch/app/de/exports/elections'
+
+const LEADERSHIP_ROLE =
+  /präsident|president|presidente|geschäftsführ|directeur|direktor|delegiert|ombuds|vorsteher/i
+
+const SECTOR_RULES = [
+  {
+    sector: 'Economy & finance',
+    pattern:
+      /bank|finanz|finance|versicherung|assurance|wirtschaft|economie|industrie|gewerbe|handel|commerce|arbeitgeber|employeur|treuhand|immobil|startup|unternehm|entreprise|steuer|fiscal|pensionskasse/i,
+  },
+  {
+    sector: 'Health & social',
+    pattern:
+      /gesund|santé|spital|hôpital|pflege|sozial|social|krank|médic|arzt|ärzt|pharma|behinder|handicap|senior|alter|retraite|famil|kinder|enfant/i,
+  },
+  {
+    sector: 'Energy & environment',
+    pattern:
+      /energie|energy|klima|climat|umwelt|environnement|natur|nature|solar|wind|wasser|eau|wald|forêt|holz|bois|elektr|strom|nuklear|atom|nachhalt|durab/i,
+  },
+  {
+    sector: 'Transport & telecom',
+    pattern:
+      /verkehr|transport|mobilit|bahn|rail|strass|route|auto|velo|vélo|luftfahrt|aviation|flughafen|aéroport|telekom|télécom|digital|post\b/i,
+  },
+  {
+    sector: 'Education & culture',
+    pattern:
+      /bildung|éducation|schule|école|universit|hochschul|forschung|recherche|wissenschaft|science|kultur|culture|museum|musik|théâtre|theater|sport/i,
+  },
+  {
+    sector: 'Agriculture & food',
+    pattern:
+      /landwirtschaft|agri|bauern|paysan|milch|lait|fleisch|viande|wein|vin\b|lebensmittel|aliment|ernähr|forst/i,
+  },
+  {
+    sector: 'Security & defence',
+    pattern: /sicherheit|sécurit|armee|armée|militär|militaire|polizei|police|feuerwehr|pompiers|cyber/i,
+  },
+  {
+    sector: 'Law & justice',
+    pattern: /recht|jurist|anwalt|avocat|justice|gericht|tribunal|notar|mediation|médiation/i,
+  },
+  {
+    sector: 'Foreign affairs',
+    pattern: /europa|europe|international|ausland|étranger|diplomat|humanit|entwicklung|coopération/i,
+  },
+]
+
+const COMMITTEE_SECTORS = [
+  [/^(WAK|FK|FinDel)/i, ['Economy & finance', 'Agriculture & food']],
+  [/^SGK/i, ['Health & social']],
+  [/^UREK/i, ['Energy & environment']],
+  [/^KVF/i, ['Transport & telecom']],
+  [/^WBK/i, ['Education & culture']],
+  [/^SiK/i, ['Security & defence']],
+  [/^RK/i, ['Law & justice']],
+  [/^APK/i, ['Foreign affairs']],
+]
+
+function normalizeText(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+function sectorForInterest(name) {
+  return SECTOR_RULES.find((rule) => rule.pattern.test(name))?.sector ?? null
+}
+
+function committeeSectorSet(committees) {
+  const sectors = new Set()
+  for (const committee of committees) {
+    for (const [pattern, matches] of COMMITTEE_SECTORS) {
+      if (pattern.test(committee.abbr)) for (const sector of matches) sectors.add(sector)
+    }
+  }
+  return sectors
+}
+
+function odataDateToIso(value) {
+  const ms = parseMsDate(value)
+  return ms == null ? null : new Date(ms).toISOString().slice(0, 10)
+}
+
+function buildLobbyingDisclosure(rows, committees, chamber) {
+  if (chamber === 'BR') {
+    return {
+      coverage: 'not_applicable',
+      total: 0,
+      paid: 0,
+      leadership: 0,
+      sectorBreadth: 0,
+      committeeOverlaps: 0,
+      sectors: [],
+      ties: [],
+      source: PARLIAMENT_INTERESTS_SOURCE,
+    }
+  }
+
+  const committeeSectors = committeeSectorSet(committees)
+  const ties = rows.map((row) => {
+    const sector = sectorForInterest(row.InterestName || '')
+    return {
+      organization: row.InterestName || 'Not specified',
+      role: row.FunctionInAgencyText || 'Not specified',
+      organizationType: row.OrganizationTypeText || 'Not specified',
+      legalType: row.InterestTypeText || 'Not specified',
+      paid: Boolean(row.Paid),
+      leadership: LEADERSHIP_ROLE.test(row.FunctionInAgencyText || ''),
+      sector,
+      committeeOverlap: sector != null && committeeSectors.has(sector),
+      modified: odataDateToIso(row.Modified),
+    }
+  })
+  ties.sort(
+    (a, b) =>
+      Number(b.paid) - Number(a.paid) ||
+      Number(b.leadership) - Number(a.leadership) ||
+      a.organization.localeCompare(b.organization, 'de'),
+  )
+  const sectors = [...new Set(ties.map((tie) => tie.sector).filter(Boolean))].sort()
+  return {
+    coverage: 'declared',
+    total: ties.length,
+    paid: ties.filter((tie) => tie.paid).length,
+    leadership: ties.filter((tie) => tie.leadership).length,
+    sectorBreadth: sectors.length,
+    committeeOverlaps: ties.filter((tie) => tie.committeeOverlap).length,
+    sectors,
+    ties,
+    source: PARLIAMENT_INTERESTS_SOURCE,
+  }
+}
+
+const FINANCING_MATCH_OVERRIDES = new Map([
+  // Typo in the EFK export: Cermuth rather than Wermuth.
+  ['cedric cermuth|aargau', 4057],
+])
+
+function candidateKey(first, last, canton) {
+  return `${normalizeText(first)} ${normalizeText(last)}|${normalizeText(canton)}`
+}
+
+function sumBy(campaigns, key) {
+  return Math.round(campaigns.reduce((sum, campaign) => sum + (campaign[key] || 0), 0) * 100) / 100
+}
+
+function buildFinancingByPerson(records, campaigns) {
+  const memberByKey = new Map(
+    records
+      .filter((record) => record.chamber !== 'BR')
+      .map((record) => [candidateKey(record.m.FirstName, record.m.LastName, record.m.CantonName), record.m.PersonNumber]),
+  )
+  const campaignsByPerson = new Map()
+
+  for (const campaign of campaigns) {
+    for (const candidate of campaign.candidates) {
+      const key = candidateKey(candidate.first, candidate.last, candidate.canton)
+      const personNumber = memberByKey.get(key) ?? FINANCING_MATCH_OVERRIDES.get(key)
+      if (personNumber == null) continue
+      const list = campaignsByPerson.get(personNumber) ?? []
+      if (!list.includes(campaign)) list.push(campaign)
+      campaignsByPerson.set(personNumber, list)
+    }
+  }
+
+  return new Map(
+    records.map((record) => {
+      const personNumber = record.m.PersonNumber
+      if (record.chamber === 'BR') {
+        return [
+          personNumber,
+          {
+            coverage: 'not_applicable',
+            election: '2023 federal election',
+            directIncome: 0,
+            monetaryContributions: 0,
+            nonMonetaryContributions: 0,
+            eventIncome: 0,
+            salesIncome: 0,
+            ownFunds: 0,
+            unallocatedIncome: 0,
+            largeDonorCount: 0,
+            largeDonorTotal: 0,
+            largestDonation: 0,
+            topLargeDonors: [],
+            directCampaignCount: 0,
+            sharedCampaignCount: 0,
+            sharedCampaignIncome: 0,
+            dataAsOf: null,
+            source: EFK_FINANCING_SOURCE,
+          },
+        ]
+      }
+
+      const matched = campaignsByPerson.get(personNumber) ?? []
+      const direct = matched.filter((campaign) => campaign.campaignFor === 'Einzelperson')
+      const shared = matched.filter((campaign) => campaign.campaignFor !== 'Einzelperson')
+      const directDonors = direct
+        .flatMap((campaign) => campaign.largeDonors)
+        .sort((a, b) => b.value - a.value || a.name.localeCompare(b.name, 'de'))
+      const directIncome = sumBy(direct, 'totalIncome')
+      const monetaryContributions = sumBy(direct, 'monetaryContributions')
+      const nonMonetaryContributions = sumBy(direct, 'nonMonetaryContributions')
+      const eventIncome = sumBy(direct, 'eventIncome')
+      const salesIncome = sumBy(direct, 'salesIncome')
+      const ownFunds = sumBy(direct, 'ownFunds')
+      return [
+        personNumber,
+        {
+          coverage: direct.length ? 'direct' : shared.length ? 'shared' : 'none',
+          election: '2023 federal election',
+          directIncome,
+          monetaryContributions,
+          nonMonetaryContributions,
+          eventIncome,
+          salesIncome,
+          ownFunds,
+          // A few self-reported EFK rows do not reconcile exactly to their
+          // published category columns. Preserve that residual visibly rather
+          // than silently changing the official total.
+          unallocatedIncome:
+            Math.round(
+              (directIncome -
+                monetaryContributions -
+                nonMonetaryContributions -
+                eventIncome -
+                salesIncome -
+                ownFunds) *
+                100,
+            ) / 100,
+          largeDonorCount: directDonors.length,
+          largeDonorTotal: Math.round(directDonors.reduce((sum, donor) => sum + donor.value, 0) * 100) / 100,
+          largestDonation: directDonors[0]?.value ?? 0,
+          topLargeDonors: directDonors.slice(0, 3).map((donor) => ({
+            name: donor.name,
+            value: donor.value,
+            kind: donor.kind,
+          })),
+          directCampaignCount: direct.length,
+          sharedCampaignCount: shared.length,
+          // Context only: this is the value of whole shared pools and is never
+          // allocated to or counted as direct income for this person.
+          sharedCampaignIncome: sumBy(shared, 'totalIncome'),
+          dataAsOf: matched.map((campaign) => campaign.dataAsOf).filter(Boolean).sort().at(-1) ?? null,
+          source: EFK_FINANCING_SOURCE,
+        },
+      ]
+    }),
+  )
+}
+
 async function readRaw(name, hint = 'npm run data:fetch') {
   const path = join(RAW_DIR, name)
   try {
@@ -260,18 +526,20 @@ function buildPortraitIndex(wikidata, imageinfo) {
 
 // ── pipeline ──────────────────────────────────────────────────────────────
 async function main() {
-  const [members, history, committees, voteCounts] = await Promise.all([
+  const [members, history, committees, voteCounts, interests, financing] = await Promise.all([
     readRaw('members-council.json'),
     readRaw('council-history.json'),
     readRaw('committees.json'),
     readRaw('vote-counts-current.json'),
+    readRaw('interests.json'),
+    readRaw('financing-2023.json', 'npm run data:financing -- <nr.xlsx> <sr.xlsx>'),
   ])
   const [wikidataPortraits, commonsImageinfo] = await Promise.all([
     readRaw('wikidata-portraits.json', 'npm run portraits'),
     readRaw('commons-imageinfo.json', 'npm run portraits'),
   ])
   const portraitFor = buildPortraitIndex(wikidataPortraits, commonsImageinfo)
-  process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${Object.keys(voteCounts).length} current-legislature vote counts\n`)
+  process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${interests.length} interest disclosures, ${financing.campaigns.length} financing campaigns, ${Object.keys(voteCounts).length} current-legislature vote counts\n`)
 
   // Earliest join across all past legislatures.
   const earliestJoin = new Map()
@@ -295,6 +563,13 @@ async function main() {
       standing: c.CommitteeTypeName === 'Ständig',
     })
     cmteByPerson.set(c.PersonNumber, list)
+  }
+
+  const interestsByPerson = new Map()
+  for (const interest of interests) {
+    const list = interestsByPerson.get(interest.PersonNumber) ?? []
+    list.push(interest)
+    interestsByPerson.set(interest.PersonNumber, list)
   }
 
   // Pass 1: gather signals + rarity score.
@@ -341,6 +616,7 @@ async function main() {
   // Pass 3: derive performance independently from collectable rarity.
   deriveRegularStats(regular)
   deriveFederalCouncilStats(federalCouncil)
+  const financingByPerson = buildFinancingByPerson(raw, financing.campaigns)
 
   const built = raw.map((r) => {
     return {
@@ -359,13 +635,19 @@ async function main() {
       chamberName: r.m.CouncilName,
       years: r.years,
       age: r.age,
-      committees: r.cmtes.map((c) => ({ abbr: c.abbr, name: c.name, chair: c.chair })),
+      committees: r.cmtes.map((c) => ({ abbr: c.abbr, name: c.name, chair: c.chair, role: c.role })),
       committeeCount: r.committeeCount,
       voteCount: r.voteCount,
       atk: r._atk,
       def: r._def,
       ovr: r._ovr,
       strengths: r._strengths,
+      lobbying: buildLobbyingDisclosure(
+        interestsByPerson.get(r.m.PersonNumber) ?? [],
+        r.cmtes,
+        r.chamber,
+      ),
+      financing: financingByPerson.get(r.m.PersonNumber),
       rarity: r._rarity,
       mandates: r.m.Mandates || null,
       portrait: portraitFor(r.m.PersonNumber),
@@ -390,12 +672,16 @@ async function main() {
 
   const meta = {
     source: 'Swiss Federal Assembly OData web service (ws.parlament.ch)',
+    disclosureSources: {
+      interests: PARLIAMENT_INTERESTS_SOURCE,
+      financing: EFK_FINANCING_SOURCE,
+    },
     portraitSource:
       'Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.',
     generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
-    note: 'ATK/DEF are chamber-relative percentile ratings from explicit committee and parliamentary-group leadership, weighted standing-committee workload, exact tenure, and a modest age/network-experience component. Raw Voting row counts are retained as source data but do not affect ratings. Federal Councillors use institutional baselines plus executive tenure and age/network experience. Rarity never changes performance; OVR = 0.45·ATK + 0.45·DEF + 0.10·min(ATK,DEF).',
+    note: 'ATK/DEF are chamber-relative percentile ratings from explicit committee and parliamentary-group leadership, weighted standing-committee workload, exact tenure, and a modest age/network-experience component. Raw Voting row counts are retained as source data but do not affect ratings. Federal Councillors use institutional baselines plus executive tenure and age/network experience. Rarity never changes performance; OVR = 0.45·ATK + 0.45·DEF + 0.10·min(ATK,DEF). Lobbying and campaign-finance disclosures are contextual only and never affect performance or rarity.',
   }
 
   await mkdir(dirname(OUT), { recursive: true })

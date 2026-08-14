@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "data": "node scripts/fetch-raw.mjs && node scripts/build-members.mjs",
     "data:fetch": "node scripts/fetch-raw.mjs",
+    "data:financing": "node scripts/import-efk-financing.mjs",
     "data:build": "node scripts/build-members.mjs",
     "flags": "node scripts/fetch-flags.mjs",
     "portraits": "node scripts/fetch-portraits.mjs",

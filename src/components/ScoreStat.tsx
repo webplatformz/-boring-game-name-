@@ -1,6 +1,7 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
 import type { Member, MemberStrengths } from '../data/members'
+import { OverflowTooltip } from './OverflowTooltip'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -96,9 +97,8 @@ export function ScoreStat({
   compact?: boolean
 }) {
   const tooltipId = useId()
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const score = SCORE_STYLE[kind]
-  const copy = tooltipCopy(member, kind)
-  const rows = metricRows(member, kind)
   const value = member[kind]
 
   const root: CSSProperties = {
@@ -118,6 +118,7 @@ export function ScoreStat({
   return (
     <div style={root}>
       <button
+        ref={buttonRef}
         type="button"
         aria-expanded={open}
         aria-describedby={open ? tooltipId : undefined}
@@ -146,7 +147,33 @@ export function ScoreStat({
         <div style={{ fontFamily: AB, fontSize: compact ? 29 : 36, lineHeight: 0.9, color: score.color }}>{value}</div>
       </button>
 
-      {open && (
+      {open && (compact ? (
+        <OverflowTooltip anchor={buttonRef} width={240}>
+          <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact />
+        </OverflowTooltip>
+      ) : (
+        <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact={false} />
+      ))}
+    </div>
+  )
+}
+
+function Tooltip({
+  member,
+  kind,
+  tooltipId,
+  compact,
+}: {
+  member: Member
+  kind: ScoreKind
+  tooltipId: string
+  compact: boolean
+}) {
+  const score = SCORE_STYLE[kind]
+  const copy = tooltipCopy(member, kind)
+  const rows = metricRows(member, kind)
+
+  return (
         <div
           id={tooltipId}
           role="tooltip"
@@ -154,11 +181,11 @@ export function ScoreStat({
           onPointerUp={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
           style={{
-            position: 'absolute',
-            left: kind === 'atk' ? 0 : compact ? -78 : -66,
-            bottom: 'calc(100% + 9px)',
+            position: compact ? 'relative' : 'absolute',
+            left: compact ? undefined : kind === 'atk' ? 0 : -66,
+            bottom: compact ? undefined : 'calc(100% + 9px)',
             zIndex: 30,
-            width: compact ? 240 : 256,
+            width: compact ? '100%' : 256,
             padding: '10px 11px',
             borderRadius: 9,
             border: `1px solid ${score.color}66`,
@@ -206,7 +233,5 @@ export function ScoreStat({
             })}
           </div>
         </div>
-      )}
-    </div>
   )
 }

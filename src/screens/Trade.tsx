@@ -18,6 +18,7 @@ export function Trade({ game }: { game: Game }) {
     () => game.state.tradeRarity ?? 'common',
   )
   const [selectedMemberIds, setSelectedMemberIds] = useState<number[]>([])
+  const [autoFilledDupes, setAutoFilledDupes] = useState(false)
 
   const targetRarity = getNextRarity(selectedRarity)
 
@@ -25,6 +26,7 @@ export function Trade({ game }: { game: Game }) {
   const handleSelectRarity = (rarity: RarityKey) => {
     setSelectedRarity(rarity)
     setSelectedMemberIds([])
+    setAutoFilledDupes(false)
   }
 
   // Owned cards of currently selected rarity
@@ -70,44 +72,43 @@ export function Trade({ game }: { game: Game }) {
   // Clear all selected slots
   const handleClear = () => {
     setSelectedMemberIds([])
+    setAutoFilledDupes(false)
   }
 
-  // Auto-fill slots up to 5 prioritizing duplicates (owned > 1)
+  const hasDupes = ownedOfRarity.some(({ totalOwned }) => totalOwned > 1)
+  const shouldAutoFillDupes = hasDupes && !autoFilledDupes
+
+  // Fill duplicate copies first, then reserve a separate click for one base copy per card.
   const handleAutoFill = () => {
-    const newSelection: number[] = []
-    const tempCounts: Record<number, number> = {}
-
-    // First pass: add duplicate copies (where totalOwned > 1)
-    for (const { member, totalOwned } of ownedOfRarity) {
-      if (totalOwned > 1) {
-        const availableDuplicates = totalOwned - 1 // keep at least 1 copy if possible
-        for (let i = 0; i < availableDuplicates && newSelection.length < 5; i++) {
-          newSelection.push(member.id)
-          tempCounts[member.id] = (tempCounts[member.id] || 0) + 1
-        }
+    setSelectedMemberIds((currentSelection) => {
+      const newSelection = [...currentSelection]
+      const tempCounts: Record<number, number> = {}
+      for (const id of currentSelection) {
+        tempCounts[id] = (tempCounts[id] || 0) + 1
       }
-      if (newSelection.length >= 5) break
-    }
 
-    // Second pass: if still under 5, fill with any remaining copies
-    if (newSelection.length < 5) {
       for (const { member, totalOwned } of ownedOfRarity) {
         const currentlyUsed = tempCounts[member.id] || 0
-        const remainingOwned = totalOwned - currentlyUsed
-        for (let i = 0; i < remainingOwned && newSelection.length < 5; i++) {
+        const copiesToAdd = shouldAutoFillDupes
+          ? Math.max(0, totalOwned - 1 - currentlyUsed)
+          : currentlyUsed < totalOwned
+            ? 1
+            : 0
+
+        for (let i = 0; i < copiesToAdd && newSelection.length < 5; i++) {
           newSelection.push(member.id)
           tempCounts[member.id] = (tempCounts[member.id] || 0) + 1
         }
         if (newSelection.length >= 5) break
       }
+
+      return newSelection
+    })
+
+    if (shouldAutoFillDupes) {
+      setAutoFilledDupes(true)
     }
-
-    setSelectedMemberIds(newSelection)
   }
-
-  const hasDupesLeft = ownedOfRarity.some(
-    ({ member, totalOwned }) => totalOwned - (selectedCounts[member.id] || 0) > 1,
-  )
 
   const canTrade = selectedMemberIds.length === 5 && targetRarity !== null
 
@@ -282,7 +283,7 @@ export function Trade({ game }: { game: Game }) {
               opacity: ownedOfRarity.length === 0 ? 0.5 : 1,
             }}
           >
-            AUTO-FILL{hasDupesLeft ? ' DUPES' : ''}
+            {shouldAutoFillDupes ? 'AUTO-FILL WITH DUPS' : 'AUTO-FILL'}
           </button>
           {selectedMemberIds.length > 0 && (
             <button

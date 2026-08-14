@@ -8,6 +8,7 @@ export interface Committee {
   abbr: string
   name: string
   chair: boolean
+  role: string
 }
 
 /**
@@ -22,6 +23,57 @@ export interface MemberStrengths {
   age?: number
   officeTenure?: number
   ageNetwork?: number
+}
+
+export interface LobbyingTie {
+  organization: string
+  role: string
+  organizationType: string
+  legalType: string
+  paid: boolean
+  leadership: boolean
+  sector: string | null
+  committeeOverlap: boolean
+  modified: string | null
+}
+
+export interface LobbyingDisclosure {
+  coverage: 'declared' | 'not_applicable'
+  total: number
+  paid: number
+  leadership: number
+  sectorBreadth: number
+  committeeOverlaps: number
+  sectors: string[]
+  ties: LobbyingTie[]
+  source: string
+}
+
+export interface LargeDonor {
+  name: string
+  value: number
+  kind: string
+}
+
+export interface FinancingDisclosure {
+  coverage: 'direct' | 'shared' | 'none' | 'not_applicable'
+  election: string
+  directIncome: number
+  monetaryContributions: number
+  nonMonetaryContributions: number
+  eventIncome: number
+  salesIncome: number
+  ownFunds: number
+  unallocatedIncome: number
+  largeDonorCount: number
+  largeDonorTotal: number
+  largestDonation: number
+  topLargeDonors: LargeDonor[]
+  directCampaignCount: number
+  sharedCampaignCount: number
+  sharedCampaignIncome: number
+  dataAsOf: string | null
+  source: string
 }
 
 /**
@@ -63,6 +115,8 @@ export interface Member {
   def: number
   ovr: number
   strengths: MemberStrengths
+  lobbying: LobbyingDisclosure
+  financing: FinancingDisclosure
   rarity: RarityKey
   mandates: string | null
   portrait: Portrait
@@ -71,6 +125,10 @@ export interface Member {
 
 export interface MembersMeta {
   source: string
+  disclosureSources: {
+    interests: string
+    financing: string
+  }
   portraitSource: string
   generatedAt: string
   count: number

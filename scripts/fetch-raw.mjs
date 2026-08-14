@@ -152,6 +152,24 @@ async function main() {
     ),
   )
 
+  process.stdout.write('Fetching PersonInterest disclosures…\n')
+  await cached('interests.json', () =>
+    fetchByPersons(
+      'PersonInterest',
+      [
+        'ID',
+        'PersonNumber',
+        'InterestName',
+        'OrganizationTypeText',
+        'InterestTypeText',
+        'FunctionInAgencyText',
+        'Paid',
+        'Modified',
+      ].join(','),
+      personNumbers,
+    ),
+  )
+
   process.stdout.write('Fetching Voting counts for current legislature (52) per person…\n')
   await cached('vote-counts-current.json', async () => {
     const counts = {}
