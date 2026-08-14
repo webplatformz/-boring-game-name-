@@ -12,7 +12,7 @@ export function App() {
   const game = useGame()
   const battle = useBattle()
   const { screen } = game.state
-  const showTabs = screen === 'home' || screen === 'collection' || screen === 'trade' || screen === 'battle'
+  const showTabs = screen === 'home' || screen === 'collection' || screen === 'trade'
 
   return (
     <div
