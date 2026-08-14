@@ -7,6 +7,7 @@ import type { Game } from '../game/useGame'
 import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
 import { CardModal } from '../components/CardModal'
+import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -63,7 +64,7 @@ export function Home({ game }: { game: Game }) {
           BUILD THE HOUSE.
         </div>
         <div style={{ marginTop: 9, fontSize: 13.5, lineHeight: 1.5, color: '#9FB6D2' }}>
-          Five members per pack, no repeats inside it. Rarity is years served — the veterans are the chase cards.
+          {PACK_SIZE} members per pack, no repeats inside it. Rarity is years served — the veterans are the chase cards.
         </div>
       </div>
 

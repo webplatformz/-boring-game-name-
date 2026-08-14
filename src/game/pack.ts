@@ -2,7 +2,7 @@ import { MEMBERS, type Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { RARITY_ORDER, TIERS } from '../theme'
 
-export const PACK_SIZE = 5
+export const PACK_SIZE = 10
 
 /**
  * Draw a pack: rarity-weighted sampling with no duplicates inside one pack,
@@ -47,4 +47,3 @@ export function drawTradePackCard(targetRarity: RarityKey): Member[] {
   const hit = Math.floor(Math.random() * pool.length)
   return [pool[hit]]
 }
-

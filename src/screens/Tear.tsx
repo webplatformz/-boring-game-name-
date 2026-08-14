@@ -4,6 +4,7 @@ import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP,
 import type { GameState } from '../game/useGame'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
 import { CardBack } from '../components/CardBack'
+import { PACK_SIZE } from '../game/pack'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -104,7 +105,7 @@ export function Tear({ state }: { state: GameState }) {
       <div style={{ textAlign: 'center', ...introStyle(60) }}>
         <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em' }}>TEARING IT OPEN</div>
         <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier ? rarityTier.c : '#5C7391' }}>
-          {isTradePack ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK` : 'FIVE MEMBERS INCOMING'}
+          {isTradePack ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK` : `${PACK_SIZE} MEMBERS INCOMING`}
         </div>
       </div>
 
@@ -129,7 +130,7 @@ export function Tear({ state }: { state: GameState }) {
               style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${rarityTier?.c ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
             />
             <PackLabel
-              subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : '5 CARDS · NO DUPES'}
+              subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : `${PACK_SIZE} CARDS · NO DUPES`}
               rarityColor={rarityTier?.c}
             />
           </PackShell>
