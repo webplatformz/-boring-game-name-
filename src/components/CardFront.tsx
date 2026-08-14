@@ -108,12 +108,18 @@ export function CardFront({
   foil = false,
   style,
   highlightStat = null,
+  hideStats = false,
 }: {
   member: Member
   foil?: boolean
   style?: CSSProperties
   /** Battle mode: draws attention to the stat that decided a round. No-op elsewhere. */
   highlightStat?: 'atk' | 'def' | null
+  /** Battle mode: masks ATK/DEF (numbers + bars) with placeholders so the
+   * opponent's stats stay secret until the player has committed to an
+   * action. No-op elsewhere (and already a no-op for mythic cards, which
+   * hide their stat block regardless). */
+  hideStats?: boolean
 }) {
   if (m.rarity === 'mythic') return <MythicCardFront member={m} foil={foil} style={style} />
 
@@ -235,15 +241,24 @@ export function CardFront({
         <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
             <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'atk', '#FF5FA2') }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#FF9EC4' }}>ATK</div>
-              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#FF5FA2' }}>{m.atk}</div>
+              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#FF5FA2' }}>{hideStats ? '?' : m.atk}</div>
             </div>
             <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'def', '#2FD3C4') }}>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#8FEDE3' }}>DEF</div>
-              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#2FD3C4' }}>{m.def}</div>
+              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#2FD3C4' }}>{hideStats ? '?' : m.def}</div>
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 5, paddingBottom: 4 }}>
-              <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
-              <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
+              {hideStats ? (
+                <>
+                  <HiddenBar />
+                  <HiddenBar />
+                </>
+              ) : (
+                <>
+                  <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
+                  <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
+                </>
+              )}
             </div>
         </div>
 
@@ -274,6 +289,21 @@ function Bar({ pct, from, to }: { pct: number; from: string; to: string }) {
     <div style={{ height: 5, borderRadius: 99, background: 'rgba(234,242,255,.14)', overflow: 'hidden' }}>
       <div style={{ width: `${pct}%`, height: '100%', background: `linear-gradient(90deg,${from},${to})` }} />
     </div>
+  )
+}
+
+// Battle mode: stands in for Bar when a stat is hidden — a static, neutral
+// track (no dynamic width) so it can't leak the real value's relative size.
+function HiddenBar() {
+  return (
+    <div
+      style={{
+        height: 5,
+        borderRadius: 99,
+        background:
+          'repeating-linear-gradient(90deg, rgba(234,242,255,.14) 0px, rgba(234,242,255,.14) 5px, rgba(234,242,255,.05) 5px, rgba(234,242,255,.05) 10px)',
+      }}
+    />
   )
 }
 
