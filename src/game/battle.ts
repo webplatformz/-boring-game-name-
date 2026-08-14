@@ -1,4 +1,5 @@
 import { MEMBERS, type Member } from '../data/members'
+import { RARITY_ORDER } from '../theme'
 
 export type Action = 'attack' | 'defend'
 
@@ -8,12 +9,20 @@ export interface BattleResult {
 }
 
 /**
- * Draw a random opponent from the full member pool, regardless of
- * ownership. Excludes the player's chosen card so battles never mirror
- * a card against itself.
+ * Draw a random opponent matched to the player's card by rarity tier (same
+ * tier, or one tier up/down), regardless of ownership. Excludes the
+ * player's chosen card so battles never mirror a card against itself.
+ * Tier-matching keeps fights meaningful in both directions — a strong card
+ * no longer just stomps random weak opponents, and a weak card isn't
+ * thrown against something wildly out of its league.
  */
-export function pickOpponent(excludeId: number): Member {
-  const pool = MEMBERS.filter((m) => m.id !== excludeId)
+export function pickOpponent(playerCard: Member): Member {
+  const idx = RARITY_ORDER.indexOf(playerCard.rarity)
+  const nearbyTiers = new Set(RARITY_ORDER.filter((_, i) => Math.abs(i - idx) <= 1))
+  let pool = MEMBERS.filter((m) => m.id !== playerCard.id && nearbyTiers.has(m.rarity))
+  // Defensive fallback in case a tier window is ever empty (shouldn't happen
+  // with the current data, but never leave the AI with no opponent to pick).
+  if (pool.length === 0) pool = MEMBERS.filter((m) => m.id !== playerCard.id)
   return pool[Math.floor(Math.random() * pool.length)]
 }
 

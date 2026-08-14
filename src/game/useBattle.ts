@@ -80,7 +80,7 @@ export function useBattle(): Battle {
       patch({
         step: 'fight',
         playerCard: member,
-        oppCard: pickOpponent(member.id),
+        oppCard: pickOpponent(member),
         playerAction: null,
         oppAction: null,
         result: null,

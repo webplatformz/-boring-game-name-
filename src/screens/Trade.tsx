@@ -18,7 +18,6 @@ export function Trade({ game }: { game: Game }) {
     () => game.state.tradeRarity ?? 'common',
   )
   const [selectedMemberIds, setSelectedMemberIds] = useState<number[]>([])
-  const [autoFilledDupes, setAutoFilledDupes] = useState(false)
 
   const targetRarity = getNextRarity(selectedRarity)
 
@@ -26,7 +25,6 @@ export function Trade({ game }: { game: Game }) {
   const handleSelectRarity = (rarity: RarityKey) => {
     setSelectedRarity(rarity)
     setSelectedMemberIds([])
-    setAutoFilledDupes(false)
   }
 
   // Owned cards of currently selected rarity
@@ -39,7 +37,7 @@ export function Trade({ game }: { game: Game }) {
         list.push({ member: m, totalOwned: count })
       }
     }
-    return list.sort((a, b) => b.member.ovr - a.member.ovr)
+    return list.sort((a, b) => a.member.ovr - b.member.ovr)
   }, [game.state.owned, selectedRarity])
 
   // Count how many of each member ID are currently selected in slots
@@ -72,43 +70,46 @@ export function Trade({ game }: { game: Game }) {
   // Clear all selected slots
   const handleClear = () => {
     setSelectedMemberIds([])
-    setAutoFilledDupes(false)
   }
 
-  const hasDupes = ownedOfRarity.some(({ totalOwned }) => totalOwned > 1)
-  const shouldAutoFillDupes = hasDupes && !autoFilledDupes
-
-  // Fill duplicate copies first, then reserve a separate click for one base copy per card.
+  // Auto-fill slots up to 5, or only duplicate copies when available.
   const handleAutoFill = () => {
-    setSelectedMemberIds((currentSelection) => {
-      const newSelection = [...currentSelection]
-      const tempCounts: Record<number, number> = {}
-      for (const id of currentSelection) {
-        tempCounts[id] = (tempCounts[id] || 0) + 1
-      }
+    const newSelection = [...selectedMemberIds]
+    const tempCounts: Record<number, number> = { ...selectedCounts }
 
+    // First pass: add duplicate copies (where totalOwned > 1)
+    for (const { member, totalOwned } of ownedOfRarity) {
+      if (totalOwned > 1) {
+        const currentlySelected = tempCounts[member.id] || 0
+        const reservedCopy = currentlySelected > 0 ? 0 : 1
+        const availableDuplicates = totalOwned - currentlySelected - reservedCopy
+        for (let i = 0; i < availableDuplicates && newSelection.length < 5; i++) {
+          newSelection.push(member.id)
+          tempCounts[member.id] = (tempCounts[member.id] || 0) + 1
+        }
+      }
+      if (newSelection.length >= 5) break
+    }
+
+    // Regular auto-fill uses non-duplicate copies only when no duplicates remain.
+    if (!hasDupesLeft && newSelection.length < 5) {
       for (const { member, totalOwned } of ownedOfRarity) {
         const currentlyUsed = tempCounts[member.id] || 0
-        const copiesToAdd = shouldAutoFillDupes
-          ? Math.max(0, totalOwned - 1 - currentlyUsed)
-          : currentlyUsed < totalOwned
-            ? 1
-            : 0
-
-        for (let i = 0; i < copiesToAdd && newSelection.length < 5; i++) {
+        const remainingOwned = totalOwned - currentlyUsed
+        for (let i = 0; i < remainingOwned && newSelection.length < 5; i++) {
           newSelection.push(member.id)
           tempCounts[member.id] = (tempCounts[member.id] || 0) + 1
         }
         if (newSelection.length >= 5) break
       }
-
-      return newSelection
-    })
-
-    if (shouldAutoFillDupes) {
-      setAutoFilledDupes(true)
     }
+
+    setSelectedMemberIds(newSelection)
   }
+
+  const hasDupesLeft = ownedOfRarity.some(
+    ({ member, totalOwned }) => totalOwned - (selectedCounts[member.id] || 0) > 1,
+  )
 
   const canTrade = selectedMemberIds.length === 5 && targetRarity !== null
 
@@ -266,11 +267,13 @@ export function Trade({ game }: { game: Game }) {
         </div>
 
         {/* Action controls for slots */}
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
           <button
             onClick={handleAutoFill}
             disabled={ownedOfRarity.length === 0}
             style={{
+              justifySelf: 'start',
+              minWidth: 112,
               padding: '6px 12px',
               borderRadius: 8,
               background: 'rgba(255,197,61,.12)',
@@ -283,26 +286,27 @@ export function Trade({ game }: { game: Game }) {
               opacity: ownedOfRarity.length === 0 ? 0.5 : 1,
             }}
           >
-            {shouldAutoFillDupes ? 'AUTO-FILL WITH DUPS' : 'AUTO-FILL'}
+            AUTO-FILL{hasDupesLeft ? ' DUPES' : ''}
           </button>
-          {selectedMemberIds.length > 0 && (
-            <button
-              onClick={handleClear}
-              style={{
-                padding: '6px 12px',
-                borderRadius: 8,
-                background: 'rgba(234,242,255,.05)',
-                border: '1px solid rgba(234,242,255,.12)',
-                fontFamily: MONO,
-                fontSize: 9,
-                letterSpacing: '.12em',
-                color: '#7690AE',
-                cursor: 'pointer',
-              }}
-            >
-              CLEAR
-            </button>
-          )}
+          <button
+            onClick={handleClear}
+            disabled={selectedMemberIds.length === 0}
+            style={{
+              justifySelf: 'end',
+              padding: '6px 12px',
+              borderRadius: 8,
+              background: 'rgba(234,242,255,.05)',
+              border: '1px solid rgba(234,242,255,.12)',
+              fontFamily: MONO,
+              fontSize: 9,
+              letterSpacing: '.12em',
+              color: '#7690AE',
+              cursor: selectedMemberIds.length > 0 ? 'pointer' : 'default',
+              opacity: selectedMemberIds.length > 0 ? 1 : 0.45,
+            }}
+          >
+            CLEAR
+          </button>
         </div>
       </div>
 
