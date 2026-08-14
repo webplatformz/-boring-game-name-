@@ -29,7 +29,7 @@ export function Home({ game }: { game: Game }) {
   const countdown = `${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, '0')}`
 
   return (
-    <div style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
+    <div className="tabbed-screen" style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
       {/* header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>

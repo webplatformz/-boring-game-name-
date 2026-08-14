@@ -353,6 +353,31 @@ a:hover {
   width: 100%;
   max-width: 430px;
 }
+@media (max-width: 699px) {
+  .tabbed-screen {
+    padding-bottom: 137px !important;
+  }
+  .tab-bar-rail {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .tab-bar-pill {
+    width: calc((100% - 16px) / 2) !important;
+    height: calc((100% - 16px) / 2);
+    bottom: auto !important;
+  }
+  .tab-bar-pill-0 {
+    transform: none !important;
+  }
+  .tab-bar-pill-1 {
+    transform: translateX(calc(100% + 6px)) !important;
+  }
+  .tab-bar-pill-2 {
+    transform: translateY(calc(100% + 6px)) !important;
+  }
+  .tab-bar-pill-3 {
+    transform: translate(calc(100% + 6px), calc(100% + 6px)) !important;
+  }
+}
 @media (min-width: 700px) {
   .app-shell-width {
     max-width: min(92vw, 760px);

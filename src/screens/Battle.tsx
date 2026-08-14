@@ -56,7 +56,7 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
 
   return (
     <div
-      className="screen-fill"
+      className="screen-fill tabbed-screen"
       // No overflow:hidden here (unlike Collection) — the fight/reveal/result
       // steps render CardGlow directly in the flow, and its bloom is meant to
       // bleed past the card edges (see CardModal/Reveal for the same pattern).

@@ -93,7 +93,7 @@ export function Collection({ game }: { game: Game }) {
 
   return (
     <div
-      className="screen-fill"
+      className="screen-fill tabbed-screen"
       style={{ padding: '22px 20px 90px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}

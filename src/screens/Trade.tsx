@@ -14,7 +14,9 @@ const MONO = "'IBM Plex Mono',monospace"
 const TRADEABLE_RARITIES: RarityKey[] = RARITY_ORDER.slice(0, -1) as RarityKey[]
 
 export function Trade({ game }: { game: Game }) {
-  const [selectedRarity, setSelectedRarity] = useState<RarityKey>('common')
+  const [selectedRarity, setSelectedRarity] = useState<RarityKey>(
+    () => game.state.tradeRarity ?? 'common',
+  )
   const [selectedMemberIds, setSelectedMemberIds] = useState<number[]>([])
 
   const targetRarity = getNextRarity(selectedRarity)
@@ -103,6 +105,10 @@ export function Trade({ game }: { game: Game }) {
     setSelectedMemberIds(newSelection)
   }
 
+  const hasDupesLeft = ownedOfRarity.some(
+    ({ member, totalOwned }) => totalOwned - (selectedCounts[member.id] || 0) > 1,
+  )
+
   const canTrade = selectedMemberIds.length === 5 && targetRarity !== null
 
   const handleTrade = () => {
@@ -115,7 +121,7 @@ export function Trade({ game }: { game: Game }) {
 
   return (
     <div
-      className="screen-fill"
+      className="screen-fill tabbed-screen"
       style={{
         padding: '22px 20px 90px',
         display: 'flex',
@@ -276,7 +282,7 @@ export function Trade({ game }: { game: Game }) {
               opacity: ownedOfRarity.length === 0 ? 0.5 : 1,
             }}
           >
-            AUTO-FILL DUPES
+            AUTO-FILL{hasDupesLeft ? ' DUPES' : ''}
           </button>
           {selectedMemberIds.length > 0 && (
             <button

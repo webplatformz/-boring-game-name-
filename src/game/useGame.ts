@@ -132,7 +132,6 @@ export function useGame(): Game {
         outgoing: null,
         faceUp: false,
         isTradePack: false,
-        tradeRarity: null,
       }
     })
   }, [])
