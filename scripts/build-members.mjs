@@ -18,10 +18,11 @@
 //    Councillors (chamber 'BR') sit outside that ranking entirely — they are
 //    assigned the "mythic" rarity directly (see Pass 2 below).
 //  - ATK/DEF/OVR are game-invented but *derived deterministically* from real
-//    signals so a given member always scores the same:
-//      ATK ← age + number of votes cast
-//      DEF ← years in parliament + committee count
-//      OVR ← (ATK + DEF) * rarityFactor, linearly mapped to a 0–100 scale.
+//    signals. NR and SR members are percentile-ranked inside their chamber so
+//    their structurally different committee workloads remain comparable:
+//      ATK ← leadership + workload + tenure + age/network experience
+//      DEF ← tenure + workload + age/network experience
+//      OVR ← visible ATK/DEF only; rarity never changes performance.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
@@ -80,38 +81,131 @@ function assignRarities(records) {
 }
 
 // ── deterministic stat derivation from real signals ──
-const RARITY_FACTOR = {
-  common: 1.0,
-  uncommon: 1.2,
-  rare: 1.4,
-  ultra: 1.7,
-  legend: 2.0,
-  mythic: 2.3,
-}
-const MIN_OVR_RAW = 90 // realistic floor: freshman common (~atk 45 + def 45) × 1.0
-const MAX_OVR_RAW = 340 // realistic ceiling: strong legend (~atk 85 + def 85) × 2.0
-
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n))
 
-function deriveStats({ years, age, voteCount, committeeCount, rarity, maxVotes }) {
-  const ageNorm = clamp((age - 30) / 40, 0, 1)
-  const voteNorm = maxVotes > 0 ? clamp(voteCount / maxVotes, 0, 1) : 0
-  const atk = Math.round(40 + (0.4 * ageNorm + 0.6 * voteNorm) * 59)
+const COMMITTEE_LEADERSHIP_WEIGHT = {
+  'Präsident/in': 1.0,
+  '1. Vizepräsident/in': 0.8,
+  'Vizepräsident/in': 0.6,
+  '2. Vizepräsident/in': 0.5,
+  'Stimmenzähler/in': 0.2,
+  'Ersatzstimmenzähler/in': 0.1,
+}
+const GROUP_LEADERSHIP_WEIGHT = {
+  'Präsident/in': 1.0,
+  'Vizepräsident/in': 0.6,
+}
 
-  const yearsNorm = clamp(years / 30, 0, 1)
-  const cmteNorm = clamp(committeeCount / 6, 0, 1)
-  const def = Math.round(40 + (0.6 * yearsNorm + 0.4 * cmteNorm) * 59)
+const STAT_PERCENTILE_CURVE = [
+  [0.0, 45],
+  [0.05, 52],
+  [0.1, 56],
+  [0.25, 63],
+  [0.5, 70],
+  [0.75, 78],
+  [0.9, 85],
+  [0.95, 89],
+  [0.98, 93],
+  [1.0, 97],
+]
 
-  const rarityFactor = RARITY_FACTOR[rarity] ?? 1.0
-  const ovrRaw = (atk + def) * rarityFactor
-  // Map to 50–99 so every member has a meaningful headline number.
-  const ovr = clamp(
-    Math.round(50 + ((ovrRaw - MIN_OVR_RAW) / (MAX_OVR_RAW - MIN_OVR_RAW)) * 49),
-    50,
-    99,
+function committeeWorkloadWeight(role) {
+  return role === 'Stellvertreter/in' ? 0.35 : 1.0
+}
+
+function committeeLeadershipWeight(role) {
+  return COMMITTEE_LEADERSHIP_WEIGHT[role] ?? 0
+}
+
+function groupLeadershipWeight(role) {
+  return GROUP_LEADERSHIP_WEIGHT[role] ?? 0
+}
+
+function assignMidrankPercentiles(records, valueKey, percentileKey) {
+  const ranked = [...records].sort(
+    (a, b) => a[valueKey] - b[valueKey] || a.m.PersonNumber - b.m.PersonNumber,
   )
+  const n = ranked.length
+  let i = 0
+  while (i < n) {
+    let stop = i + 1
+    while (stop < n && ranked[stop][valueKey] === ranked[i][valueKey]) stop++
+    const percentile = ((i + stop - 1) / 2 + 0.5) / n
+    for (let j = i; j < stop; j++) ranked[j][percentileKey] = percentile
+    i = stop
+  }
+}
 
-  return { atk, def, ovr }
+function ratingFromPercentile(percentile) {
+  const p = clamp(percentile, 0, 1)
+  for (let i = 1; i < STAT_PERCENTILE_CURVE.length; i++) {
+    const [x1, y1] = STAT_PERCENTILE_CURVE[i]
+    if (p > x1) continue
+    const [x0, y0] = STAT_PERCENTILE_CURVE[i - 1]
+    return Math.round(y0 + ((p - x0) / (x1 - x0)) * (y1 - y0))
+  }
+  return STAT_PERCENTILE_CURVE.at(-1)[1]
+}
+
+function deriveOverall(atk, def) {
+  return Math.round(0.45 * atk + 0.45 * def + 0.1 * Math.min(atk, def))
+}
+
+function deriveRegularStats(records) {
+  for (const chamber of ['NR', 'SR']) {
+    const cohort = records.filter((r) => r.chamber === chamber)
+    for (const [valueKey, percentileKey] of [
+      ['_leadershipPoints', '_leadershipPercentile'],
+      ['_workloadPoints', '_workloadPercentile'],
+      ['_tenureYears', '_tenurePercentile'],
+      ['_ageYears', '_agePercentile'],
+    ]) {
+      assignMidrankPercentiles(cohort, valueKey, percentileKey)
+    }
+
+    for (const r of cohort) {
+      r._attackRaw =
+        0.5 * r._leadershipPercentile +
+        0.25 * r._workloadPercentile +
+        0.15 * r._tenurePercentile +
+        0.1 * r._agePercentile
+      r._defenceRaw =
+        0.5 * r._tenurePercentile +
+        0.35 * r._workloadPercentile +
+        0.15 * r._agePercentile
+    }
+
+    assignMidrankPercentiles(cohort, '_attackRaw', '_attackPercentile')
+    assignMidrankPercentiles(cohort, '_defenceRaw', '_defencePercentile')
+    for (const r of cohort) {
+      r._atk = ratingFromPercentile(r._attackPercentile)
+      r._def = ratingFromPercentile(r._defencePercentile)
+      r._ovr = deriveOverall(r._atk, r._def)
+      r._strengths = {
+        leadership: Math.round(r._leadershipPercentile * 100),
+        workload: Math.round(r._workloadPercentile * 100),
+        tenure: Math.round(r._tenurePercentile * 100),
+        age: Math.round(r._agePercentile * 100),
+      }
+    }
+  }
+}
+
+function deriveFederalCouncilStats(records) {
+  for (const r of records.filter((member) => member.chamber === 'BR')) {
+    const electionMs = parseMsDate(r.m.DateElection)
+    const executiveYears = Math.max(0, yearsSince(electionMs) ?? 0)
+    const officeExperience = Math.sqrt(clamp(executiveYears / 12, 0, 1))
+    const ageExperience = clamp((r._ageYears - 35) / 35, 0, 1)
+    const experience = 0.8 * officeExperience + 0.2 * ageExperience
+    r._atk = Math.round(86 + 10 * experience)
+    r._def = Math.round(88 + 9 * experience)
+    r._ovr = deriveOverall(r._atk, r._def)
+    r._strengths = {
+      officeTenure: Math.round(officeExperience * 100),
+      ageNetwork: Math.round(ageExperience * 100),
+    }
+  }
 }
 
 // ── raw helpers ───────────────────────────────────────────────────────────
@@ -196,14 +290,12 @@ async function main() {
     list.push({
       abbr: c.Abbreviation1 || '',
       name: c.CommitteeName || '',
-      chair: /Präsident/i.test(fn),
+      chair: fn === 'Präsident/in',
       role: fn,
       standing: c.CommitteeTypeName === 'Ständig',
     })
     cmteByPerson.set(c.PersonNumber, list)
   }
-
-  const maxVotes = Math.max(0, ...Object.values(voteCounts))
 
   // Pass 1: gather signals + rarity score.
   const raw = members.map((m) => {
@@ -211,8 +303,10 @@ async function main() {
       earliestJoin.get(m.PersonNumber) ?? Infinity,
       parseMsDate(m.DateJoining) ?? Infinity,
     )
-    const years = Math.max(0, Math.round(yearsSince(joinMs) ?? 0))
-    const age = Math.max(0, Math.round(yearsSince(parseMsDate(m.DateOfBirth)) ?? 0))
+    const tenureYears = Math.max(0, yearsSince(Number.isFinite(joinMs) ? joinMs : null) ?? 0)
+    const ageYears = Math.max(0, yearsSince(parseMsDate(m.DateOfBirth)) ?? 0)
+    const years = Math.round(tenureYears)
+    const age = Math.round(ageYears)
     const chamber = m.CouncilAbbreviation
     const party = normParty(m.PartyAbbreviation)
     const cmtes = (cmteByPerson.get(m.PersonNumber) ?? []).filter((c) => c.standing)
@@ -220,6 +314,17 @@ async function main() {
     const chairCount = cmtes.filter((c) => c.chair).length
     const voteCount = voteCounts[m.PersonNumber] ?? 0
     const rec = { m, years, age, chamber, party, cmtes, committeeCount, chairCount, voteCount }
+    rec._tenureYears = tenureYears
+    rec._ageYears = ageYears
+    rec._workloadPoints = cmtes.reduce(
+      (sum, committee) => sum + committeeWorkloadWeight(committee.role),
+      0,
+    )
+    rec._leadershipPoints =
+      cmtes.reduce(
+        (sum, committee) => sum + committeeLeadershipWeight(committee.role),
+        0,
+      ) + groupLeadershipWeight(m.ParlGroupFunctionText)
     rec._score = rarityScore({ years, chairCount, chamber })
     return rec
   })
@@ -233,16 +338,11 @@ async function main() {
   assignRarities(regular)
   for (const r of federalCouncil) r._rarity = 'mythic'
 
-  // Pass 3: derive stats now that rarity is known.
+  // Pass 3: derive performance independently from collectable rarity.
+  deriveRegularStats(regular)
+  deriveFederalCouncilStats(federalCouncil)
+
   const built = raw.map((r) => {
-    const { atk, def, ovr } = deriveStats({
-      years: r.years,
-      age: r.age,
-      voteCount: r.voteCount,
-      committeeCount: r.committeeCount,
-      rarity: r._rarity,
-      maxVotes,
-    })
     return {
       id: r.m.PersonNumber,
       first: r.m.FirstName,
@@ -262,9 +362,10 @@ async function main() {
       committees: r.cmtes.map((c) => ({ abbr: c.abbr, name: c.name, chair: c.chair })),
       committeeCount: r.committeeCount,
       voteCount: r.voteCount,
-      atk,
-      def,
-      ovr,
+      atk: r._atk,
+      def: r._def,
+      ovr: r._ovr,
+      strengths: r._strengths,
       rarity: r._rarity,
       mandates: r.m.Mandates || null,
       portrait: portraitFor(r.m.PersonNumber),
@@ -294,7 +395,7 @@ async function main() {
     generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
-    note: 'MemberCommittee (DEF) reflects current legislature only; Voting count (ATK) restricted to LP 52. Rarity is percentile-ranked (top 2/6/14/28/50%) over years + 0.75·chairs + 2·SR. The 7 Federal Councillors (chamber BR) are assigned "mythic" directly, outside the percentile ranking. OVR = (ATK+DEF)*rarityFactor mapped to 50–99.',
+    note: 'ATK/DEF are chamber-relative percentile ratings from explicit committee and parliamentary-group leadership, weighted standing-committee workload, exact tenure, and a modest age/network-experience component. Raw Voting row counts are retained as source data but do not affect ratings. Federal Councillors use institutional baselines plus executive tenure and age/network experience. Rarity never changes performance; OVR = 0.45·ATK + 0.45·DEF + 0.10·min(ATK,DEF).',
   }
 
   await mkdir(dirname(OUT), { recursive: true })

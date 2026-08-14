@@ -11,6 +11,20 @@ export interface Committee {
 }
 
 /**
+ * Percentile strengths (0-100) of the raw metrics that feed ATK/DEF. NR/SR
+ * members expose leadership/workload/tenure/age; Federal Councillors expose
+ * officeTenure/ageNetwork. Values are chamber-relative for NR/SR.
+ */
+export interface MemberStrengths {
+  leadership?: number
+  workload?: number
+  tenure?: number
+  age?: number
+  officeTenure?: number
+  ageNetwork?: number
+}
+
+/**
  * Portrait shipped in public/portraits. Every source image is CC BY / CC BY-SA,
  * so `author` and `licence` must be surfaced wherever the image is shown.
  */
@@ -48,6 +62,7 @@ export interface Member {
   atk: number
   def: number
   ovr: number
+  strengths: MemberStrengths
   rarity: RarityKey
   mandates: string | null
   portrait: Portrait

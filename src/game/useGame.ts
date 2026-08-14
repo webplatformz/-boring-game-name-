@@ -3,7 +3,13 @@ import type { Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
 import { drawPack, drawTradePackCard, getNextRarity } from './pack'
-import { loadSave, persist, REFILL_COOLDOWN_MS, STARTING_PACKS } from './storage'
+import {
+  loadSave,
+  persist,
+  REFILL_COOLDOWN_MS,
+  STARTING_PACKS,
+  syncMemberScoreCache,
+} from './storage'
 
 export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade' | 'battle'
 
@@ -64,6 +70,12 @@ export interface Game {
 
 export function useGame(): Game {
   const [state, setState] = useState<GameState>(INITIAL)
+
+  // Existing collections contain ids rather than stale member objects. Keep a
+  // revisioned local score snapshot in sync for offline/local consumers too.
+  useEffect(() => {
+    syncMemberScoreCache()
+  }, [])
 
   // Merge-style updater mirroring the prototype's this.setState.
   const patch = useCallback(

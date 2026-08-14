@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
 import { LEGISLATURE, partyColors } from '../theme'
 import { Flag } from './Flag'
 import { Portrait, PortraitCredit } from './Portrait'
+import { ScoreStat, type ScoreKind } from './ScoreStat'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -61,7 +63,20 @@ function lastNameSize(last: string) {
 }
 
 /** A purpose-built face for the seven Federal Council cards. */
-export function MythicCardFront({ member: m, foil: animate = false, style }: { member: Member; foil?: boolean; style?: CSSProperties }) {
+export function MythicCardFront({
+  member: m,
+  foil: animate = false,
+  style,
+  highlightStat = null,
+  hideStats = false,
+}: {
+  member: Member
+  foil?: boolean
+  style?: CSSProperties
+  highlightStat?: ScoreKind | null
+  hideStats?: boolean
+}) {
+  const [openScore, setOpenScore] = useState<ScoreKind | null>(null)
   const pc = partyColors(m.partyCode)
 
   const face: CSSProperties = {
@@ -235,7 +250,35 @@ export function MythicCardFront({ member: m, foil: animate = false, style }: { m
             {m.last.toUpperCase()}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 15, marginTop: 9 }}>
+            {hideStats ? (
+              <>
+                <MythicHiddenScore label="ATK" color="#FF9EC4" />
+                <MythicHiddenScore label="DEF" color="#8FEDE3" />
+              </>
+            ) : (
+              <>
+                <ScoreStat
+                  member={m}
+                  kind="atk"
+                  compact
+                  open={openScore === 'atk'}
+                  onToggle={() => setOpenScore((current) => (current === 'atk' ? null : 'atk'))}
+                  highlighted={highlightStat === 'atk'}
+                />
+                <ScoreStat
+                  member={m}
+                  kind="def"
+                  compact
+                  open={openScore === 'def'}
+                  onToggle={() => setOpenScore((current) => (current === 'def' ? null : 'def'))}
+                  highlighted={highlightStat === 'def'}
+                />
+              </>
+            )}
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8, minWidth: 0 }}>
             <span
               style={{
                 padding: '3px 7px',
@@ -273,6 +316,15 @@ export function MythicCardFront({ member: m, foil: animate = false, style }: { m
         <Corner x="left" y="bottom" />
         <Corner x="right" y="bottom" />
       </div>
+    </div>
+  )
+}
+
+function MythicHiddenScore({ label, color }: { label: string; color: string }) {
+  return (
+    <div>
+      <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '.18em', color }}>{label}</div>
+      <div style={{ fontFamily: AB, fontSize: 29, lineHeight: 0.9, color }}>?</div>
     </div>
   )
 }

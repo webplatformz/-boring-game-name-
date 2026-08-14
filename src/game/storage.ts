@@ -2,6 +2,7 @@
 
 import type { RarityKey } from '../theme'
 import { RARITY_ORDER } from '../theme'
+import { MEMBERS, META } from '../data/members'
 
 export interface SaveState {
   /** Unopened packs remaining. */
@@ -43,6 +44,66 @@ export function persist(state: SaveState): void {
     localStorage.setItem(KEY, JSON.stringify(state))
   } catch {
     /* ignore quota / private-mode failures */
+  }
+}
+
+// ── derived member score cache ──────────────────────────────────────────────
+// Collections only persist member ids/counts, so they already resolve against
+// the latest bundled member data. This separate cache gives other local/offline
+// consumers the same guarantee: whenever any ATK/DEF/OVR value changes, the
+// signature changes and the full cache is replaced atomically on app startup.
+
+interface CachedMemberScore {
+  atk: number
+  def: number
+  ovr: number
+}
+
+interface MemberScoreCache {
+  format: 1
+  revision: string
+  generatedAt: string
+  updatedAt: string
+  scores: Record<number, CachedMemberScore>
+}
+
+const SCORE_CACHE_KEY = 'bundeshaus-member-scores-v1'
+
+function currentScoreRevision(): string {
+  // Compact deterministic FNV-1a fingerprint of exactly the values consumers
+  // cache. It updates even if the data date stays unchanged during development.
+  let hash = 0x811c9dc5
+  const input = MEMBERS.map((m) => `${m.id}:${m.atk}:${m.def}:${m.ovr}`).join('|')
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i)
+    hash = Math.imul(hash, 0x01000193)
+  }
+  return `${META.generatedAt}-${(hash >>> 0).toString(16).padStart(8, '0')}`
+}
+
+/** Refresh the local score cache when the bundled score dataset changes. */
+export function syncMemberScoreCache(): void {
+  try {
+    const revision = currentScoreRevision()
+    const raw = localStorage.getItem(SCORE_CACHE_KEY)
+    if (raw) {
+      const cached = JSON.parse(raw) as Partial<MemberScoreCache>
+      if (cached.format === 1 && cached.revision === revision) return
+    }
+
+    const scores = Object.fromEntries(
+      MEMBERS.map((m) => [m.id, { atk: m.atk, def: m.def, ovr: m.ovr }]),
+    ) as Record<number, CachedMemberScore>
+    const next: MemberScoreCache = {
+      format: 1,
+      revision,
+      generatedAt: META.generatedAt,
+      updatedAt: new Date().toISOString(),
+      scores,
+    }
+    localStorage.setItem(SCORE_CACHE_KEY, JSON.stringify(next))
+  } catch {
+    /* ignore corrupt values, quota errors, SSR, and private-mode failures */
   }
 }
 

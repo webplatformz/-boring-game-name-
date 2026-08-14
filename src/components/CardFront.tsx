@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
 import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
 import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
 import { MythicCardFront } from './MythicCardFront'
+import { ScoreStat, type ScoreKind } from './ScoreStat'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -121,7 +123,19 @@ export function CardFront({
    * hide their stat block regardless). */
   hideStats?: boolean
 }) {
-  if (m.rarity === 'mythic') return <MythicCardFront member={m} foil={foil} style={style} />
+  const [openScore, setOpenScore] = useState<ScoreKind | null>(null)
+
+  if (m.rarity === 'mythic') {
+    return (
+      <MythicCardFront
+        member={m}
+        foil={foil}
+        style={style}
+        highlightStat={highlightStat}
+        hideStats={hideStats}
+      />
+    )
+  }
 
   const t = TIERS[m.rarity]
   const animate = foil && (m.rarity === 'ultra' || m.rarity === 'legend')
@@ -239,27 +253,42 @@ export function CardFront({
         </div>
 
         <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
-            <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'atk', '#FF5FA2') }}>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#FF9EC4' }}>ATK</div>
-              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#FF5FA2' }}>{hideStats ? '?' : m.atk}</div>
-            </div>
-            <div style={{ flex: 'none', ...statHighlightStyle(highlightStat === 'def', '#2FD3C4') }}>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color: '#8FEDE3' }}>DEF</div>
-              <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color: '#2FD3C4' }}>{hideStats ? '?' : m.def}</div>
-            </div>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 5, paddingBottom: 4 }}>
-              {hideStats ? (
-                <>
-                  <HiddenBar />
-                  <HiddenBar />
-                </>
-              ) : (
-                <>
-                  <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
-                  <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
-                </>
-              )}
-            </div>
+          {hideStats ? (
+            <>
+              <HiddenScore label="ATK" color="#FF9EC4" />
+              <HiddenScore label="DEF" color="#8FEDE3" />
+            </>
+          ) : (
+            <>
+              <ScoreStat
+                member={m}
+                kind="atk"
+                open={openScore === 'atk'}
+                onToggle={() => setOpenScore((current) => (current === 'atk' ? null : 'atk'))}
+                highlighted={highlightStat === 'atk'}
+              />
+              <ScoreStat
+                member={m}
+                kind="def"
+                open={openScore === 'def'}
+                onToggle={() => setOpenScore((current) => (current === 'def' ? null : 'def'))}
+                highlighted={highlightStat === 'def'}
+              />
+            </>
+          )}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 5, paddingBottom: 4 }}>
+            {hideStats ? (
+              <>
+                <HiddenBar />
+                <HiddenBar />
+              </>
+            ) : (
+              <>
+                <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
+                <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
+              </>
+            )}
+          </div>
         </div>
 
         <div
@@ -307,17 +336,13 @@ function HiddenBar() {
   )
 }
 
-// Battle mode: pulses a soft glow (in the stat's own colour) around whichever
-// number decided the round. Returns {} when not active, so it's a no-op style.
-function statHighlightStyle(active: boolean, color: string): CSSProperties {
-  if (!active) return {}
-  return {
-    borderRadius: 10,
-    padding: '2px 6px',
-    margin: '-2px -6px',
-    animation: 'statHighlight 1100ms ease-in-out infinite',
-    ['--stat-glow' as string]: color,
-  }
+function HiddenScore({ label, color }: { label: string; color: string }) {
+  return (
+    <div style={{ flex: 'none' }}>
+      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.18em', color }}>{label}</div>
+      <div style={{ fontFamily: AB, fontSize: 36, lineHeight: 0.9, color }}>?</div>
+    </div>
+  )
 }
 
 function Stat({ label, value, accent = false }: { label: string; value: string | number; accent?: boolean }) {
