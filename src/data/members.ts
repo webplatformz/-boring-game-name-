@@ -12,17 +12,70 @@ export interface Committee {
 }
 
 /**
- * Percentile strengths (0-100) of the raw metrics that feed ATK/DEF. NR/SR
- * members expose leadership/workload/tenure/age; Federal Councillors expose
- * officeTenure/ageNetwork. Values are chamber-relative for NR/SR.
+ * Display strengths (0-100) of the raw metrics that feed ATK/DEF. Proposal,
+ * leadership and committee values are chamber-relative percentiles; voting is
+ * the actual eligible-vote participation rate; experience values use the
+ * documented capped curves. Federal Councillors expose their separate inputs.
  */
 export interface MemberStrengths {
+  proposalDrive?: number
+  proposalProgress?: number
   leadership?: number
-  workload?: number
-  tenure?: number
-  age?: number
+  votingReliability?: number
+  committeeWork?: number
+  experience?: number
+  ageExperience?: number
   officeTenure?: number
   ageNetwork?: number
+}
+
+export interface VoteOutcomes {
+  yes: number
+  no: number
+  abstention: number
+  notParticipated: number
+  excused: number
+  presiding: number
+  unknown: number
+  presentWithoutDecision: number
+  eligible: number
+  participated: number
+  participationRate: number
+  source: string
+}
+
+export interface MemberScoring {
+  proposalCount: number
+  proposalPoints: number
+  proposalPointsPerYear: number
+  matureProposalCount: number
+  advancedProposalCount: number
+  advancedProposalPoints: number
+  advancedProposalPointsPerYear: number
+  leadershipPoints: number
+  committeeWorkPoints: number
+  participationRate: number | null
+  experienceYears: number
+  ageYears: number
+}
+
+export type LobbyingSector =
+  | 'Economy & finance'
+  | 'Health & social'
+  | 'Energy & environment'
+  | 'Transport & telecom'
+  | 'Education & culture'
+  | 'Agriculture & food'
+  | 'Security & defence'
+  | 'Law & justice'
+  | 'Foreign affairs'
+  | 'Politics & civic'
+
+export interface LobbyingSectorSummary {
+  sector: LobbyingSector
+  count: number
+  paid: number
+  leadership: number
 }
 
 export interface LobbyingTie {
@@ -32,7 +85,7 @@ export interface LobbyingTie {
   legalType: string
   paid: boolean
   leadership: boolean
-  sector: string | null
+  sector: LobbyingSector | null
   committeeOverlap: boolean
   modified: string | null
 }
@@ -44,7 +97,10 @@ export interface LobbyingDisclosure {
   leadership: number
   sectorBreadth: number
   committeeOverlaps: number
-  sectors: string[]
+  classifiedTotal: number
+  primarySector: LobbyingSector | null
+  sectors: LobbyingSector[]
+  sectorBreakdown: LobbyingSectorSummary[]
   ties: LobbyingTie[]
   source: string
 }
@@ -53,6 +109,13 @@ export interface LargeDonor {
   name: string
   value: number
   kind: string
+  sector: LobbyingSector | null
+}
+
+export interface DonorSectorSummary {
+  sector: LobbyingSector
+  count: number
+  value: number
 }
 
 export interface FinancingDisclosure {
@@ -68,6 +131,10 @@ export interface FinancingDisclosure {
   largeDonorCount: number
   largeDonorTotal: number
   largestDonation: number
+  classifiedLargeDonorCount: number
+  classifiedLargeDonorTotal: number
+  primaryDonorSector: LobbyingSector | null
+  donorSectors: DonorSectorSummary[]
   topLargeDonors: LargeDonor[]
   directCampaignCount: number
   sharedCampaignCount: number
@@ -111,6 +178,8 @@ export interface Member {
   committees: Committee[]
   committeeCount: number
   voteCount: number
+  voteOutcomes: VoteOutcomes | null
+  scoring: MemberScoring
   atk: number
   def: number
   ovr: number
@@ -125,6 +194,13 @@ export interface Member {
 
 export interface MembersMeta {
   source: string
+  algorithmVersion: number
+  scoreSources: {
+    openData: string
+    odata: string
+    voting: string
+    votingWorkbooks: string
+  }
   disclosureSources: {
     interests: string
     financing: string

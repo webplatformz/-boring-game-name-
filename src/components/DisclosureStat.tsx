@@ -1,7 +1,8 @@
 import { useId, useRef } from 'react'
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
-import type { FinancingDisclosure, LobbyingDisclosure, Member } from '../data/members'
+import type { FinancingDisclosure, LobbyingDisclosure, LobbyingSector, Member } from '../data/members'
 import { OverflowTooltip } from './OverflowTooltip'
+import { SECTOR_META, SectorIcon } from './SectorIcon'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -51,37 +52,84 @@ function Metric({ label, value, color }: { label: string; value: string | number
   )
 }
 
+function SectorPill({ sector, detail }: { sector: LobbyingSector; detail: string }) {
+  const meta = SECTOR_META[sector]
+  return (
+    <span
+      title={sector}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 4,
+        minWidth: 0,
+        padding: '2px 5px',
+        borderRadius: 99,
+        border: `1px solid ${meta.color}42`,
+        background: `${meta.color}12`,
+        color: meta.color,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      <SectorIcon sector={sector} size={10} />
+      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{meta.short}</span>
+      <span style={{ color: '#8294AD' }}>{detail}</span>
+    </span>
+  )
+}
+
 function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
   if (disclosure.coverage === 'not_applicable') {
     return <div style={{ color: '#97A8BF' }}>The parliamentary interests register does not cover Federal Councillors.</div>
   }
-  const highlighted = disclosure.ties.slice(0, 3)
   return (
     <>
       <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-        Self-declared external interests. Paid means compensated; the amount is not published.
+        Self-declared external interests. Sector icons identify classified links; paid amounts are not published.
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
         <Metric label="Declared interests" value={disclosure.total} />
         <Metric label="Paid mandates" value={disclosure.paid} color="#D7CAFF" />
         <Metric label="Leadership roles" value={disclosure.leadership} />
         <Metric label="Committee overlaps" value={disclosure.committeeOverlaps} />
-        <Metric label="Classified sectors" value={disclosure.sectorBreadth} />
+        <Metric label="Sector-classified links" value={`${disclosure.classifiedTotal} / ${disclosure.total}`} />
       </div>
-      {highlighted.length > 0 && (
-        <div style={{ marginTop: 8, paddingTop: 7, borderTop: '1px solid rgba(185,166,255,.2)' }}>
-          {highlighted.map((tie) => (
-            <div key={`${tie.organization}-${tie.role}`} style={{ marginTop: 4 }}>
-              <div style={{ color: '#E7E0FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {tie.organization}
-              </div>
-              <div style={{ color: '#7388A5', fontSize: 8 }}>
-                {tie.role}
-                {tie.paid ? ' · PAID' : ' · UNPAID'}
-                {tie.committeeOverlap ? ' · COMMITTEE MATCH' : ''}
-              </div>
-            </div>
+      {disclosure.sectorBreakdown.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
+          {disclosure.sectorBreakdown.slice(0, 3).map((summary) => (
+            <SectorPill key={summary.sector} sector={summary.sector} detail={String(summary.count)} />
           ))}
+        </div>
+      )}
+      {disclosure.ties.length > 0 && (
+        <div style={{ marginTop: 8, paddingTop: 7, borderTop: '1px solid rgba(185,166,255,.2)' }}>
+          <div style={{ marginBottom: 3, color: '#B9A6FF', fontSize: 7.5, letterSpacing: '.08em' }}>
+            DECLARED INTERESTS
+          </div>
+          <div style={{ maxHeight: 104, overflowY: 'auto', overscrollBehavior: 'contain', paddingRight: 3 }}>
+            {disclosure.ties.map((tie) => (
+              <div key={`${tie.organization}-${tie.role}`} style={{ marginTop: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0, color: '#E7E0FF' }}>
+                  {tie.sector && <SectorIcon sector={tie.sector} size={10} title={tie.sector} />}
+                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {tie.organization}
+                  </span>
+                </div>
+                <div
+                  style={{
+                    color: '#7388A5',
+                    fontSize: 8,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {tie.role}
+                  {tie.paid ? ' · PAID' : ' · UNPAID'}
+                  {tie.committeeOverlap ? ' · COMMITTEE MATCH' : ''}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>
@@ -92,7 +140,7 @@ function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
   return (
     <>
       <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-        Candidate-specific 2023 EFK final accounts. Shared campaign pools are shown separately.
+        Candidate-specific 2023 EFK final accounts. Sector icons cover classified named large gifts only; shared pools are separate.
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
         <Metric label="Direct campaign income" value={money(disclosure.directIncome)} color="#FFE4A2" />
@@ -104,13 +152,29 @@ function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
           <Metric label="Unallocated EFK residual" value={money(disclosure.unallocatedIncome)} />
         )}
         <Metric label="Named gifts > CHF 15k" value={`${disclosure.largeDonorCount} · ${money(disclosure.largeDonorTotal)}`} />
+        {disclosure.largeDonorCount > 0 && (
+          <Metric
+            label="Sector-classified gifts"
+            value={`${disclosure.classifiedLargeDonorCount} · ${money(disclosure.classifiedLargeDonorTotal)}`}
+          />
+        )}
       </div>
+      {disclosure.donorSectors.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
+          {disclosure.donorSectors.slice(0, 3).map((summary) => (
+            <SectorPill key={summary.sector} sector={summary.sector} detail={money(summary.value)} />
+          ))}
+        </div>
+      )}
       {disclosure.topLargeDonors.length > 0 && (
         <div style={{ marginTop: 7, paddingTop: 6, borderTop: '1px solid rgba(255,211,106,.2)' }}>
           {disclosure.topLargeDonors.map((donor) => (
             <div key={`${donor.name}-${donor.value}`} style={{ display: 'flex', gap: 8, justifyContent: 'space-between', marginTop: 3 }}>
-              <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: '#F4E7C5' }}>
-                {donor.name}
+              <span style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0, color: '#F4E7C5' }}>
+                {donor.sector && <SectorIcon sector={donor.sector} size={10} title={donor.sector} />}
+                <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {donor.name}
+                </span>
               </span>
               <span style={{ color: '#FFD36A', whiteSpace: 'nowrap' }}>{money(donor.value)}</span>
             </div>
@@ -176,6 +240,7 @@ export function DisclosureStat({
   const [primaryValue, secondaryValue] = value.split('\n')
   const compactValue = primaryValue.length > 6
   const label = kind === 'ties' ? 'declared interests' : 'campaign financing'
+  const sector = kind === 'camp' ? member.financing.primaryDonorSector : null
 
   const root: CSSProperties = {
     position: 'relative',
@@ -192,7 +257,7 @@ export function DisclosureStat({
         type="button"
         aria-expanded={open}
         aria-describedby={open ? tooltipId : undefined}
-        aria-label={`${appearance.label} ${accessibleValue}. Show ${label} metrics`}
+        aria-label={`${appearance.label} ${accessibleValue}${sector ? `. Leading classified sector: ${sector}` : ''}. Show ${label} metrics`}
         onPointerDown={stopPointer}
         onPointerUp={stopPointer}
         onPointerCancel={stopPointer}
@@ -210,18 +275,36 @@ export function DisclosureStat({
           textAlign: 'center',
           cursor: 'help',
           touchAction: 'manipulation',
-          display: compact ? 'flex' : 'block',
-          alignItems: 'baseline',
-          gap: compact ? 5 : undefined,
+          display: compact ? 'flex' : 'grid',
+          gridTemplateRows: compact ? undefined : '10px 16px',
+          alignContent: compact ? undefined : 'start',
+          alignItems: compact ? 'baseline' : undefined,
+          gap: compact ? 5 : 0,
         }}
       >
-        <div style={{ fontFamily: MONO, fontSize: compact ? 7 : 8, letterSpacing: '.12em', color: appearance.muted }}>
-          {appearance.label} <span aria-hidden style={{ fontSize: 7 }}>ⓘ</span>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 3,
+            height: compact ? undefined : 10,
+            fontFamily: MONO,
+            fontSize: compact ? 7 : 8,
+            lineHeight: compact ? undefined : '10px',
+            letterSpacing: '.12em',
+            color: appearance.muted,
+          }}
+        >
+          <span>{appearance.label}</span>
+          <span aria-hidden style={{ fontSize: 7 }}>ⓘ</span>
         </div>
         <div
           style={{
             fontFamily: AB,
             fontSize: compact ? (compactValue ? 8 : 10) : compactValue ? 10 : 13,
+            height: compact ? undefined : 16,
+            lineHeight: compact ? undefined : '16px',
             whiteSpace: 'nowrap',
             color: appearance.color,
             display: secondaryValue ? 'flex' : 'block',

@@ -25,15 +25,15 @@ function metricRows(member: Member, kind: ScoreKind): MetricRow[] {
   }
   return kind === 'atk'
     ? [
-        { key: 'leadership', label: 'Leadership', weight: 0.5 },
-        { key: 'workload', label: 'Committee load', weight: 0.25 },
-        { key: 'tenure', label: 'Tenure', weight: 0.15 },
-        { key: 'age', label: 'Age / network', weight: 0.1 },
+        { key: 'proposalDrive', label: 'Proposal drive', weight: 0.45 },
+        { key: 'proposalProgress', label: 'Proposals advanced', weight: 0.3 },
+        { key: 'leadership', label: 'Current leadership', weight: 0.25 },
       ]
     : [
-        { key: 'tenure', label: 'Tenure', weight: 0.5 },
-        { key: 'workload', label: 'Committee load', weight: 0.35 },
-        { key: 'age', label: 'Age / network', weight: 0.15 },
+        { key: 'votingReliability', label: 'Voting reliability', weight: 0.2 },
+        { key: 'committeeWork', label: 'Current committee work', weight: 0.45 },
+        { key: 'experience', label: 'Parliament experience', weight: 0.3 },
+        { key: 'ageExperience', label: 'Age experience', weight: 0.05 },
       ]
 }
 
@@ -47,8 +47,8 @@ function tooltipCopy(member: Member, kind: ScoreKind): { title: string; blurb: s
     }
   }
   return kind === 'atk'
-    ? { title: 'AGENDA-SETTING POWER', blurb: 'Weighted percentile within the same chamber.' }
-    : { title: 'INSTITUTIONAL STRENGTH', blurb: 'Weighted percentile within the same chamber.' }
+    ? { title: 'DRIVE & INITIATIVE', blurb: 'Individual work, progress and leadership; normalized by chamber.' }
+    : { title: 'RELIABILITY & RESILIENCE', blurb: 'Individual attendance, committee work and experience.' }
 }
 
 function stopPointer(e: ReactPointerEvent<HTMLButtonElement>) {
@@ -232,6 +232,22 @@ function Tooltip({
               )
             })}
           </div>
+          <a
+            href="#methodology"
+            onPointerDown={(e) => e.stopPropagation()}
+            onPointerUp={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              display: 'inline-block',
+              marginTop: 9,
+              color: score.muted,
+              fontWeight: 700,
+              textDecoration: 'underline',
+              textUnderlineOffset: 3,
+            }}
+          >
+            FORMULA, METRICS &amp; SOURCES →
+          </a>
         </div>
   )
 }

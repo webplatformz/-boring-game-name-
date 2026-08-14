@@ -38,12 +38,17 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
           textAlign: 'center',
           cursor: 'help',
           touchAction: 'manipulation',
+          display: 'grid',
+          gridTemplateRows: '10px 16px',
+          alignContent: 'start',
         }}
       >
-        <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '.12em', color: '#5C7391' }}>
+        <div style={{ height: 10, fontFamily: MONO, fontSize: 8, lineHeight: '10px', letterSpacing: '.12em', color: '#5C7391' }}>
           CMTE <span aria-hidden style={{ fontSize: 7 }}>ⓘ</span>
         </div>
-        <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF' }}>{member.committeeCount}</div>
+        <div style={{ height: 16, fontFamily: AB, fontSize: 13, lineHeight: '16px', color: '#EAF2FF' }}>
+          {member.committeeCount}
+        </div>
       </button>
 
       {open && (

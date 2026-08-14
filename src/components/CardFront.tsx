@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
-import type { Member } from '../data/members'
+import type { LobbyingSector, Member } from '../data/members'
 import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
 import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
@@ -8,6 +8,7 @@ import { MythicCardFront } from './MythicCardFront'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
 import { DisclosureStat, type DisclosureKind } from './DisclosureStat'
 import { CommitteeStat } from './CommitteeStat'
+import { SectorIcon } from './SectorIcon'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -126,6 +127,7 @@ export function CardFront({
   hideStats?: boolean
 }) {
   const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | 'cmte' | null>(null)
+  const [hoveredSector, setHoveredSector] = useState<LobbyingSector | null>(null)
 
   if (m.rarity === 'mythic') {
     return (
@@ -145,6 +147,10 @@ export function CardFront({
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
   const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'} · ${m.chamber}`
+  const cardSectors = [...m.lobbying.sectors]
+  if (m.financing.primaryDonorSector && !cardSectors.includes(m.financing.primaryDonorSector)) {
+    cardSectors.push(m.financing.primaryDonorSector)
+  }
 
   const face: CSSProperties = {
     position: 'absolute',
@@ -220,6 +226,71 @@ export function CardFront({
       >
         <div style={tagStyle(t.label, t.c, t.ink)}>{t.label}</div>
         <div style={legislatureTagStyle}>L {LEGISLATURE}</div>
+        {cardSectors.length > 0 && (
+          <div
+            aria-label={`Sectors: ${cardSectors.join(', ')}`}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 4,
+              paddingRight: 8,
+            }}
+          >
+            {cardSectors.map((sector, index) => (
+              <span
+                key={sector}
+                tabIndex={0}
+                aria-label={`Sector: ${sector}`}
+                aria-describedby={hoveredSector === sector ? `sector-tooltip-${m.id}-${index}` : undefined}
+                onMouseEnter={() => setHoveredSector(sector)}
+                onMouseLeave={() => setHoveredSector(null)}
+                onFocus={() => setHoveredSector(sector)}
+                onBlur={() => setHoveredSector(null)}
+                style={{
+                  display: 'grid',
+                  position: 'relative',
+                  width: 22,
+                  height: 22,
+                  placeItems: 'center',
+                  borderRadius: 99,
+                  border: '1px solid rgba(185,166,255,.28)',
+                  background: 'rgba(7,12,19,.55)',
+                  boxShadow: '0 3px 10px rgba(0,0,0,.28)',
+                  outline: 'none',
+                }}
+              >
+                <SectorIcon sector={sector} size={11} />
+                {hoveredSector === sector && (
+                  <span
+                    id={`sector-tooltip-${m.id}-${index}`}
+                    role="tooltip"
+                    style={{
+                      position: 'absolute',
+                      right: 'calc(100% + 6px)',
+                      top: '50%',
+                      zIndex: 10,
+                      padding: '4px 7px',
+                      transform: 'translateY(-50%)',
+                      borderRadius: 5,
+                      border: '1px solid rgba(185,166,255,.35)',
+                      background: 'rgba(5,9,17,.96)',
+                      boxShadow: '0 6px 16px rgba(0,0,0,.4)',
+                      color: '#D7CAFF',
+                      fontFamily: MONO,
+                      fontSize: 7.5,
+                      letterSpacing: '.06em',
+                      whiteSpace: 'nowrap',
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {sector.toUpperCase()}
+                  </span>
+                )}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* bottom block: name, sub, ATK/DEF, stat grid */}
@@ -368,9 +439,22 @@ function HiddenScore({ label, color }: { label: string; color: string }) {
 
 function Stat({ label, value, accent = false }: { label: string; value: string | number; accent?: boolean }) {
   return (
-    <div style={{ background: '#0B121D', padding: '7px 4px', textAlign: 'center' }}>
-      <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '.12em', color: '#5C7391' }}>{label}</div>
-      <div style={{ fontFamily: AB, fontSize: 13, color: accent ? '#FFC53D' : '#EAF2FF' }}>{value}</div>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateRows: '10px 16px',
+        alignContent: 'start',
+        background: '#0B121D',
+        padding: '7px 4px',
+        textAlign: 'center',
+      }}
+    >
+      <div style={{ height: 10, fontFamily: MONO, fontSize: 8, lineHeight: '10px', letterSpacing: '.12em', color: '#5C7391' }}>
+        {label}
+      </div>
+      <div style={{ height: 16, fontFamily: AB, fontSize: 13, lineHeight: '16px', color: accent ? '#FFC53D' : '#EAF2FF' }}>
+        {value}
+      </div>
     </div>
   )
 }

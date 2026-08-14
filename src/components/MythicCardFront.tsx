@@ -5,7 +5,6 @@ import { LEGISLATURE, partyColors } from '../theme'
 import { Flag } from './Flag'
 import { Portrait, PortraitCredit } from './Portrait'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
-import { DisclosureStat, type DisclosureKind } from './DisclosureStat'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -77,7 +76,7 @@ export function MythicCardFront({
   highlightStat?: ScoreKind | null
   hideStats?: boolean
 }) {
-  const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | null>(null)
+  const [openMetric, setOpenMetric] = useState<ScoreKind | null>(null)
   const pc = partyColors(m.partyCode)
 
   const face: CSSProperties = {
@@ -277,23 +276,6 @@ export function MythicCardFront({
                 />
               </>
             )}
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 7 }}>
-            <DisclosureStat
-              member={m}
-              kind="ties"
-              compact
-              open={openMetric === 'ties'}
-              onToggle={() => setOpenMetric((current) => (current === 'ties' ? null : 'ties'))}
-            />
-            <DisclosureStat
-              member={m}
-              kind="camp"
-              compact
-              open={openMetric === 'camp'}
-              onToggle={() => setOpenMetric((current) => (current === 'camp' ? null : 'camp'))}
-            />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8, minWidth: 0 }}>

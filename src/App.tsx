@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
 import { useBattle } from './game/useBattle'
 import { Home } from './screens/Home'
@@ -6,13 +7,26 @@ import { Reveal } from './screens/Reveal'
 import { Collection } from './screens/Collection'
 import { Trade } from './screens/Trade'
 import { Battle } from './screens/Battle'
+import { Methodology } from './screens/Methodology'
 import { TabBar } from './components/TabBar'
 
 export function App() {
   const game = useGame()
   const battle = useBattle()
+  const [showMethodology, setShowMethodology] = useState(() => window.location.hash === '#methodology')
   const { screen } = game.state
-  const showTabs = screen === 'home' || screen === 'collection' || screen === 'trade'
+  const showTabs = !showMethodology && (screen === 'home' || screen === 'collection' || screen === 'trade')
+
+  useEffect(() => {
+    const syncHash = () => setShowMethodology(window.location.hash === '#methodology')
+    window.addEventListener('hashchange', syncHash)
+    return () => window.removeEventListener('hashchange', syncHash)
+  }, [])
+
+  const closeMethodology = () => {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+    setShowMethodology(false)
+  }
 
   return (
     <div
@@ -34,13 +48,19 @@ export function App() {
           overflow: 'hidden',
         }}
       >
-        <div key={screen} className="screen-transition">
-          {screen === 'home' && <Home game={game} />}
-          {screen === 'tear' && <Tear state={game.state} />}
-          {screen === 'reveal' && <Reveal game={game} />}
-          {screen === 'collection' && <Collection game={game} />}
-          {screen === 'battle' && <Battle game={game} battle={battle} />}
-          {screen === 'trade' && <Trade game={game} />}
+        <div key={showMethodology ? 'methodology' : screen} className="screen-transition">
+          {showMethodology ? (
+            <Methodology onClose={closeMethodology} />
+          ) : (
+            <>
+              {screen === 'home' && <Home game={game} />}
+              {screen === 'tear' && <Tear state={game.state} />}
+              {screen === 'reveal' && <Reveal game={game} />}
+              {screen === 'collection' && <Collection game={game} />}
+              {screen === 'battle' && <Battle game={game} battle={battle} />}
+              {screen === 'trade' && <Trade game={game} />}
+            </>
+          )}
         </div>
         {showTabs && <TabBar game={game} />}
       </div>

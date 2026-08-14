@@ -57,10 +57,12 @@ interface CachedMemberScore {
   atk: number
   def: number
   ovr: number
+  rarity: RarityKey
 }
 
 interface MemberScoreCache {
-  format: 1
+  format: 2
+  algorithmVersion: number
   revision: string
   generatedAt: string
   updatedAt: string
@@ -73,7 +75,7 @@ function currentScoreRevision(): string {
   // Compact deterministic FNV-1a fingerprint of exactly the values consumers
   // cache. It updates even if the data date stays unchanged during development.
   let hash = 0x811c9dc5
-  const input = MEMBERS.map((m) => `${m.id}:${m.atk}:${m.def}:${m.ovr}`).join('|')
+  const input = `${META.algorithmVersion}|${MEMBERS.map((m) => `${m.id}:${m.atk}:${m.def}:${m.ovr}:${m.rarity}`).join('|')}`
   for (let i = 0; i < input.length; i++) {
     hash ^= input.charCodeAt(i)
     hash = Math.imul(hash, 0x01000193)
@@ -88,14 +90,15 @@ export function syncMemberScoreCache(): void {
     const raw = localStorage.getItem(SCORE_CACHE_KEY)
     if (raw) {
       const cached = JSON.parse(raw) as Partial<MemberScoreCache>
-      if (cached.format === 1 && cached.revision === revision) return
+      if (cached.format === 2 && cached.revision === revision) return
     }
 
     const scores = Object.fromEntries(
-      MEMBERS.map((m) => [m.id, { atk: m.atk, def: m.def, ovr: m.ovr }]),
+      MEMBERS.map((m) => [m.id, { atk: m.atk, def: m.def, ovr: m.ovr, rarity: m.rarity }]),
     ) as Record<number, CachedMemberScore>
     const next: MemberScoreCache = {
-      format: 1,
+      format: 2,
+      algorithmVersion: META.algorithmVersion,
       revision,
       generatedAt: META.generatedAt,
       updatedAt: new Date().toISOString(),

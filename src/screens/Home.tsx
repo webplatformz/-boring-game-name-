@@ -64,7 +64,7 @@ export function Home({ game }: { game: Game }) {
           BUILD THE HOUSE.
         </div>
         <div style={{ marginTop: 9, fontSize: 13.5, lineHeight: 1.5, color: '#9FB6D2' }}>
-          {PACK_SIZE} members per pack, no repeats inside it. Rarity is years served — the veterans are the chase cards.
+          {PACK_SIZE} members per pack, no repeats inside it. Rarity follows the new overall-score distribution.
         </div>
       </div>
 
@@ -139,6 +139,13 @@ export function Home({ game }: { game: Game }) {
         </div>
         <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>TRADE IN →</div>
       </button>
+
+      <a
+        href="#methodology"
+        style={{ alignSelf: 'center', fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
+      >
+        SWISS PARLIAMENT DATA · HOW SCORES WORK →
+      </a>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>
