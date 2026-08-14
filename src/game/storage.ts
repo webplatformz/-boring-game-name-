@@ -50,7 +50,7 @@ export function persist(state: SaveState): void {
 // Kept apart from the save so a corrupt/absent value never costs the player
 // their cards.
 
-export type SortKey = 'ovr' | 'atk' | 'def' | 'name'
+export type SortKey = 'rarity' | 'ovr' | 'atk' | 'def' | 'name'
 
 export interface CollectionPrefs {
   sortKey: SortKey
@@ -63,12 +63,12 @@ export interface CollectionPrefs {
 }
 
 const PREFS_KEY = 'bundeshaus-collection-v1'
-const SORT_KEYS: SortKey[] = ['ovr', 'atk', 'def', 'name']
+const SORT_KEYS: SortKey[] = ['rarity', 'ovr', 'atk', 'def', 'name']
 
 export const DEFAULT_PREFS: CollectionPrefs = {
-  sortKey: 'ovr',
+  sortKey: 'rarity',
   sortDir: -1,
-  rarities: RARITY_ORDER,
+  rarities: [],
   cantons: [],
 }
 

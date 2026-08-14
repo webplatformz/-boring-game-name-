@@ -47,7 +47,10 @@ export function Collection({ game }: { game: Game }) {
 
   // Apply rarity and canton filters
   const filtered = useMemo(() => {
-    let result = ownedList.filter((r) => selectedRarities.has(r.member.rarity))
+    let result = ownedList
+    if (selectedRarities.size > 0) {
+      result = result.filter((r) => selectedRarities.has(r.member.rarity))
+    }
     if (selectedCantons.size > 0) {
       result = result.filter((r) => selectedCantons.has(r.member.canton))
     }
@@ -57,7 +60,16 @@ export function Collection({ game }: { game: Game }) {
   // Apply sort
   const sorted = useMemo(() => {
     const cmp = filtered.slice()
+    const rarityIndex = (r: RarityKey) => RARITY_ORDER.indexOf(r)
     cmp.sort((a, b) => {
+      if (sortKey === 'rarity') {
+        const ai = rarityIndex(a.member.rarity)
+        const bi = rarityIndex(b.member.rarity)
+        if (ai !== bi) return (ai - bi) * sortDir
+        // tiebreaker: OVR descending
+        return b.member.ovr - a.member.ovr
+      }
+
       const av: string | number = a.member[sortKey]
       const bv: string | number = b.member[sortKey]
 
@@ -69,9 +81,9 @@ export function Collection({ game }: { game: Game }) {
   }, [filtered, sortKey, sortDir])
 
   const toggleRarity = (r: RarityKey) => {
-    const next = new Set(selectedRarities)
-    next.has(r) ? next.delete(r) : next.add(r)
-    setSelectedRarities(next)
+    // Single-select: clicking the active chip clears the filter,
+    // clicking any other chip replaces the selection.
+    setSelectedRarities(selectedRarities.has(r) && selectedRarities.size === 1 ? new Set() : new Set([r]))
   }
 
   const toggleCantonFilter = (canton: string) => {
@@ -154,9 +166,9 @@ export function Collection({ game }: { game: Game }) {
 
           {/* sort chips */}
           <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
-            {(['ovr', 'atk', 'def', 'name'] as SortKey[]).map((k) => {
+            {(['rarity', 'ovr', 'atk', 'def', 'name'] as SortKey[]).map((k) => {
               const on = sortKey === k
-              const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : 'NAME'
+              const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : k === 'rarity' ? 'RARITY' : 'NAME'
               const arrow = on ? (sortDir < 0 ? ' ↓' : ' ↑') : ''
               return (
                 <button

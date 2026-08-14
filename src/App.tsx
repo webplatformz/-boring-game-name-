@@ -34,12 +34,14 @@ export function App() {
           overflow: 'hidden',
         }}
       >
-        {screen === 'home' && <Home game={game} />}
-        {screen === 'tear' && <Tear state={game.state} />}
-        {screen === 'reveal' && <Reveal game={game} />}
-        {screen === 'collection' && <Collection game={game} />}
-        {screen === 'battle' && <Battle game={game} battle={battle} />}
-        {screen === 'trade' && <Trade game={game} />}
+        <div key={screen} className="screen-transition">
+          {screen === 'home' && <Home game={game} />}
+          {screen === 'tear' && <Tear state={game.state} />}
+          {screen === 'reveal' && <Reveal game={game} />}
+          {screen === 'collection' && <Collection game={game} />}
+          {screen === 'battle' && <Battle game={game} battle={battle} />}
+          {screen === 'trade' && <Trade game={game} />}
+        </div>
         {showTabs && <TabBar game={game} />}
       </div>
     </div>

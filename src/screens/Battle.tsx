@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
@@ -15,8 +15,44 @@ const MONO = "'IBM Plex Mono',monospace"
 
 /** Width used for the two stacked cards during the fight/reveal steps —
  * smaller than the full-size card so both fit one viewport with the
- * action buttons below. */
-const FIGHT_CARD_W = Math.min(0.6 * CARD_MAX_W, 210)
+ * action buttons below. Capped statically; the runtime hook below can
+ * shrink it further on short viewports so the buttons stay reachable. */
+const FIGHT_CARD_W_MAX = Math.min(0.6 * CARD_MAX_W, 210)
+const CARD_ASPECT = 504 / 336
+
+/** Non-card vertical chrome around the two stacked cards inside the
+ * Battle screen: outer padding (22 top + 137 bottom on mobile for the
+ * tab bar), header row, gaps, labels, VS separator, and the footer
+ * button row. Kept as a constant estimate — being a bit generous is
+ * fine (cards just render slightly smaller), being too small isn't
+ * (buttons get pushed off screen, which is the bug we're fixing). */
+const ARENA_CHROME_H = 380
+
+function useFightCardWidth(): number {
+  const [w, setW] = useState<number>(() => computeFightCardWidth())
+  useEffect(() => {
+    const onResize = () => setW(computeFightCardWidth())
+    window.addEventListener('resize', onResize)
+    window.addEventListener('orientationchange', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('orientationchange', onResize)
+    }
+  }, [])
+  return w
+}
+
+function computeFightCardWidth(): number {
+  if (typeof window === 'undefined') return FIGHT_CARD_W_MAX
+  const vh = window.innerHeight
+  const vw = window.innerWidth
+  // Two cards stack vertically; solve for width from remaining height.
+  const heightBudget = Math.max(0, vh - ARENA_CHROME_H)
+  const widthFromHeight = heightBudget / 2 / CARD_ASPECT
+  // Also respect narrow viewports (side padding ~20px each side).
+  const widthFromWidth = vw - 40
+  return Math.max(120, Math.min(FIGHT_CARD_W_MAX, widthFromHeight, widthFromWidth))
+}
 
 /**
  * CardFront/CardGlow are laid out with fixed px font sizes sized for the
@@ -187,6 +223,7 @@ function Arena({
   const locked = playerAction !== null
   const revealed = step === 'reveal' || step === 'result'
   const won = result?.winner === 'player'
+  const cardW = useFightCardWidth()
 
   return (
     // No overflowY:auto here — that would force overflow-x to 'auto' too
@@ -197,7 +234,7 @@ function Arena({
         label="OPPONENT"
         labelColor="#FF9EC4"
         member={oppCard}
-        width={FIGHT_CARD_W}
+        width={cardW}
         highlightStat={revealed ? statFor(oppAction) : null}
         actionLabel={revealed ? oppAction : null}
         bump={step === 'reveal' && oppAction === 'attack' ? 'down' : null}
@@ -221,7 +258,7 @@ function Arena({
         label="YOUR CARD"
         labelColor="#8FEDE3"
         member={playerCard}
-        width={FIGHT_CARD_W}
+        width={cardW}
         highlightStat={revealed ? statFor(playerAction) : null}
         actionLabel={revealed ? playerAction : null}
         bump={step === 'reveal' && playerAction === 'attack' ? 'up' : null}
