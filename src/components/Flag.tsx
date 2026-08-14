@@ -10,7 +10,6 @@ export function Flag({ canton, name, height = 22 }: { canton: string; name?: str
         height,
         width: 'auto',
         flex: 'none',
-        borderRadius: 3,
         background: 'transparent',
       }}
     />
