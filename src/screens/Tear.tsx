@@ -78,7 +78,7 @@ export function Tear({ state }: { state: GameState }) {
     ...(ripped
       ? { transform: 'scale(.93) translateY(10px)', opacity: 0.18, transition: `transform ${PACK_RIP_MS}ms ease-out,opacity ${PACK_RIP_MS}ms ease-in,filter ${PACK_RIP_MS}ms ease-out` }
       : { transition: 'transform 300ms ease-out' }),
-    filter: `drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 ${ripped ? 60 : 10}px ${rarityTier?.c ?? 'rgba(255,197,61,.18)'})`,
+    filter: 'drop-shadow(0 16px 26px rgba(0,0,0,.6)) drop-shadow(0 0 10px rgba(234,242,255,.18))',
   }
 
   // Sizer holds the final (card-sized) footprint so nothing reflows while the
@@ -116,7 +116,7 @@ export function Tear({ state }: { state: GameState }) {
       <div ref={sizerRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '2 / 3' }}>
         {deck.map(({ m, depth }) => (
           <div key={m.id} style={cardStyle(depth)}>
-            <CardBack style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.75),0 0 0 1px ${rarityTier?.c ?? 'rgba(255,197,61,.45)'}` }} />
+            <CardBack />
           </div>
         ))}
 

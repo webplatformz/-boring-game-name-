@@ -70,7 +70,7 @@ export function Reveal({ game }: { game: Game }) {
             return (
               <div key={m.id} style={stackStyle(depth, isTop, drag, dragging)} {...(isTop ? game.cardHandlers : {})}>
                 <div style={flipStyle(up)}>
-                  <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)', boxShadow: `0 20px 46px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,197,61,${isTop ? 0.45 : 0.2})` }} />
+                  <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)' }} />
                   <CardFront member={m} foil style={{ boxShadow: `0 24px 60px -18px rgba(255,197,61,.4),0 0 0 1px ${ring(m)}` }} />
                 </div>
               </div>

@@ -45,7 +45,10 @@ export function App() {
         style={{
           minHeight: '100vh',
           position: 'relative',
-          overflow: 'hidden',
+          // Deliberately not clipped: card glows and backdrops are drawn well
+          // outside the card box and would be cut off at the column edges.
+          // `body { overflow-x: hidden }` keeps them from causing sideways
+          // scrolling, clipping at the viewport instead of the column.
         }}
       >
         <div key={showMethodology ? 'methodology' : screen} className="screen-transition">

@@ -16,6 +16,9 @@ body {
   font-family: Archivo, sans-serif;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
+  /* Card glows/backdrops bleed past the content column on purpose; clip them at
+     the viewport so they stay uncut but never cause sideways scrolling. */
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

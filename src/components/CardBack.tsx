@@ -16,6 +16,8 @@ export function CardBack({ style }: { style?: CSSProperties }) {
     backfaceVisibility: 'hidden',
     WebkitBackfaceVisibility: 'hidden',
     background: 'linear-gradient(168deg,#1B2A44 0%,#101B2E 46%,#0A121F 100%)',
+    border: '1px solid #3E5170',
+    boxShadow: '0 25px 30px -5px rgba(0,0,0,.95)',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
