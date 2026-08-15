@@ -3,6 +3,9 @@ import type { LobbyingSector } from '../data/members'
 export const SECTOR_META: Record<LobbyingSector, { color: string; short: string }> = {
   'Economy & finance': { color: '#74C7FF', short: 'Economy' },
   'Health & social': { color: '#FF8FB5', short: 'Health' },
+  'Entertainment & hospitality': { color: '#F0B2D3', short: 'Leisure' },
+  'Technology & innovation': { color: '#75C9D9', short: 'Technology' },
+  'Sports & recreation': { color: '#F2A65A', short: 'Sports' },
   'Energy & environment': { color: '#75D99A', short: 'Environment' },
   'Transport & telecom': { color: '#8CD8E8', short: 'Transport' },
   'Education & culture': { color: '#C4A3FF', short: 'Education' },
@@ -55,6 +58,12 @@ function iconPaths(sector: LobbyingSector) {
       )
     case 'Health & social':
       return <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
+    case 'Entertainment & hospitality':
+      return <path d="M4 10h16M5 10l1 10h12l1-10M7 7a5 5 0 0 1 10 0M12 3v4M9 13v4M12 13v4M15 13v4" />
+    case 'Technology & innovation':
+      return <path d="M9 3h6l1 3 3 1v6l-3 1-1 3H9l-1-3-3-1V7l3-1 1-3ZM9 10h.01M15 10h.01M9.5 13.5c1.5 1 3.5 1 5 0" />
+    case 'Sports & recreation':
+      return <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM5.5 6.5l5 3 3-1.5 5 3M8 19l1-5.5-3-3M19 14l-5.5-.5-3 3" />
     case 'Energy & environment':
       return <path d="M20.5 3.5C12 3.5 5 7 5 14c0 3 2 5.5 5 5.5 7 0 10.5-7 10.5-16ZM4 21c3-6 7-9 13-12" />
     case 'Transport & telecom':

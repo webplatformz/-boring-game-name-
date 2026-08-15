@@ -399,12 +399,13 @@
         "total": 8,
         "paid": 5,
         "leadership": 2,
-        "sectorBreadth": 3,
-        "committeeOverlaps": 2,
-        "classifiedTotal": 4,
+        "sectorBreadth": 4,
+        "committeeOverlaps": 3,
+        "classifiedTotal": 5,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Agriculture & food",
           "Foreign affairs",
           "Politics & civic"
         ],
@@ -413,6 +414,12 @@
             "sector": "Economy & finance",
             "count": 2,
             "paid": 2,
+            "leadership": 0
+          },
+          {
+            "sector": "Agriculture & food",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           },
           {
@@ -458,8 +465,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -469,8 +476,8 @@
             "legalType": "Keine Angaben",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-08-05"
           },
           {
@@ -491,8 +498,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Agriculture & food",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -657,16 +664,22 @@
         "paid": 5,
         "leadership": 6,
         "sectorBreadth": 4,
-        "committeeOverlaps": 2,
-        "classifiedTotal": 6,
-        "primarySector": "Energy & environment",
+        "committeeOverlaps": 3,
+        "classifiedTotal": 8,
+        "primarySector": "Health & social",
         "sectors": [
-          "Energy & environment",
           "Health & social",
+          "Energy & environment",
           "Agriculture & food",
           "Economy & finance"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Health & social",
+            "count": 3,
+            "paid": 1,
+            "leadership": 2
+          },
           {
             "sector": "Energy & environment",
             "count": 2,
@@ -674,16 +687,10 @@
             "leadership": 1
           },
           {
-            "sector": "Health & social",
+            "sector": "Agriculture & food",
             "count": 2,
             "paid": 1,
-            "leadership": 1
-          },
-          {
-            "sector": "Agriculture & food",
-            "count": 1,
-            "paid": 1,
-            "leadership": 1
+            "leadership": 2
           },
           {
             "sector": "Economy & finance",
@@ -755,8 +762,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -766,7 +773,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Agriculture & food",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -1453,7 +1460,7 @@
         "leadership": 3,
         "sectorBreadth": 1,
         "committeeOverlaps": 0,
-        "classifiedTotal": 2,
+        "classifiedTotal": 3,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social"
@@ -1461,9 +1468,9 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 2,
-            "paid": 2,
-            "leadership": 2
+            "count": 3,
+            "paid": 3,
+            "leadership": 3
           }
         ],
         "ties": [
@@ -1496,7 +1503,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           }
@@ -1645,19 +1652,18 @@
         "total": 11,
         "paid": 5,
         "leadership": 3,
-        "sectorBreadth": 3,
-        "committeeOverlaps": 4,
+        "sectorBreadth": 2,
+        "committeeOverlaps": 5,
         "classifiedTotal": 6,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
-          "Economy & finance",
-          "Politics & civic"
+          "Economy & finance"
         ],
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 4,
+            "count": 5,
             "paid": 3,
             "leadership": 2
           },
@@ -1665,12 +1671,6 @@
             "sector": "Economy & finance",
             "count": 1,
             "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Politics & civic",
-            "count": 1,
-            "paid": 0,
             "leadership": 0
           }
         ],
@@ -1759,8 +1759,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Politics & civic",
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-13"
           },
           {
@@ -3684,21 +3684,21 @@
         "paid": 11,
         "leadership": 8,
         "sectorBreadth": 6,
-        "committeeOverlaps": 1,
+        "committeeOverlaps": 2,
         "classifiedTotal": 11,
         "primarySector": "Transport & telecom",
         "sectors": [
           "Transport & telecom",
           "Economy & finance",
+          "Health & social",
           "Energy & environment",
           "Politics & civic",
-          "Education & culture",
-          "Health & social"
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Transport & telecom",
-            "count": 3,
+            "count": 2,
             "paid": 2,
             "leadership": 2
           },
@@ -3707,6 +3707,12 @@
             "count": 2,
             "paid": 2,
             "leadership": 1
+          },
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 2,
+            "leadership": 0
           },
           {
             "sector": "Energy & environment",
@@ -3721,15 +3727,9 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Technology & innovation",
             "count": 1,
-            "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Health & social",
-            "count": 1,
-            "paid": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -3829,8 +3829,8 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -3884,7 +3884,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -4261,20 +4261,27 @@
         "total": 4,
         "paid": 2,
         "leadership": 1,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 1,
         "classifiedTotal": 3,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Entertainment & hospitality",
           "Security & defence"
         ],
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 2,
+            "count": 1,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           },
           {
             "sector": "Security & defence",
@@ -4324,7 +4331,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Economy & finance",
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-06-17"
           }
@@ -4500,21 +4507,21 @@
         "leadership": 2,
         "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 7,
+        "classifiedTotal": 8,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 6,
-            "paid": 4,
+            "count": 7,
+            "paid": 5,
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 1
@@ -4550,7 +4557,7 @@
             "legalType": "Keine Angaben",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Economy & finance",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -4616,7 +4623,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -4777,21 +4784,14 @@
         "total": 6,
         "paid": 6,
         "leadership": 2,
-        "sectorBreadth": 2,
-        "committeeOverlaps": 3,
-        "classifiedTotal": 3,
-        "primarySector": "Economy & finance",
+        "sectorBreadth": 1,
+        "committeeOverlaps": 1,
+        "classifiedTotal": 1,
+        "primarySector": "Transport & telecom",
         "sectors": [
-          "Economy & finance",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
-          {
-            "sector": "Economy & finance",
-            "count": 2,
-            "paid": 2,
-            "leadership": 0
-          },
           {
             "sector": "Transport & telecom",
             "count": 1,
@@ -4840,8 +4840,8 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-08-05"
           },
           {
@@ -4851,8 +4851,8 @@
             "legalType": "Keine Angaben",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-08-05"
           },
           {
@@ -6922,14 +6922,15 @@
         "total": 22,
         "paid": 9,
         "leadership": 11,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 5,
-        "classifiedTotal": 10,
+        "classifiedTotal": 11,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
           "Energy & environment",
           "Education & culture",
+          "Sports & recreation",
           "Politics & civic"
         ],
         "sectorBreakdown": [
@@ -6950,6 +6951,12 @@
             "count": 1,
             "paid": 1,
             "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 1
           },
           {
             "sector": "Politics & civic",
@@ -7109,7 +7116,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -8364,14 +8371,15 @@
         "total": 17,
         "paid": 11,
         "leadership": 10,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 0,
-        "classifiedTotal": 9,
+        "classifiedTotal": 10,
         "primarySector": "Education & culture",
         "sectors": [
           "Education & culture",
           "Economy & finance",
           "Health & social",
+          "Entertainment & hospitality",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
@@ -8390,6 +8398,12 @@
           {
             "sector": "Health & social",
             "count": 2,
+            "paid": 1,
+            "leadership": 1
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
             "paid": 1,
             "leadership": 1
           },
@@ -8463,7 +8477,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -9104,15 +9118,21 @@
         "paid": 5,
         "leadership": 3,
         "sectorBreadth": 3,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 3,
-        "primarySector": "Economy & finance",
+        "committeeOverlaps": 3,
+        "classifiedTotal": 5,
+        "primarySector": "Health & social",
         "sectors": [
+          "Health & social",
           "Economy & finance",
-          "Education & culture",
-          "Health & social"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Health & social",
+            "count": 3,
+            "paid": 2,
+            "leadership": 0
+          },
           {
             "sector": "Economy & finance",
             "count": 1,
@@ -9120,16 +9140,10 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
-            "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Health & social",
-            "count": 1,
-            "paid": 1,
-            "leadership": 0
+            "paid": 0,
+            "leadership": 1
           }
         ],
         "ties": [
@@ -9162,8 +9176,8 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -9195,7 +9209,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -9206,8 +9220,8 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -10290,22 +10304,23 @@
         "total": 12,
         "paid": 3,
         "leadership": 5,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 5,
-        "classifiedTotal": 6,
-        "primarySector": "Economy & finance",
+        "classifiedTotal": 7,
+        "primarySector": "Agriculture & food",
         "sectors": [
-          "Economy & finance",
-          "Transport & telecom",
           "Agriculture & food",
-          "Politics & civic"
+          "Transport & telecom",
+          "Economy & finance",
+          "Politics & civic",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Economy & finance",
+            "sector": "Agriculture & food",
             "count": 2,
             "paid": 1,
-            "leadership": 0
+            "leadership": 1
           },
           {
             "sector": "Transport & telecom",
@@ -10314,13 +10329,19 @@
             "leadership": 1
           },
           {
-            "sector": "Agriculture & food",
+            "sector": "Economy & finance",
             "count": 1,
             "paid": 0,
             "leadership": 0
           },
           {
             "sector": "Politics & civic",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -10345,8 +10366,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Agriculture & food",
+            "committeeOverlap": true,
             "modified": "2026-06-04"
           },
           {
@@ -10356,8 +10377,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-06-04"
           },
           {
@@ -10400,7 +10421,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -10586,8 +10607,8 @@
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture",
           "Energy & environment",
+          "Health & social",
           "Foreign affairs"
         ],
         "sectorBreakdown": [
@@ -10598,13 +10619,13 @@
             "leadership": 2
           },
           {
-            "sector": "Education & culture",
+            "sector": "Energy & environment",
             "count": 1,
             "paid": 1,
             "leadership": 0
           },
           {
-            "sector": "Energy & environment",
+            "sector": "Health & social",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -10657,7 +10678,7 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -12076,18 +12097,19 @@
         "total": 10,
         "paid": 1,
         "leadership": 2,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 1,
-        "classifiedTotal": 4,
-        "primarySector": "Transport & telecom",
+        "classifiedTotal": 5,
+        "primarySector": "Technology & innovation",
         "sectors": [
-          "Transport & telecom",
+          "Technology & innovation",
           "Education & culture",
-          "Energy & environment"
+          "Energy & environment",
+          "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "count": 2,
             "paid": 0,
             "leadership": 0
@@ -12100,6 +12122,12 @@
           },
           {
             "sector": "Energy & environment",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Transport & telecom",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -12135,7 +12163,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -12201,7 +12229,7 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -12549,24 +12577,24 @@
         "paid": 1,
         "leadership": 2,
         "sectorBreadth": 2,
-        "committeeOverlaps": 2,
-        "classifiedTotal": 2,
-        "primarySector": "Economy & finance",
+        "committeeOverlaps": 3,
+        "classifiedTotal": 3,
+        "primarySector": "Health & social",
         "sectors": [
-          "Economy & finance",
-          "Health & social"
+          "Health & social",
+          "Economy & finance"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
           {
             "sector": "Economy & finance",
             "count": 1,
             "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Health & social",
-            "count": 1,
-            "paid": 0,
             "leadership": 0
           }
         ],
@@ -12633,8 +12661,8 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -12818,12 +12846,12 @@
         "paid": 8,
         "leadership": 4,
         "sectorBreadth": 2,
-        "committeeOverlaps": 4,
+        "committeeOverlaps": 3,
         "classifiedTotal": 4,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Transport & telecom"
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -12833,7 +12861,7 @@
             "leadership": 0
           },
           {
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -12869,8 +12897,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": "Transport & telecom",
-            "committeeOverlap": true,
+            "sector": "Technology & innovation",
+            "committeeOverlap": false,
             "modified": "2026-08-12"
           },
           {
@@ -13301,15 +13329,16 @@
         "total": 9,
         "paid": 5,
         "leadership": 5,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 3,
-        "classifiedTotal": 5,
+        "classifiedTotal": 6,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
           "Energy & environment",
           "Transport & telecom",
-          "Education & culture"
+          "Education & culture",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -13335,6 +13364,12 @@
             "count": 1,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -13433,7 +13468,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           }
@@ -14336,24 +14371,19 @@
         "total": 19,
         "paid": 10,
         "leadership": 10,
-        "sectorBreadth": 5,
-        "committeeOverlaps": 2,
+        "sectorBreadth": 6,
+        "committeeOverlaps": 1,
         "classifiedTotal": 8,
-        "primarySector": "Transport & telecom",
+        "primarySector": "Economy & finance",
         "sectors": [
-          "Transport & telecom",
           "Economy & finance",
           "Health & social",
           "Energy & environment",
+          "Transport & telecom",
+          "Technology & innovation",
           "Education & culture"
         ],
         "sectorBreakdown": [
-          {
-            "sector": "Transport & telecom",
-            "count": 2,
-            "paid": 2,
-            "leadership": 1
-          },
           {
             "sector": "Economy & finance",
             "count": 2,
@@ -14371,6 +14401,18 @@
             "count": 1,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Transport & telecom",
+            "count": 1,
+            "paid": 1,
+            "leadership": 1
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
           },
           {
             "sector": "Education & culture",
@@ -14475,8 +14517,8 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Transport & telecom",
-            "committeeOverlap": true,
+            "sector": "Technology & innovation",
+            "committeeOverlap": false,
             "modified": "2026-08-12"
           },
           {
@@ -14962,13 +15004,14 @@
         "total": 8,
         "paid": 3,
         "leadership": 1,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 1,
-        "classifiedTotal": 3,
+        "classifiedTotal": 4,
         "primarySector": "Education & culture",
         "sectors": [
           "Education & culture",
           "Energy & environment",
+          "Technology & innovation",
           "Politics & civic"
         ],
         "sectorBreakdown": [
@@ -14980,6 +15023,12 @@
           },
           {
             "sector": "Energy & environment",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -15021,7 +15070,7 @@
             "legalType": "Stiftung",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -15720,14 +15769,16 @@
         "total": 14,
         "paid": 6,
         "leadership": 5,
-        "sectorBreadth": 3,
+        "sectorBreadth": 5,
         "committeeOverlaps": 2,
-        "classifiedTotal": 5,
+        "classifiedTotal": 7,
         "primarySector": "Energy & environment",
         "sectors": [
           "Energy & environment",
           "Economy & finance",
-          "Agriculture & food"
+          "Agriculture & food",
+          "Sports & recreation",
+          "Education & culture"
         ],
         "sectorBreakdown": [
           {
@@ -15746,6 +15797,18 @@
             "sector": "Agriculture & food",
             "count": 1,
             "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 1
+          },
+          {
+            "sector": "Education & culture",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -15834,7 +15897,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -15900,7 +15963,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Education & culture",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           }
@@ -17183,20 +17246,26 @@
         "leadership": 13,
         "sectorBreadth": 5,
         "committeeOverlaps": 2,
-        "classifiedTotal": 10,
+        "classifiedTotal": 11,
         "primarySector": "Transport & telecom",
         "sectors": [
           "Transport & telecom",
+          "Sports & recreation",
           "Economy & finance",
           "Energy & environment",
-          "Health & social",
-          "Education & culture"
+          "Health & social"
         ],
         "sectorBreakdown": [
           {
             "sector": "Transport & telecom",
             "count": 3,
             "paid": 3,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 2,
+            "paid": 1,
             "leadership": 0
           },
           {
@@ -17215,12 +17284,6 @@
             "sector": "Health & social",
             "count": 2,
             "paid": 0,
-            "leadership": 0
-          },
-          {
-            "sector": "Education & culture",
-            "count": 1,
-            "paid": 1,
             "leadership": 0
           }
         ],
@@ -17265,7 +17328,7 @@
             "legalType": "Keine Angaben",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -17507,7 +17570,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -17949,13 +18012,14 @@
         "total": 7,
         "paid": 0,
         "leadership": 1,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
-        "classifiedTotal": 3,
+        "classifiedTotal": 4,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
-          "Energy & environment"
+          "Energy & environment",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -17966,6 +18030,12 @@
           },
           {
             "sector": "Energy & environment",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -18001,7 +18071,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-07-19"
           },
@@ -18368,9 +18438,9 @@
           "Economy & finance",
           "Politics & civic",
           "Transport & telecom",
-          "Education & culture",
           "Energy & environment",
-          "Law & justice"
+          "Law & justice",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -18392,12 +18462,6 @@
             "leadership": 0
           },
           {
-            "sector": "Education & culture",
-            "count": 1,
-            "paid": 0,
-            "leadership": 0
-          },
-          {
             "sector": "Energy & environment",
             "count": 1,
             "paid": 0,
@@ -18405,6 +18469,12 @@
           },
           {
             "sector": "Law & justice",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -18550,7 +18620,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -18986,21 +19056,14 @@
         "total": 2,
         "paid": 0,
         "leadership": 0,
-        "sectorBreadth": 2,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 2,
-        "primarySector": "Economy & finance",
+        "sectorBreadth": 1,
+        "committeeOverlaps": 0,
+        "classifiedTotal": 1,
+        "primarySector": "Transport & telecom",
         "sectors": [
-          "Economy & finance",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
-          {
-            "sector": "Economy & finance",
-            "count": 1,
-            "paid": 0,
-            "leadership": 0
-          },
           {
             "sector": "Transport & telecom",
             "count": 1,
@@ -19016,8 +19079,8 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-08-04"
           },
           {
@@ -19308,25 +19371,32 @@
         "total": 7,
         "paid": 4,
         "leadership": 1,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
         "classifiedTotal": 6,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture"
+          "Education & culture",
+          "Entertainment & hospitality"
         ],
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 4,
-            "paid": 3,
+            "count": 3,
+            "paid": 2,
             "leadership": 1
           },
           {
             "sector": "Education & culture",
             "count": 2,
             "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 1,
             "leadership": 0
           }
         ],
@@ -19349,7 +19419,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -19550,20 +19620,20 @@
         "sectorBreadth": 2,
         "committeeOverlaps": 1,
         "classifiedTotal": 2,
-        "primarySector": "Education & culture",
+        "primarySector": "Foreign affairs",
         "sectors": [
-          "Education & culture",
-          "Foreign affairs"
+          "Foreign affairs",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Education & culture",
+            "sector": "Foreign affairs",
             "count": 1,
             "paid": 0,
             "leadership": 0
           },
           {
-            "sector": "Foreign affairs",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -19588,7 +19658,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -20061,8 +20131,8 @@
         "paid": 3,
         "leadership": 5,
         "sectorBreadth": 1,
-        "committeeOverlaps": 2,
-        "classifiedTotal": 2,
+        "committeeOverlaps": 3,
+        "classifiedTotal": 3,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social"
@@ -20070,9 +20140,9 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 2,
-            "paid": 1,
-            "leadership": 2
+            "count": 3,
+            "paid": 2,
+            "leadership": 3
           }
         ],
         "ties": [
@@ -20083,8 +20153,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-06-30"
           },
           {
@@ -20297,16 +20367,23 @@
         "total": 16,
         "paid": 7,
         "leadership": 9,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 0,
-        "classifiedTotal": 7,
-        "primarySector": "Education & culture",
+        "classifiedTotal": 9,
+        "primarySector": "Economy & finance",
         "sectors": [
-          "Education & culture",
           "Economy & finance",
-          "Health & social"
+          "Education & culture",
+          "Health & social",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Economy & finance",
+            "count": 3,
+            "paid": 3,
+            "leadership": 1
+          },
           {
             "sector": "Education & culture",
             "count": 3,
@@ -20314,16 +20391,16 @@
             "leadership": 2
           },
           {
-            "sector": "Economy & finance",
-            "count": 2,
-            "paid": 2,
-            "leadership": 1
-          },
-          {
             "sector": "Health & social",
             "count": 2,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -20367,7 +20444,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Economy & finance",
             "committeeOverlap": false,
             "modified": "2026-07-07"
           },
@@ -20499,7 +20576,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-07-07"
           }
@@ -20649,29 +20726,36 @@
         "total": 18,
         "paid": 9,
         "leadership": 1,
-        "sectorBreadth": 5,
-        "committeeOverlaps": 6,
-        "classifiedTotal": 11,
+        "sectorBreadth": 6,
+        "committeeOverlaps": 8,
+        "classifiedTotal": 13,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Health & social",
           "Education & culture",
           "Transport & telecom",
-          "Energy & environment",
-          "Health & social"
+          "Sports & recreation",
+          "Energy & environment"
         ],
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 5,
-            "paid": 2,
+            "count": 6,
+            "paid": 3,
+            "leadership": 0
+          },
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 1,
             "leadership": 0
           },
           {
             "sector": "Education & culture",
-            "count": 3,
+            "count": 2,
             "paid": 0,
-            "leadership": 1
+            "leadership": 0
           },
           {
             "sector": "Transport & telecom",
@@ -20680,13 +20764,13 @@
             "leadership": 0
           },
           {
-            "sector": "Energy & environment",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
-            "leadership": 0
+            "leadership": 1
           },
           {
-            "sector": "Health & social",
+            "sector": "Energy & environment",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -20722,8 +20806,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -20766,8 +20850,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -20799,7 +20883,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": true,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -21018,25 +21102,24 @@
         "total": 11,
         "paid": 7,
         "leadership": 6,
-        "sectorBreadth": 4,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
         "classifiedTotal": 4,
-        "primarySector": "Security & defence",
+        "primarySector": "Technology & innovation",
         "sectors": [
+          "Technology & innovation",
           "Security & defence",
-          "Transport & telecom",
-          "Energy & environment",
-          "Education & culture"
+          "Energy & environment"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Security & defence",
-            "count": 1,
+            "sector": "Technology & innovation",
+            "count": 2,
             "paid": 1,
             "leadership": 1
           },
           {
-            "sector": "Transport & telecom",
+            "sector": "Security & defence",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -21046,12 +21129,6 @@
             "count": 1,
             "paid": 0,
             "leadership": 1
-          },
-          {
-            "sector": "Education & culture",
-            "count": 1,
-            "paid": 0,
-            "leadership": 0
           }
         ],
         "ties": [
@@ -21062,7 +21139,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -21172,7 +21249,7 @@
             "legalType": "Öffentlich-rechtliche Anstalt",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           }
@@ -21310,16 +21387,23 @@
         "total": 18,
         "paid": 11,
         "leadership": 2,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
+        "classifiedTotal": 2,
         "primarySector": "Health & social",
         "sectors": [
-          "Health & social"
+          "Health & social",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Health & social",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -21443,7 +21527,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-13"
           },
@@ -22390,8 +22474,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-06-03"
           },
           {
@@ -22401,8 +22485,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-06-03"
           },
           {
@@ -22598,15 +22682,16 @@
         "total": 25,
         "paid": 19,
         "leadership": 14,
-        "sectorBreadth": 5,
+        "sectorBreadth": 6,
         "committeeOverlaps": 5,
-        "classifiedTotal": 13,
+        "classifiedTotal": 14,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
           "Energy & environment",
           "Transport & telecom",
           "Education & culture",
+          "Entertainment & hospitality",
           "Politics & civic"
         ],
         "sectorBreakdown": [
@@ -22633,6 +22718,12 @@
             "count": 2,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
           },
           {
             "sector": "Politics & civic",
@@ -22781,7 +22872,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -23208,13 +23299,15 @@
         "total": 8,
         "paid": 3,
         "leadership": 4,
-        "sectorBreadth": 2,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 2,
+        "sectorBreadth": 4,
+        "committeeOverlaps": 2,
+        "classifiedTotal": 4,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture"
+          "Education & culture",
+          "Health & social",
+          "Politics & civic"
         ],
         "sectorBreakdown": [
           {
@@ -23228,6 +23321,18 @@
             "count": 1,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Health & social",
+            "count": 1,
+            "paid": 0,
+            "leadership": 1
+          },
+          {
+            "sector": "Politics & civic",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -23293,8 +23398,8 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-06-26"
           },
           {
@@ -23304,7 +23409,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -23459,15 +23564,16 @@
         "total": 17,
         "paid": 9,
         "leadership": 5,
-        "sectorBreadth": 4,
-        "committeeOverlaps": 4,
-        "classifiedTotal": 6,
+        "sectorBreadth": 5,
+        "committeeOverlaps": 5,
+        "classifiedTotal": 9,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Transport & telecom",
           "Education & culture",
-          "Health & social"
+          "Health & social",
+          "Transport & telecom",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -23477,22 +23583,28 @@
             "leadership": 1
           },
           {
+            "sector": "Education & culture",
+            "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
             "sector": "Transport & telecom",
             "count": 1,
             "paid": 1,
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
-            "leadership": 0
-          },
-          {
-            "sector": "Health & social",
-            "count": 1,
-            "paid": 0,
-            "leadership": 0
+            "leadership": 1
           }
         ],
         "ties": [
@@ -23602,7 +23714,7 @@
             "legalType": "Einfache Gesellschaft",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-17"
           },
@@ -23624,8 +23736,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Education & culture",
+            "committeeOverlap": true,
             "modified": "2026-06-17"
           },
           {
@@ -23635,7 +23747,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-17"
           },
@@ -24788,14 +24900,15 @@
         "total": 9,
         "paid": 4,
         "leadership": 3,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 3,
-        "classifiedTotal": 6,
+        "classifiedTotal": 7,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Sports & recreation",
           "Transport & telecom",
-          "Education & culture"
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -24805,13 +24918,19 @@
             "leadership": 1
           },
           {
-            "sector": "Transport & telecom",
+            "sector": "Sports & recreation",
             "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Transport & telecom",
+            "count": 1,
             "paid": 1,
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -24880,7 +24999,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -24902,7 +25021,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -24913,7 +25032,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           }
@@ -26123,8 +26242,8 @@
         "paid": 0,
         "leadership": 2,
         "sectorBreadth": 1,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 1,
+        "committeeOverlaps": 2,
+        "classifiedTotal": 2,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social"
@@ -26132,7 +26251,7 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 1,
+            "count": 2,
             "paid": 0,
             "leadership": 0
           }
@@ -26178,8 +26297,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -26326,12 +26445,13 @@
         "total": 11,
         "paid": 6,
         "leadership": 6,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
-        "classifiedTotal": 5,
+        "classifiedTotal": 7,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Health & social",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
@@ -26339,6 +26459,12 @@
             "sector": "Economy & finance",
             "count": 4,
             "paid": 2,
+            "leadership": 2
+          },
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 1,
             "leadership": 2
           },
           {
@@ -26367,7 +26493,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -26433,7 +26559,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -26585,14 +26711,21 @@
         "total": 10,
         "paid": 3,
         "leadership": 3,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
-        "primarySector": "Economy & finance",
+        "classifiedTotal": 3,
+        "primarySector": "Politics & civic",
         "sectors": [
+          "Politics & civic",
           "Economy & finance"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Politics & civic",
+            "count": 2,
+            "paid": 1,
+            "leadership": 1
+          },
           {
             "sector": "Economy & finance",
             "count": 1,
@@ -26608,7 +26741,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -26663,7 +26796,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -28139,8 +28272,8 @@
         "paid": 9,
         "leadership": 5,
         "sectorBreadth": 4,
-        "committeeOverlaps": 6,
-        "classifiedTotal": 9,
+        "committeeOverlaps": 5,
+        "classifiedTotal": 8,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
@@ -28151,8 +28284,8 @@
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 5,
-            "paid": 4,
+            "count": 4,
+            "paid": 3,
             "leadership": 1
           },
           {
@@ -28237,8 +28370,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": null,
+            "committeeOverlap": false,
             "modified": "2026-06-03"
           },
           {
@@ -29063,14 +29196,15 @@
         "total": 14,
         "paid": 1,
         "leadership": 4,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 0,
-        "classifiedTotal": 6,
+        "classifiedTotal": 7,
         "primarySector": "Transport & telecom",
         "sectors": [
           "Transport & telecom",
           "Foreign affairs",
-          "Education & culture"
+          "Sports & recreation",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -29086,7 +29220,13 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -29155,7 +29295,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -29243,7 +29383,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           }
@@ -29363,8 +29503,8 @@
         "paid": 6,
         "leadership": 4,
         "sectorBreadth": 3,
-        "committeeOverlaps": 2,
-        "classifiedTotal": 4,
+        "committeeOverlaps": 4,
+        "classifiedTotal": 6,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
@@ -29374,8 +29514,8 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 2,
-            "paid": 1,
+            "count": 4,
+            "paid": 2,
             "leadership": 1
           },
           {
@@ -29454,8 +29594,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -29487,8 +29627,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           }
         ],
@@ -29930,15 +30070,21 @@
         "paid": 6,
         "leadership": 7,
         "sectorBreadth": 3,
-        "committeeOverlaps": 0,
-        "classifiedTotal": 4,
-        "primarySector": "Economy & finance",
+        "committeeOverlaps": 2,
+        "classifiedTotal": 5,
+        "primarySector": "Health & social",
         "sectors": [
+          "Health & social",
           "Economy & finance",
-          "Agriculture & food",
-          "Education & culture"
+          "Agriculture & food"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 2,
+            "leadership": 2
+          },
           {
             "sector": "Economy & finance",
             "count": 2,
@@ -29947,12 +30093,6 @@
           },
           {
             "sector": "Agriculture & food",
-            "count": 1,
-            "paid": 1,
-            "leadership": 1
-          },
-          {
-            "sector": "Education & culture",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -29966,8 +30106,8 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": true,
-            "sector": "Education & culture",
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -29988,8 +30128,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -30697,18 +30837,18 @@
         "paid": 4,
         "leadership": 4,
         "sectorBreadth": 4,
-        "committeeOverlaps": 2,
+        "committeeOverlaps": 1,
         "classifiedTotal": 4,
-        "primarySector": "Economy & finance",
+        "primarySector": "Entertainment & hospitality",
         "sectors": [
-          "Economy & finance",
+          "Entertainment & hospitality",
           "Security & defence",
-          "Education & culture",
-          "Energy & environment"
+          "Energy & environment",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Economy & finance",
+            "sector": "Entertainment & hospitality",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -30720,13 +30860,13 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Energy & environment",
             "count": 1,
             "paid": 1,
             "leadership": 0
           },
           {
-            "sector": "Energy & environment",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -30751,8 +30891,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": "Entertainment & hospitality",
+            "committeeOverlap": false,
             "modified": "2026-06-30"
           },
           {
@@ -30773,7 +30913,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-30"
           },
@@ -30926,17 +31066,24 @@
         "total": 10,
         "paid": 5,
         "leadership": 6,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 0,
-        "classifiedTotal": 5,
-        "primarySector": "Politics & civic",
+        "classifiedTotal": 7,
+        "primarySector": "Health & social",
         "sectors": [
+          "Health & social",
           "Politics & civic",
           "Economy & finance",
           "Education & culture",
-          "Health & social"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 1,
+            "leadership": 1
+          },
           {
             "sector": "Politics & civic",
             "count": 2,
@@ -30956,7 +31103,7 @@
             "leadership": 1
           },
           {
-            "sector": "Health & social",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -31014,7 +31161,7 @@
             "legalType": "Stiftung",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -31058,7 +31205,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -32460,14 +32607,21 @@
         "total": 5,
         "paid": 2,
         "leadership": 1,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
-        "primarySector": "Health & social",
+        "classifiedTotal": 4,
+        "primarySector": "Politics & civic",
         "sectors": [
+          "Politics & civic",
           "Health & social"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Politics & civic",
+            "count": 3,
+            "paid": 0,
+            "leadership": 0
+          },
           {
             "sector": "Health & social",
             "count": 1,
@@ -32505,7 +32659,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -32516,7 +32670,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -32527,7 +32681,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           }
@@ -32640,14 +32794,15 @@
         "total": 12,
         "paid": 4,
         "leadership": 7,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 0,
         "classifiedTotal": 9,
         "primarySector": "Energy & environment",
         "sectors": [
           "Energy & environment",
           "Transport & telecom",
-          "Politics & civic"
+          "Politics & civic",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -32658,7 +32813,7 @@
           },
           {
             "sector": "Transport & telecom",
-            "count": 3,
+            "count": 2,
             "paid": 1,
             "leadership": 1
           },
@@ -32666,6 +32821,12 @@
             "sector": "Politics & civic",
             "count": 1,
             "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -32776,7 +32937,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -33551,13 +33712,14 @@
         "total": 8,
         "paid": 4,
         "leadership": 4,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 1,
-        "classifiedTotal": 2,
+        "classifiedTotal": 3,
         "primarySector": "Energy & environment",
         "sectors": [
           "Energy & environment",
-          "Economy & finance"
+          "Economy & finance",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -33571,6 +33733,12 @@
             "count": 1,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -33658,7 +33826,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           }
@@ -33777,12 +33945,21 @@
         "total": 3,
         "paid": 2,
         "leadership": 1,
-        "sectorBreadth": 0,
-        "committeeOverlaps": 0,
-        "classifiedTotal": 0,
-        "primarySector": null,
-        "sectors": [],
-        "sectorBreakdown": [],
+        "sectorBreadth": 1,
+        "committeeOverlaps": 1,
+        "classifiedTotal": 1,
+        "primarySector": "Economy & finance",
+        "sectors": [
+          "Economy & finance"
+        ],
+        "sectorBreakdown": [
+          {
+            "sector": "Economy & finance",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          }
+        ],
         "ties": [
           {
             "organization": "EXPERTsuisse",
@@ -33791,8 +33968,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-06-30"
           },
           {
@@ -34347,16 +34524,23 @@
         "total": 4,
         "paid": 0,
         "leadership": 0,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
+        "classifiedTotal": 2,
         "primarySector": "Foreign affairs",
         "sectors": [
-          "Foreign affairs"
+          "Foreign affairs",
+          "Politics & civic"
         ],
         "sectorBreakdown": [
           {
             "sector": "Foreign affairs",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Politics & civic",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -34370,7 +34554,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -35059,7 +35243,7 @@
         "leadership": 0,
         "sectorBreadth": 2,
         "committeeOverlaps": 1,
-        "classifiedTotal": 5,
+        "classifiedTotal": 7,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
@@ -35068,8 +35252,8 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 4,
-            "paid": 1,
+            "count": 6,
+            "paid": 2,
             "leadership": 0
           },
           {
@@ -35087,7 +35271,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -35131,7 +35315,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -35307,16 +35491,23 @@
         "total": 8,
         "paid": 5,
         "leadership": 4,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 1,
-        "classifiedTotal": 3,
-        "primarySector": "Education & culture",
+        "classifiedTotal": 4,
+        "primarySector": "Sports & recreation",
         "sectors": [
+          "Sports & recreation",
           "Education & culture",
           "Economy & finance",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 1,
+            "leadership": 1
+          },
           {
             "sector": "Education & culture",
             "count": 1,
@@ -35366,7 +35557,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-01-26"
           },
@@ -35571,15 +35762,16 @@
         "total": 25,
         "paid": 12,
         "leadership": 14,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 2,
-        "classifiedTotal": 9,
+        "classifiedTotal": 13,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
           "Health & social",
+          "Politics & civic",
           "Law & justice",
-          "Politics & civic"
+          "Education & culture"
         ],
         "sectorBreakdown": [
           {
@@ -35590,9 +35782,15 @@
           },
           {
             "sector": "Health & social",
+            "count": 3,
+            "paid": 1,
+            "leadership": 3
+          },
+          {
+            "sector": "Politics & civic",
             "count": 2,
             "paid": 1,
-            "leadership": 2
+            "leadership": 1
           },
           {
             "sector": "Law & justice",
@@ -35601,9 +35799,9 @@
             "leadership": 0
           },
           {
-            "sector": "Politics & civic",
-            "count": 1,
-            "paid": 1,
+            "sector": "Education & culture",
+            "count": 2,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -35747,7 +35945,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -35758,7 +35956,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -35824,7 +36022,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Education & culture",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -35835,7 +36033,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Education & culture",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -36228,13 +36426,15 @@
         "total": 28,
         "paid": 10,
         "leadership": 10,
-        "sectorBreadth": 2,
+        "sectorBreadth": 4,
         "committeeOverlaps": 0,
-        "classifiedTotal": 3,
+        "classifiedTotal": 5,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
-          "Energy & environment"
+          "Entertainment & hospitality",
+          "Energy & environment",
+          "Agriculture & food"
         ],
         "sectorBreakdown": [
           {
@@ -36244,9 +36444,21 @@
             "leadership": 1
           },
           {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 1,
+            "leadership": 1
+          },
+          {
             "sector": "Energy & environment",
             "count": 1,
             "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Agriculture & food",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -36280,7 +36492,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -36489,7 +36701,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Agriculture & food",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -36677,15 +36889,15 @@
         "sectorBreadth": 3,
         "committeeOverlaps": 0,
         "classifiedTotal": 3,
-        "primarySector": "Education & culture",
+        "primarySector": "Sports & recreation",
         "sectors": [
-          "Education & culture",
+          "Sports & recreation",
           "Energy & environment",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -36755,7 +36967,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -37914,12 +38126,13 @@
         "total": 3,
         "paid": 1,
         "leadership": 2,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
+        "classifiedTotal": 2,
         "primarySector": "Agriculture & food",
         "sectors": [
-          "Agriculture & food"
+          "Agriculture & food",
+          "Politics & civic"
         ],
         "sectorBreakdown": [
           {
@@ -37927,6 +38140,12 @@
             "count": 1,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Politics & civic",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -37959,7 +38178,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           }
@@ -38072,13 +38291,14 @@
         "total": 10,
         "paid": 4,
         "leadership": 5,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
-        "classifiedTotal": 3,
+        "classifiedTotal": 4,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture"
+          "Education & culture",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -38089,6 +38309,12 @@
           },
           {
             "sector": "Education & culture",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -38135,7 +38361,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -38929,13 +39155,14 @@
         "total": 9,
         "paid": 1,
         "leadership": 2,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 3,
-        "classifiedTotal": 4,
+        "classifiedTotal": 5,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Transport & telecom"
+          "Technology & innovation",
+          "Health & social"
         ],
         "sectorBreakdown": [
           {
@@ -38945,10 +39172,16 @@
             "leadership": 1
           },
           {
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Health & social",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -38970,7 +39203,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": "Transport & telecom",
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -39025,7 +39258,7 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -39172,7 +39405,7 @@
         "primarySector": "Energy & environment",
         "sectors": [
           "Energy & environment",
-          "Education & culture"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -39182,7 +39415,7 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -39251,7 +39484,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -39965,21 +40198,21 @@
         "leadership": 6,
         "sectorBreadth": 5,
         "committeeOverlaps": 2,
-        "classifiedTotal": 5,
+        "classifiedTotal": 7,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
           "Agriculture & food",
           "Security & defence",
           "Economy & finance",
-          "Education & culture"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 1,
-            "paid": 1,
-            "leadership": 1
+            "count": 3,
+            "paid": 3,
+            "leadership": 2
           },
           {
             "sector": "Agriculture & food",
@@ -40000,7 +40233,7 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -40047,7 +40280,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -40080,7 +40313,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -40135,7 +40368,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           }
@@ -40490,18 +40723,25 @@
         "total": 6,
         "paid": 0,
         "leadership": 0,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 2,
-        "classifiedTotal": 3,
+        "classifiedTotal": 4,
         "primarySector": "Foreign affairs",
         "sectors": [
           "Foreign affairs",
+          "Agriculture & food",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
             "sector": "Foreign affairs",
             "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Agriculture & food",
+            "count": 1,
             "paid": 0,
             "leadership": 0
           },
@@ -40553,7 +40793,7 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Agriculture & food",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -41539,8 +41779,8 @@
         "sectors": [
           "Politics & civic",
           "Education & culture",
-          "Economy & finance",
-          "Energy & environment"
+          "Energy & environment",
+          "Entertainment & hospitality"
         ],
         "sectorBreakdown": [
           {
@@ -41556,13 +41796,13 @@
             "leadership": 1
           },
           {
-            "sector": "Economy & finance",
+            "sector": "Energy & environment",
             "count": 1,
             "paid": 1,
             "leadership": 0
           },
           {
-            "sector": "Energy & environment",
+            "sector": "Entertainment & hospitality",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -41620,7 +41860,7 @@
             "legalType": "Kommission",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -41831,13 +42071,13 @@
         "paid": 13,
         "leadership": 9,
         "sectorBreadth": 5,
-        "committeeOverlaps": 4,
+        "committeeOverlaps": 3,
         "classifiedTotal": 8,
         "primarySector": "Transport & telecom",
         "sectors": [
           "Transport & telecom",
           "Politics & civic",
-          "Economy & finance",
+          "Entertainment & hospitality",
           "Energy & environment",
           "Law & justice"
         ],
@@ -41855,7 +42095,7 @@
             "leadership": 1
           },
           {
-            "sector": "Economy & finance",
+            "sector": "Entertainment & hospitality",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -42002,8 +42242,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": "Entertainment & hospitality",
+            "committeeOverlap": false,
             "modified": "2026-07-08"
           },
           {
@@ -42226,18 +42466,25 @@
         "total": 5,
         "paid": 1,
         "leadership": 1,
-        "sectorBreadth": 1,
-        "committeeOverlaps": 3,
+        "sectorBreadth": 2,
+        "committeeOverlaps": 2,
         "classifiedTotal": 3,
         "primarySector": "Education & culture",
         "sectors": [
-          "Education & culture"
+          "Education & culture",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Education & culture",
-            "count": 3,
+            "count": 2,
             "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -42282,8 +42529,8 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
-            "committeeOverlap": true,
+            "sector": "Sports & recreation",
+            "committeeOverlap": false,
             "modified": "2026-06-30"
           },
           {
@@ -42412,12 +42659,21 @@
         "total": 1,
         "paid": 0,
         "leadership": 0,
-        "sectorBreadth": 0,
+        "sectorBreadth": 1,
         "committeeOverlaps": 0,
-        "classifiedTotal": 0,
-        "primarySector": null,
-        "sectors": [],
-        "sectorBreakdown": [],
+        "classifiedTotal": 1,
+        "primarySector": "Sports & recreation",
+        "sectors": [
+          "Sports & recreation"
+        ],
+        "sectorBreakdown": [
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          }
+        ],
         "ties": [
           {
             "organization": "Association FIS Ski Alpin Championnats du monde 2027 Crans-Montana",
@@ -42426,7 +42682,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           }
@@ -42539,13 +42795,14 @@
         "total": 8,
         "paid": 1,
         "leadership": 4,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
-        "classifiedTotal": 2,
+        "classifiedTotal": 3,
         "primarySector": "Education & culture",
         "sectors": [
           "Education & culture",
-          "Energy & environment"
+          "Energy & environment",
+          "Politics & civic"
         ],
         "sectorBreakdown": [
           {
@@ -42556,6 +42813,12 @@
           },
           {
             "sector": "Energy & environment",
+            "count": 1,
+            "paid": 0,
+            "leadership": 1
+          },
+          {
+            "sector": "Politics & civic",
             "count": 1,
             "paid": 0,
             "leadership": 1
@@ -42613,7 +42876,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -44059,16 +44322,23 @@
         "total": 4,
         "paid": 0,
         "leadership": 1,
-        "sectorBreadth": 1,
+        "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 1,
+        "classifiedTotal": 2,
         "primarySector": "Education & culture",
         "sectors": [
-          "Education & culture"
+          "Education & culture",
+          "Health & social"
         ],
         "sectorBreakdown": [
           {
             "sector": "Education & culture",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
+            "sector": "Health & social",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -44115,7 +44385,7 @@
             "legalType": "Keine Angaben",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           }
@@ -44924,8 +45194,8 @@
         "paid": 0,
         "leadership": 0,
         "sectorBreadth": 1,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 1,
+        "committeeOverlaps": 2,
+        "classifiedTotal": 2,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social"
@@ -44933,7 +45203,7 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 1,
+            "count": 2,
             "paid": 0,
             "leadership": 0
           }
@@ -44957,8 +45227,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-06-26"
           },
           {
@@ -45093,7 +45363,7 @@
         "primarySector": "Agriculture & food",
         "sectors": [
           "Agriculture & food",
-          "Education & culture",
+          "Sports & recreation",
           "Politics & civic",
           "Transport & telecom"
         ],
@@ -45105,7 +45375,7 @@
             "leadership": 0
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 1,
             "leadership": 1
@@ -45131,7 +45401,7 @@
             "legalType": "Kommission",
             "paid": true,
             "leadership": true,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -45353,7 +45623,7 @@
         "leadership": 3,
         "sectorBreadth": 4,
         "committeeOverlaps": 4,
-        "classifiedTotal": 10,
+        "classifiedTotal": 11,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
@@ -45364,7 +45634,7 @@
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 3,
+            "count": 4,
             "paid": 2,
             "leadership": 1
           },
@@ -45549,7 +45819,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -46025,12 +46295,21 @@
         "total": 3,
         "paid": 2,
         "leadership": 0,
-        "sectorBreadth": 0,
+        "sectorBreadth": 1,
         "committeeOverlaps": 0,
-        "classifiedTotal": 0,
-        "primarySector": null,
-        "sectors": [],
-        "sectorBreakdown": [],
+        "classifiedTotal": 1,
+        "primarySector": "Sports & recreation",
+        "sectors": [
+          "Sports & recreation"
+        ],
+        "sectorBreakdown": [
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
+          }
+        ],
         "ties": [
           {
             "organization": "FernUni Schweiz",
@@ -46061,7 +46340,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           }
@@ -46313,12 +46592,13 @@
         "total": 7,
         "paid": 2,
         "leadership": 5,
-        "sectorBreadth": 1,
-        "committeeOverlaps": 3,
-        "classifiedTotal": 3,
+        "sectorBreadth": 2,
+        "committeeOverlaps": 4,
+        "classifiedTotal": 4,
         "primarySector": "Economy & finance",
         "sectors": [
-          "Economy & finance"
+          "Economy & finance",
+          "Agriculture & food"
         ],
         "sectorBreakdown": [
           {
@@ -46326,6 +46606,12 @@
             "count": 3,
             "paid": 1,
             "leadership": 3
+          },
+          {
+            "sector": "Agriculture & food",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -46402,8 +46688,8 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Agriculture & food",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           }
         ],
@@ -46528,19 +46814,21 @@
         "total": 8,
         "paid": 6,
         "leadership": 3,
-        "sectorBreadth": 2,
-        "committeeOverlaps": 3,
-        "classifiedTotal": 4,
+        "sectorBreadth": 4,
+        "committeeOverlaps": 2,
+        "classifiedTotal": 5,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture"
+          "Education & culture",
+          "Entertainment & hospitality",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 3,
-            "paid": 3,
+            "count": 2,
+            "paid": 2,
             "leadership": 1
           },
           {
@@ -46548,6 +46836,18 @@
             "count": 1,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -46613,8 +46913,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": "Entertainment & hospitality",
+            "committeeOverlap": false,
             "modified": "2026-08-05"
           },
           {
@@ -46624,7 +46924,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -46806,7 +47106,7 @@
           "Politics & civic",
           "Economy & finance",
           "Education & culture",
-          "Energy & environment"
+          "Entertainment & hospitality"
         ],
         "sectorBreakdown": [
           {
@@ -46828,7 +47128,7 @@
             "leadership": 0
           },
           {
-            "sector": "Energy & environment",
+            "sector": "Entertainment & hospitality",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -46908,7 +47208,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": "Energy & environment",
+            "sector": "Entertainment & hospitality",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           }
@@ -47046,17 +47346,24 @@
         "total": 12,
         "paid": 6,
         "leadership": 1,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 0,
-        "classifiedTotal": 6,
-        "primarySector": "Politics & civic",
+        "classifiedTotal": 8,
+        "primarySector": "Education & culture",
         "sectors": [
-          "Politics & civic",
           "Education & culture",
+          "Politics & civic",
           "Economy & finance",
+          "Technology & innovation",
           "Energy & environment"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Education & culture",
+            "count": 3,
+            "paid": 1,
+            "leadership": 0
+          },
           {
             "sector": "Politics & civic",
             "count": 2,
@@ -47064,13 +47371,13 @@
             "leadership": 0
           },
           {
-            "sector": "Education & culture",
-            "count": 2,
+            "sector": "Economy & finance",
+            "count": 1,
             "paid": 1,
             "leadership": 0
           },
           {
-            "sector": "Economy & finance",
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -47090,7 +47397,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -47167,7 +47474,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Education & culture",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -47952,27 +48259,20 @@
         "total": 13,
         "paid": 6,
         "leadership": 6,
-        "sectorBreadth": 4,
-        "committeeOverlaps": 1,
+        "sectorBreadth": 3,
+        "committeeOverlaps": 3,
         "classifiedTotal": 5,
-        "primarySector": "Economy & finance",
+        "primarySector": "Health & social",
         "sectors": [
-          "Economy & finance",
-          "Education & culture",
+          "Health & social",
           "Politics & civic",
-          "Health & social"
+          "Economy & finance"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Economy & finance",
-            "count": 2,
-            "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Education & culture",
-            "count": 1,
-            "paid": 1,
+            "sector": "Health & social",
+            "count": 3,
+            "paid": 2,
             "leadership": 0
           },
           {
@@ -47982,7 +48282,7 @@
             "leadership": 1
           },
           {
-            "sector": "Health & social",
+            "sector": "Economy & finance",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -48029,7 +48329,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
+            "sector": null,
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -48040,8 +48340,8 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-06-04"
           },
           {
@@ -48051,8 +48351,8 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-06-04"
           },
           {
@@ -48737,15 +49037,22 @@
         "total": 11,
         "paid": 3,
         "leadership": 5,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 1,
-        "classifiedTotal": 2,
-        "primarySector": "Education & culture",
+        "classifiedTotal": 3,
+        "primarySector": "Politics & civic",
         "sectors": [
+          "Politics & civic",
           "Education & culture",
           "Security & defence"
         ],
         "sectorBreakdown": [
+          {
+            "sector": "Politics & civic",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
           {
             "sector": "Education & culture",
             "count": 1,
@@ -48778,7 +49085,7 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Politics & civic",
             "committeeOverlap": false,
             "modified": "2026-07-16"
           },
@@ -49724,14 +50031,15 @@
         "total": 18,
         "paid": 12,
         "leadership": 11,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 6,
-        "classifiedTotal": 6,
+        "classifiedTotal": 7,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
           "Agriculture & food",
-          "Health & social"
+          "Health & social",
+          "Technology & innovation"
         ],
         "sectorBreakdown": [
           {
@@ -49748,6 +50056,12 @@
           },
           {
             "sector": "Health & social",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
             "count": 1,
             "paid": 1,
             "leadership": 0
@@ -49860,7 +50174,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -50366,8 +50680,8 @@
         "paid": 9,
         "leadership": 5,
         "sectorBreadth": 5,
-        "committeeOverlaps": 4,
-        "classifiedTotal": 8,
+        "committeeOverlaps": 5,
+        "classifiedTotal": 9,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
@@ -50379,8 +50693,8 @@
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 4,
-            "paid": 2,
+            "count": 5,
+            "paid": 3,
             "leadership": 2
           },
           {
@@ -50471,8 +50785,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-06-03"
           },
           {
@@ -50888,14 +51202,15 @@
         "total": 15,
         "paid": 11,
         "leadership": 9,
-        "sectorBreadth": 3,
+        "sectorBreadth": 4,
         "committeeOverlaps": 8,
-        "classifiedTotal": 9,
+        "classifiedTotal": 11,
         "primarySector": "Transport & telecom",
         "sectors": [
           "Transport & telecom",
+          "Sports & recreation",
           "Economy & finance",
-          "Education & culture"
+          "Health & social"
         ],
         "sectorBreakdown": [
           {
@@ -50905,13 +51220,19 @@
             "leadership": 6
           },
           {
+            "sector": "Sports & recreation",
+            "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
             "sector": "Economy & finance",
             "count": 1,
             "paid": 1,
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
+            "sector": "Health & social",
             "count": 1,
             "paid": 0,
             "leadership": 0
@@ -51057,7 +51378,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -51068,7 +51389,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -51079,7 +51400,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           }
@@ -51728,25 +52049,32 @@
         "total": 12,
         "paid": 9,
         "leadership": 5,
-        "sectorBreadth": 2,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 2,
+        "sectorBreadth": 3,
+        "committeeOverlaps": 2,
+        "classifiedTotal": 4,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
-          "Transport & telecom"
+          "Transport & telecom",
+          "Education & culture"
         ],
         "sectorBreakdown": [
           {
             "sector": "Health & social",
-            "count": 1,
-            "paid": 1,
-            "leadership": 0
+            "count": 2,
+            "paid": 2,
+            "leadership": 1
           },
           {
             "sector": "Transport & telecom",
             "count": 1,
             "paid": 1,
+            "leadership": 0
+          },
+          {
+            "sector": "Education & culture",
+            "count": 1,
+            "paid": 0,
             "leadership": 0
           }
         ],
@@ -51758,8 +52086,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Health & social",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -51868,7 +52196,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Education & culture",
             "committeeOverlap": false,
             "modified": "2026-08-05"
           },
@@ -53020,7 +53348,7 @@
         "total": 17,
         "paid": 4,
         "leadership": 10,
-        "sectorBreadth": 4,
+        "sectorBreadth": 5,
         "committeeOverlaps": 2,
         "classifiedTotal": 11,
         "primarySector": "Agriculture & food",
@@ -53028,14 +53356,15 @@
           "Agriculture & food",
           "Economy & finance",
           "Energy & environment",
-          "Health & social"
+          "Health & social",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
             "sector": "Agriculture & food",
-            "count": 5,
+            "count": 4,
             "paid": 1,
-            "leadership": 4
+            "leadership": 3
           },
           {
             "sector": "Economy & finance",
@@ -53051,6 +53380,12 @@
           },
           {
             "sector": "Health & social",
+            "count": 1,
+            "paid": 0,
+            "leadership": 1
+          },
+          {
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 1
@@ -53130,7 +53465,7 @@
             "legalType": "Gesellschaft mit beschränkter Haftung",
             "paid": false,
             "leadership": true,
-            "sector": "Agriculture & food",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-04"
           },
@@ -53385,8 +53720,8 @@
         "paid": 12,
         "leadership": 8,
         "sectorBreadth": 5,
-        "committeeOverlaps": 5,
-        "classifiedTotal": 8,
+        "committeeOverlaps": 6,
+        "classifiedTotal": 9,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
@@ -53398,8 +53733,8 @@
         "sectorBreakdown": [
           {
             "sector": "Economy & finance",
-            "count": 4,
-            "paid": 4,
+            "count": 5,
+            "paid": 5,
             "leadership": 2
           },
           {
@@ -53534,8 +53869,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Economy & finance",
+            "committeeOverlap": true,
             "modified": "2026-08-05"
           },
           {
@@ -53939,18 +54274,18 @@
         "leadership": 4,
         "sectorBreadth": 2,
         "committeeOverlaps": 0,
-        "classifiedTotal": 4,
-        "primarySector": "Education & culture",
+        "classifiedTotal": 5,
+        "primarySector": "Sports & recreation",
         "sectors": [
-          "Education & culture",
+          "Sports & recreation",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Education & culture",
-            "count": 2,
+            "sector": "Sports & recreation",
+            "count": 3,
             "paid": 0,
-            "leadership": 1
+            "leadership": 2
           },
           {
             "sector": "Transport & telecom",
@@ -53978,7 +54313,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-30"
           },
@@ -53989,7 +54324,7 @@
             "legalType": "Genossenschaft",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-30"
           },
@@ -54033,7 +54368,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-30"
           }
@@ -54306,20 +54641,14 @@
         "leadership": 5,
         "sectorBreadth": 3,
         "committeeOverlaps": 2,
-        "classifiedTotal": 6,
-        "primarySector": "Economy & finance",
+        "classifiedTotal": 5,
+        "primarySector": "Education & culture",
         "sectors": [
-          "Economy & finance",
           "Education & culture",
-          "Security & defence"
+          "Security & defence",
+          "Economy & finance"
         ],
         "sectorBreakdown": [
-          {
-            "sector": "Economy & finance",
-            "count": 2,
-            "paid": 2,
-            "leadership": 0
-          },
           {
             "sector": "Education & culture",
             "count": 2,
@@ -54331,6 +54660,12 @@
             "count": 2,
             "paid": 0,
             "leadership": 1
+          },
+          {
+            "sector": "Economy & finance",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -54363,7 +54698,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
+            "sector": null,
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -54543,15 +54878,15 @@
         "paid": 9,
         "leadership": 7,
         "sectorBreadth": 5,
-        "committeeOverlaps": 1,
-        "classifiedTotal": 8,
+        "committeeOverlaps": 3,
+        "classifiedTotal": 12,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
-          "Education & culture",
+          "Energy & environment",
           "Health & social",
-          "Transport & telecom",
-          "Energy & environment"
+          "Technology & innovation",
+          "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
@@ -54561,27 +54896,27 @@
             "leadership": 1
           },
           {
-            "sector": "Education & culture",
-            "count": 1,
-            "paid": 1,
-            "leadership": 0
+            "sector": "Energy & environment",
+            "count": 3,
+            "paid": 2,
+            "leadership": 1
           },
           {
             "sector": "Health & social",
-            "count": 1,
-            "paid": 1,
+            "count": 2,
+            "paid": 2,
             "leadership": 0
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 2,
+            "paid": 0,
+            "leadership": 1
           },
           {
             "sector": "Transport & telecom",
             "count": 1,
             "paid": 1,
-            "leadership": 0
-          },
-          {
-            "sector": "Energy & environment",
-            "count": 1,
-            "paid": 0,
             "leadership": 0
           }
         ],
@@ -54604,8 +54939,8 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": true,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Energy & environment",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -54637,8 +54972,8 @@
             "legalType": "Aktiengesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": null,
-            "committeeOverlap": false,
+            "sector": "Energy & environment",
+            "committeeOverlap": true,
             "modified": "2026-08-12"
           },
           {
@@ -54670,7 +55005,7 @@
             "legalType": "Einfache Gesellschaft",
             "paid": true,
             "leadership": false,
-            "sector": "Education & culture",
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -54714,7 +55049,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -54725,7 +55060,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-08-12"
           },
@@ -55961,28 +56296,42 @@
         "total": 14,
         "paid": 10,
         "leadership": 6,
-        "sectorBreadth": 4,
-        "committeeOverlaps": 4,
-        "classifiedTotal": 5,
-        "primarySector": "Economy & finance",
+        "sectorBreadth": 6,
+        "committeeOverlaps": 3,
+        "classifiedTotal": 6,
+        "primarySector": "Agriculture & food",
         "sectors": [
-          "Economy & finance",
           "Agriculture & food",
+          "Economy & finance",
+          "Technology & innovation",
+          "Entertainment & hospitality",
           "Education & culture",
           "Transport & telecom"
         ],
         "sectorBreakdown": [
           {
-            "sector": "Economy & finance",
-            "count": 2,
-            "paid": 2,
-            "leadership": 1
-          },
-          {
             "sector": "Agriculture & food",
             "count": 1,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Economy & finance",
+            "count": 1,
+            "paid": 1,
+            "leadership": 1
+          },
+          {
+            "sector": "Technology & innovation",
+            "count": 1,
+            "paid": 1,
+            "leadership": 1
+          },
+          {
+            "sector": "Entertainment & hospitality",
+            "count": 1,
+            "paid": 1,
+            "leadership": 0
           },
           {
             "sector": "Education & culture",
@@ -56049,7 +56398,7 @@
             "legalType": "Stiftung",
             "paid": true,
             "leadership": true,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-03"
           },
@@ -56093,8 +56442,8 @@
             "legalType": "Verein",
             "paid": true,
             "leadership": false,
-            "sector": "Economy & finance",
-            "committeeOverlap": true,
+            "sector": "Entertainment & hospitality",
+            "committeeOverlap": false,
             "modified": "2026-06-03"
           },
           {
@@ -57156,13 +57505,14 @@
         "total": 5,
         "paid": 1,
         "leadership": 2,
-        "sectorBreadth": 2,
+        "sectorBreadth": 3,
         "committeeOverlaps": 0,
-        "classifiedTotal": 3,
+        "classifiedTotal": 4,
         "primarySector": "Health & social",
         "sectors": [
           "Health & social",
-          "Transport & telecom"
+          "Transport & telecom",
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -57176,6 +57526,12 @@
             "count": 1,
             "paid": 1,
             "leadership": 1
+          },
+          {
+            "sector": "Sports & recreation",
+            "count": 1,
+            "paid": 0,
+            "leadership": 0
           }
         ],
         "ties": [
@@ -57208,7 +57564,7 @@
             "legalType": "Aktiengesellschaft",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -57349,14 +57705,16 @@
         "total": 14,
         "paid": 2,
         "leadership": 4,
-        "sectorBreadth": 3,
+        "sectorBreadth": 5,
         "committeeOverlaps": 0,
-        "classifiedTotal": 6,
+        "classifiedTotal": 10,
         "primarySector": "Economy & finance",
         "sectors": [
           "Economy & finance",
+          "Technology & innovation",
+          "Health & social",
           "Agriculture & food",
-          "Education & culture"
+          "Sports & recreation"
         ],
         "sectorBreakdown": [
           {
@@ -57366,13 +57724,25 @@
             "leadership": 0
           },
           {
+            "sector": "Technology & innovation",
+            "count": 2,
+            "paid": 0,
+            "leadership": 1
+          },
+          {
+            "sector": "Health & social",
+            "count": 2,
+            "paid": 0,
+            "leadership": 0
+          },
+          {
             "sector": "Agriculture & food",
             "count": 1,
             "paid": 1,
             "leadership": 0
           },
           {
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "count": 1,
             "paid": 0,
             "leadership": 1
@@ -57419,7 +57789,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": true,
-            "sector": "Education & culture",
+            "sector": "Sports & recreation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -57441,7 +57811,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": true,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -57452,7 +57822,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Technology & innovation",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -57463,7 +57833,7 @@
             "legalType": "Stiftung",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           },
@@ -57529,7 +57899,7 @@
             "legalType": "Verein",
             "paid": false,
             "leadership": false,
-            "sector": null,
+            "sector": "Health & social",
             "committeeOverlap": false,
             "modified": "2026-06-26"
           }

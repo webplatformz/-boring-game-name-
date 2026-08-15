@@ -62,6 +62,9 @@ export interface MemberScoring {
 export type LobbyingSector =
   | 'Economy & finance'
   | 'Health & social'
+  | 'Entertainment & hospitality'
+  | 'Technology & innovation'
+  | 'Sports & recreation'
   | 'Energy & environment'
   | 'Transport & telecom'
   | 'Education & culture'

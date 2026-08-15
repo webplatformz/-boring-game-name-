@@ -309,17 +309,27 @@ const SECTOR_RULES = [
   {
     sector: 'Economy & finance',
     pattern:
-      /bank|raiffeisen|finanz|finance|versicherung|assurance|wirtschaft|economie|industrie|gewerbe|handel|commerce|arbeitgeber|employeur|treuhand|immobil|real estate|startup|unternehm|entreprise|steuer|fiscal|pensionskasse|rechnungs|controlling|hauseigent|mieter|locataire|wohn|construction|baumeister|swissmem|suissetec|handelskammer|chambre de commerce|consulting|holding|gastro|touris/i,
+      /bank|raiffeisen|finanz|finance|versicherung|assurance|wirtschaft|economie|industrie|gewerbe|handel|commerce|arbeitgeber|employeur|treuhand|immobil|real estate|startup|unternehm|entreprise|steuer|fiscal|pensionskasse|rechnungs|controlling|hauseigent|mieter|locataire|wohn|construction|baumeister|swissmem|suissetec|handelskammer|chambre de commerce|consulting|holding|expertsuisse/i,
   },
   {
     sector: 'Health & social',
     pattern:
-      /gesund|santé|spital|hôpital|klinik|clinic|pflege|sozial|social|krank|médic|arzt|ärzt|aerzte|pharma|behinder|infirmis|handicap|parapleg|parkinson|palliativ|senior|alter|retraite|famil|kinder|enfant|jugend|jeunesse|cure a domicile|sociosanit/i,
+      /gesund|santé|spital|hôpital|klinik|clinic|pflege|sozial|social|krank|médic|medical|medizin|biomedizin|biomedical|arzt|ärzt|aerzte|pharma|behinder|infirmis|handicap|parapleg|parkinson|palliativ|senior|alter|retraite|famil|kinder|enfant|jugend|jeunesse|cure a domicile|cure a domicilio|sociosanit|avip|spitex|patient|diabete|diabète|hospiz/i,
+  },
+  {
+    sector: 'Entertainment & hospitality',
+    pattern:
+      /casino|kursaal|touris|hotel|restaurant|gastronom|catering/i,
+  },
+  {
+    sector: 'Technology & innovation',
+    pattern:
+      /deep tech|innovation|technolog|software|informatik|information technology|\bIT\b|startup|digital/i,
   },
   {
     sector: 'Energy & environment',
     pattern:
-      /energie|energy|klima|climat|umwelt|environnement|natur|nature|solar|wind|wasser|eau|hydro|wald|forêt|holz|bois|elektr|strom|nuklear|atom|nachhalt|durab|biofuel|kraftwerk|forces motrices|pärke|parcs|wildtier|wwf|biovision/i,
+      /energie|energy|klima|climat|umwelt|environnement|natur|nature|solar|wind|wasser|eau|hydro|wald|forêt|holz|bois|elektr|strom|nuklear|atom|nachhalt|durab|biofuel|kraftwerk|forces motrices|glattwerk|axpo|elektra|pärke|parcs|wildtier|wwf|biovision/i,
   },
   {
     sector: 'Transport & telecom',
@@ -327,14 +337,19 @@ const SECTOR_RULES = [
       /verkehr|transport|mobilit|bahn|rail|strass|route|auto|velo|vélo|luftfahrt|aviation|aerosuisse|flughafen|aéroport|schifffahrt|navigation|spedlog|logistik|logistique|\btcs\b|telekom|télécom|digital|glasfaser|fibre|post\b/i,
   },
   {
+    sector: 'Sports & recreation',
+    pattern:
+      /sport|football|fussball|hockey|eishockey|tennis|ski|schwing|athlet|olymp|gymnast|turnverein|basketball|volleyball|handball|golf|cyclisme|cycling|freizeit|loisirs/i,
+  },
+  {
     sector: 'Education & culture',
     pattern:
-      /bildung|éducation|schule|école|universit|hochschul|\beth\b|forschung|recherche|wissenschaft|science|kultur|culture|museum|musik|musique|chor|cinema|film|media|média|verlag|edition|théâtre|theater|sport|pfadi/i,
+      /bildung|éducation|schule|école|universit|hochschul|\beth\b|forschung|recherche|wissenschaft|science|kultur|culture|museum|musik|musique|chor|cinema|film|media|média|verlag|edition|théâtre|theater|kloster|kirche|sport|pfadi/i,
   },
   {
     sector: 'Agriculture & food',
     pattern:
-      /landwirtschaft|agri|bauern|paysan|milch|lait|fleisch|viande|wein|vin\b|lebensmittel|aliment|ernähr|forst/i,
+      /landwirtschaft|agri|bauern|paysan|milch|lait|fleisch|viande|wein|vin\b|lebensmittel|aliment|ernähr|forst|eringer|viehzucht|rasse|apialpes|biodivers|biene|abeille|vigneron/i,
   },
   {
     sector: 'Security & defence',
@@ -351,7 +366,7 @@ const SECTOR_RULES = [
   {
     sector: 'Politics & civic',
     pattern:
-      /\b(svp|sp|fdp|plr|glp|grüne|gruene|centre)\b|sozialdemokrat|libéraux-radicaux|liberal-conserv|partei|parti |politische|politique|bürgergemeinde|communi|gemeindeverband|alliance f|gleichstellung|civiva|zivildienst/i,
+      /\b(svp|sp|fdp|plr|glp|grüne|gruene|centre)\b|sozialdemokrat|libéraux-radicaux|liberal-conserv|partei|parti |politische|politique|bürgergemeinde|communi|gemeindeverband|alliance f|gleichstellung|civiva|zivildienst|\bdie plattform\b|asloca|syndicat|gewerkschaft/i,
   },
 ]
 
