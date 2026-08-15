@@ -297,7 +297,7 @@ export function MythicCardFront({
             >
               {party(m.partyCode, m.party)}
             </span>
-            <Flag canton={m.canton} name={m.cantonName} height={16} />
+            <Flag canton={m.canton} name={m.cantonName} height={18} />
             <span
               style={{
                 minWidth: 0,
