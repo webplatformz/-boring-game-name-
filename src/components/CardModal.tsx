@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Member } from '../data/members'
-import { TIERS } from '../theme'
+import { CARD_MAX_W, TIERS } from '../theme'
 import { CardFront } from './CardFront'
 import { CardGlow } from './CardGlow'
 import { useI18n } from '../i18n'
@@ -59,7 +59,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
           animation: closing ? 'sinkOut 200ms ease-in forwards' : 'riseIn 200ms ease-out backwards',
         }}
       >
-        <div style={{ width: '100%', maxWidth: 300, aspectRatio: '336 / 504', position: 'relative' }}>
+        <div style={{ width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504', position: 'relative' }}>
           <CardGlow rarity={member.rarity} />
           <CardFront
             member={member}
