@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { CSSProperties, RefObject } from 'react'
 import type { RarityKey } from '../theme'
 import { TIERS } from '../theme'
@@ -7,6 +8,24 @@ const alpha = (a: number) =>
   Math.round(Math.min(1, Math.max(0, a)) * 255)
     .toString(16)
     .padStart(2, '0')
+
+// Lazily-created portal target for FixedCardGlow, inserted as the very first
+// child of <body> (before #root). Elements at the same stacking level
+// (z-index: auto) paint in DOM order, so keeping this node ahead of #root in
+// the tree — rather than appending to the end of body, which a naive portal
+// would do — is what keeps the glow behind the app's content without resorting
+// to a negative z-index (which would sink it below the app shell's own opaque
+// background, since that background is on a non-positioned element and
+// therefore always paints above negative z-index content regardless of DOM
+// order).
+let glowPortalRoot: HTMLDivElement | null = null
+function getGlowPortalRoot(): HTMLDivElement {
+  if (glowPortalRoot && glowPortalRoot.isConnected) return glowPortalRoot
+  const el = document.createElement('div')
+  document.body.insertBefore(el, document.body.firstChild)
+  glowPortalRoot = el
+  return el
+}
 
 // Fades the rotating rays out before they reach the layer's square edges. The
 // mythic variant is softer/tighter so its prismatic arms stay distinct instead
@@ -72,6 +91,15 @@ export function CardGlow({ rarity, style }: { rarity: RarityKey; style?: CSSProp
  * The app shell clips its content column with `overflow: hidden`, which would
  * otherwise cut the bloom off at the column edges; a fixed layer is only
  * clipped by the viewport, so the glow can spill out over the full window.
+ *
+ * Portalled onto a dedicated node ahead of #root in the DOM (see
+ * `getGlowPortalRoot`) rather than rendered inline: `position: fixed`
+ * normally resolves against the viewport, but any ancestor with a
+ * `transform` (or `will-change: transform`) becomes the containing block
+ * instead — which `.screen-transition`'s entrance animation does. Without
+ * the portal, the glow would be positioned relative to that (narrower,
+ * centred) column rather than the viewport, drifting further off-centre the
+ * wider the viewport got past the column's max-width.
  */
 export function FixedCardGlow({ rarity, anchor }: { rarity: RarityKey; anchor: RefObject<HTMLElement | null> }) {
   const [box, setBox] = useState<DOMRect | null>(null)
@@ -94,12 +122,13 @@ export function FixedCardGlow({ rarity, anchor }: { rarity: RarityKey; anchor: R
 
   if (!box) return null
 
-  return (
+  return createPortal(
     <div
       aria-hidden
       style={{ position: 'fixed', left: box.left, top: box.top, width: box.width, height: box.height, pointerEvents: 'none' }}
     >
       <CardGlow rarity={rarity} />
-    </div>
+    </div>,
+    getGlowPortalRoot(),
   )
 }
