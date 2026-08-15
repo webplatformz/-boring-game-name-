@@ -5,6 +5,9 @@ dist-ssr
 .DS_Store
 .vite
 
+# TypeScript build cache
+*.tsbuildinfo
+
 # Editor
 .idea
 .vscode/*
