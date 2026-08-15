@@ -47,6 +47,7 @@ export function PackOpening({ game }: { game: Game }) {
   const { ref: sizerRef, scale } = useCardScale()
 
   const rarityTier = tradeRarity ? TIERS[tradeRarity] : null
+  const packAccentColor = isTradePack ? rarityTier?.c : undefined
 
   // The cards sitting inside the sealed pack, top card first, while tearing.
   const tearDeck = pack
@@ -213,11 +214,11 @@ export function PackOpening({ game }: { game: Game }) {
               <PackShell style={bodyStyle}>
                 {/* lit lip along the ragged edge */}
                 <div
-                  style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${rarityTier?.c ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
+                  style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${packAccentColor ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
                 />
                 <PackLabel
                   subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : `${PACK_SIZE} CARDS · NO DUPES`}
-                  rarityColor={rarityTier?.c}
+                  rarityColor={packAccentColor}
                 />
               </PackShell>
             </div>
