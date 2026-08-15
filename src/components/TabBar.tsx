@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { Game } from '../game/useGame'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 
@@ -39,12 +40,13 @@ function pillStyle(index: number, count: number): CSSProperties {
 }
 
 export function TabBar({ game }: { game: Game }) {
+  const { t } = useI18n()
   const s = game.state.screen
   const tabs: { screen: 'home' | 'collection' | 'battle' | 'trade'; label: string; onClick: () => void }[] = [
-    { screen: 'home', label: 'PACKS', onClick: game.goHome },
-    { screen: 'collection', label: 'COLLECTION', onClick: game.goCollection },
-    { screen: 'battle', label: 'BATTLE', onClick: game.goBattle },
-    { screen: 'trade', label: 'TRADE', onClick: game.goTrade },
+    { screen: 'home', label: t('tabPacks'), onClick: game.goHome },
+    { screen: 'collection', label: t('tabCollection'), onClick: game.goCollection },
+    { screen: 'battle', label: t('tabBattle'), onClick: game.goBattle },
+    { screen: 'trade', label: t('tabTrade'), onClick: game.goTrade },
   ]
   const activeIndex = Math.max(0, tabs.findIndex((t) => t.screen === s))
 

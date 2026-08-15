@@ -3,6 +3,7 @@ import type { Member } from '../data/members'
 import { TIERS } from '../theme'
 import { CardFront } from './CardFront'
 import { CardGlow } from './CardGlow'
+import { useI18n } from '../i18n'
 
 const MONO = "'IBM Plex Mono',monospace"
 
@@ -12,6 +13,7 @@ const MONO = "'IBM Plex Mono',monospace"
  * which is what actually unmounts it.
  */
 export function CardModal({ member, onClose }: { member: Member | null; onClose: () => void }) {
+  const { t } = useI18n()
   const [closing, setClosing] = useState(false)
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
             style={{ boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[member.rarity].c}8c` }}
           />
         </div>
-        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>TAP TO CLOSE</div>
+        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>{t('tapClose')}</div>
       </div>
     </div>
   )

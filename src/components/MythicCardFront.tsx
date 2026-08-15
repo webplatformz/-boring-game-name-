@@ -5,6 +5,8 @@ import { LEGISLATURE, partyColors } from '../theme'
 import { Flag } from './Flag'
 import { Portrait, PortraitCredit } from './Portrait'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
+import { useCardTooltipDismiss } from './useCardTooltipDismiss'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -76,7 +78,9 @@ export function MythicCardFront({
   highlightStat?: ScoreKind | null
   hideStats?: boolean
 }) {
+  const { t, rarity, party } = useI18n()
   const [openMetric, setOpenMetric] = useState<ScoreKind | null>(null)
+  useCardTooltipDismiss(openMetric !== null, () => setOpenMetric(null))
   const pc = partyColors(m.partyCode)
 
   const face: CSSProperties = {
@@ -209,7 +213,7 @@ export function MythicCardFront({
               color: '#07101D',
             }}
           >
-            MYTHIC
+            {rarity('mythic')}
           </div>
           <div style={legislatureTagStyle}>L {LEGISLATURE}</div>
         </div>
@@ -219,7 +223,7 @@ export function MythicCardFront({
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ width: 20, height: 1, background: 'linear-gradient(90deg,#FFE29D,rgba(255,226,157,.12))' }} />
             <span style={{ fontFamily: MONO, fontSize: 7.5, letterSpacing: '.22em', color: '#D9C89E' }}>
-              FEDERAL COUNCILLOR
+              {t('federalCouncillor')}
             </span>
           </div>
 
@@ -291,7 +295,7 @@ export function MythicCardFront({
                 boxShadow: '0 3px 10px rgba(0,0,0,.35)',
               }}
             >
-              {m.party}
+              {party(m.partyCode, m.party)}
             </span>
             <Flag canton={m.canton} name={m.cantonName} height={16} />
             <span
@@ -304,7 +308,7 @@ export function MythicCardFront({
                 whiteSpace: 'nowrap',
               }}
             >
-              {m.cantonName.toUpperCase()} · {m.years} YRS · AGE {m.age}
+              {m.cantonName.toUpperCase()} · {m.years} {t('yearsShort')} · {t('age')} {m.age}
             </span>
           </div>
         </div>

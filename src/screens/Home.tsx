@@ -8,11 +8,13 @@ import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
 import { CardModal } from '../components/CardModal'
 import { PACK_SIZE } from '../game/pack'
+import { LANGUAGES, useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 export function Home({ game }: { game: Game }) {
+  const { language, setLanguage, t, rarity } = useI18n()
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const { packs, owned, refillAt } = game.state
   const ownedList = Object.keys(owned)
@@ -32,14 +34,39 @@ export function Home({ game }: { game: Game }) {
   return (
     <div className="tabbed-screen" style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
       {/* header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <SwissCross size={24} />
-          <div style={{ fontFamily: AB, fontSize: 14, letterSpacing: '-.01em' }}>LEGISLATURE {LEGISLATURE}</div>
+          <div style={{ fontFamily: AB, fontSize: 14, letterSpacing: '-.01em' }}>{t('legislature', { number: LEGISLATURE })}</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 11px', borderRadius: 99, background: 'rgba(255,197,61,.1)', border: '1px solid rgba(255,197,61,.35)' }}>
-          <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A' }}>PACKS</span>
-          <span style={{ fontFamily: AB, fontSize: 13, color: '#FFC53D' }}>{packs}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 5 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 11px', borderRadius: 99, background: 'rgba(255,197,61,.1)', border: '1px solid rgba(255,197,61,.35)' }}>
+            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A' }}>{t('packs')}</span>
+            <span style={{ fontFamily: AB, fontSize: 13, color: '#FFC53D' }}>{packs}</span>
+          </div>
+          <div role="group" aria-label={t('languageSwitcher')} style={{ display: 'flex', gap: 2, padding: 2, borderRadius: 7, background: 'rgba(234,242,255,.05)', border: '1px solid rgba(234,242,255,.1)' }}>
+            {LANGUAGES.map((code) => (
+              <button
+                key={code}
+                type="button"
+                onClick={() => setLanguage(code)}
+                aria-pressed={language === code}
+                style={{
+                  minWidth: 25,
+                  padding: '3px 4px',
+                  borderRadius: 5,
+                  background: language === code ? 'rgba(255,197,61,.18)' : 'transparent',
+                  color: language === code ? '#FFD87A' : '#5C7391',
+                  fontFamily: MONO,
+                  fontSize: 8,
+                  fontWeight: 600,
+                  letterSpacing: '.08em',
+                }}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -59,12 +86,12 @@ export function Home({ game }: { game: Game }) {
             color: 'transparent',
           }}
         >
-          RIP A PACK.
+          {t('homeHeadlineOne')}
           <br />
-          BUILD THE HOUSE.
+          {t('homeHeadlineTwo')}
         </div>
         <div style={{ marginTop: 9, fontSize: 13.5, lineHeight: 1.5, color: '#9FB6D2' }}>
-          {PACK_SIZE} members per pack, no repeats inside it. Rarity follows the new overall-score distribution.
+          {t('homeSubtitle', { count: PACK_SIZE })}
         </div>
       </div>
 
@@ -74,14 +101,14 @@ export function Home({ game }: { game: Game }) {
           onClick={game.ripNow}
           className="hoverlift"
           style={{ width: 212, filter: 'drop-shadow(0 18px 30px rgba(0,0,0,.65)) drop-shadow(0 0 22px rgba(255,197,61,.24))' }}
-          aria-label="Rip open a pack"
+          aria-label={t('ripPackAria')}
         >
           <PackFace />
         </button>
       </div>
 
       <button onClick={game.ripNow} disabled={!canRip} className="rip-btn" style={openBtn(canRip)}>
-        {canRip ? 'RIP IT OPEN' : refillAt ? `NEXT PACK IN ${countdown}` : 'NO PACKS LEFT'}
+        {canRip ? t('ripOpen') : refillAt ? t('nextPackIn', { time: countdown }) : t('noPacksLeft')}
       </button>
 
       {/* stat tiles */}
@@ -90,9 +117,9 @@ export function Home({ game }: { game: Game }) {
           type="button"
           onClick={game.goCollection}
           style={{ ...tile, textAlign: 'left', cursor: 'pointer' }}
-          aria-label="Open the collection"
+          aria-label={t('openCollectionAria')}
         >
-          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>COLLECTED</div>
+          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>{t('collected')}</div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 3 }}>
             <span style={{ fontFamily: AB, fontSize: 26, lineHeight: 1, color: '#EAF2FF' }}>{ownedCount}</span>
             <span style={{ fontFamily: MONO, fontSize: 11, color: '#5C7391' }}>/ {total}</span>
@@ -106,14 +133,14 @@ export function Home({ game }: { game: Game }) {
           onClick={() => best && setOpenCardMember(best)}
           disabled={!best}
           style={{ ...tile, textAlign: 'left', cursor: best ? 'pointer' : 'default' }}
-          aria-label={best ? `Show card for ${best.name}` : undefined}
+          aria-label={best ? t('showCardAria', { name: best.name }) : undefined}
         >
-          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>BEST PULL</div>
+          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>{t('bestPull')}</div>
           <div style={{ fontFamily: AB, fontSize: 17, lineHeight: 1.05, marginTop: 3, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {best ? best.name : '—'}
           </div>
           <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '.1em', marginTop: 4, color: best ? TIERS[best.rarity].ovrTint : '#5C7391' }}>
-            {best ? `${TIERS[best.rarity].label} · ${best.ovr} OVR` : 'RIP A PACK'}
+            {best ? `${rarity(best.rarity)} · ${best.ovr} OVR` : t('ripAPack')}
           </div>
         </button>
       </div>
@@ -134,17 +161,17 @@ export function Home({ game }: { game: Game }) {
         }}
       >
         <div>
-          <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF' }}>CARD DUPLICATES?</div>
-          <div style={{ fontFamily: MONO, fontSize: 9.5, color: '#7690AE', marginTop: 2 }}>Trade in 5 cards → get 1 higher rarity</div>
+          <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF' }}>{t('cardDuplicates')}</div>
+          <div style={{ fontFamily: MONO, fontSize: 9.5, color: '#7690AE', marginTop: 2 }}>{t('tradeHint')}</div>
         </div>
-        <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>TRADE IN →</div>
+        <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>{t('tradeIn')}</div>
       </button>
 
       <a
         href="#methodology"
         style={{ alignSelf: 'center', fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
       >
-        SWISS PARLIAMENT DATA · HOW SCORES WORK →
+        {t('methodologyLink')}
       </a>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />

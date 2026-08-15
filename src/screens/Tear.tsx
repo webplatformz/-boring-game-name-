@@ -5,6 +5,7 @@ import type { GameState } from '../game/useGame'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
 import { CardBack } from '../components/CardBack'
 import { PACK_SIZE } from '../game/pack'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -27,6 +28,7 @@ function useCardScale() {
 }
 
 export function Tear({ state }: { state: GameState }) {
+  const { t, rarity } = useI18n()
   const { ripped, grown, pack, isTradePack, tradeRarity } = state
   const { ref: sizerRef, scale } = useCardScale()
 
@@ -103,9 +105,11 @@ export function Tear({ state }: { state: GameState }) {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 26, padding: '30px 20px', touchAction: 'none', userSelect: 'none' }}>
       <div style={{ textAlign: 'center', ...introStyle(60) }}>
-        <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em' }}>TEARING IT OPEN</div>
+        <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em' }}>{t('tearingOpen')}</div>
         <div style={{ marginTop: 6, fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier ? rarityTier.c : '#5C7391' }}>
-          {isTradePack ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK` : `${PACK_SIZE} MEMBERS INCOMING`}
+          {isTradePack && tradeRarity
+            ? t('specialTradePack', { rarity: rarity(tradeRarity) })
+            : t('membersIncoming', { count: PACK_SIZE })}
         </div>
       </div>
 
@@ -130,7 +134,9 @@ export function Tear({ state }: { state: GameState }) {
               style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${rarityTier?.c ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
             />
             <PackLabel
-              subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : `${PACK_SIZE} CARDS · NO DUPES`}
+              subtext={isTradePack && tradeRarity
+                ? t('tradePackLabel', { rarity: rarity(tradeRarity) })
+                : t('standardPackLabel', { count: PACK_SIZE })}
               rarityColor={rarityTier?.c}
             />
           </PackShell>

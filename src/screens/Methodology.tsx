@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { META } from '../data/members'
 import { SwissCross } from '../components/CardBack'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -39,84 +40,85 @@ function SourceLink({ href, children }: { href: string; children: ReactNode }) {
 }
 
 export function Methodology({ onClose }: { onClose: () => void }) {
+  const { t } = useI18n()
   return (
     <main style={{ padding: '22px 20px 50px', display: 'flex', flexDirection: 'column', gap: 14, animation: 'riseIn 260ms ease-out' }}>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <SwissCross size={24} />
-          <div style={{ fontFamily: AB, fontSize: 13, letterSpacing: '.08em' }}>SCORE LAB</div>
+          <div style={{ fontFamily: AB, fontSize: 13, letterSpacing: '.08em' }}>{t('scoreLab')}</div>
         </div>
         <button
           type="button"
           onClick={onClose}
           style={{ padding: '8px 11px', borderRadius: 9, border: '1px solid rgba(234,242,255,.16)', color: '#AFC0D5', fontFamily: MONO, fontSize: 10 }}
         >
-          ← BACK TO GAME
+          {t('backToGame')}
         </button>
       </header>
 
       <div>
-        <h1 style={{ margin: 0, fontFamily: AB, fontSize: 31, lineHeight: 1, letterSpacing: '-.035em' }}>HOW THE SCORES WORK</h1>
+        <h1 style={{ margin: 0, fontFamily: AB, fontSize: 31, lineHeight: 1, letterSpacing: '-.035em' }}>{t('methodologyTitle')}</h1>
         <p style={{ margin: '9px 0 0', color: '#9FB6D2', fontSize: 13, lineHeight: 1.55 }}>
-          ATK rewards personal drive and follow-through. DEF rewards personal reliability and institutional staying power. Party size, party prestige, lobbying links and campaign finance are deliberately excluded.
+          {t('methodologyIntro')}
         </p>
       </div>
 
       <section style={{ ...section, borderColor: 'rgba(255,95,162,.32)' }}>
-        <h2 style={{ margin: '0 0 14px', fontFamily: AB, fontSize: 16, color: '#FF5FA2' }}>ATK — DRIVE &amp; INITIATIVE</h2>
+        <h2 style={{ margin: '0 0 14px', fontFamily: AB, fontSize: 16, color: '#FF5FA2' }}>{t('atkMethodTitle')}</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Metric weight="45%" color="#FF5FA2" title="PERSONALLY AUTHORED PROPOSAL DRIVE">
-            Weighted points per active year in the current legislature: parliamentary initiatives and motions = 3, postulates = 2, interpellations and questions = 1.
+          <Metric weight="45%" color="#FF5FA2" title={t('authoredDriveTitle')}>
+            {t('authoredDriveBody')}
           </Metric>
-          <Metric weight="30%" color="#FF5FA2" title="AUTHORED PROPOSALS ADVANCED">
-            Weighted points per active year for affairs that reached their next meaningful stage. Questions/interpellations need an official answer; motions/postulates need scheduling, committee work, referral or implementation reporting; parliamentary initiatives need scheduling or committee/preliminary review. A generic closed status alone is not proof. Only affairs at least 12 months old are judged.
+          <Metric weight="30%" color="#FF5FA2" title={t('advancedTitle')}>
+            {t('advancedBody')}
           </Metric>
-          <Metric weight="25%" color="#FF5FA2" title="CURRENT LEADERSHIP">
-            Current committee or parliamentary-group president = 2 points; vice-president = 1. Ordinary membership does not create leadership points.
+          <Metric weight="25%" color="#FF5FA2" title={t('leadershipTitle')}>
+            {t('leadershipBody')}
           </Metric>
         </div>
       </section>
 
       <section style={{ ...section, borderColor: 'rgba(47,211,196,.32)' }}>
-        <h2 style={{ margin: '0 0 14px', fontFamily: AB, fontSize: 16, color: '#2FD3C4' }}>DEF — RELIABILITY &amp; RESILIENCE</h2>
+        <h2 style={{ margin: '0 0 14px', fontFamily: AB, fontSize: 16, color: '#2FD3C4' }}>{t('defMethodTitle')}</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Metric weight="20%" color="#2FD3C4" title="VOTING RELIABILITY">
-            Yes, no and abstention count as participation. “Did not participate” counts against the rate. Excused members, the presiding member, rare source cells marked “unknown,” and the isolated “present” record without a decision are excluded from both sides of the fraction.
+          <Metric weight="20%" color="#2FD3C4" title={t('votingTitle')}>
+            {t('votingBody')}
           </Metric>
-          <Metric weight="45%" color="#2FD3C4" title="CURRENT COMMITTEE WORK">
-            One point per current standing-committee seat; substitute seats count 0.35. This measures the member’s own workload, not their party’s strength.
+          <Metric weight="45%" color="#2FD3C4" title={t('committeeTitle')}>
+            {t('committeeBody')}
           </Metric>
-          <Metric weight="30%" color="#2FD3C4" title="PARLIAMENTARY EXPERIENCE">
-            Years served with diminishing returns, reaching the cap at 24 years. Experience therefore helps without letting very long tenure dominate the score.
+          <Metric weight="30%" color="#2FD3C4" title={t('experienceTitle')}>
+            {t('experienceBody')}
           </Metric>
-          <Metric weight="5%" color="#2FD3C4" title="AGE EXPERIENCE / NETWORK">
-            A deliberately small proxy that rises from age 35 and caps at 60. Its low weight acknowledges experience and networks without making age decisive.
+          <Metric weight="5%" color="#2FD3C4" title={t('ageTitle')}>
+            {t('ageBody')}
           </Metric>
         </div>
       </section>
 
       <section style={section}>
-        <h2 style={{ margin: '0 0 9px', fontFamily: AB, fontSize: 15, color: '#FFC53D' }}>FROM INPUTS TO CARD NUMBERS</h2>
+        <h2 style={{ margin: '0 0 9px', fontFamily: AB, fontSize: 15, color: '#FFC53D' }}>{t('inputsTitle')}</h2>
         <div style={{ color: '#9FB6D2', fontSize: 12, lineHeight: 1.6 }}>
-          Proposal drive, advancement, leadership and committee workload are percentile-ranked separately inside the National Council and Council of States. The weighted ATK and DEF results are ranked once more inside the same chamber and mapped to a shared 45–97 card scale. This keeps structurally different chambers comparable while rewarding differences between individuals.
+          {t('inputsBody')}
           <div style={{ marginTop: 9, padding: '10px 12px', borderRadius: 9, background: 'rgba(255,197,61,.07)', color: '#E8D89E', fontFamily: MONO, fontSize: 10.5 }}>
             OVR = 45% ATK + 45% DEF + 10% lower of ATK/DEF
           </div>
-          <p style={{ margin: '9px 0 0' }}>Regular-card rarity is reapplied from the new OVR distribution. Rarity never boosts a score. Federal Councillors remain mythic and use a separate executive-tenure formula because they do not submit or vote like members of either chamber.</p>
+          <p style={{ margin: '9px 0 0' }}>{t('rarityMethodBody')}</p>
         </div>
       </section>
 
       <section style={section}>
-        <h2 style={{ margin: '0 0 9px', fontFamily: AB, fontSize: 15, color: '#C9B8FF' }}>DATA &amp; SOURCES</h2>
+        <h2 style={{ margin: '0 0 9px', fontFamily: AB, fontSize: 15, color: '#C9B8FF' }}>{t('dataSources')}</h2>
         <div style={{ color: '#9FB6D2', fontSize: 12, lineHeight: 1.65 }}>
-          <p style={{ margin: '0 0 8px' }}>Score snapshot: {META.generatedAt} · algorithm v{META.algorithmVersion ?? 2}</p>
+          <p style={{ margin: '0 0 8px' }}>{t('scoreSnapshot', { date: META.generatedAt, version: META.algorithmVersion ?? 2 })}</p>
           <ul style={{ margin: 0, paddingLeft: 18 }}>
-            <li><SourceLink href={SCORE_SOURCES.openData}>Swiss Parliament Open Data overview</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.odata}>OData: members, committees and authored-affair status</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.voting}>Official parliamentary voting records</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.votingWorkbooks}>National Council and Council of States session workbooks</SourceLink></li>
+            <li><SourceLink href={SCORE_SOURCES.openData}>{t('sourceOpenData')}</SourceLink></li>
+            <li><SourceLink href={SCORE_SOURCES.odata}>{t('sourceOData')}</SourceLink></li>
+            <li><SourceLink href={SCORE_SOURCES.voting}>{t('sourceVoting')}</SourceLink></li>
+            <li><SourceLink href={SCORE_SOURCES.votingWorkbooks}>{t('sourceWorkbooks')}</SourceLink></li>
           </ul>
-          <p style={{ margin: '10px 0 0', color: '#7187A4' }}>The scores are game-created interpretations of official records, not ratings published or endorsed by the Swiss Federal Assembly.</p>
+          <p style={{ margin: '10px 0 0', color: '#7187A4' }}>{t('methodologyDisclaimer')}</p>
         </div>
       </section>
     </main>

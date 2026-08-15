@@ -6,11 +6,13 @@ import type { Member } from '../data/members'
 import { CardFront } from '../components/CardFront'
 import { FixedCardGlow } from '../components/CardGlow'
 import { CardBack } from '../components/CardBack'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 export function Reveal({ game }: { game: Game }) {
+  const { t } = useI18n()
   const { pack, revealIdx, drag, dragging, faceUp, outgoing } = game.state
 
   // Up to four cards are live at once: the top (being revealed) and the next
@@ -24,10 +26,10 @@ export function Reveal({ game }: { game: Game }) {
       {/* header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ fontFamily: AB, fontSize: 15, letterSpacing: '.04em' }}>
-          CARD {Math.min(revealIdx + 1, Math.max(pack.length, 1))} / {pack.length}
+          {t('cardProgress', { current: Math.min(revealIdx + 1, Math.max(pack.length, 1)), total: pack.length })}
         </div>
         <button onClick={game.finishPack} className="hovertext" style={{ padding: '10px 15px', borderRadius: 9, background: 'rgba(234,242,255,.06)', border: '1px solid rgba(234,242,255,.14)', color: '#9FB6D2', fontFamily: MONO, fontSize: 10.5, letterSpacing: '.1em' }}>
-          SKIP ALL →
+          {t('skipAll')}
         </button>
       </div>
 
@@ -78,7 +80,14 @@ export function Reveal({ game }: { game: Game }) {
       </div>
 
       <div style={{ textAlign: 'center', fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>
-        {faceUp ? 'TAP OR SWIPE FOR THE NEXT CARD' : 'TAP TO TURN THE CARD'}
+        {faceUp ? (
+          <>
+            <span className="reveal-hint-desktop">{t('revealNextDesktop')}</span>
+            <span className="reveal-hint-mobile">{t('revealNextTouch')}</span>
+          </>
+        ) : (
+          t('revealTurn')
+        )}
       </div>
     </div>
   )

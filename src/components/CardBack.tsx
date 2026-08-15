@@ -1,11 +1,13 @@
 import type { CSSProperties } from 'react'
 import { LEGISLATURE } from '../theme'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 /** The card's reverse — Bundeshaus pack art. `style` supplies the flip/shadow. */
 export function CardBack({ style }: { style?: CSSProperties }) {
+  const { t } = useI18n()
   const face: CSSProperties = {
     position: 'absolute',
     inset: 0,
@@ -42,7 +44,7 @@ export function CardBack({ style }: { style?: CSSProperties }) {
       <div style={{ position: 'relative', textAlign: 'center' }}>
         <div style={{ fontFamily: AB, fontSize: 15, letterSpacing: '.16em', color: '#EAF2FF' }}>BUNDESHAUS</div>
         <div style={{ marginTop: 5, fontFamily: MONO, fontSize: 9, letterSpacing: '.24em', color: '#FFD87A' }}>
-          LEGISLATURE {LEGISLATURE}
+          {t('legislature', { number: LEGISLATURE })}
         </div>
       </div>
       <div style={{ position: 'absolute', left: 0, right: 0, bottom: 16, display: 'flex', justifyContent: 'center' }}>

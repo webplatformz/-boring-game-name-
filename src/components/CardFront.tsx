@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import type { LobbyingSector, Member } from '../data/members'
+import type { RarityKey } from '../theme'
 import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
 import { Portrait, PortraitCredit } from './Portrait'
 import { Flag } from './Flag'
@@ -9,6 +10,8 @@ import { ScoreStat, type ScoreKind } from './ScoreStat'
 import { DisclosureStat, type DisclosureKind } from './DisclosureStat'
 import { CommitteeStat } from './CommitteeStat'
 import { SectorIcon } from './SectorIcon'
+import { useCardTooltipDismiss } from './useCardTooltipDismiss'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -73,10 +76,10 @@ function hairlineStyle(animate: boolean): CSSProperties {
       'linear-gradient(90deg,transparent,rgba(255,197,61,.45) 22%,rgba(255,255,255,.55) 50%,rgba(255,197,61,.45) 78%,transparent)',
   }
 }
-function tagStyle(label: string, c: string, ink: string): CSSProperties {
-  const bg = label === 'LEGENDARY' ? 'linear-gradient(90deg,rgba(255,197,61,.15),#FFC53D)' : c
+function tagStyle(rarity: RarityKey, c: string, ink: string): CSSProperties {
+  const bg = rarity === 'legend' ? 'linear-gradient(90deg,rgba(255,197,61,.15),#FFC53D)' : c
   const fg =
-    label === 'COMMON' ? '#0A0F18' : label === 'RARE' ? '#EAF2FF' : label === 'ULTRA RARE' ? '#ffffff' : ink
+    rarity === 'common' ? '#0A0F18' : rarity === 'rare' ? '#EAF2FF' : rarity === 'ultra' ? '#ffffff' : ink
   return {
     pointerEvents: 'none',
     padding: '5px 12px 5px 14px',
@@ -126,8 +129,10 @@ export function CardFront({
    * hide their stat block regardless). */
   hideStats?: boolean
 }) {
+  const { t: tr, rarity, sector: sectorName, party } = useI18n()
   const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | 'cmte' | null>(null)
   const [hoveredSector, setHoveredSector] = useState<LobbyingSector | null>(null)
+  useCardTooltipDismiss(openMetric !== null, () => setOpenMetric(null))
 
   if (m.rarity === 'mythic') {
     return (
@@ -146,7 +151,7 @@ export function CardFront({
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
-  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? 'YEAR SERVED' : 'YEARS SERVED'} · ${m.chamber}`
+  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? tr('yearsServedOne') : tr('yearsServedMany')} · ${m.chamber}`
   const cardSectors = [...m.lobbying.sectors]
   if (m.financing.primaryDonorSector && !cardSectors.includes(m.financing.primaryDonorSector)) {
     cardSectors.push(m.financing.primaryDonorSector)
@@ -206,7 +211,7 @@ export function CardFront({
               boxShadow: '0 2px 6px rgba(0,0,0,.35)',
             }}
           >
-            {m.party}
+            {party(m.partyCode, m.party)}
           </div>
           <Flag canton={m.canton} name={m.cantonName} />
         </div>
@@ -224,11 +229,11 @@ export function CardFront({
           gap: 6,
         }}
       >
-        <div style={tagStyle(t.label, t.c, t.ink)}>{t.label}</div>
+        <div style={tagStyle(m.rarity, t.c, t.ink)}>{rarity(m.rarity)}</div>
         <div style={legislatureTagStyle}>L {LEGISLATURE}</div>
         {cardSectors.length > 0 && (
           <div
-            aria-label={`Sectors: ${cardSectors.join(', ')}`}
+            aria-label={tr('sectorsAria', { sectors: cardSectors.map(sectorName).join(', ') })}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -241,7 +246,7 @@ export function CardFront({
               <span
                 key={sector}
                 tabIndex={0}
-                aria-label={`Sector: ${sector}`}
+                aria-label={tr('sectorAria', { sector: sectorName(sector) })}
                 aria-describedby={hoveredSector === sector ? `sector-tooltip-${m.id}-${index}` : undefined}
                 onMouseEnter={() => setHoveredSector(sector)}
                 onMouseLeave={() => setHoveredSector(null)}
@@ -284,7 +289,7 @@ export function CardFront({
                       pointerEvents: 'none',
                     }}
                   >
-                    {sector.toUpperCase()}
+                    {sectorName(sector).toUpperCase()}
                   </span>
                 )}
               </span>
@@ -374,7 +379,7 @@ export function CardFront({
             overflow: 'visible',
           }}
         >
-          <Stat label="AGE" value={m.age} />
+          <Stat label={tr('age')} value={m.age} />
           <CommitteeStat
             member={m}
             open={openMetric === 'cmte'}

@@ -8,11 +8,13 @@ import type { SortKey } from '../game/storage'
 import { loadPrefs, persistPrefs } from '../game/storage'
 import { Flag } from '../components/Flag'
 import { CardModal } from '../components/CardModal'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 export function Collection({ game }: { game: Game }) {
+  const { t, rarity, party } = useI18n()
   // Read once per mount so the chips come back exactly as they were left,
   // including after switching tabs (which unmounts this screen).
   const [savedPrefs] = useState(loadPrefs)
@@ -111,9 +113,9 @@ export function Collection({ game }: { game: Game }) {
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>THE COLLECTION</div>
+          <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('collectionTitle')}</div>
           <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
-            {ownedList.length} OF {MEMBERS.length} MEMBERS
+            {t('collectionCount', { owned: ownedList.length, total: MEMBERS.length })}
           </div>
         </div>
         <button
@@ -130,7 +132,7 @@ export function Collection({ game }: { game: Game }) {
             cursor: 'pointer',
           }}
         >
-          TRADE IN →
+          {t('tradeIn')}
         </button>
       </div>
 
@@ -158,7 +160,7 @@ export function Collection({ game }: { game: Game }) {
                     color: on ? t.c : '#7690AE',
                   }}
                 >
-                  {t.label}
+                  {rarity(r)}
                 </button>
               )
             })}
@@ -168,7 +170,7 @@ export function Collection({ game }: { game: Game }) {
           <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
             {(['rarity', 'ovr', 'atk', 'def', 'name'] as SortKey[]).map((k) => {
               const on = sortKey === k
-              const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : k === 'rarity' ? 'RARITY' : 'NAME'
+              const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : k === 'rarity' ? t('rarity') : t('name')
               const arrow = on ? (sortDir < 0 ? ' ↓' : ' ↑') : ''
               return (
                 <button
@@ -211,7 +213,7 @@ export function Collection({ game }: { game: Game }) {
                 cursor: 'pointer',
               }}
             >
-              {selectedCantons.size === 0 ? 'CANTONS' : `${selectedCantons.size} C`}
+              {selectedCantons.size === 0 ? t('cantons') : t('cantonCount', { count: selectedCantons.size })}
             </button>
             {openCantonDropdown && (
               <div
@@ -287,7 +289,7 @@ export function Collection({ game }: { game: Game }) {
           <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginTop: 12, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}>
             {/* header row */}
             <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: '1fr 40px 40px 44px', gap: 8, padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>MEMBER</div>
+              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>{t('member')}</div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FF9EC4', textAlign: 'right' }}>ATK</div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#8FEDE3', textAlign: 'right' }}>DEF</div>
               <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'right' }}>OVR</div>
@@ -347,7 +349,7 @@ export function Collection({ game }: { game: Game }) {
                             color: pc[1],
                           }}
                         >
-                          {r.member.party}
+                          {party(r.member.partyCode, r.member.party)}
                         </span>
                         <Flag canton={r.member.canton} height={10} />
                         <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{r.member.cantonName}</span>
@@ -373,13 +375,13 @@ export function Collection({ game }: { game: Game }) {
       ) : (
         /* empty state */
         <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, textAlign: 'center', padding: '0 10px' }}>
-          <div style={{ fontFamily: AB, fontSize: 19, color: '#3E5170', letterSpacing: '.02em' }}>NOTHING IN HERE YET</div>
-          <div style={{ fontSize: 13, lineHeight: 1.5, color: '#5C7391', maxWidth: 260 }}>Rip your first pack and ten members of the house land in this table.</div>
+          <div style={{ fontFamily: AB, fontSize: 19, color: '#3E5170', letterSpacing: '.02em' }}>{t('nothingHere')}</div>
+          <div style={{ fontSize: 13, lineHeight: 1.5, color: '#5C7391', maxWidth: 260 }}>{t('collectionEmpty', { count: 10 })}</div>
           <button
             onClick={game.goHome}
             style={{ marginTop: 4, padding: '14px 24px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
           >
-            GO GET A PACK
+            {t('getPack')}
           </button>
         </div>
       )}

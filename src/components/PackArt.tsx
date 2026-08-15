@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { PACK_CLIP } from '../theme'
 import { SwissCross } from './CardBack'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -36,7 +37,8 @@ export function PackFoil() {
 }
 
 /** Bottom label block — Swiss cross, wordmark, subtext. */
-export function PackLabel({ subtext = '5 CARDS · NO DUPES', rarityColor }: { subtext?: string; rarityColor?: string }) {
+export function PackLabel({ subtext, rarityColor }: { subtext?: string; rarityColor?: string }) {
+  const { t } = useI18n()
   return (
     <div
       style={{
@@ -61,16 +63,17 @@ export function PackLabel({ subtext = '5 CARDS · NO DUPES', rarityColor }: { su
         PACK
       </div>
       <div style={{ width: '100%', height: 1, background: `linear-gradient(90deg,${rarityColor ?? 'rgba(255,197,61,.6)'},transparent)` }} />
-      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: rarityColor ?? '#FFD87A', textAlign: 'center' }}>{subtext}</div>
+      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: rarityColor ?? '#FFD87A', textAlign: 'center' }}>{subtext ?? t('packLabel', { count: 5 })}</div>
     </div>
   )
 }
 
 /** Tear label ("TEAR ↓") pinned top-right of the pack. */
 export function TearTab() {
+  const { t } = useI18n()
   return (
     <div style={{ position: 'absolute', right: 11, top: 9, display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ fontFamily: MONO, fontSize: 7.5, letterSpacing: '.18em', color: '#FFD87A' }}>TEAR</span>
+      <span style={{ fontFamily: MONO, fontSize: 7.5, letterSpacing: '.18em', color: '#FFD87A' }}>{t('tear')}</span>
       <span style={{ fontFamily: AB, fontSize: 9, color: '#FFC53D' }}>↓</span>
     </div>
   )

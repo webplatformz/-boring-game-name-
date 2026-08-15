@@ -6,6 +6,7 @@ import type { RarityKey } from '../theme'
 import { TIERS, RARITY_ORDER, partyColors } from '../theme'
 import { getNextRarity } from '../game/pack'
 import { Flag } from '../components/Flag'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -14,6 +15,7 @@ const MONO = "'IBM Plex Mono',monospace"
 const TRADEABLE_RARITIES: RarityKey[] = RARITY_ORDER.slice(0, -1) as RarityKey[]
 
 export function Trade({ game }: { game: Game }) {
+  const { t, rarity, party } = useI18n()
   const [selectedRarity, setSelectedRarity] = useState<RarityKey>(
     () => game.state.tradeRarity ?? 'common',
   )
@@ -136,9 +138,9 @@ export function Trade({ game }: { game: Game }) {
       {/* Header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>CARD TRADE-IN</div>
+          <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('tradeTitle')}</div>
           <div style={{ marginTop: 4, fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
-            EXCHANGE 5 CARDS FOR 1 HIGHER RARITY
+            {t('tradeSubtitle')}
           </div>
         </div>
       </div>
@@ -146,7 +148,7 @@ export function Trade({ game }: { game: Game }) {
       {/* Rarity selector chips */}
       <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
         {TRADEABLE_RARITIES.map((r) => {
-          const t = TIERS[r]
+          const tier = TIERS[r]
           const on = selectedRarity === r
           return (
             <button
@@ -160,13 +162,13 @@ export function Trade({ game }: { game: Game }) {
                 fontSize: 10,
                 letterSpacing: '.12em',
                 whiteSpace: 'nowrap',
-                background: on ? `${t.c}28` : 'rgba(234,242,255,.05)',
-                border: on ? `1.5px solid ${t.c}` : '1px solid rgba(234,242,255,.12)',
-                color: on ? t.c : '#7690AE',
+                background: on ? `${tier.c}28` : 'rgba(234,242,255,.05)',
+                border: on ? `1.5px solid ${tier.c}` : '1px solid rgba(234,242,255,.12)',
+                color: on ? tier.c : '#7690AE',
                 cursor: 'pointer',
               }}
             >
-              {t.label}
+              {rarity(r)}
             </button>
           )
         })}
@@ -187,12 +189,12 @@ export function Trade({ game }: { game: Game }) {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontFamily: AB, fontSize: 11, color: currentTier.c }}>5× {currentTier.label}</span>
+            <span style={{ fontFamily: AB, fontSize: 11, color: currentTier.c }}>5× {rarity(selectedRarity)}</span>
             <span style={{ fontFamily: MONO, fontSize: 12, color: '#5C7391' }}>→</span>
-            <span style={{ fontFamily: AB, fontSize: 11, color: targetTier.c }}>1× {targetTier.label}</span>
+            <span style={{ fontFamily: AB, fontSize: 11, color: targetTier.c }}>1× {targetRarity ? rarity(targetRarity) : ''}</span>
           </div>
           <div style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE', letterSpacing: '.1em' }}>
-            {selectedMemberIds.length} / 5 SELECTED
+            {t('selectedCount', { count: selectedMemberIds.length })}
           </div>
         </div>
       )}
@@ -286,7 +288,7 @@ export function Trade({ game }: { game: Game }) {
               opacity: ownedOfRarity.length === 0 ? 0.5 : 1,
             }}
           >
-            AUTO-FILL{hasDupesLeft ? ' DUPES' : ''}
+            {t('autoFill')}{hasDupesLeft ? ` ${t('dupes')}` : ''}
           </button>
           <button
             onClick={handleClear}
@@ -305,7 +307,7 @@ export function Trade({ game }: { game: Game }) {
               opacity: selectedMemberIds.length > 0 ? 1 : 0.45,
             }}
           >
-            CLEAR
+            {t('clear')}
           </button>
         </div>
       </div>
@@ -333,8 +335,8 @@ export function Trade({ game }: { game: Game }) {
         }}
       >
         {canTrade
-          ? `TRADE 5 CARDS → GET 1 ${targetTier ? targetTier.label : ''}`
-          : `SELECT 5 ${currentTier.label} CARDS`}
+          ? t('tradeReady', { rarity: targetRarity ? rarity(targetRarity) : '' })
+          : t('tradeSelect', { rarity: rarity(selectedRarity) })}
       </button>
 
       {/* Available cards table */}
@@ -362,10 +364,10 @@ export function Trade({ game }: { game: Game }) {
           }}
         >
           <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>
-            AVAILABLE {currentTier.label} CARDS
+            {t('availableCards', { rarity: rarity(selectedRarity) })}
           </span>
           <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>
-            {ownedOfRarity.length} TYPES
+            {t('types', { count: ownedOfRarity.length })}
           </span>
         </div>
 
@@ -436,7 +438,7 @@ export function Trade({ game }: { game: Game }) {
                           color: pc[1],
                         }}
                       >
-                        {member.party}
+                        {party(member.partyCode, member.party)}
                       </span>
                       <Flag canton={member.canton} height={10} />
                       <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>
@@ -454,7 +456,7 @@ export function Trade({ game }: { game: Game }) {
                         color: remaining > 0 ? '#8FEDE3' : '#5C7391',
                       }}
                     >
-                      {remaining} avail
+                      {t('availableShort', { count: remaining })}
                     </span>
                   </div>
 
@@ -476,10 +478,10 @@ export function Trade({ game }: { game: Game }) {
           ) : (
             <div style={{ padding: '30px 20px', textAlign: 'center' }}>
               <div style={{ fontFamily: AB, fontSize: 14, color: '#3E5170' }}>
-                NO {currentTier.label} CARDS OWNED
+                {t('noRarityOwned', { rarity: rarity(selectedRarity) })}
               </div>
               <div style={{ marginTop: 4, fontSize: 11, color: '#5C7391' }}>
-                Rip packs or trade lower rarity cards to acquire {currentTier.label} cards.
+                {t('acquireRarity', { rarity: rarity(selectedRarity) })}
               </div>
             </div>
           )}

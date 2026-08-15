@@ -3,6 +3,8 @@ import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
 import type { FinancingDisclosure, LobbyingDisclosure, LobbyingSector, Member } from '../data/members'
 import { OverflowTooltip } from './OverflowTooltip'
 import { SECTOR_META, SectorIcon } from './SectorIcon'
+import { useI18n } from '../i18n'
+import type { Language, TranslationKey } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -18,8 +20,9 @@ function stopPointer(e: ReactPointerEvent<HTMLElement>) {
   e.stopPropagation()
 }
 
-function money(value: number): string {
-  return new Intl.NumberFormat('de-CH', {
+function money(value: number, language: Language): string {
+  const locale = { en: 'en-CH', de: 'de-CH', fr: 'fr-CH', it: 'it-CH' }[language]
+  return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'CHF',
     maximumFractionDigits: 0,
@@ -32,14 +35,16 @@ function compactMoney(value: number): string {
   return String(Math.round(value))
 }
 
-function displayedValue(member: Member, kind: DisclosureKind): string {
+type Translate = (key: TranslationKey, params?: Record<string, string | number>) => string
+
+function displayedValue(member: Member, kind: DisclosureKind, t: Translate): string {
   if (kind === 'ties') {
-    return member.lobbying.coverage === 'not_applicable' ? 'N/A' : String(member.lobbying.total)
+    return member.lobbying.coverage === 'not_applicable' ? t('notApplicable') : String(member.lobbying.total)
   }
   const finance = member.financing
-  if (finance.coverage === 'not_applicable') return 'N/A'
+  if (finance.coverage === 'not_applicable') return t('notApplicable')
   if (finance.coverage === 'direct') return compactMoney(finance.directIncome)
-  if (finance.coverage === 'shared') return `${compactMoney(finance.sharedCampaignIncome)}\nPOOL`
+  if (finance.coverage === 'shared') return `${compactMoney(finance.sharedCampaignIncome)}\n${t('pool')}`
   return '—'
 }
 
@@ -53,10 +58,11 @@ function Metric({ label, value, color }: { label: string; value: string | number
 }
 
 function SectorPill({ sector, detail }: { sector: LobbyingSector; detail: string }) {
+  const { sector: sectorName } = useI18n()
   const meta = SECTOR_META[sector]
   return (
     <span
-      title={sector}
+      title={sectorName(sector)}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -71,27 +77,28 @@ function SectorPill({ sector, detail }: { sector: LobbyingSector; detail: string
       }}
     >
       <SectorIcon sector={sector} size={10} />
-      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{meta.short}</span>
+      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{sectorName(sector)}</span>
       <span style={{ color: '#8294AD' }}>{detail}</span>
     </span>
   )
 }
 
 function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
+  const { t, sector: sectorName } = useI18n()
   if (disclosure.coverage === 'not_applicable') {
-    return <div style={{ color: '#97A8BF' }}>The parliamentary interests register does not cover Federal Councillors.</div>
+    return <div style={{ color: '#97A8BF' }}>{t('tiesNotApplicable')}</div>
   }
   return (
     <>
       <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-        Self-declared external interests. Sector icons identify classified links; paid amounts are not published.
+        {t('tiesIntro')}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
-        <Metric label="Declared interests" value={disclosure.total} />
-        <Metric label="Paid mandates" value={disclosure.paid} color="#D7CAFF" />
-        <Metric label="Leadership roles" value={disclosure.leadership} />
-        <Metric label="Committee overlaps" value={disclosure.committeeOverlaps} />
-        <Metric label="Sector-classified links" value={`${disclosure.classifiedTotal} / ${disclosure.total}`} />
+        <Metric label={t('declaredInterests')} value={disclosure.total} />
+        <Metric label={t('paidMandates')} value={disclosure.paid} color="#D7CAFF" />
+        <Metric label={t('leadershipRolesMetric')} value={disclosure.leadership} />
+        <Metric label={t('committeeOverlaps')} value={disclosure.committeeOverlaps} />
+        <Metric label={t('classifiedLinks')} value={`${disclosure.classifiedTotal} / ${disclosure.total}`} />
       </div>
       {disclosure.sectorBreakdown.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
@@ -103,13 +110,13 @@ function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
       {disclosure.ties.length > 0 && (
         <div style={{ marginTop: 8, paddingTop: 7, borderTop: '1px solid rgba(185,166,255,.2)' }}>
           <div style={{ marginBottom: 3, color: '#B9A6FF', fontSize: 7.5, letterSpacing: '.08em' }}>
-            DECLARED INTERESTS
+            {t('declaredInterestsTitle')}
           </div>
           <div style={{ maxHeight: 104, overflowY: 'auto', overscrollBehavior: 'contain', paddingRight: 3 }}>
             {disclosure.ties.map((tie) => (
               <div key={`${tie.organization}-${tie.role}`} style={{ marginTop: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0, color: '#E7E0FF' }}>
-                  {tie.sector && <SectorIcon sector={tie.sector} size={10} title={tie.sector} />}
+                  {tie.sector && <SectorIcon sector={tie.sector} size={10} title={sectorName(tie.sector)} />}
                   <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {tie.organization}
                   </span>
@@ -124,8 +131,8 @@ function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
                   }}
                 >
                   {tie.role}
-                  {tie.paid ? ' · PAID' : ' · UNPAID'}
-                  {tie.committeeOverlap ? ' · COMMITTEE MATCH' : ''}
+                  {tie.paid ? ` · ${t('paid')}` : ` · ${t('unpaid')}`}
+                  {tie.committeeOverlap ? ` · ${t('committeeMatch')}` : ''}
                 </div>
               </div>
             ))}
@@ -137,32 +144,33 @@ function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
 }
 
 function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
+  const { language, t, sector: sectorName } = useI18n()
   return (
     <>
       <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-        Candidate-specific 2023 EFK final accounts. Sector icons cover classified named large gifts only; shared pools are separate.
+        {t('financeIntro')}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
-        <Metric label="Direct campaign income" value={money(disclosure.directIncome)} color="#FFE4A2" />
-        <Metric label="Monetary contributions" value={money(disclosure.monetaryContributions)} />
-        <Metric label="Non-monetary" value={money(disclosure.nonMonetaryContributions)} />
-        <Metric label="Events + sales" value={money(disclosure.eventIncome + disclosure.salesIncome)} />
-        <Metric label="Own funds" value={money(disclosure.ownFunds)} />
+        <Metric label={t('directIncome')} value={money(disclosure.directIncome, language)} color="#FFE4A2" />
+        <Metric label={t('monetaryContributions')} value={money(disclosure.monetaryContributions, language)} />
+        <Metric label={t('nonMonetary')} value={money(disclosure.nonMonetaryContributions, language)} />
+        <Metric label={t('eventsSales')} value={money(disclosure.eventIncome + disclosure.salesIncome, language)} />
+        <Metric label={t('ownFunds')} value={money(disclosure.ownFunds, language)} />
         {Math.abs(disclosure.unallocatedIncome) >= 1 && (
-          <Metric label="Unallocated EFK residual" value={money(disclosure.unallocatedIncome)} />
+          <Metric label={t('unallocatedResidual')} value={money(disclosure.unallocatedIncome, language)} />
         )}
-        <Metric label="Named gifts > CHF 15k" value={`${disclosure.largeDonorCount} · ${money(disclosure.largeDonorTotal)}`} />
+        <Metric label={t('namedGifts')} value={`${disclosure.largeDonorCount} · ${money(disclosure.largeDonorTotal, language)}`} />
         {disclosure.largeDonorCount > 0 && (
           <Metric
-            label="Sector-classified gifts"
-            value={`${disclosure.classifiedLargeDonorCount} · ${money(disclosure.classifiedLargeDonorTotal)}`}
+            label={t('classifiedGifts')}
+            value={`${disclosure.classifiedLargeDonorCount} · ${money(disclosure.classifiedLargeDonorTotal, language)}`}
           />
         )}
       </div>
       {disclosure.donorSectors.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
           {disclosure.donorSectors.slice(0, 3).map((summary) => (
-            <SectorPill key={summary.sector} sector={summary.sector} detail={money(summary.value)} />
+            <SectorPill key={summary.sector} sector={summary.sector} detail={money(summary.value, language)} />
           ))}
         </div>
       )}
@@ -171,20 +179,22 @@ function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
           {disclosure.topLargeDonors.map((donor) => (
             <div key={`${donor.name}-${donor.value}`} style={{ display: 'flex', gap: 8, justifyContent: 'space-between', marginTop: 3 }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0, color: '#F4E7C5' }}>
-                {donor.sector && <SectorIcon sector={donor.sector} size={10} title={donor.sector} />}
+                {donor.sector && <SectorIcon sector={donor.sector} size={10} title={sectorName(donor.sector)} />}
                 <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {donor.name}
                 </span>
               </span>
-              <span style={{ color: '#FFD36A', whiteSpace: 'nowrap' }}>{money(donor.value)}</span>
+              <span style={{ color: '#FFD36A', whiteSpace: 'nowrap' }}>{money(donor.value, language)}</span>
             </div>
           ))}
         </div>
       )}
       {disclosure.sharedCampaignCount > 0 && (
         <div style={{ marginTop: 7, color: '#8294AD' }}>
-          Plus {disclosure.sharedCampaignCount} shared pool{disclosure.sharedCampaignCount === 1 ? '' : 's'} totalling{' '}
-          {money(disclosure.sharedCampaignIncome)}; none of that pool is allocated to this candidate.
+          {t(disclosure.sharedCampaignCount === 1 ? 'sharedPoolsPlus' : 'sharedPoolsPlusPlural', {
+            count: disclosure.sharedCampaignCount,
+            amount: money(disclosure.sharedCampaignIncome, language),
+          })}
         </div>
       )}
     </>
@@ -192,13 +202,14 @@ function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
 }
 
 function CampTooltip({ disclosure }: { disclosure: FinancingDisclosure }) {
+  const { language, t } = useI18n()
   if (disclosure.coverage === 'not_applicable') {
-    return <div style={{ color: '#97A8BF' }}>Federal Councillors were not candidates in the 2023 federal parliamentary election.</div>
+    return <div style={{ color: '#97A8BF' }}>{t('financeNotApplicable')}</div>
   }
   if (disclosure.coverage === 'none') {
     return (
       <div style={{ color: '#97A8BF' }}>
-        No itemized EFK final-account record matched this member. This does not mean CHF 0: campaigns below the legal reporting threshold need no filing.
+        {t('financeNone')}
       </div>
     )
   }
@@ -206,12 +217,12 @@ function CampTooltip({ disclosure }: { disclosure: FinancingDisclosure }) {
     return (
       <>
         <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-          The member appears only in shared campaign pools. Their personal share is not published and is not estimated.
+          {t('financeShared')}
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
-          <Metric label="Shared campaign pools" value={disclosure.sharedCampaignCount} />
-          <Metric label="Whole-pool income" value={money(disclosure.sharedCampaignIncome)} color="#FFE4A2" />
-          <Metric label="Attributed personally" value="Not available" />
+          <Metric label={t('sharedCampaignPools')} value={disclosure.sharedCampaignCount} />
+          <Metric label={t('wholePoolIncome')} value={money(disclosure.sharedCampaignIncome, language)} color="#FFE4A2" />
+          <Metric label={t('personallyAttributed')} value={t('notAvailable')} />
         </div>
       </>
     )
@@ -232,14 +243,15 @@ export function DisclosureStat({
   onToggle: () => void
   compact?: boolean
 }) {
+  const { t, sector: sectorName } = useI18n()
   const tooltipId = useId()
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const appearance = STYLE[kind]
-  const value = displayedValue(member, kind)
+  const appearance = { ...STYLE[kind], label: t(kind === 'ties' ? 'ties' : 'camp') }
+  const value = displayedValue(member, kind, t)
   const accessibleValue = value.replace('\n', ' ')
   const [primaryValue, secondaryValue] = value.split('\n')
   const compactValue = primaryValue.length > 6
-  const label = kind === 'ties' ? 'declared interests' : 'campaign financing'
+  const label = kind === 'ties' ? t('tiesMetricName') : t('campMetricName')
   const sector = kind === 'camp' ? member.financing.primaryDonorSector : null
 
   const root: CSSProperties = {
@@ -254,10 +266,11 @@ export function DisclosureStat({
     <div style={root}>
       <button
         ref={buttonRef}
+        data-card-tooltip-interactive
         type="button"
         aria-expanded={open}
         aria-describedby={open ? tooltipId : undefined}
-        aria-label={`${appearance.label} ${accessibleValue}${sector ? `. Leading classified sector: ${sector}` : ''}. Show ${label} metrics`}
+        aria-label={`${appearance.label} ${accessibleValue}${sector ? `. ${t('leadingSectorAria', { sector: sectorName(sector) })}` : ''}. ${t('showMetricsAria', { label })}`}
         onPointerDown={stopPointer}
         onPointerUp={stopPointer}
         onPointerCancel={stopPointer}
@@ -351,12 +364,14 @@ function Tooltip({
   tooltipId: string
   compact: boolean
 }) {
+  const { t } = useI18n()
   const appearance = STYLE[kind]
   const source = kind === 'ties' ? member.lobbying.source : member.financing.source
 
   return (
         <div
           id={tooltipId}
+          data-card-tooltip-interactive
           role="tooltip"
           onPointerDown={(event) => event.stopPropagation()}
           onPointerUp={(event) => event.stopPropagation()}
@@ -381,7 +396,7 @@ function Tooltip({
           }}
         >
           <div style={{ marginBottom: 5, color: appearance.color, fontFamily: AB, fontSize: 10, letterSpacing: '.08em' }}>
-            {kind === 'ties' ? 'DISCLOSED EXTERNAL LINKS' : 'CAMPAIGN FINANCING'}
+            {kind === 'ties' ? t('disclosedLinks') : t('campaignFinancing')}
           </div>
           {kind === 'ties' ? <TiesTooltip disclosure={member.lobbying} /> : <CampTooltip disclosure={member.financing} />}
           <a
@@ -391,7 +406,7 @@ function Tooltip({
             onClick={(event) => event.stopPropagation()}
             style={{ display: 'inline-block', marginTop: 8, color: appearance.muted, fontSize: 7.5 }}
           >
-            OFFICIAL SOURCE ↗
+            {t('officialSource')}
           </a>
         </div>
   )

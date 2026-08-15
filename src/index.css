@@ -39,6 +39,20 @@ a:hover {
   color: #ff5fa2;
 }
 
+.reveal-hint-mobile {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .reveal-hint-desktop {
+    display: none;
+  }
+
+  .reveal-hint-mobile {
+    display: inline;
+  }
+}
+
 /* ── animations (ported from the design prototype) ─────────────────────── */
 @keyframes slide {
   0% {

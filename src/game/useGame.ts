@@ -240,18 +240,31 @@ export function useGame(): Game {
     },
     [patch],
   )
-  const onPointerUp = useCallback(() => {
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
     if (!stateRef.current.dragging) return
     const isTap = moved.current < 6
     const swiped = Math.abs(stateRef.current.drag) > 70
+    const swipedLeft = stateRef.current.drag < -70
+    const isTouch = e.pointerType === 'touch'
     patch({ dragging: false, drag: 0 })
-    // First tap on a face-down card flips it; subsequent tap/swipe advances.
+    // A tap always flips a face-down card, regardless of input type.
     if (!stateRef.current.faceUp) {
       if (isTap) patch({ faceUp: true })
       return
     }
+    // Touch users must deliberately swipe left. A tap leaves the face-up card
+    // in place so its stat controls can be explored without advancing the deck.
+    if (isTouch) {
+      if (swipedLeft) advance()
+      return
+    }
+    // Preserve the existing mouse/desktop interaction.
     if (swiped || isTap) advance()
   }, [patch, advance])
+
+  const onPointerCancel = useCallback(() => {
+    if (stateRef.current.dragging) patch({ dragging: false, drag: 0 })
+  }, [patch])
 
   return {
     state,
@@ -263,6 +276,6 @@ export function useGame(): Game {
     goTrade,
     executeTrade,
     goBattle,
-    cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel: onPointerUp },
+    cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   }
 }

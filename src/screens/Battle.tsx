@@ -9,6 +9,7 @@ import type { Action, BattleResult } from '../game/battle'
 import { CardFront } from '../components/CardFront'
 import { CardGlow } from '../components/CardGlow'
 import { Flag } from '../components/Flag'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -83,6 +84,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, hideStat
 }
 
 export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
+  const { t } = useI18n()
   const { step, record, playerCard, oppCard, playerAction, oppAction, result } = battle.state
 
   const ownedList = useMemo(() => {
@@ -116,13 +118,13 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
             cursor: 'pointer',
           }}
         >
-          ← HOME
+          {t('home')}
         </button>
-        <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>BATTLE</div>
+        <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('battleTitle')}</div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontFamily: MONO, fontSize: 11, letterSpacing: '.1em' }}>
-          <span style={{ color: '#8FEDE3' }}>{record.wins}W</span>
+          <span style={{ color: '#8FEDE3' }}>{t('winsShort', { count: record.wins })}</span>
           <span style={{ color: '#3E5170' }}>·</span>
-          <span style={{ color: '#FF9EC4' }}>{record.losses}L</span>
+          <span style={{ color: '#FF9EC4' }}>{t('lossesShort', { count: record.losses })}</span>
         </div>
       </div>
 
@@ -153,18 +155,19 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
 // a quick pick step, not a browsing view.
 
 function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: (m: Member) => void; onGoHome: () => void }) {
+  const { t, party } = useI18n()
   if (ownedList.length === 0) {
     return (
       <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, textAlign: 'center', padding: '0 10px' }}>
-        <div style={{ fontFamily: AB, fontSize: 19, color: '#3E5170', letterSpacing: '.02em' }}>NO FIGHTERS YET</div>
+        <div style={{ fontFamily: AB, fontSize: 19, color: '#3E5170', letterSpacing: '.02em' }}>{t('noFighters')}</div>
         <div style={{ fontSize: 13, lineHeight: 1.5, color: '#5C7391', maxWidth: 260 }}>
-          Rip a pack first — you need at least one card to enter battle.
+          {t('noFightersBody')}
         </div>
         <button
           onClick={onGoHome}
           style={{ marginTop: 4, padding: '14px 24px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
         >
-          GO GET A PACK
+          {t('getPack')}
         </button>
       </div>
     )
@@ -172,10 +175,10 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
 
   return (
     <>
-      <div style={{ flex: 'none', fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>CHOOSE YOUR FIGHTER</div>
+      <div style={{ flex: 'none', fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>{t('chooseFighter')}</div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}>
         <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: '1fr 40px 40px 44px', gap: 8, padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}>
-          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>MEMBER</div>
+          <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>{t('member')}</div>
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FF9EC4', textAlign: 'right' }}>ATK</div>
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#8FEDE3', textAlign: 'right' }}>DEF</div>
           <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'right' }}>OVR</div>
@@ -193,7 +196,7 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{m.name}</div>
                   <div style={{ display: 'flex', gap: 6, marginTop: 3, alignItems: 'center' }}>
-                    <span style={{ padding: '2px 5px', borderRadius: 4, background: pc[0], fontFamily: AB, fontSize: 8, color: pc[1] }}>{m.party}</span>
+                    <span style={{ padding: '2px 5px', borderRadius: 4, background: pc[0], fontFamily: AB, fontSize: 8, color: pc[1] }}>{party(m.partyCode, m.party)}</span>
                     <Flag canton={m.canton} height={10} />
                     <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{m.cantonName}</span>
                   </div>
@@ -238,6 +241,7 @@ function Arena({
   onChoose: (action: Action) => void
   onFightAgain: () => void
 }) {
+  const { t } = useI18n()
   const locked = playerAction !== null
   const revealed = step === 'reveal' || step === 'result'
   const won = result?.winner === 'player'
@@ -249,7 +253,7 @@ function Arena({
     // Card sizes are chosen to fit typical viewports without scrolling.
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, paddingBottom: 4 }}>
       <BattleCard
-        label="OPPONENT"
+        label={t('opponent')}
         labelColor="#FF9EC4"
         member={oppCard}
         width={cardW}
@@ -270,11 +274,11 @@ function Arena({
           animation: step === 'reveal' ? 'vsFlash 420ms ease-out' : undefined,
         }}
       >
-        VS
+        {t('versus')}
       </div>
 
       <BattleCard
-        label="YOUR CARD"
+        label={t('yourCard')}
         labelColor="#8FEDE3"
         member={playerCard}
         width={cardW}
@@ -290,10 +294,10 @@ function Arena({
         {step === 'fight' && !locked && (
           <div style={{ display: 'flex', gap: 10, width: '100%' }}>
             <button onClick={() => onChoose('attack')} style={actionButtonStyle('#FF3D8B')}>
-              ATTACK
+              {t('attack')}
             </button>
             <button onClick={() => onChoose('defend')} style={actionButtonStyle('#2FD3C4')}>
-              DEFEND
+              {t('defend')}
             </button>
           </div>
         )}
@@ -308,21 +312,25 @@ function Arena({
               animation: 'glowPulse 1000ms ease-in-out infinite',
             }}
           >
-            {step === 'reveal' ? 'RESOLVING…' : 'LOCKING IN…'}
+            {step === 'reveal' ? t('resolving') : t('lockingIn')}
           </div>
         )}
 
         {step === 'result' && result && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, animation: 'riseIn 320ms ease-out' }}>
             <div style={{ fontFamily: AB, fontSize: 22, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
-              {won ? 'YOU WON!' : 'YOU LOST'}
+              {won ? t('youWon') : t('youLost')}
             </div>
-            <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>{result.reason}</div>
+            <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>
+              {result.winner === 'player'
+                ? playerAction === 'attack' ? t('battlePlayerAttackWin') : t('battlePlayerDefendWin')
+                : oppAction === 'attack' ? t('battleOpponentAttackWin') : t('battleOpponentDefendWin')}
+            </div>
             <button
               onClick={onFightAgain}
               style={{ marginTop: 2, padding: '13px 26px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
             >
-              FIGHT AGAIN
+              {t('fightAgain')}
             </button>
           </div>
         )}
@@ -373,7 +381,8 @@ function BattleCard({
   dimmed?: boolean
   hideStats?: boolean
 }) {
-  const t = TIERS[member.rarity]
+  const { t } = useI18n()
+  const tier = TIERS[member.rarity]
   return (
     <div
       style={{
@@ -393,7 +402,7 @@ function BattleCard({
           member={member}
           highlightStat={highlightStat}
           hideStats={hideStats}
-          style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${t.c}8c` }}
+          style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${tier.c}8c` }}
         />
       </div>
       {actionLabel && (
@@ -406,7 +415,7 @@ function BattleCard({
             animation: 'popIn 220ms ease-out',
           }}
         >
-          {actionLabel === 'attack' ? 'ATTACKED' : 'DEFENDED'}
+          {actionLabel === 'attack' ? t('attacked') : t('defended')}
         </div>
       )}
     </div>

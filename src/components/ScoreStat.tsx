@@ -2,6 +2,8 @@ import { useId, useRef } from 'react'
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
 import type { Member, MemberStrengths } from '../data/members'
 import { OverflowTooltip } from './OverflowTooltip'
+import { useI18n } from '../i18n'
+import type { TranslationKey } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -16,39 +18,41 @@ const SCORE_STYLE = {
 type StrengthKey = keyof MemberStrengths
 type MetricRow = { key: StrengthKey; label: string; weight: number }
 
-function metricRows(member: Member, kind: ScoreKind): MetricRow[] {
+type Translate = (key: TranslationKey, params?: Record<string, string | number>) => string
+
+function metricRows(member: Member, kind: ScoreKind, t: Translate): MetricRow[] {
   if (member.chamber === 'BR') {
     return [
-      { key: 'officeTenure', label: 'Executive tenure', weight: 0.8 },
-      { key: 'ageNetwork', label: 'Age / network', weight: 0.2 },
+      { key: 'officeTenure', label: t('executiveTenure'), weight: 0.8 },
+      { key: 'ageNetwork', label: t('ageNetwork'), weight: 0.2 },
     ]
   }
   return kind === 'atk'
     ? [
-        { key: 'proposalDrive', label: 'Proposal drive', weight: 0.45 },
-        { key: 'proposalProgress', label: 'Proposals advanced', weight: 0.3 },
-        { key: 'leadership', label: 'Current leadership', weight: 0.25 },
+        { key: 'proposalDrive', label: t('proposalDrive'), weight: 0.45 },
+        { key: 'proposalProgress', label: t('proposalsAdvanced'), weight: 0.3 },
+        { key: 'leadership', label: t('currentLeadership'), weight: 0.25 },
       ]
     : [
-        { key: 'votingReliability', label: 'Voting reliability', weight: 0.2 },
-        { key: 'committeeWork', label: 'Current committee work', weight: 0.45 },
-        { key: 'experience', label: 'Parliament experience', weight: 0.3 },
-        { key: 'ageExperience', label: 'Age experience', weight: 0.05 },
+        { key: 'votingReliability', label: t('votingReliability'), weight: 0.2 },
+        { key: 'committeeWork', label: t('currentCommitteeWork'), weight: 0.45 },
+        { key: 'experience', label: t('parliamentExperience'), weight: 0.3 },
+        { key: 'ageExperience', label: t('ageExperience'), weight: 0.05 },
       ]
 }
 
-function tooltipCopy(member: Member, kind: ScoreKind): { title: string; blurb: string } {
+function tooltipCopy(member: Member, kind: ScoreKind, t: Translate): { title: string; blurb: string } {
   if (member.chamber === 'BR') {
     const baseline = kind === 'atk' ? 86 : 88
     const multiplier = kind === 'atk' ? 10 : 9
     return {
-      title: kind === 'atk' ? 'EXECUTIVE INFLUENCE' : 'EXECUTIVE RESILIENCE',
-      blurb: `${baseline} + ${multiplier} × weighted experience.`,
+      title: kind === 'atk' ? t('executiveInfluence') : t('executiveResilience'),
+      blurb: t('weightedExperience', { baseline, multiplier }),
     }
   }
   return kind === 'atk'
-    ? { title: 'DRIVE & INITIATIVE', blurb: 'Individual work, progress and leadership; normalized by chamber.' }
-    : { title: 'RELIABILITY & RESILIENCE', blurb: 'Individual attendance, committee work and experience.' }
+    ? { title: t('driveInitiative'), blurb: t('atkBlurb') }
+    : { title: t('reliabilityResilience'), blurb: t('defBlurb') }
 }
 
 function stopPointer(e: ReactPointerEvent<HTMLButtonElement>) {
@@ -96,6 +100,7 @@ export function ScoreStat({
   highlighted?: boolean
   compact?: boolean
 }) {
+  const { t } = useI18n()
   const tooltipId = useId()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const score = SCORE_STYLE[kind]
@@ -119,10 +124,11 @@ export function ScoreStat({
     <div style={root}>
       <button
         ref={buttonRef}
+        data-card-tooltip-interactive
         type="button"
         aria-expanded={open}
         aria-describedby={open ? tooltipId : undefined}
-        aria-label={`${score.label} ${value}. Show score formula`}
+        aria-label={t('scoreFormulaAria', { score: score.label, value })}
         onPointerDown={stopPointer}
         onPointerUp={stopPointer}
         onPointerCancel={stopPointer}
@@ -169,13 +175,15 @@ function Tooltip({
   tooltipId: string
   compact: boolean
 }) {
+  const { t } = useI18n()
   const score = SCORE_STYLE[kind]
-  const copy = tooltipCopy(member, kind)
-  const rows = metricRows(member, kind)
+  const copy = tooltipCopy(member, kind, t)
+  const rows = metricRows(member, kind, t)
 
   return (
         <div
           id={tooltipId}
+          data-card-tooltip-interactive
           role="tooltip"
           onPointerDown={(e) => e.stopPropagation()}
           onPointerUp={(e) => e.stopPropagation()}
@@ -246,7 +254,7 @@ function Tooltip({
               textUnderlineOffset: 3,
             }}
           >
-            FORMULA, METRICS &amp; SOURCES →
+            {t('formulaLink')}
           </a>
         </div>
   )

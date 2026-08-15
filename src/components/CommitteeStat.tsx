@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import type { Member } from '../data/members'
+import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -10,6 +11,7 @@ function stopPointer(event: ReactPointerEvent<HTMLElement>) {
 }
 
 export function CommitteeStat({ member, open, onToggle }: { member: Member; open: boolean; onToggle: () => void }) {
+  const { t } = useI18n()
   const tooltipId = useId()
   const leadershipCount = member.committees.filter((committee) => committee.role.includes('Präsident/in')).length
   const visibleCommittees = member.committees.slice(0, 5)
@@ -17,10 +19,11 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
   return (
     <div style={{ position: 'relative', minWidth: 0, background: '#0B121D' }}>
       <button
+        data-card-tooltip-interactive
         type="button"
         aria-expanded={open}
         aria-describedby={open ? tooltipId : undefined}
-        aria-label={`CMTE ${member.committeeCount}. Show committee metrics`}
+        aria-label={t('committeeAria', { count: member.committeeCount })}
         onPointerDown={stopPointer}
         onPointerUp={stopPointer}
         onPointerCancel={stopPointer}
@@ -54,6 +57,7 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
       {open && (
         <div
           id={tooltipId}
+          data-card-tooltip-interactive
           role="tooltip"
           onPointerDown={stopPointer}
           onPointerUp={stopPointer}
@@ -77,15 +81,15 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
           }}
         >
           <div style={{ marginBottom: 5, color: '#8FEDE3', fontFamily: AB, fontSize: 10, letterSpacing: '.08em' }}>
-            COMMITTEE WORK
+            {t('committeeWork')}
           </div>
           <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-            Current standing committee assignments published by Parliament.
+            {t('committeeIntro')}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
-            <span style={{ color: '#8294AD' }}>Assignments</span>
+            <span style={{ color: '#8294AD' }}>{t('assignments')}</span>
             <span style={{ color: '#E6EEF8' }}>{member.committeeCount}</span>
-            <span style={{ color: '#8294AD' }}>Chair / vice-chair roles</span>
+            <span style={{ color: '#8294AD' }}>{t('leadershipRoles')}</span>
             <span style={{ color: '#8FEDE3' }}>{leadershipCount}</span>
           </div>
           {member.committees.length > 0 ? (
@@ -94,7 +98,7 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
                 <div key={`${committee.abbr}-${committee.role}-${index}`} style={{ marginTop: index === 0 ? 0 : 5 }}>
                   <div style={{ color: '#DDFBF7' }}>
                     {committee.abbr || committee.name}
-                    {committee.chair ? ' · CHAIR' : ''}
+                    {committee.chair ? ` · ${t('chair')}` : ''}
                   </div>
                   <div style={{ color: '#7388A5', fontSize: 8 }}>
                     {committee.name}
@@ -104,13 +108,14 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
               ))}
               {member.committees.length > visibleCommittees.length && (
                 <div style={{ marginTop: 6, color: '#7388A5' }}>
-                  +{member.committees.length - visibleCommittees.length} more assignment
-                  {member.committees.length - visibleCommittees.length === 1 ? '' : 's'}
+                  {member.committees.length - visibleCommittees.length === 1
+                    ? t('moreAssignments', { count: member.committees.length - visibleCommittees.length })
+                    : t('moreAssignmentsPlural', { count: member.committees.length - visibleCommittees.length })}
                 </div>
               )}
             </div>
           ) : (
-            <div style={{ marginTop: 8, color: '#7388A5' }}>No current standing committee assignment.</div>
+            <div style={{ marginTop: 8, color: '#7388A5' }}>{t('noCommittee')}</div>
           )}
         </div>
       )}
