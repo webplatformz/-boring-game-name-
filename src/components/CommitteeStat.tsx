@@ -66,11 +66,9 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
             onPointerUp={stopPointer}
             onClick={(event) => event.stopPropagation()}
             style={{
-              position: 'absolute',
-              left: -48,
-              bottom: 'calc(100% + 8px)',
+              position: 'relative',
               zIndex: 40,
-              width: 284,
+              width: '100%',
               padding: '10px 11px',
               borderRadius: 9,
               border: '1px solid rgba(143,237,227,.4)',
