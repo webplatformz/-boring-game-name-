@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
 import { useBattle } from './game/useBattle'
 import { Home } from './screens/Home'
-import { Tear } from './screens/Tear'
-import { Reveal } from './screens/Reveal'
+import { PackOpening } from './screens/PackOpening'
 import { Collection } from './screens/Collection'
 import { Trade } from './screens/Trade'
 import { Battle } from './screens/Battle'
@@ -51,14 +50,16 @@ export function App() {
           // scrolling, clipping at the viewport instead of the column.
         }}
       >
-        <div key={showMethodology ? 'methodology' : screen} className="screen-transition">
+        <div
+          key={showMethodology ? 'methodology' : screen === 'tear' || screen === 'reveal' ? 'pack-opening' : screen}
+          className="screen-transition"
+        >
           {showMethodology ? (
             <Methodology onClose={closeMethodology} />
           ) : (
             <>
               {screen === 'home' && <Home game={game} />}
-              {screen === 'tear' && <Tear state={game.state} />}
-              {screen === 'reveal' && <Reveal game={game} />}
+              {(screen === 'tear' || screen === 'reveal') && <PackOpening game={game} />}
               {screen === 'collection' && <Collection game={game} />}
               {screen === 'battle' && <Battle game={game} battle={battle} />}
               {screen === 'trade' && <Trade game={game} />}
