@@ -8,27 +8,29 @@ import { Trade } from './screens/Trade'
 import { Battle } from './screens/Battle'
 import { Methodology } from './screens/Methodology'
 import { Disclaimer } from './screens/Disclaimer'
+import { Privacy } from './screens/Privacy'
+import { DataMethodology } from './screens/DataMethodology'
 import { TabBar } from './components/TabBar'
+import { LegalFooter } from './components/LegalFooter'
 import { hasAcknowledgedDisclaimer, ProjectDisclaimer } from './components/ProjectDisclaimer'
+
+type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'disclaimer'
+
+function infoPageFromHash(): InfoPage | null {
+  const page = window.location.hash.slice(1)
+  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'disclaimer' ? page : null
+}
 
 export function App() {
   const game = useGame()
   const battle = useBattle()
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
-  const [infoPage, setInfoPage] = useState<'methodology' | 'disclaimer' | null>(() => {
-    if (window.location.hash === '#methodology') return 'methodology'
-    if (window.location.hash === '#disclaimer') return 'disclaimer'
-    return null
-  })
+  const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const { screen } = game.state
-  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'trade')
+  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'battle' || screen === 'trade')
 
   useEffect(() => {
-    const syncHash = () => {
-      if (window.location.hash === '#methodology') setInfoPage('methodology')
-      else if (window.location.hash === '#disclaimer') setInfoPage('disclaimer')
-      else setInfoPage(null)
-    }
+    const syncHash = () => setInfoPage(infoPageFromHash())
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
   }, [])
@@ -42,6 +44,7 @@ export function App() {
     <div
       style={{
         minHeight: '100vh',
+        height: showTabs ? '100dvh' : undefined,
         display: 'flex',
         justifyContent: 'center',
         // Painted against the viewport so the gradient always spans the whole
@@ -55,18 +58,26 @@ export function App() {
         style={{
           minHeight: '100vh',
           position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
           // Deliberately not clipped: card glows and backdrops are drawn well
           // outside the card box and would be cut off at the column edges.
           // `body { overflow-x: hidden }` keeps them from causing sideways
           // scrolling, clipping at the viewport instead of the column.
         }}
       >
+        {showTabs && <TabBar game={game} />}
         <div
           key={infoPage ?? (screen === 'tear' || screen === 'reveal' ? 'pack-opening' : screen)}
           className="screen-transition"
+          style={{ flex: 1, minHeight: 0 }}
         >
           {infoPage === 'methodology' ? (
             <Methodology onClose={closeInfoPage} />
+          ) : infoPage === 'data-methodology' ? (
+            <DataMethodology onClose={closeInfoPage} />
+          ) : infoPage === 'privacy' ? (
+            <Privacy onClose={closeInfoPage} />
           ) : infoPage === 'disclaimer' ? (
             <Disclaimer onClose={closeInfoPage} />
           ) : (
@@ -79,7 +90,7 @@ export function App() {
             </>
           )}
         </div>
-        {showTabs && <TabBar game={game} />}
+        <LegalFooter aboveTabs={showTabs} />
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
     </div>

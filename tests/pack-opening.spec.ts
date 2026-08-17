@@ -44,9 +44,11 @@ test('keeps the scaled card inside a mobile viewport', async ({ page }) => {
   await openFirstCard(page)
 
   const box = await page.locator('.pack-opening-card').boundingBox()
-  expect(box?.width).toBeGreaterThan(355)
-  expect(box?.x).toBeGreaterThanOrEqual(20)
-  expect((box?.x ?? 401) + (box?.width ?? 0)).toBeLessThanOrEqual(380)
-  expect(box?.height).toBeLessThan(541)
+  expect(box?.width).toBeCloseTo(360, 0)
+  expect(box?.x).toBeCloseTo(20, 0)
+  expect(box?.height).toBeCloseTo(540, 0)
   expect((box?.width ?? 0) / (box?.height ?? 1)).toBeCloseTo(336 / 504, 2)
+
+  const topCardBox = await page.locator('.pack-opening-top-card').boundingBox()
+  expect((topCardBox?.x ?? 0) + (topCardBox?.width ?? 0) / 2).toBeCloseTo(200, 0)
 })

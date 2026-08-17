@@ -26,9 +26,8 @@ const CARD_ASPECT = 504 / 336
  * and the footer button row. Kept as a constant estimate — being a bit
  * generous is fine (cards just render slightly smaller), being too small
  * isn't (buttons get pushed off screen, which is the bug we're fixing).
- * The tab bar no longer intrudes into this screen, so the reserve here
- * only covers in-screen chrome. */
-const ARENA_CHROME_H = 260
+ * Includes the compact top navigation and the remaining in-screen chrome. */
+const ARENA_CHROME_H = 312
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -100,26 +99,10 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
       // No overflow:hidden here (unlike Collection) — the fight/reveal/result
       // steps render CardGlow directly in the flow, and its bloom is meant to
       // bleed past the card edges (see CardModal/Reveal for the same pattern).
-      style={{ padding: '22px 20px 24px', display: 'flex', flexDirection: 'column', gap: 16, animation: 'riseIn 300ms ease-out' }}
+      style={{ padding: '14px 20px 24px', display: 'flex', flexDirection: 'column', gap: 16, animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-        <button
-          onClick={game.goHome}
-          style={{
-            padding: '8px 12px',
-            borderRadius: 10,
-            background: 'rgba(234,242,255,.06)',
-            border: '1px solid rgba(234,242,255,.12)',
-            color: '#9FB6D2',
-            fontFamily: MONO,
-            fontSize: 10,
-            letterSpacing: '.14em',
-            cursor: 'pointer',
-          }}
-        >
-          {t('home')}
-        </button>
         <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('battleTitle')}</div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontFamily: MONO, fontSize: 11, letterSpacing: '.1em' }}>
           <span style={{ color: '#8FEDE3' }}>{t('winsShort', { count: record.wins })}</span>

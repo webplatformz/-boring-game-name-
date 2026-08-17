@@ -360,12 +360,9 @@ a:hover {
   display: none;
 }
 
-/* Full-viewport screen: content panes scroll internally instead of the page,
-   so the fixed tab bar always stays reachable. dvh keeps mobile browser
-   chrome from cutting off the bottom. */
+/* Tab screens fill the flex space left below the compact navigation header. */
 .screen-fill {
-  height: 100vh;
-  height: 100dvh;
+  height: 100%;
 }
 
 /* ── screen transitions ────────────────────────────────────────────────── */
@@ -405,29 +402,21 @@ a:hover {
 .pack-opening-card {
   flex: none;
 }
-@media (max-width: 699px) {
-  .tabbed-screen {
-    padding-bottom: 137px !important;
+.app-navigation {
+  position: relative;
+  z-index: 45;
+  flex: none;
+  padding: max(6px, env(safe-area-inset-top)) 20px 4px;
+  background: transparent;
+}
+@media (max-width: 399px) {
+  .app-navigation {
+    padding-inline: 12px;
   }
-  .tab-bar-rail {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .tab-bar-pill {
-    width: calc((100% - 16px) / 2) !important;
-    height: calc((100% - 16px) / 2);
-    bottom: auto !important;
-  }
-  .tab-bar-pill-0 {
-    transform: none !important;
-  }
-  .tab-bar-pill-1 {
-    transform: translateX(calc(100% + 6px)) !important;
-  }
-  .tab-bar-pill-2 {
-    transform: translateY(calc(100% + 6px)) !important;
-  }
-  .tab-bar-pill-3 {
-    transform: translate(calc(100% + 6px), calc(100% + 6px)) !important;
+  .tab-bar-rail button {
+    padding-inline: 3px !important;
+    font-size: 8.5px !important;
+    letter-spacing: .035em !important;
   }
 }
 @media (min-width: 700px) {

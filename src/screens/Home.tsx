@@ -32,7 +32,7 @@ export function Home({ game }: { game: Game }) {
   const countdown = `${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, '0')}`
 
   return (
-    <div className="tabbed-screen" style={{ padding: '22px 20px 108px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
+    <div className="tabbed-screen" style={{ padding: '14px 20px 28px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
       {/* header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -40,10 +40,6 @@ export function Home({ game }: { game: Game }) {
           <div style={{ fontFamily: AB, fontSize: 14, letterSpacing: '-.01em' }}>{t('legislature', { number: LEGISLATURE })}</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 5 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 11px', borderRadius: 99, background: 'rgba(255,197,61,.1)', border: '1px solid rgba(255,197,61,.35)' }}>
-            <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A' }}>{t('packs')}</span>
-            <span style={{ fontFamily: AB, fontSize: 13, color: '#FFC53D' }}>{packs}</span>
-          </div>
           <div role="group" aria-label={t('languageSwitcher')} style={{ display: 'flex', gap: 2, padding: 2, borderRadius: 7, background: 'rgba(234,242,255,.05)', border: '1px solid rgba(234,242,255,.1)' }}>
             {LANGUAGES.map((code) => (
               <button
@@ -96,15 +92,39 @@ export function Home({ game }: { game: Game }) {
       </div>
 
       {/* pack */}
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 0 0' }}>
-        <button
-          onClick={game.ripNow}
-          className="hoverlift"
-          style={{ width: 212, filter: 'drop-shadow(0 18px 30px rgba(0,0,0,.65)) drop-shadow(0 0 22px rgba(255,197,61,.24))' }}
-          aria-label={t('ripPackAria')}
-        >
-          <PackFace />
-        </button>
+      <div style={{ position: 'relative', width: '100%', padding: '6px 0 0' }}>
+        <div style={{ width: 212, margin: '0 auto' }}>
+          <button
+            onClick={game.ripNow}
+            className="home-pack hoverlift"
+            style={{ width: 212, flex: 'none', filter: 'drop-shadow(0 18px 30px rgba(0,0,0,.65)) drop-shadow(0 0 22px rgba(255,197,61,.24))' }}
+            aria-label={t('ripPackAria')}
+          >
+            <PackFace />
+          </button>
+          <div
+            className="packs-badge"
+            style={{
+              position: 'absolute',
+              top: 22,
+              right: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+              minWidth: 46,
+              padding: '5px 7px',
+              borderRadius: 10,
+              background: 'rgba(12,20,32,.92)',
+              border: '1px solid rgba(255,197,61,.45)',
+              boxShadow: '0 8px 20px rgba(0,0,0,.4)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <span style={{ fontFamily: MONO, fontSize: 7, lineHeight: 1, letterSpacing: '.1em', color: '#FFD87A' }}>{t('packs')}</span>
+            <span style={{ fontFamily: AB, fontSize: 15, lineHeight: 1, color: '#FFC53D' }}>{packs}</span>
+          </div>
+        </div>
       </div>
 
       <button onClick={game.ripNow} disabled={!canRip} className="rip-btn" style={openBtn(canRip)}>
@@ -166,21 +186,6 @@ export function Home({ game }: { game: Game }) {
         </div>
         <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>{t('tradeIn')}</div>
       </button>
-
-      <footer style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 16px' }}>
-        <a
-          href="#methodology"
-          style={{ fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
-        >
-          {t('methodologyLink')}
-        </a>
-        <a
-          href="#disclaimer"
-          style={{ fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
-        >
-          {t('projectDisclaimerLink')}
-        </a>
-      </footer>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>

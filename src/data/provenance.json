@@ -65,7 +65,6 @@
     "label": "Project-created game ratings",
     "algorithmVersion": 2,
     "fields": [
-      "ratings.scoring",
       "ratings.strengths",
       "ratings.atk",
       "ratings.def",

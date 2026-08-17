@@ -14,6 +14,7 @@ const MONO = "'IBM Plex Mono',monospace"
 const GROW_EASE = 'cubic-bezier(.34,1.06,.4,1)'
 const CROSSFADE = 'opacity 200ms ease-out'
 const CARD_ASPECT_HEIGHT = CARD_MAX_W * (504 / 336)
+const MOBILE_CARD_MARGIN = 20
 
 function useOpeningCardScale() {
   const [scale, setScale] = useState(1)
@@ -22,7 +23,9 @@ function useOpeningCardScale() {
     const update = () => {
       const viewportHeight = window.visualViewport?.height ?? window.innerHeight
       const heightScale = (viewportHeight * 0.8) / CARD_ASPECT_HEIGHT
-      const widthScale = (window.innerWidth - 40) / CARD_MAX_W
+      const widthScale = window.innerWidth < 700
+        ? (window.innerWidth - MOBILE_CARD_MARGIN * 2) / CARD_MAX_W
+        : (window.innerWidth - 40) / CARD_MAX_W
       setScale(Math.max(0.1, Math.min(heightScale, widthScale)))
     }
 
@@ -199,7 +202,12 @@ export function PackOpening({ game }: { game: Game }) {
         <div
           ref={sizerRef}
           className="pack-opening-card"
-          style={{ position: 'relative', width: CARD_MAX_W, aspectRatio: '336 / 504', zoom: openingCardScale }}
+          style={{
+            position: 'relative',
+            width: CARD_MAX_W,
+            aspectRatio: '336 / 504',
+            zoom: openingCardScale,
+          }}
         >
           {/* rarity glow behind the deck — only once the top card is face up,
               so it never gives the pull away early */}
@@ -229,7 +237,7 @@ export function PackOpening({ game }: { game: Game }) {
               return (
                 <div
                   key={m.id}
-                  className={isTop ? 'pack-opening-top-card' : undefined}
+                  className={`pack-opening-stack-card${isTop ? ' pack-opening-top-card' : ''}`}
                   style={stackStyle(depth, isTop, !outgoing, drag, dragging)}
                   {...(isTop && !outgoing ? game.cardHandlers : {})}
                 >

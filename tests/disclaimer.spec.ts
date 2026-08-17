@@ -20,7 +20,7 @@ test('opens the disclaimer page from the footer and methodology page', ({ page }
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
   })
     .then(() => page.goto('/'))
-    .then(() => page.getByRole('link', { name: 'PROJECT DISCLAIMER →' }).click())
+    .then(() => page.getByRole('link', { name: 'PROJECT NOTICE' }).click())
     .then(() => expect(page).toHaveURL(/#disclaimer$/))
     .then(() => expect(page.getByRole('heading', { name: 'About this project' })).toBeVisible())
     .then(() => expect(page.getByText('Parlamentsdienste der Bundesversammlung, Bern')).toBeVisible())

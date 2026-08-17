@@ -11,7 +11,6 @@ const PROVENANCE_PATH = join(ROOT, 'src', 'data', 'provenance.json')
 const MEMBERS_PATH = join(ROOT, 'src', 'data', 'members.json')
 const REQUIRED_ATTRIBUTION = 'Parlamentsdienste der Bundesversammlung, Bern'
 const DERIVED_FIELDS = [
-  'ratings.scoring',
   'ratings.strengths',
   'ratings.atk',
   'ratings.def',
@@ -27,6 +26,14 @@ const FORBIDDEN_TOP_LEVEL_RATINGS = [
   'ovr',
   'rarity',
   'no',
+]
+const MINIMISED_RUNTIME_FIELDS = [
+  'gender',
+  'partyRaw',
+  'parlGroup',
+  'voteCount',
+  'voteOutcomes',
+  'mandates',
 ]
 const REQUIRED_RATING_KEYS = DERIVED_FIELDS.map((field) => field.replace('ratings.', ''))
 
@@ -82,6 +89,10 @@ async function main() {
     for (const field of FORBIDDEN_TOP_LEVEL_RATINGS) {
       assert(!(field in member), `member ${member.id} exposes project-derived ${field} as a top-level official field`)
     }
+    for (const field of MINIMISED_RUNTIME_FIELDS) {
+      assert(!(field in member), `member ${member.id} publishes minimised runtime field ${field}`)
+    }
+    assert(!('scoring' in member.ratings), `member ${member.id} publishes the intermediate scoring ledger`)
   }
 
   process.stdout.write(`provenance: ${provenance.datasetVersion}, ${provenance.datasets.length} official datasets, derived fields separated\n`)

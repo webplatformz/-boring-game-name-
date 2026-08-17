@@ -765,7 +765,6 @@ async function main() {
       (sum, affair) => sum + (affair.advanced ? affair.weight : 0),
       0,
     )
-    const voteCount = votes?.eligible ?? 0
     const rec = {
       m,
       years,
@@ -775,7 +774,6 @@ async function main() {
       cmtes,
       committeeCount,
       chairCount,
-      voteCount,
       votes,
       authoredAffairs,
       proposalPoints,
@@ -818,11 +816,8 @@ async function main() {
       first: r.m.FirstName,
       last: r.m.LastName,
       name: `${r.m.FirstName} ${r.m.LastName}`,
-      gender: r.m.GenderAsString || null,
       party: r.party.label,
       partyCode: r.party.code,
-      partyRaw: r.m.PartyAbbreviation,
-      parlGroup: r.m.ParlGroupName || null,
       canton: r.m.CantonAbbreviation,
       cantonName: r.m.CantonName,
       chamber: r.chamber,
@@ -831,24 +826,7 @@ async function main() {
       age: r.age,
       committees: r.cmtes.map((c) => ({ abbr: c.abbr, name: c.name, chair: c.chair, role: c.role })),
       committeeCount: r.committeeCount,
-      voteCount: r.voteCount,
-      voteOutcomes: r.votes,
       ratings: {
-        scoring: {
-          proposalCount: r.authoredAffairs.length,
-          proposalPoints: r.proposalPoints,
-          proposalPointsPerYear: Math.round(r._proposalDrive * 100) / 100,
-          matureProposalCount: r.authoredAffairs.filter((affair) => affair.mature).length,
-          advancedProposalCount: r.authoredAffairs.filter((affair) => affair.advanced).length,
-          advancedProposalPoints: r.advancedProposalPoints,
-          advancedProposalPointsPerYear: Math.round(r._proposalProgress * 100) / 100,
-          leadershipPoints: r._leadershipPoints,
-          committeeWorkPoints: Math.round(r._workloadPoints * 100) / 100,
-          participationRate:
-            r.chamber === 'BR' ? null : Math.round(r._participationRate * 10000) / 10000,
-          experienceYears: Math.round(r._tenureYears * 100) / 100,
-          ageYears: Math.round(r._ageYears * 100) / 100,
-        },
         atk: r._atk,
         def: r._def,
         ovr: r._ovr,
@@ -862,7 +840,6 @@ async function main() {
         r.chamber,
       ),
       financing: financingByPerson.get(r.m.PersonNumber),
-      mandates: r.m.Mandates || null,
       portrait: portraitFor(r.m.PersonNumber),
     }
   })

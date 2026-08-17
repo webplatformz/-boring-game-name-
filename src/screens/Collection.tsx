@@ -124,7 +124,7 @@ export function Collection({ game }: { game: Game }) {
   return (
     <div
       className="screen-fill tabbed-screen"
-      style={{ padding: '22px 20px 90px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
+      style={{ padding: '14px 20px 24px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

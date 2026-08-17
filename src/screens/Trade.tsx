@@ -127,7 +127,7 @@ export function Trade({ game }: { game: Game }) {
     <div
       className="screen-fill tabbed-screen"
       style={{
-        padding: '22px 20px 90px',
+        padding: '14px 20px 24px',
         display: 'flex',
         flexDirection: 'column',
         gap: 16,

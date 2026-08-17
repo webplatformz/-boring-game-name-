@@ -8,12 +8,16 @@ function tabStyle(on: boolean): CSSProperties {
   return {
     position: 'relative',
     zIndex: 1,
-    padding: '13px 10px',
-    borderRadius: 10,
+    minWidth: 0,
+    padding: '9px 6px',
+    borderRadius: 8,
     textAlign: 'center',
     fontFamily: AB,
-    fontSize: 11.5,
-    letterSpacing: '.12em',
+    fontSize: 10,
+    letterSpacing: '.08em',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
     color: on ? '#0A0F18' : '#5C7391',
     transition: 'color 240ms cubic-bezier(.4,.1,.2,1)',
   }
@@ -25,14 +29,14 @@ function tabStyle(on: boolean): CSSProperties {
 // percentages here resolve against the pill's own width, not the rail's).
 function pillStyle(index: number, count: number): CSSProperties {
   const gapPx = 6
-  const paddingPx = 5
+  const paddingPx = 4
   return {
     position: 'absolute',
-    left: 5,
-    top: 5,
-    bottom: 5,
+    left: paddingPx,
+    top: 4,
+    bottom: 4,
     width: `calc((100% - ${paddingPx * 2}px - ${(count - 1) * gapPx}px) / ${count})`,
-    borderRadius: 10,
+    borderRadius: 8,
     background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)',
     transform: index ? `translateX(calc(${index * 100}% + ${index * gapPx}px))` : 'none',
     transition: 'transform 300ms cubic-bezier(.4,.1,.2,1)',
@@ -51,17 +55,20 @@ export function TabBar({ game }: { game: Game }) {
   const activeIndex = Math.max(0, tabs.findIndex((t) => t.screen === s))
 
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
-      <div className="app-shell-width" style={{ padding: '10px 20px 18px', background: 'linear-gradient(180deg,transparent,#070C13 40%)', pointerEvents: 'auto' }}>
-        <div className="tab-bar-rail" style={{ position: 'relative', display: 'grid', gridTemplateColumns: `repeat(${tabs.length}, 1fr)`, gap: 6, padding: 5, borderRadius: 14, background: '#0B121D', border: '1px solid rgba(234,242,255,.1)' }}>
-          <div className={`tab-bar-pill tab-bar-pill-${activeIndex}`} style={pillStyle(activeIndex, tabs.length)} />
-          {tabs.map((t) => (
-            <button key={t.screen} onClick={t.onClick} style={tabStyle(s === t.screen)}>
-              {t.label}
-            </button>
-          ))}
-        </div>
+    <nav className="app-navigation" aria-label="Primary">
+      <div className="tab-bar-rail" style={{ position: 'relative', display: 'grid', gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))`, gap: 6, padding: 4, borderRadius: 12, background: 'rgba(11,18,29,.94)', border: '1px solid rgba(234,242,255,.1)', boxShadow: '0 8px 24px rgba(0,0,0,.18)' }}>
+        <div className="tab-bar-pill" style={pillStyle(activeIndex, tabs.length)} />
+        {tabs.map((t) => (
+          <button
+            key={t.screen}
+            onClick={t.onClick}
+            aria-current={s === t.screen ? 'page' : undefined}
+            style={tabStyle(s === t.screen)}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
-    </div>
+    </nav>
   )
 }

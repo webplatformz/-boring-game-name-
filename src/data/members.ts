@@ -29,39 +29,8 @@ export interface MemberStrengths {
   ageNetwork?: number
 }
 
-export interface VoteOutcomes {
-  yes: number
-  no: number
-  abstention: number
-  notParticipated: number
-  excused: number
-  presiding: number
-  unknown: number
-  presentWithoutDecision: number
-  eligible: number
-  participated: number
-  participationRate: number
-  source: string
-}
-
-export interface MemberScoring {
-  proposalCount: number
-  proposalPoints: number
-  proposalPointsPerYear: number
-  matureProposalCount: number
-  advancedProposalCount: number
-  advancedProposalPoints: number
-  advancedProposalPointsPerYear: number
-  leadershipPoints: number
-  committeeWorkPoints: number
-  participationRate: number | null
-  experienceYears: number
-  ageYears: number
-}
-
 /** Ratings and card presentation fields created by this project, not Parliament. */
 export interface ProjectDerivedRatings {
-  scoring: MemberScoring
   atk: number
   def: number
   ovr: number
@@ -178,11 +147,8 @@ export interface Member {
   first: string
   last: string
   name: string
-  gender: 'm' | 'f' | null
   party: string
   partyCode: string
-  partyRaw: string
-  parlGroup: string | null
   canton: string
   cantonName: string
   chamber: 'NR' | 'SR' | 'BR'
@@ -191,13 +157,10 @@ export interface Member {
   age: number
   committees: Committee[]
   committeeCount: number
-  voteCount: number
-  voteOutcomes: VoteOutcomes | null
   /** Explicit boundary around every project-created game rating. */
   ratings: ProjectDerivedRatings
   lobbying: LobbyingDisclosure
   financing: FinancingDisclosure
-  mandates: string | null
   portrait: Portrait
 }
 
