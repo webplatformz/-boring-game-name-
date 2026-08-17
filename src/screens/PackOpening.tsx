@@ -13,6 +13,30 @@ const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 const GROW_EASE = 'cubic-bezier(.34,1.06,.4,1)'
 const CROSSFADE = 'opacity 200ms ease-out'
+const CARD_ASPECT_HEIGHT = CARD_MAX_W * (504 / 336)
+
+function useOpeningCardScale() {
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const update = () => {
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight
+      const heightScale = (viewportHeight * 0.8) / CARD_ASPECT_HEIGHT
+      const widthScale = (window.innerWidth - 40) / CARD_MAX_W
+      setScale(Math.max(0.1, Math.min(heightScale, widthScale)))
+    }
+
+    update()
+    window.addEventListener('resize', update)
+    window.visualViewport?.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.visualViewport?.removeEventListener('resize', update)
+    }
+  }, [])
+
+  return scale
+}
 
 /** Scale factor that takes the Home-sized pack up to the revealed card width. */
 function useCardScale() {
@@ -45,6 +69,7 @@ export function PackOpening({ game }: { game: Game }) {
   const { screen, ripped, grown, pack, isTradePack, tradeRarity, revealIdx, drag, dragging, faceUp, outgoing, outgoingDrag } = state
   const revealing = screen === 'reveal'
   const { ref: sizerRef, scale } = useCardScale()
+  const openingCardScale = useOpeningCardScale()
 
   const rarityTier = tradeRarity ? TIERS[tradeRarity] : null
   const packAccentColor = isTradePack ? rarityTier?.c : undefined
@@ -171,7 +196,11 @@ export function PackOpening({ game }: { game: Game }) {
           card-back stack that tearing ends on carries straight into the stack
           that revealing starts from with no visual handoff at all */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }}>
-        <div ref={sizerRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504' }}>
+        <div
+          ref={sizerRef}
+          className="pack-opening-card"
+          style={{ position: 'relative', width: CARD_MAX_W, aspectRatio: '336 / 504', zoom: openingCardScale }}
+        >
           {/* rarity glow behind the deck — only once the top card is face up,
               so it never gives the pull away early */}
           {revealing && topCard && faceUp && (
@@ -198,7 +227,12 @@ export function PackOpening({ game }: { game: Game }) {
               const isTop = depth === 0
               const up = isTop && faceUp
               return (
-                <div key={m.id} style={stackStyle(depth, isTop, !outgoing, drag, dragging)} {...(isTop && !outgoing ? game.cardHandlers : {})}>
+                <div
+                  key={m.id}
+                  className={isTop ? 'pack-opening-top-card' : undefined}
+                  style={stackStyle(depth, isTop, !outgoing, drag, dragging)}
+                  {...(isTop && !outgoing ? game.cardHandlers : {})}
+                >
                   <div style={flipStyle(up)}>
                     <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)' }} />
                     <CardFront member={m} foil style={{ boxShadow: `0 24px 60px -18px rgba(255,197,61,.4),0 0 0 1px ${ring(m)}` }} />

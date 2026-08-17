@@ -76,7 +76,7 @@ export function CommitteeStat({ member, open, onToggle }: { member: Member; open
               boxShadow: '0 14px 34px rgba(0,0,0,.58)',
               color: '#C8D6E8',
               fontFamily: MONO,
-              fontSize: 8.5,
+              fontSize: 9,
               lineHeight: 1.4,
               textAlign: 'left',
             }}

@@ -399,6 +399,12 @@ a:hover {
   width: 100%;
   max-width: 430px;
 }
+
+/* Pack reveals use the card's 330px design canvas and zoom it as one unit.
+   PackOpening computes the viewport-relative scale while preserving this ratio. */
+.pack-opening-card {
+  flex: none;
+}
 @media (max-width: 699px) {
   .tabbed-screen {
     padding-bottom: 137px !important;

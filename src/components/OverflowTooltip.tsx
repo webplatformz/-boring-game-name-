@@ -5,6 +5,9 @@ import { createPortal } from 'react-dom'
 interface Position {
   left: number
   top: number
+  scale: number
+  width: number
+  maxHeight: number
 }
 
 /** Renders compact-card tooltips outside card overflow and transform boundaries. */
@@ -26,13 +29,14 @@ export function OverflowTooltip({
       const tooltip = tooltipRef.current
       if (!element || !tooltip) return
       const rect = element.getBoundingClientRect()
-      const tooltipRect = tooltip.getBoundingClientRect()
       const margin = 8
       const gap = 9
       const viewportWidth = window.innerWidth
       const viewportHeight = window.innerHeight
-      const tooltipWidth = tooltipRect.width
-      const tooltipHeight = tooltipRect.height
+      const scale = element.offsetWidth > 0 ? rect.width / element.offsetWidth : 1
+      const renderedWidth = Math.min(width, (viewportWidth - margin * 2) / scale)
+      const tooltipWidth = renderedWidth * scale
+      const tooltipHeight = tooltip.offsetHeight * scale
       const left = Math.max(
         margin,
         Math.min(viewportWidth - tooltipWidth - margin, rect.left + rect.width / 2 - tooltipWidth / 2),
@@ -43,7 +47,13 @@ export function OverflowTooltip({
         above >= margin || below + tooltipHeight > viewportHeight - margin
           ? Math.max(margin, above)
           : below
-      setPosition({ left, top })
+      setPosition({
+        left,
+        top,
+        scale,
+        width: renderedWidth,
+        maxHeight: (viewportHeight - margin * 2) / scale,
+      })
     }
 
     update()
@@ -65,9 +75,11 @@ export function OverflowTooltip({
         left: position?.left ?? 0,
         top: position?.top ?? 0,
         zIndex: 10000,
-        width: `min(${width}px, calc(100vw - 16px))`,
-        maxHeight: 'calc(100vh - 16px)',
+        width: position?.width ?? width,
+        maxHeight: position?.maxHeight ?? 'calc(100vh - 16px)',
         overflowY: 'auto',
+        transform: `scale(${position?.scale ?? 1})`,
+        transformOrigin: 'top left',
         visibility: position ? 'visible' : 'hidden',
       }}
     >
