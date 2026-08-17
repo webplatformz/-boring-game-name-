@@ -13,6 +13,13 @@ export interface PrivacyConfiguration {
     dataLocations: string[]
     subprocessors: string[]
   }
+  analytics: {
+    provider: string | null
+    purpose: string | null
+    usesCookies: boolean
+    dataLocations: string[]
+    retention: string | null
+  }
   retention: {
     publishedProfiles: string | null
     sourceSnapshots: string | null
@@ -34,6 +41,10 @@ export const PRIVACY_CONFIGURATION_MISSING = [
   !raw.controller.privacyEmail && 'controller.privacyEmail',
   !raw.hosting.provider && 'hosting.provider',
   raw.hosting.dataLocations.length === 0 && 'hosting.dataLocations',
+  !raw.analytics.provider && 'analytics.provider',
+  !raw.analytics.purpose && 'analytics.purpose',
+  raw.analytics.dataLocations.length === 0 && 'analytics.dataLocations',
+  !raw.analytics.retention && 'analytics.retention',
   !raw.retention.publishedProfiles && 'retention.publishedProfiles',
   !raw.retention.sourceSnapshots && 'retention.sourceSnapshots',
   !raw.retention.rightsRequests && 'retention.rightsRequests',

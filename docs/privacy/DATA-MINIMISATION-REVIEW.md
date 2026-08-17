@@ -20,9 +20,9 @@ The test is whether each field is suitable and necessary for the stated educatio
 | Named large donors | Retain provisionally | Already publicly disclosed and shown in the financing feature; controller must assess whether public names are necessary for the educational purpose. |
 | Raw source snapshots | Keep outside the runtime bundle | Needed for reproducibility, correction and audit. Access and deletion periods require the controller’s approved retention policy. |
 | Player collection, packs, language, preferences and battle record | Browser-only | No project account or server transfer. Data remains until the visitor clears site storage. |
-| Analytics and advertising profiles | Do not collect | No analytics or ad network is intentionally integrated. |
+| Aggregate audience and performance analytics | Collect in limited form | Cloudflare Web Analytics is integrated without cookies for page views, approximate unique visits and performance. Cloudflare states that the service does not collect or use visitors’ personal data. No advertising or cross-site behavioural profile is created. |
 | Web-font requests | Self-host fonts | Removes an avoidable third-party request and related IP/browser disclosure. |
-| Hosting access/security logs | Minimise after provider selection | Configure the shortest period consistent with security; disable unnecessary analytics and document locations/subprocessors. |
+| Hosting access/security logs and analytics retention | Minimise after provider selection | Configure the shortest period consistent with security and aggregate measurement; document GitHub and Cloudflare locations, subprocessors and retention. |
 
 ## Open decisions before launch
 
@@ -30,4 +30,5 @@ The test is whether each field is suitable and necessary for the stated educatio
 2. Decide whether named donor details are necessary or whether aggregates are sufficient.
 3. Set deletion periods for published profiles after a person leaves office, raw snapshots, correction correspondence and hosting logs.
 4. Determine whether the repository and raw build caches are public. If public, include that disclosure and retention reality in the DPIA.
-5. Repeat this review when adding a source, score component, analytics tool, account system or commercial purpose.
+5. Verify and record the applicable Cloudflare Web Analytics terms, retention, international-transfer safeguards and provider configuration.
+6. Repeat this review when adding a source, score component, analytics tool, account system or commercial purpose.
