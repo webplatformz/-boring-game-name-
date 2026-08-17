@@ -7,6 +7,7 @@ import type { Game } from '../game/useGame'
 import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
 import { CardModal } from '../components/CardModal'
+import { OpeningStats } from '../components/OpeningStats'
 import { PACK_SIZE } from '../game/pack'
 import { LANGUAGES, useI18n } from '../i18n'
 
@@ -32,7 +33,7 @@ export function Home({ game }: { game: Game }) {
   const countdown = `${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, '0')}`
 
   return (
-    <div className="tabbed-screen" style={{ padding: '14px 20px 28px', display: 'flex', flexDirection: 'column', gap: 22, animation: 'riseIn 320ms ease-out' }}>
+    <div className="tabbed-screen" style={{ padding: '14px 20px 18px', display: 'flex', flexDirection: 'column', gap: 14, animation: 'riseIn 320ms ease-out' }}>
       {/* header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -132,7 +133,7 @@ export function Home({ game }: { game: Game }) {
       </button>
 
       {/* stat tiles */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10 }}>
         <button
           type="button"
           onClick={game.goCollection}
@@ -169,10 +170,8 @@ export function Home({ game }: { game: Game }) {
       <button
         onClick={game.goTrade}
         style={{
+          ...tile,
           padding: '14px 16px',
-          borderRadius: 13,
-          background: 'rgba(234,242,255,.05)',
-          border: '1px solid rgba(234,242,255,.12)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -186,6 +185,13 @@ export function Home({ game }: { game: Game }) {
         </div>
         <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>{t('tradeIn')}</div>
       </button>
+
+      <OpeningStats
+        cardsRevealed={game.state.cardsRevealed}
+        packsOpened={game.state.packsOpened}
+        compact
+        style={{ width: 'calc((100% - 10px) / 2)', alignSelf: 'flex-start' }}
+      />
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>

@@ -1,4 +1,4 @@
-// localStorage-backed persistence for the player's packs + owned counts.
+// localStorage-backed persistence for the player's packs, collection, and stats.
 
 import type { RarityKey } from '../theme'
 import { RARITY_ORDER } from '../theme'
@@ -9,6 +9,10 @@ export interface SaveState {
   packs: number
   /** member id → number of copies owned. */
   owned: Record<number, number>
+  /** Total cards received from completed pack-opening flows. */
+  cardsRevealed: number
+  /** Total regular and trade packs completed. */
+  packsOpened: number
   /** Timestamp (ms) when the next batch of packs unlocks, or null if not waiting. */
   refillAt: number | null
 }
@@ -17,26 +21,48 @@ const KEY = 'bundeshaus-pack-v1'
 export const STARTING_PACKS = 10
 export const REFILL_COOLDOWN_MS = 15_000
 
+// A valid count is a finite, non-negative integer — guards against corrupt
+// localStorage values like negatives, fractions, NaN or Infinity.
+function isValidCount(n: unknown): n is number {
+  return typeof n === 'number' && Number.isInteger(n) && n >= 0
+}
+
 export function loadSave(): SaveState {
   try {
     const raw = localStorage.getItem(KEY)
     if (raw) {
       const s = JSON.parse(raw) as Partial<SaveState>
       const refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
+      const cardsRevealed = isValidCount(s.cardsRevealed) ? s.cardsRevealed : 0
+      const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
       // Cooldown already elapsed (e.g. app was closed) — grant the next batch now.
       if (refillAt !== null && Date.now() >= refillAt) {
-        return { owned: s.owned ?? {}, packs: STARTING_PACKS, refillAt: null }
+        return {
+          owned: s.owned ?? {},
+          packs: STARTING_PACKS,
+          cardsRevealed,
+          packsOpened,
+          refillAt: null,
+        }
       }
       return {
         owned: s.owned ?? {},
         packs: typeof s.packs === 'number' ? s.packs : STARTING_PACKS,
+        cardsRevealed,
+        packsOpened,
         refillAt,
       }
     }
   } catch {
     /* ignore corrupt / unavailable storage */
   }
-  return { packs: STARTING_PACKS, owned: {}, refillAt: null }
+  return {
+    packs: STARTING_PACKS,
+    owned: {},
+    cardsRevealed: 0,
+    packsOpened: 0,
+    refillAt: null,
+  }
 }
 
 export function persist(state: SaveState): void {
@@ -187,12 +213,6 @@ const BATTLE_KEY = 'bundeshaus-battle-v1'
 export const DEFAULT_BATTLE_RECORD: BattleRecord = {
   wins: 0,
   losses: 0,
-}
-
-// A valid count is a finite, non-negative integer — guards against corrupt
-// localStorage values like negatives, fractions, NaN or Infinity.
-function isValidCount(n: unknown): n is number {
-  return typeof n === 'number' && Number.isInteger(n) && n >= 0
 }
 
 export function loadBattleRecord(): BattleRecord {

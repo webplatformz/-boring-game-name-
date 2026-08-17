@@ -8,6 +8,7 @@ import type { SortKey } from '../game/storage'
 import { loadPrefs, persistPrefs } from '../game/storage'
 import { Flag } from '../components/Flag'
 import { CardModal } from '../components/CardModal'
+import { OpeningStats } from '../components/OpeningStats'
 import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
@@ -151,6 +152,11 @@ export function Collection({ game }: { game: Game }) {
           {t('tradeIn')}
         </button>
       </div>
+
+      <OpeningStats
+        cardsRevealed={game.state.cardsRevealed}
+        packsOpened={game.state.packsOpened}
+      />
 
       {hasCards ? (
         <>

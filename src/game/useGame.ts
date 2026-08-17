@@ -18,6 +18,8 @@ export interface GameState {
   packs: number
   refillAt: number | null
   owned: Record<number, number>
+  cardsRevealed: number
+  packsOpened: number
   pack: Member[]
   revealIdx: number
   drag: number
@@ -41,6 +43,8 @@ const INITIAL: GameState = {
   packs: save.packs,
   refillAt: save.refillAt,
   owned: save.owned,
+  cardsRevealed: save.cardsRevealed,
+  packsOpened: save.packsOpened,
   pack: [],
   revealIdx: 0,
   drag: 0,
@@ -125,20 +129,27 @@ export function useGame(): Game {
 
   const finishPack = useCallback(() => {
     setState((s) => {
+      // A completed pack is counted once, whether its cards were turned over
+      // individually or collected through Skip all.
+      if (s.pack.length === 0) return s
       const owned = { ...s.owned }
       for (const m of s.pack) owned[m.id] = (owned[m.id] || 0) + 1
+      const cardsRevealed = s.cardsRevealed + s.pack.length
+      const packsOpened = s.packsOpened + 1
       let packs = s.packs
       let refillAt = s.refillAt
       if (!s.isTradePack) {
         packs = Math.max(0, s.packs - 1)
         refillAt = packs <= 0 ? Date.now() + REFILL_COOLDOWN_MS : s.refillAt
       }
-      persist({ owned, packs, refillAt })
+      persist({ owned, packs, cardsRevealed, packsOpened, refillAt })
       const returnScreen = s.isTradePack ? 'trade' : 'home'
       return {
         ...s,
         owned,
         packs,
+        cardsRevealed,
+        packsOpened,
         refillAt,
         screen: returnScreen,
         pack: [],
@@ -159,7 +170,13 @@ export function useGame(): Game {
       setState((s) => {
         if (s.refillAt == null) return s
         if (Date.now() >= s.refillAt) {
-          persist({ owned: s.owned, packs: STARTING_PACKS, refillAt: null })
+          persist({
+            owned: s.owned,
+            packs: STARTING_PACKS,
+            cardsRevealed: s.cardsRevealed,
+            packsOpened: s.packsOpened,
+            refillAt: null,
+          })
           return { ...s, packs: STARTING_PACKS, refillAt: null }
         }
         return { ...s }
@@ -205,7 +222,13 @@ export function useGame(): Game {
       }
 
       const pack = drawTradePackCard(targetRarity)
-      persist({ owned: currentOwned, packs: stateRef.current.packs, refillAt: stateRef.current.refillAt })
+      persist({
+        owned: currentOwned,
+        packs: stateRef.current.packs,
+        cardsRevealed: stateRef.current.cardsRevealed,
+        packsOpened: stateRef.current.packsOpened,
+        refillAt: stateRef.current.refillAt,
+      })
 
       patch({
         owned: currentOwned,

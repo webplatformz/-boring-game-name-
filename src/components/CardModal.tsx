@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { Member } from '../data/members'
 import { CARD_MAX_W, TIERS } from '../theme'
 import { CardFront } from './CardFront'
@@ -20,10 +21,20 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
     if (member) setClosing(false)
   }, [member])
 
+  useEffect(() => {
+    if (!member) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [member])
+
   if (!member) return null
 
-  return (
+  return createPortal(
     <div
+      className="card-modal-overlay"
       onClick={() => setClosing(true)}
       onAnimationEnd={(e) => {
         // Ignore bubbled animation events from the card art's own loops.
@@ -47,6 +58,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
       }}
     >
       <div
+        className="card-modal-content"
         style={{
           width: '100%',
           maxWidth: 430,
@@ -59,7 +71,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
           animation: closing ? 'sinkOut 200ms ease-in forwards' : 'riseIn 200ms ease-out backwards',
         }}
       >
-        <div style={{ width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504', position: 'relative' }}>
+        <div className="card-modal-card" style={{ width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504', position: 'relative' }}>
           <CardGlow rarity={member.ratings.rarity} />
           <CardFront
             member={member}
@@ -69,6 +81,7 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>{t('tapClose')}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

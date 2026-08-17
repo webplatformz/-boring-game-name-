@@ -15,6 +15,25 @@ test('requires acknowledgement on the first visit and remembers it', ({ page }) 
     .then(() => expect(disclaimer).toBeHidden())
 })
 
+test('keeps the mobile acknowledgement visible with content scrolled to the top', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 667 })
+  await page.goto('/')
+
+  const dialog = page.getByRole('dialog', { name: 'About this project' })
+  const content = dialog.locator('.project-disclaimer-scroll')
+  const acknowledge = dialog.getByRole('button', { name: 'I UNDERSTAND — CONTINUE' })
+
+  await expect(acknowledge).toBeVisible()
+  await expect(content).toBeVisible()
+  expect(await content.evaluate((element) => element.scrollTop)).toBe(0)
+  expect(await content.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
+
+  const before = await acknowledge.boundingBox()
+  await content.evaluate((element) => { element.scrollTop = element.scrollHeight })
+  const after = await acknowledge.boundingBox()
+  expect(after?.y).toBeCloseTo(before?.y ?? 0, 0)
+})
+
 test('opens the disclaimer page from the footer and methodology page', ({ page }) => {
   return page.addInitScript(() => {
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')

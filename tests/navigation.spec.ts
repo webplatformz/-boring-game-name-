@@ -47,3 +47,41 @@ test('uses one compact navigation row on mobile', async ({ page }) => {
   const trade = await page.locator('.screen-fill').boundingBox()
   expect((trade?.y ?? 0) + (trade?.height ?? 801)).toBeLessThanOrEqual(801)
 })
+
+test('places the mobile Home footer after its content', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 667 })
+  await openApp(page)
+  await page.waitForTimeout(350)
+
+  const footer = await page.getByRole('contentinfo', { name: 'Legal and data information' }).boundingBox()
+  const stats = await page.getByRole('group', { name: 'PACK OPENING STATS' }).boundingBox()
+  const ripButton = await page.getByRole('button', { name: 'RIP IT OPEN' }).boundingBox()
+
+  expect(footer?.y).toBeGreaterThanOrEqual((stats?.y ?? 0) + (stats?.height ?? 0))
+  expect(footer?.y).toBeGreaterThanOrEqual((ripButton?.y ?? 0) + (ripButton?.height ?? 0))
+})
+
+test('centres the mobile Best card modal in a viewport-wide overlay', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 667 })
+  await page.addInitScript(() => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
+    localStorage.setItem(
+      'bundeshaus-pack-v1',
+      JSON.stringify({ packs: 10, owned: { 4053: 1 }, cardsRevealed: 1, packsOpened: 1, refillAt: null }),
+    )
+  })
+  await page.goto('/')
+  await page.getByRole('button', { name: /Show card for/ }).click()
+
+  const overlay = page.locator('.card-modal-overlay')
+  const card = page.locator('.card-modal-card')
+  await expect(overlay).toBeVisible()
+  await expect(card).toBeVisible()
+
+  const overlayBox = await overlay.boundingBox()
+  const cardBox = await card.boundingBox()
+  expect(overlayBox).toMatchObject({ x: 0, y: 0, width: 360, height: 667 })
+  expect((cardBox?.x ?? 0) + (cardBox?.width ?? 0) / 2).toBeCloseTo(180, 0)
+  expect(Math.abs((cardBox?.y ?? 0) + (cardBox?.height ?? 0) / 2 - 667 / 2)).toBeLessThan(30)
+  expect(await overlay.evaluate((element) => element.parentElement === document.body)).toBe(true)
+})

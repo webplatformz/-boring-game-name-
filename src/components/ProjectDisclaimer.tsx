@@ -28,11 +28,15 @@ export function DisclaimerText() {
 export function ProjectDisclaimer({ onAcknowledge }: { onAcknowledge: () => void }) {
   const { t } = useI18n()
   const acknowledgeButton = useRef<HTMLButtonElement>(null)
+  const scrollContent = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     acknowledgeButton.current?.focus()
+    // The focused action lives outside the scroller, so keep the reading area
+    // at its beginning on every first presentation.
+    scrollContent.current?.scrollTo({ top: 0 })
 
     return () => {
       document.body.style.overflow = previousOverflow
@@ -67,7 +71,7 @@ export function ProjectDisclaimer({ onAcknowledge }: { onAcknowledge: () => void
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20,
+        padding: 12,
         background: 'rgba(4,7,12,.92)',
         backdropFilter: 'blur(8px)',
         animation: 'fadeIn 200ms ease-out backwards',
@@ -77,9 +81,10 @@ export function ProjectDisclaimer({ onAcknowledge }: { onAcknowledge: () => void
         style={{
           width: '100%',
           maxWidth: 560,
-          maxHeight: 'calc(100dvh - 40px)',
-          overflowY: 'auto',
-          padding: '28px clamp(20px, 5vw, 36px)',
+          maxHeight: 'calc(100dvh - 24px)',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
           border: '1px solid rgba(255,197,61,.4)',
           borderRadius: 18,
           background: 'linear-gradient(145deg, #111D2E, #090F18)',
@@ -87,40 +92,58 @@ export function ProjectDisclaimer({ onAcknowledge }: { onAcknowledge: () => void
           animation: 'riseIn 220ms ease-out backwards',
         }}
       >
-        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.18em', color: '#FFC53D' }}>
-          {t('disclaimerEyebrow')}
-        </div>
-        <h1
-          id="project-disclaimer-title"
-          style={{ margin: '10px 0 14px', fontSize: 'clamp(24px, 6vw, 34px)', lineHeight: 1.05 }}
-        >
-          {t('disclaimerTitle')}
-        </h1>
         <div
-          id="project-disclaimer-description"
-        >
-          <DisclaimerText />
-        </div>
-        <button
-          ref={acknowledgeButton}
-          type="button"
-          onClick={acknowledge}
+          ref={scrollContent}
+          className="project-disclaimer-scroll"
           style={{
-            width: '100%',
-            marginTop: 24,
-            padding: '14px 18px',
-            borderRadius: 10,
-            background: '#FFC53D',
-            color: '#07101A',
-            fontFamily: MONO,
-            fontSize: 12,
-            fontWeight: 800,
-            letterSpacing: '.08em',
-            boxShadow: '0 8px 24px rgba(255,197,61,.18)',
+            flex: '1 1 auto',
+            minHeight: 0,
+            overflowY: 'auto',
+            overscrollBehavior: 'contain',
+            padding: '24px clamp(18px, 5vw, 36px) 18px',
           }}
         >
-          {t('disclaimerAcknowledge')}
-        </button>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.18em', color: '#FFC53D' }}>
+            {t('disclaimerEyebrow')}
+          </div>
+          <h1
+            id="project-disclaimer-title"
+            style={{ margin: '10px 0 14px', fontSize: 'clamp(24px, 6vw, 34px)', lineHeight: 1.05 }}
+          >
+            {t('disclaimerTitle')}
+          </h1>
+          <div id="project-disclaimer-description">
+            <DisclaimerText />
+          </div>
+        </div>
+        <div
+          style={{
+            flex: 'none',
+            padding: '14px clamp(18px, 5vw, 36px) 20px',
+            borderTop: '1px solid rgba(234,242,255,.1)',
+            background: 'rgba(9,15,24,.96)',
+          }}
+        >
+          <button
+            ref={acknowledgeButton}
+            type="button"
+            onClick={acknowledge}
+            style={{
+              width: '100%',
+              padding: '14px 18px',
+              borderRadius: 10,
+              background: '#FFC53D',
+              color: '#07101A',
+              fontFamily: MONO,
+              fontSize: 12,
+              fontWeight: 800,
+              letterSpacing: '.08em',
+              boxShadow: '0 8px 24px rgba(255,197,61,.18)',
+            }}
+          >
+            {t('disclaimerAcknowledge')}
+          </button>
+        </div>
       </div>
     </div>
   )

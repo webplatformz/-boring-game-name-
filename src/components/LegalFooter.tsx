@@ -2,7 +2,7 @@ import { useI18n } from '../i18n'
 
 const MONO = "'IBM Plex Mono',monospace"
 
-export function LegalFooter({ aboveTabs = false }: { aboveTabs?: boolean }) {
+export function LegalFooter({ aboveTabs = false, pushToBottom = false }: { aboveTabs?: boolean; pushToBottom?: boolean }) {
   const { t } = useI18n()
   const links = [
     { href: '#methodology', label: t('footerMethodologyLink') },
@@ -20,6 +20,7 @@ export function LegalFooter({ aboveTabs = false }: { aboveTabs?: boolean }) {
         justifyContent: 'center',
         flexWrap: 'wrap',
         flex: 'none',
+        marginTop: pushToBottom ? 'auto' : undefined,
         gap: '8px 16px',
         padding: aboveTabs ? '6px 20px 12px' : '8px 20px 28px',
       }}
