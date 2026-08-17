@@ -14,7 +14,7 @@
       "interests": "https://www.parlament.ch/de/%C3%BCber-das-parlament/Seiten/faktenblatt-offenlegungspflicht.aspx",
       "financing": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
     },
-    "portraitSource": "Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.",
+    "portraitSource": "Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Per-image credits and licence terms are published separately on the Photo Credits page.",
     "count": 253,
     "rarity": {
       "mythic": 7,
@@ -92,12 +92,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1108.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Guy_Parmelin_(2026)_(cropped).jpg"
+        "src": "/portraits/1108.webp"
       }
     },
     {
@@ -165,12 +160,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3828.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Ignazio_Cassis_(2026)_(cropped).jpg"
+        "src": "/portraits/3828.webp"
       }
     },
     {
@@ -238,12 +228,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4062.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Karin_Keller-Sutter_(2026)_(cropped).jpg"
+        "src": "/portraits/4062.webp"
       }
     },
     {
@@ -472,12 +457,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4053.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Aeschi_(2023).jpg"
+        "src": "/portraits/4053.webp"
       }
     },
     {
@@ -717,12 +697,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4220.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Roduit_(2019).jpg"
+        "src": "/portraits/4220.webp"
       }
     },
     {
@@ -945,12 +920,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1120.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Carlo_Sommaruga_(2019).jpg"
+        "src": "/portraits/1120.webp"
       }
     },
     {
@@ -1018,12 +988,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4100.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Albert_R%C3%B6sti_(2026)_(cropped).jpg"
+        "src": "/portraits/4100.webp"
       }
     },
     {
@@ -1091,12 +1056,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4032.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Beat_Jans_(2026)_(cropped).jpg"
+        "src": "/portraits/4032.webp"
       }
     },
     {
@@ -1164,12 +1124,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4238.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:%C3%89lisabeth_Baume-Schneider_(2026)_(cropped).jpg"
+        "src": "/portraits/4238.webp"
       }
     },
     {
@@ -1310,12 +1265,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4046.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Lorenzo_Quadri_(2019).jpg"
+        "src": "/portraits/4046.webp"
       }
     },
     {
@@ -1569,12 +1519,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4298.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Manuela_Weichelt-Picard_(2023).jpg"
+        "src": "/portraits/4298.webp"
       }
     },
     {
@@ -1642,12 +1587,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/14904.webp",
-        "author": "Schweizerische Bundeskanzlei",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_Pfister_(2026)_(cropped).jpg"
+        "src": "/portraits/14904.webp"
       }
     },
     {
@@ -1911,12 +1851,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/806.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Maya_Graf_(2020,_cropped).jpg"
+        "src": "/portraits/806.webp"
       }
     },
     {
@@ -2075,12 +2010,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4168.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jacques_Nicolet,_2023.jpg"
+        "src": "/portraits/4168.webp"
       }
     },
     {
@@ -2257,12 +2187,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4199.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Priska_Seiler_Graf_(2019).jpg"
+        "src": "/portraits/4199.webp"
       }
     },
     {
@@ -2456,12 +2381,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4063.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Stefan_M%C3%BCller-Altermatt_(2019).jpg"
+        "src": "/portraits/4063.webp"
       }
     },
     {
@@ -2670,12 +2590,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4268.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Greta_Gysin.jpg"
+        "src": "/portraits/4268.webp"
       }
     },
     {
@@ -2870,12 +2785,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3999.webp",
-        "author": "Parlament",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Katharina_Prelicz_(2020).jpg"
+        "src": "/portraits/3999.webp"
       }
     },
     {
@@ -3088,12 +2998,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4331.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marc_Jost_(2023).jpg"
+        "src": "/portraits/4331.webp"
       }
     },
     {
@@ -3426,12 +3331,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4051.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_de_Courten_(2019).jpg"
+        "src": "/portraits/4051.webp"
       }
     },
     {
@@ -3624,12 +3524,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4272.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Delphine_Klopfenstein_Broggini_(2019).jpg"
+        "src": "/portraits/4272.webp"
       }
     },
     {
@@ -3789,12 +3684,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4257.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_de_Quattro_(2019).jpg"
+        "src": "/portraits/4257.webp"
       }
     },
     {
@@ -4061,12 +3951,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1159.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pirmin_Schwander_(2016,_cropped).jpg"
+        "src": "/portraits/1159.webp"
       }
     },
     {
@@ -4265,12 +4150,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4261.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Esther_Friedli_(2019).jpg"
+        "src": "/portraits/4261.webp"
       }
     },
     {
@@ -4403,12 +4283,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/11506.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Farah_Rumy_(2023).jpg"
+        "src": "/portraits/11506.webp"
       }
     },
     {
@@ -4613,12 +4488,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4243.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Heidi_Z%27graggen_(2019).jpg"
+        "src": "/portraits/4243.webp"
       }
     },
     {
@@ -4845,12 +4715,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4025.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Roland_Rino_B%C3%BCchel_(2023).jpg"
+        "src": "/portraits/4025.webp"
       }
     },
     {
@@ -5161,12 +5026,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4172.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Werner_Salzmann_(2019).jpg"
+        "src": "/portraits/4172.webp"
       }
     },
     {
@@ -5382,12 +5242,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4333.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Meier,_2023.jpg"
+        "src": "/portraits/4333.webp"
       }
     },
     {
@@ -5569,12 +5424,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4312.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Bruno_Storni_(2019).jpg"
+        "src": "/portraits/4312.webp"
       }
     },
     {
@@ -5714,12 +5564,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4118.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christian_Lohr_(2019).jpg"
+        "src": "/portraits/4118.webp"
       }
     },
     {
@@ -5933,12 +5778,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4195.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Laurence_Fehlmann_Rielle_(2019).jpg"
+        "src": "/portraits/4195.webp"
       }
     },
     {
@@ -6328,12 +6168,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4335.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Michael_G%C3%B6tte_(2023_2).jpg"
+        "src": "/portraits/4335.webp"
       }
     },
     {
@@ -6554,12 +6389,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4221.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Michael_T%C3%B6ngi_(2023).jpg"
+        "src": "/portraits/4221.webp"
       }
     },
     {
@@ -6717,12 +6547,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4311.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Piero_Marchesi_(2023).jpg"
+        "src": "/portraits/4311.webp"
       }
     },
     {
@@ -6918,12 +6743,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4169.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pierre-Andr%C3%A9_Page_(2023).jpg"
+        "src": "/portraits/4169.webp"
       }
     },
     {
@@ -7030,12 +6850,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4174.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Steinemann_(2019,_cropped).jpg"
+        "src": "/portraits/4174.webp"
       }
     },
     {
@@ -7214,12 +7029,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4315.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Florence_Brenzikofer_(2019).jpg"
+        "src": "/portraits/4315.webp"
       }
     },
     {
@@ -7542,12 +7352,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1109.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Gerhard_Pfister_2019.jpg"
+        "src": "/portraits/1109.webp"
       }
     },
     {
@@ -7683,12 +7488,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4058.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jacqueline_Badran_(2018,_cropped).jpg"
+        "src": "/portraits/4058.webp"
       }
     },
     {
@@ -7845,12 +7645,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4154.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jean-Luc_Addor_(2023).jpg"
+        "src": "/portraits/4154.webp"
       }
     },
     {
@@ -8095,12 +7890,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4151.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Josef_Dittli_(2019).jpg"
+        "src": "/portraits/4151.webp"
       }
     },
     {
@@ -8290,12 +8080,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4249.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marianne_Binder-Keller_(2019).jpg"
+        "src": "/portraits/4249.webp"
       }
     },
     {
@@ -8561,12 +8346,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4208.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Matthias_Jauslin_(2023).jpg"
+        "src": "/portraits/4208.webp"
       }
     },
     {
@@ -8670,12 +8450,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4137.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Portrait_de_Roger_Golay.jpg"
+        "src": "/portraits/4137.webp"
       }
     },
     {
@@ -8893,12 +8668,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4158.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Burgherr_(2019).jpg"
+        "src": "/portraits/4158.webp"
       }
     },
     {
@@ -9178,12 +8948,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4254.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Damien_Cottier_(2019).jpg"
+        "src": "/portraits/4254.webp"
       }
     },
     {
@@ -9405,12 +9170,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4040.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Elisabeth_Schneider-Schneiter_2020.jpg"
+        "src": "/portraits/4040.webp"
       }
     },
     {
@@ -9534,12 +9294,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4223.webp",
-        "author": "Parliamentary Services / STF, ALESSANDRO DELLA VALLE",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Fabian_Molina_(2023).jpg"
+        "src": "/portraits/4223.webp"
       }
     },
     {
@@ -9847,12 +9602,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10843.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pascal_Schmid_(2023).jpg"
+        "src": "/portraits/10843.webp"
       }
     },
     {
@@ -10107,12 +9857,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4184.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Sibel_Arslan_(2023).jpg"
+        "src": "/portraits/4184.webp"
       }
     },
     {
@@ -10255,12 +10000,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4326.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Fischer_(2023).jpg"
+        "src": "/portraits/4326.webp"
       }
     },
     {
@@ -10482,12 +10222,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10821.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:DavidRoth_2023.jpg"
+        "src": "/portraits/10821.webp"
       }
     },
     {
@@ -10732,12 +10467,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4252.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Katja_Christ_(2019).jpg"
+        "src": "/portraits/4252.webp"
       }
     },
     {
@@ -10913,12 +10643,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3901.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Lukas_Reimann_(2023).jpg"
+        "src": "/portraits/3901.webp"
       }
     },
     {
@@ -11115,12 +10840,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4318.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Sarah_Wyss_(2021).jpg"
+        "src": "/portraits/4318.webp"
       }
     },
     {
@@ -11375,12 +11095,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4189.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thierry_Burkart_(2018).jpg"
+        "src": "/portraits/4189.webp"
       }
     },
     {
@@ -11575,12 +11290,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4282.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Rechsteiner_(2019).jpg"
+        "src": "/portraits/4282.webp"
       }
     },
     {
@@ -11809,12 +11519,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4263.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Gafner_(2019).jpg"
+        "src": "/portraits/4263.webp"
       }
     },
     {
@@ -11984,12 +11689,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4323.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Weber_Koppenburg_(2023).jpg"
+        "src": "/portraits/4323.webp"
       }
     },
     {
@@ -12222,12 +11922,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4240.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Charles_Juillard_(2019).jpg"
+        "src": "/portraits/4240.webp"
       }
     },
     {
@@ -12495,12 +12190,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4260.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Fabien_Fivaz_(2023).jpg"
+        "src": "/portraits/4260.webp"
       }
     },
     {
@@ -12846,12 +12536,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4070.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_Candinas_(2019,_cropped).jpg"
+        "src": "/portraits/4070.webp"
       }
     },
     {
@@ -13062,12 +12747,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10829.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martine_Docourt_(2023).jpg"
+        "src": "/portraits/10829.webp"
       }
     },
     {
@@ -13284,12 +12964,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4197.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Min_Li_Marti_(2023).jpg"
+        "src": "/portraits/4197.webp"
       }
     },
     {
@@ -13436,12 +13111,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4327.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Rapha%C3%ABl_Mahaim_(2023).jpg"
+        "src": "/portraits/4327.webp"
       }
     },
     {
@@ -13562,12 +13232,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10846.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:R%C3%A9my_Wyssmann_(cropped).jpg"
+        "src": "/portraits/10846.webp"
       }
     },
     {
@@ -13713,12 +13378,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4090.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Amaudruz_(2019).jpg"
+        "src": "/portraits/4090.webp"
       }
     },
     {
@@ -14002,12 +13662,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4222.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nicolo_Paganini_(2019).jpg"
+        "src": "/portraits/4222.webp"
       }
     },
     {
@@ -14149,12 +13804,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10833.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nina_Fehr_D%C3%BCsel.jpg"
+        "src": "/portraits/10833.webp"
       }
     },
     {
@@ -14307,12 +13957,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3890.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Hurter_(2023).jpg"
+        "src": "/portraits/3890.webp"
       }
     },
     {
@@ -14625,12 +14270,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4259.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Alex_Farinelli_(2019).jpg"
+        "src": "/portraits/4259.webp"
       }
     },
     {
@@ -14875,12 +14515,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4161.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andreas_Glarner_2019.jpg"
+        "src": "/portraits/4161.webp"
       }
     },
     {
@@ -14995,12 +14630,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/11404.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Sormanni.jpg"
+        "src": "/portraits/11404.webp"
       }
     },
     {
@@ -15468,12 +15098,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4072.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Fabio_Regazzi_(2019).jpg"
+        "src": "/portraits/4072.webp"
       }
     },
     {
@@ -15720,12 +15345,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/825.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Hannes_Germann_(2019).jpg"
+        "src": "/portraits/825.webp"
       }
     },
     {
@@ -15912,12 +15532,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10827.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jean_Tschopp_(2023).jpg"
+        "src": "/portraits/10827.webp"
       }
     },
     {
@@ -16047,12 +15662,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10836.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nicolas_Kolly_(2023).jpg"
+        "src": "/portraits/10836.webp"
       }
     },
     {
@@ -16403,12 +16013,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4116.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Petra_G%C3%B6ssi_(2019).jpg"
+        "src": "/portraits/4116.webp"
       }
     },
     {
@@ -16637,12 +16242,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4305.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Priska_Wismer-Felder_(2023).jpg"
+        "src": "/portraits/4305.webp"
       }
     },
     {
@@ -16766,12 +16366,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4278.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Sophie_Michaud_Gigon_(2019).jpg"
+        "src": "/portraits/4278.webp"
       }
     },
     {
@@ -16892,12 +16487,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4057.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:C%C3%A9dric_Wermuth_2019.jpg"
+        "src": "/portraits/4057.webp"
       }
     },
     {
@@ -17090,12 +16680,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4101.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christine_Bulliard-Marbach_(2019).jpg"
+        "src": "/portraits/4101.webp"
       }
     },
     {
@@ -17288,12 +16873,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4267.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Corina_Gredig.jpg"
+        "src": "/portraits/4267.webp"
       }
     },
     {
@@ -17566,12 +17146,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4241.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jakob_Stark_(2023).jpg"
+        "src": "/portraits/4241.webp"
       }
     },
     {
@@ -17755,12 +17330,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4280.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:L%C3%A9onore_Porchet_(2023).jpg"
+        "src": "/portraits/4280.webp"
       }
     },
     {
@@ -18071,12 +17641,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4324.webp",
-        "author": "Lucia Hunziker",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:PvFalkentsein_by_Lucia_Hunziker_(cropped).jpg"
+        "src": "/portraits/4324.webp"
       }
     },
     {
@@ -18435,12 +18000,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4206.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Erich_Ettlin_(2019).jpg"
+        "src": "/portraits/4206.webp"
       }
     },
     {
@@ -18690,12 +18250,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4162.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Franz_Gr%C3%BCter_(2023).jpg"
+        "src": "/portraits/4162.webp"
       }
     },
     {
@@ -19008,12 +18563,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/11505.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Giorgio_Fonio_(2023).jpg"
+        "src": "/portraits/11505.webp"
       }
     },
     {
@@ -19132,12 +18682,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4156.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Micha%C3%ABl_Buffat_(2019).jpg"
+        "src": "/portraits/4156.webp"
       }
     },
     {
@@ -19364,12 +18909,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4214.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nik_Gugger_(2021).jpg"
+        "src": "/portraits/4214.webp"
       }
     },
     {
@@ -19594,12 +19134,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10826.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nina_Schl%C3%A4fli.jpg"
+        "src": "/portraits/10826.webp"
       }
     },
     {
@@ -19835,12 +19370,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4077.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Olivier_Feller_(2019).jpg"
+        "src": "/portraits/4077.webp"
       }
     },
     {
@@ -20288,12 +19818,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4124.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Peter_Schilliger_(2023).jpg"
+        "src": "/portraits/4124.webp"
       }
     },
     {
@@ -20379,12 +19904,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10840.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Yvan_Pahud_(parl.ch,_cropped).jpg"
+        "src": "/portraits/10840.webp"
       }
     },
     {
@@ -20613,12 +20133,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4270.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Baptiste_Hurni_(2019).jpg"
+        "src": "/portraits/4270.webp"
       }
     },
     {
@@ -20953,12 +20468,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4237.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Benedikt_W%C3%BCrth.jpg"
+        "src": "/portraits/4237.webp"
       }
     },
     {
@@ -21202,12 +20712,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4246.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christine_Badertscher_(2019).jpg"
+        "src": "/portraits/4246.webp"
       }
     },
     {
@@ -21403,12 +20908,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4253.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christophe_Clivaz_(2019).jpg"
+        "src": "/portraits/4253.webp"
       }
     },
     {
@@ -21594,12 +21094,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4329.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Ruch_(2022).jpg"
+        "src": "/portraits/4329.webp"
       }
     },
     {
@@ -21811,12 +21306,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4245.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Gerhard_Andrey_(2021).jpg"
+        "src": "/portraits/4245.webp"
       }
     },
     {
@@ -22068,12 +21558,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4310.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Lars_Guggisberg.jpg"
+        "src": "/portraits/4310.webp"
       }
     },
     {
@@ -22214,12 +21699,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4288.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marionna_Schlatter_(2019).jpg"
+        "src": "/portraits/4288.webp"
       }
     },
     {
@@ -22383,12 +21863,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10839.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Mauro_Poggia.jpg"
+        "src": "/portraits/10839.webp"
       }
     },
     {
@@ -22498,12 +21973,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4175.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mauro_Tuena_(2023).jpg"
+        "src": "/portraits/4175.webp"
       }
     },
     {
@@ -22632,12 +22102,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4314.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Stefanie_Heimgartner.jpg"
+        "src": "/portraits/4314.webp"
       }
     },
     {
@@ -22778,12 +22243,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4334.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Bl%C3%A4si_(2023).jpg"
+        "src": "/portraits/4334.webp"
       }
     },
     {
@@ -22952,12 +22412,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4075.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Caroni_(2023).jpg"
+        "src": "/portraits/4075.webp"
       }
     },
     {
@@ -23108,12 +22563,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4219.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Brigitte_Crottaz_(2023).jpg"
+        "src": "/portraits/4219.webp"
       }
     },
     {
@@ -23362,12 +22812,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4177.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Bruno_Walliser_1.jpg"
+        "src": "/portraits/4177.webp"
       }
     },
     {
@@ -23580,12 +23025,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4255.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christian_Dandr%C3%A8s_(2019).jpg"
+        "src": "/portraits/4255.webp"
       }
     },
     {
@@ -23822,12 +23262,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4283.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Franziska_Roth_(2019).jpg"
+        "src": "/portraits/4283.webp"
       }
     },
     {
@@ -24019,12 +23454,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4281.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jon_Pult_(2019).jpg"
+        "src": "/portraits/4281.webp"
       }
     },
     {
@@ -24287,12 +23717,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4159.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marco_Chiesa_(2018,_cropped).jpg"
+        "src": "/portraits/4159.webp"
       }
     },
     {
@@ -24485,12 +23910,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4332.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mathilde_Crevoisier_(2023).jpg"
+        "src": "/portraits/4332.webp"
       }
     },
     {
@@ -24738,12 +24158,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10805.webp",
-        "author": "Genfer01",
-        "licence": "CC BY-SA 3.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Broulis.jpg"
+        "src": "/portraits/10805.webp"
       }
     },
     {
@@ -25003,12 +24418,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4230.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Philipp_Matthias_Bregy_(2019).jpg"
+        "src": "/portraits/4230.webp"
       }
     },
     {
@@ -25232,12 +24642,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4193.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Philippe_Nantermod_2_(2019).jpg"
+        "src": "/portraits/4193.webp"
       }
     },
     {
@@ -25335,12 +24740,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4228.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Samira_Marti_(2023).jpg"
+        "src": "/portraits/4228.webp"
       }
     },
     {
@@ -25531,12 +24931,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4292.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Simon_Stadler.jpg"
+        "src": "/portraits/4292.webp"
       }
     },
     {
@@ -25819,12 +25214,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10807.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Simone_Gianini_(2023).jpg"
+        "src": "/portraits/10807.webp"
       }
     },
     {
@@ -26033,12 +25423,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4121.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Gysi.jpg"
+        "src": "/portraits/4121.webp"
       }
     },
     {
@@ -26313,12 +25698,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4287.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Schaffner_(2019).jpg"
+        "src": "/portraits/4287.webp"
       }
     },
     {
@@ -26561,12 +25941,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4207.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Damian_M%C3%BCller_(2019,_cropped).jpg"
+        "src": "/portraits/4207.webp"
       }
     },
     {
@@ -26806,12 +26181,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4097.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Leo_M%C3%BCller_(2021).jpg"
+        "src": "/portraits/4097.webp"
       }
     },
     {
@@ -26996,12 +26366,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4229.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mike_Egger_(2019).jpg"
+        "src": "/portraits/4229.webp"
       }
     },
     {
@@ -27190,12 +26555,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10811.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Reto_Nause_(2023).jpg"
+        "src": "/portraits/10811.webp"
       }
     },
     {
@@ -27441,12 +26801,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4296.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Susanne_Vincenz-Stauffacher_(2023).jpg"
+        "src": "/portraits/4296.webp"
       }
     },
     {
@@ -27606,12 +26961,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10849.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Vroni_Thalmann-Bieri_portrait.jpg"
+        "src": "/portraits/10849.webp"
       }
     },
     {
@@ -27781,12 +27131,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10819.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Yvonne_B%C3%BCrgin_(2023)2.jpg"
+        "src": "/portraits/10819.webp"
       }
     },
     {
@@ -27984,12 +27329,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3912.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christian_Wasserfallen_(2023).jpg"
+        "src": "/portraits/3912.webp"
       }
     },
     {
@@ -28118,12 +27458,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/15304.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Clarence_Chollet.jpg"
+        "src": "/portraits/15304.webp"
       }
     },
     {
@@ -28369,12 +27704,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4060.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Daniela_Schneeberger_(2019).jpg"
+        "src": "/portraits/4060.webp"
       }
     },
     {
@@ -28533,12 +27863,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4295.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Gabriela_Suter_(2019).jpg"
+        "src": "/portraits/4295.webp"
       }
     },
     {
@@ -28696,12 +28021,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10820.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Jessica_Jaccoud.jpg"
+        "src": "/portraits/10820.webp"
       }
     },
     {
@@ -28944,12 +28264,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4083.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:J%C3%BCrg_Grossen_2019.jpg"
+        "src": "/portraits/4083.webp"
       }
     },
     {
@@ -29050,12 +28365,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4247.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Kilian_Baumann_(2023).jpg"
+        "src": "/portraits/4247.webp"
       }
     },
     {
@@ -29314,12 +28624,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4303.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marianne_Maret_(2021).jpg"
+        "src": "/portraits/4303.webp"
       }
     },
     {
@@ -29487,12 +28792,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4236.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_Haab.jpg"
+        "src": "/portraits/4236.webp"
       }
     },
     {
@@ -29690,12 +28990,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4130.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nadine_Masshardt_2019.jpg"
+        "src": "/portraits/4130.webp"
       }
     },
     {
@@ -29824,12 +29119,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10842.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Paolo_Pamini_(parl.ch).jpg"
+        "src": "/portraits/10842.webp"
       }
     },
     {
@@ -30015,12 +29305,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4213.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Samuel_Bendahan_(2019).jpg"
+        "src": "/portraits/4213.webp"
       }
     },
     {
@@ -30173,12 +29458,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4173.webp",
-        "author": "Sollberger Simeon",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Sandra_Sollberger_2018.jpg"
+        "src": "/portraits/4173.webp"
       }
     },
     {
@@ -30331,12 +29611,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4262.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Tamara_Funiciello_(2019).jpg"
+        "src": "/portraits/4262.webp"
       }
     },
     {
@@ -30416,12 +29691,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10832.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Knutti_%C3%A0_la_tribune_CN.jpg"
+        "src": "/portraits/10832.webp"
       }
     },
     {
@@ -30595,12 +29865,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4317.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Alois_Huber_(2023).jpg"
+        "src": "/portraits/4317.webp"
       }
     },
     {
@@ -30775,12 +30040,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4204.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Beat_Rieder_(2023).jpg"
+        "src": "/portraits/4204.webp"
       }
     },
     {
@@ -30995,12 +30255,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10804.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Bettina_Balmer_(2023).jpg"
+        "src": "/portraits/10804.webp"
       }
     },
     {
@@ -31205,12 +30460,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4164.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christian_Imark.jpg"
+        "src": "/portraits/4164.webp"
       }
     },
     {
@@ -31669,12 +30919,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3891.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Daniel_Jositsch_(2015,_cropped).jpg"
+        "src": "/portraits/3891.webp"
       }
     },
     {
@@ -31815,12 +31060,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10828.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Hasan_Candan_portrait.jpg"
+        "src": "/portraits/10828.webp"
       }
     },
     {
@@ -32269,12 +31509,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4194.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Laurent_Wehrli_(2023).jpg"
+        "src": "/portraits/4194.webp"
       }
     },
     {
@@ -32516,12 +31751,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4157.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Manfred_B%C3%BChler_(2023).jpg"
+        "src": "/portraits/4157.webp"
       }
     },
     {
@@ -32718,12 +31948,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10818.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nicole_Barandun_(2023).jpg"
+        "src": "/portraits/10818.webp"
       }
     },
     {
@@ -32903,12 +32128,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10848.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Walter_Gartmann_portrait.jpg"
+        "src": "/portraits/10848.webp"
       }
     },
     {
@@ -33139,12 +32359,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4290.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andri_Silberschmidt_(2023).jpg"
+        "src": "/portraits/4290.webp"
       }
     },
     {
@@ -33359,12 +32574,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4265.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Anna_Giacometti_(2023).jpg"
+        "src": "/portraits/4265.webp"
       }
     },
     {
@@ -33500,12 +32710,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/15004.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Beno%C3%AEt_Gaillard.jpg"
+        "src": "/portraits/15004.webp"
       }
     },
     {
@@ -33719,12 +32924,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4216.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Diane_Gutjhar.jpg"
+        "src": "/portraits/4216.webp"
       }
     },
     {
@@ -33834,12 +33034,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/14810.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Fabienne_St%C3%A4mpfli_(parl.ch).jpg"
+        "src": "/portraits/14810.webp"
       }
     },
     {
@@ -34064,12 +33259,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4286.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Franziska_Ryser_(2019).jpg"
+        "src": "/portraits/4286.webp"
       }
     },
     {
@@ -34244,12 +33434,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/14105.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Linda_De_Ventura.jpg"
+        "src": "/portraits/14105.webp"
       }
     },
     {
@@ -34452,12 +33637,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4190.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dobler_(2023).jpg"
+        "src": "/portraits/4190.webp"
       }
     },
     {
@@ -34648,12 +33828,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4285.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Monika_R%C3%BCegger-Hurschler.jpg"
+        "src": "/portraits/4285.webp"
       }
     },
     {
@@ -34883,12 +34058,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4256.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Simone_de_Montmollin_(2019).jpg"
+        "src": "/portraits/4256.webp"
       }
     },
     {
@@ -35028,12 +34198,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4055.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Stefan_Engler.jpg"
+        "src": "/portraits/4055.webp"
       }
     },
     {
@@ -35134,12 +34299,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/14809.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Ueli_Schmezer_(parl.ch).jpg"
+        "src": "/portraits/14809.webp"
       }
     },
     {
@@ -35389,12 +34549,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10822.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Ursula_Zybach_portrait.jpg"
+        "src": "/portraits/10822.webp"
       }
     },
     {
@@ -35601,12 +34756,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10801.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christoph_Riner_portrait_(cropped).jpg"
+        "src": "/portraits/10801.webp"
       }
     },
     {
@@ -35776,12 +34926,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10838.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Erich_Vontobel.jpg"
+        "src": "/portraits/10838.webp"
       }
     },
     {
@@ -36105,12 +35250,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10834.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Ernst_Wandfluh_(2023).jpg"
+        "src": "/portraits/10834.webp"
       }
     },
     {
@@ -36367,12 +35507,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4125.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Gregor_Rutz_2012.jpg"
+        "src": "/portraits/4125.webp"
       }
     },
     {
@@ -36524,12 +35659,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4218.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Ir%C3%A8ne_K%C3%A4lin_(2019).jpg"
+        "src": "/portraits/4218.webp"
       }
     },
     {
@@ -36767,12 +35897,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4284.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marie-France_Roth_Pasquier_(2023).jpg"
+        "src": "/portraits/4284.webp"
       }
     },
     {
@@ -37151,12 +36276,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4244.webp",
-        "author": "Alessandro della Valle",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mathias_Zopfi.jpg"
+        "src": "/portraits/4244.webp"
       }
     },
     {
@@ -37320,12 +36440,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10815.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Regina_Durrer-Knobel_(2023).jpg"
+        "src": "/portraits/10815.webp"
       }
     },
     {
@@ -37432,12 +36547,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4271.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Kamerzin_(2019).jpg"
+        "src": "/portraits/4271.webp"
       }
     },
     {
@@ -37629,12 +36739,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4320.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Emmanuel_Amoos_(2023).jpg"
+        "src": "/portraits/4320.webp"
       }
     },
     {
@@ -37860,12 +36965,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4239.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Eva_Herzog_(2019).jpg"
+        "src": "/portraits/4239.webp"
       }
     },
     {
@@ -38010,12 +37110,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4289.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Meret_Schneider_(2019).jpg"
+        "src": "/portraits/4289.webp"
       }
     },
     {
@@ -38231,12 +37326,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4202.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Regine_Sauter_(2019).jpg"
+        "src": "/portraits/4202.webp"
       }
     },
     {
@@ -38390,12 +37480,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10845.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Roman_B%C3%BCrgi.jpg"
+        "src": "/portraits/10845.webp"
       }
     },
     {
@@ -38581,12 +37666,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4234.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Therese_Schl%C3%A4pfer_(2023).jpg"
+        "src": "/portraits/4234.webp"
       }
     },
     {
@@ -38748,12 +37828,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4109.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Val%C3%A9rie_Piller_Carrard_(2019).jpg"
+        "src": "/portraits/4109.webp"
       }
     },
     {
@@ -38894,12 +37969,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4275.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Vincent_Maitre_(2019).jpg"
+        "src": "/portraits/4275.webp"
       }
     },
     {
@@ -39157,12 +38227,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4163.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Erich_Hess_(2023).jpg"
+        "src": "/portraits/4163.webp"
       }
     },
     {
@@ -39343,12 +38408,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4160.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Marcel_Dettling_(2019).jpg"
+        "src": "/portraits/4160.webp"
       }
     },
     {
@@ -39499,12 +38559,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/17301.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mich%C3%A8le_D%C3%BCnki-B%C3%A4ttig_(2026).jpg"
+        "src": "/portraits/17301.webp"
       }
     },
     {
@@ -39627,12 +38682,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/11507.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Patrick_H%C3%A4ssig_(2023)_(cropped).jpg"
+        "src": "/portraits/11507.webp"
       }
     },
     {
@@ -39848,12 +38898,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10814.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pius_Kaufmann_portrait.jpg"
+        "src": "/portraits/10814.webp"
       }
     },
     {
@@ -40180,12 +39225,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4181.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Gm%C3%BCr-Sch%C3%B6nenberger_(2019).jpg"
+        "src": "/portraits/4181.webp"
       }
     },
     {
@@ -40310,12 +39350,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10817.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chappuis_(2021).jpg"
+        "src": "/portraits/10817.webp"
       }
     },
     {
@@ -40438,12 +39473,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4102.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Kathrin_Bertschy_(2019).jpg"
+        "src": "/portraits/4102.webp"
       }
     },
     {
@@ -40578,12 +39608,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4319.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Michael_Graber_(2021,_parl.ch).jpg"
+        "src": "/portraits/4319.webp"
       }
     },
     {
@@ -40681,12 +39706,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10813.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Simona_Brizzi.jpg"
+        "src": "/portraits/10813.webp"
       }
     },
     {
@@ -40866,12 +39886,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4144.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Matter.jpg"
+        "src": "/portraits/4144.webp"
       }
     },
     {
@@ -41107,12 +40122,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3897.webp",
-        "author": "Marzili58",
-        "licence": "CC BY-SA 4.0",
-        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "attribution": null,
-        "source": "https://commons.wikimedia.org/wiki/File:Tiana_Angelina_Moser_(2019).jpg"
+        "src": "/portraits/3897.webp"
       }
     },
     {
@@ -41324,12 +40334,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10802.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_M%C3%BChlemann_(2023).jpg"
+        "src": "/portraits/10802.webp"
       }
     },
     {
@@ -41603,12 +40608,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1106.webp",
-        "author": "Parlamentsdienste",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Brigitte_H%C3%A4berli-Koller_(cropped,_St%C3%A4nderatspr%C3%A4sidentin).jpg"
+        "src": "/portraits/1106.webp"
       }
     },
     {
@@ -41688,12 +40688,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10850.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Didier_Calame_(2023).jpg"
+        "src": "/portraits/10850.webp"
       }
     },
     {
@@ -41972,12 +40967,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4224.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Flavia_Wasserfallen_(2019).jpg"
+        "src": "/portraits/4224.webp"
       }
     },
     {
@@ -42140,12 +41130,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10852.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Hans_J%C3%B6rg_R%C3%BCegsegger_(2023).jpg"
+        "src": "/portraits/10852.webp"
       }
     },
     {
@@ -42392,12 +41377,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4094.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Lorenz_Hess_(2023).jpg"
+        "src": "/portraits/4094.webp"
       }
     },
     {
@@ -42549,12 +41529,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10831.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_H%C3%BCbscher.jpg"
+        "src": "/portraits/10831.webp"
       }
     },
     {
@@ -42634,12 +41609,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10825.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Brenda_Tuosto_(2023).jpg"
+        "src": "/portraits/10825.webp"
       }
     },
     {
@@ -42798,12 +41768,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10803.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Cyril_Aellen_(2023).jpg"
+        "src": "/portraits/10803.webp"
       }
     },
     {
@@ -43028,12 +41993,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10816.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Dominik_Blunschy_(2023).jpg"
+        "src": "/portraits/10816.webp"
       }
     },
     {
@@ -43175,12 +42135,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4141.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Hans-Peter_Portmann_(2019).jpg"
+        "src": "/portraits/4141.webp"
       }
     },
     {
@@ -43394,12 +42349,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10808.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Heinz_Theiler_(2023).jpg"
+        "src": "/portraits/10808.webp"
       }
     },
     {
@@ -43646,12 +42596,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4309.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Matthias_Michel_(2019).jpg"
+        "src": "/portraits/4309.webp"
       }
     },
     {
@@ -43984,12 +42929,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4153.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Peter_Hegglin_(2019).jpg"
+        "src": "/portraits/4153.webp"
       }
     },
     {
@@ -44104,12 +43044,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/491.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pierre-Yves_Maillard_(2019).jpg"
+        "src": "/portraits/491.webp"
       }
     },
     {
@@ -44227,12 +43162,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10847.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Thomas_Stettler_portrait_(cropped).jpg"
+        "src": "/portraits/10847.webp"
       }
     },
     {
@@ -44537,12 +43467,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4142.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Beat_Walti_(2019).jpg"
+        "src": "/portraits/4142.webp"
       }
     },
     {
@@ -44671,12 +43596,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4266.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Benjamin_Giezendanner_(2019).jpg"
+        "src": "/portraits/4266.webp"
       }
     },
     {
@@ -44970,12 +43890,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4152.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Hans_Wicki_(2019).jpg"
+        "src": "/portraits/4152.webp"
       }
     },
     {
@@ -45104,12 +44019,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/16905.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Lo%C3%AFc_Dobler_(2026).jpg"
+        "src": "/portraits/16905.webp"
       }
     },
     {
@@ -45218,12 +44128,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4198.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Mattea_Meyer_(2023).jpg"
+        "src": "/portraits/4198.webp"
       }
     },
     {
@@ -45397,12 +44302,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10809.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nadine_Gobet_portrait.jpg"
+        "src": "/portraits/10809.webp"
       }
     },
     {
@@ -45656,12 +44556,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/3871.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Pirmin_Bischof_(2019).jpg"
+        "src": "/portraits/3871.webp"
       }
     },
     {
@@ -45784,12 +44679,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/16109.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Rudi_Berli_(parl.ch).jpg"
+        "src": "/portraits/16109.webp"
       }
     },
     {
@@ -45901,12 +44791,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10835.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Sylvain_Freymond.jpg"
+        "src": "/portraits/10835.webp"
       }
     },
     {
@@ -46080,12 +44965,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/14803.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Christian_Glur_(2024).jpg"
+        "src": "/portraits/14803.webp"
       }
     },
     {
@@ -46224,12 +45104,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10812.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Islam_Alijaj_(2023).jpg"
+        "src": "/portraits/10812.webp"
       }
     },
     {
@@ -46392,12 +45267,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10830.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Katja_Riem_portrait.jpg"
+        "src": "/portraits/10830.webp"
       }
     },
     {
@@ -46504,12 +45374,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/16804.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Laura_Gantenbein_(2026).jpg"
+        "src": "/portraits/16804.webp"
       }
     },
     {
@@ -46814,12 +45679,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4293.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Manuel_Strupler.jpg"
+        "src": "/portraits/4293.webp"
       }
     },
     {
@@ -47129,12 +45989,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4078.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_Schmid_(2019).jpg"
+        "src": "/portraits/4078.webp"
       }
     },
     {
@@ -47337,12 +46192,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/11508.webp",
-        "author": "Assemblea Federale Svizzera",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Maya_Bally_(2023).jpg"
+        "src": "/portraits/11508.webp"
       }
     },
     {
@@ -47516,12 +46366,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10851.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andrea_Zryd_portrait_(cropped).jpg"
+        "src": "/portraits/10851.webp"
       }
     },
     {
@@ -47644,12 +46489,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10823.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Estelle_Revaz.jpg"
+        "src": "/portraits/10823.webp"
       }
     },
     {
@@ -47852,12 +46692,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4313.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Maja_Riniker_(2023).jpg"
+        "src": "/portraits/4313.webp"
       }
     },
     {
@@ -48151,12 +46986,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/1138.webp",
-        "author": "Services du Parlement, 3003 Berne",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Martin_B%C3%A4umle_(2019).jpg"
+        "src": "/portraits/1138.webp"
       }
     },
     {
@@ -48308,12 +47138,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4065.webp",
-        "author": "Unknown author Unknown author",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Nadja_Pieren_parlament.ch_2781.jpg"
+        "src": "/portraits/4065.webp"
       }
     },
     {
@@ -48567,12 +47392,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4225.webp",
-        "author": "Services du parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Philipp_Kutter_2019.jpg"
+        "src": "/portraits/4225.webp"
       }
     },
     {
@@ -48752,12 +47572,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4056.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Daniel_F%C3%A4ssler_(2019).jpg"
+        "src": "/portraits/4056.webp"
       }
     },
     {
@@ -48986,12 +47801,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4167.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Magdalena_Martullo-Blocher_(2023).jpg"
+        "src": "/portraits/4167.webp"
       }
     },
     {
@@ -49071,12 +47881,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10844.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Roman_Hug_portrait.jpg"
+        "src": "/portraits/10844.webp"
       }
     },
     {
@@ -49386,12 +48191,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4306.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Johanna_Gapany_(2019).jpg"
+        "src": "/portraits/4306.webp"
       }
     },
     {
@@ -49492,12 +48292,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10824.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Anna_Rosenwasser_(2023).jpg"
+        "src": "/portraits/10824.webp"
       }
     },
     {
@@ -49660,12 +48455,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10806.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Kris_Vietze_(2023).jpg"
+        "src": "/portraits/10806.webp"
       }
     },
     {
@@ -49784,12 +48574,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4052.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Markus_Ritter_(2023).jpg"
+        "src": "/portraits/4052.webp"
       }
     },
     {
@@ -49974,12 +48759,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10841.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Markus_Schnyder_(2023).jpg"
+        "src": "/portraits/10841.webp"
       }
     },
     {
@@ -50093,12 +48873,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/17201.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Miriam_Locher.jpg"
+        "src": "/portraits/17201.webp"
       }
     },
     {
@@ -50281,12 +49056,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/15601.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Severin_Br%C3%BCngger_(parl.ch).jpg"
+        "src": "/portraits/15601.webp"
       }
     },
     {
@@ -50564,12 +49334,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/10810.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Simon_Michel_(2023).jpg"
+        "src": "/portraits/10810.webp"
       }
     },
     {
@@ -50898,12 +49663,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/4325.webp",
-        "author": "Services du Parlement",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Isabelle_Chassot_(parl.ch).jpg"
+        "src": "/portraits/4325.webp"
       }
     },
     {
@@ -51037,12 +49797,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/17101.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Barbara_Portmann_(parl.ch).jpg"
+        "src": "/portraits/17101.webp"
       }
     },
     {
@@ -51227,12 +49982,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/17401.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Anna-B%C3%A9atrice_Schmaltz_(2026).jpg"
+        "src": "/portraits/17401.webp"
       }
     },
     {
@@ -51377,12 +50127,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/16706.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Edgar_Bischof_(2026).jpg"
+        "src": "/portraits/16706.webp"
       }
     },
     {
@@ -51559,12 +50304,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/17404.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Andrea_de_Meuron_(parl.ch).jpg"
+        "src": "/portraits/17404.webp"
       }
     },
     {
@@ -51689,12 +50429,7 @@
         "source": "https://politikfinanzierung.efk.admin.ch/app/de/exports/elections"
       },
       "portrait": {
-        "src": "/portraits/16902.webp",
-        "author": "Parliamentary Services",
-        "licence": "Attribution",
-        "licenceUrl": null,
-        "attribution": "http://www.parlament.ch",
-        "source": "https://commons.wikimedia.org/wiki/File:Arb%C3%ABr_Bullakaj.jpg"
+        "src": "/portraits/16902.webp"
       }
     }
   ]

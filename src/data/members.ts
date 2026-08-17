@@ -126,20 +126,10 @@ export interface FinancingDisclosure {
   source: string
 }
 
-/**
- * Portrait shipped in public/portraits. Every source image is CC BY / CC BY-SA,
- * so `author` and `licence` must be surfaced wherever the image is shown.
- */
+/** Portrait image used by the card. Licence records live in portrait-credits.json. */
 export interface Portrait {
   /** Root-relative path, e.g. "/portraits/825.webp". Use `portraitUrl`. */
   src: string
-  author: string
-  licence: string
-  licenceUrl: string | null
-  /** Credit line requested by the author, if any. */
-  attribution: string | null
-  /** Commons file page. */
-  source: string
 }
 
 export interface Member {

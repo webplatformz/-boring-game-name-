@@ -8,7 +8,8 @@ The test is whether each field is suitable and necessary for the stated educatio
 
 | Data or processing | Decision | Reason / safeguard |
 |---|---|---|
-| Name, portrait, party, canton, chamber | Retain in public profile | Core card identity and parliamentary context; source and portrait attribution remain visible. |
+| Name, portrait, party, canton, chamber | Retain in public profile | Core card identity and parliamentary context. Portrait attribution remains permanently accessible on a central Photo Credits page. |
+| Portrait author, required credit, licence, source and modification metadata | Retain in a separate credits manifest | Required to document lawful image reuse. Kept out of runtime member/game records and loaded only for the Photo Credits page. |
 | First and last name separately | Retain | Required by the existing card layout and name fitting. |
 | Age and tenure | Retain provisionally | Displayed and used in capped, low-weight components. Controller must reconsider whether exact age is necessary; birth date is not published. |
 | Current committees and roles | Retain | Displayed and used by the scoring method. Only current standing assignments needed by the app are published. |
@@ -30,4 +31,3 @@ The test is whether each field is suitable and necessary for the stated educatio
 3. Set deletion periods for published profiles after a person leaves office, raw snapshots, correction correspondence and hosting logs.
 4. Determine whether the repository and raw build caches are public. If public, include that disclosure and retention reality in the DPIA.
 5. Repeat this review when adding a source, score component, analytics tool, account system or commercial purpose.
-

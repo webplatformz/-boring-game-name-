@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 import type { Member } from '../data/members'
 import { LEGISLATURE, partyColors } from '../theme'
 import { Flag } from './Flag'
-import { Portrait, PortraitCredit } from './Portrait'
+import { Portrait } from './Portrait'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
 import { useCardTooltipDismiss } from './useCardTooltipDismiss'
 import { useI18n } from '../i18n'
@@ -312,8 +312,6 @@ export function MythicCardFront({
             </span>
           </div>
         </div>
-
-        <PortraitCredit member={m} style={{ position: 'absolute', zIndex: 7, left: 16, right: 16, bottom: 10, color: '#425371' }} />
 
         <Corner x="left" y="top" />
         <Corner x="right" y="top" />

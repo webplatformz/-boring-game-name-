@@ -52,28 +52,3 @@ export function Portrait({ member, deep }: { member: Member; deep: string }) {
     </div>
   )
 }
-
-/**
- * Attribution line for a portrait. The Commons sources are CC BY / CC BY-SA,
- * which require crediting the author wherever the image is used.
- */
-export function PortraitCredit({ member, style }: { member: Member; style?: CSSProperties }) {
-  const { author, licence } = member.portrait
-  return (
-    <div
-      style={{
-        fontFamily: "'IBM Plex Mono',monospace",
-        fontSize: 6.5,
-        letterSpacing: '.08em',
-        lineHeight: 1.2,
-        color: '#4A5F7D',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        ...style,
-      }}
-    >
-      {`PHOTO: ${author} · ${licence} · WIKIMEDIA COMMONS`.toUpperCase()}
-    </div>
-  )
-}

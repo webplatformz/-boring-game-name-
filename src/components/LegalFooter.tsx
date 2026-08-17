@@ -8,6 +8,7 @@ export function LegalFooter({ aboveTabs = false }: { aboveTabs?: boolean }) {
     { href: '#methodology', label: t('footerMethodologyLink') },
     { href: '#data-methodology', label: t('footerDataMethodologyLink') },
     { href: '#privacy', label: t('footerPrivacyLink') },
+    { href: '#photo-credits', label: t('footerPhotoCreditsLink') },
     { href: '#disclaimer', label: t('footerProjectLink') },
   ]
 

@@ -39,6 +39,7 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const RAW_DIR = join(__dirname, '..', 'src', 'data', 'raw')
 const OUT = join(__dirname, '..', 'src', 'data', 'members.json')
+const PORTRAIT_CREDITS_OUT = join(__dirname, '..', 'src', 'data', 'portrait-credits.json')
 const PROVENANCE_PATH = join(__dirname, '..', 'src', 'data', 'provenance.json')
 const PROVENANCE = JSON.parse(await readFile(PROVENANCE_PATH, 'utf8'))
 
@@ -662,12 +663,16 @@ function buildPortraitIndex(wikidata, imageinfo) {
     titleById.set(pid, 'File:' + decodeURIComponent(tail).replace(/_/g, ' '))
   }
 
-  return (id) => {
-    const info = imageinfo[titleById.get(String(id))]
+  const recordFor = (id) => {
+    const title = titleById.get(String(id))
+    const info = imageinfo[title]
     if (!info) return null
     return {
-      src: `/portraits/${id}.webp`,
-      author: info.author,
+      title,
+      // Some Commons HTML metadata repeats the same accessible label in a
+      // nested span (currently "Unknown author Unknown author"). Store the
+      // source statement once without inventing an author.
+      author: info.author === 'Unknown author Unknown author' ? 'Unknown author' : info.author,
       licence: info.licence,
       licenceUrl: info.licenceUrl || null,
       // Required credit line for the bare "Attribution" licence used by the
@@ -675,6 +680,11 @@ function buildPortraitIndex(wikidata, imageinfo) {
       attribution: info.attribution || null,
       source: info.descriptionUrl,
     }
+  }
+
+  return {
+    portraitFor: (id) => (recordFor(id) ? { src: `/portraits/${id}.webp` } : null),
+    creditFor: recordFor,
   }
 }
 
@@ -703,7 +713,7 @@ async function main() {
     readRaw('wikidata-portraits.json', 'npm run portraits'),
     readRaw('commons-imageinfo.json', 'npm run portraits'),
   ])
-  const portraitFor = buildPortraitIndex(wikidataPortraits, commonsImageinfo)
+  const { portraitFor, creditFor } = buildPortraitIndex(wikidataPortraits, commonsImageinfo)
   process.stdout.write(`Loaded raw: ${members.length} members, ${history.length} history rows, ${committees.length} committee rows, ${authoredRoles.length} authored affairs, ${interests.length} interest disclosures, ${financing.campaigns.length} financing campaigns, ${Object.keys(voteOutcomes).length} detailed vote records\n`)
 
   // Earliest join across all past legislatures.
@@ -878,16 +888,40 @@ async function main() {
       financing: EFK_FINANCING_SOURCE,
     },
     portraitSource:
-      'Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.',
+      'Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Per-image credits and licence terms are published separately on the Photo Credits page.',
     count: built.length,
     rarity: dist,
     note: 'ATK = 45% personally authored proposal drive + 30% mature authored proposals that advanced + 25% current committee/parliamentary-group leadership. DEF = 20% voting reliability + 45% current standing-committee work + 30% parliamentary experience + 5% age/network experience. Proposal types are weighted 3 points for parliamentary initiatives/motions, 2 for postulates, and 1 for interpellations/questions. Advancement is type-aware: questions/interpellations require an answer; motions/postulates require an explicit scheduled, committee, referral, or reporting stage; parliamentary initiatives require scheduling or committee/preliminary review. A generic closed status alone is not proof. Yes, no and abstention count as participation; non-participation counts against reliability; excused, presiding, source-marked unknown, and present-without-decision records are excluded. NR and SR inputs are normalized inside their chamber and mapped to the same 45–97 rating curve. Federal Councillors use institutional baselines plus executive tenure and age/network experience. OVR = 0.45·ATK + 0.45·DEF + 0.10·min(ATK,DEF). Party size, party prestige, party finances, lobbying and campaign-finance disclosures never affect ATK, DEF or OVR. Regular-card rarity is reapplied from the new OVR distribution; rarity never changes performance.',
   }
 
+  const portraitCredits = built
+    .map((member) => ({
+      memberId: member.id,
+      memberName: member.name,
+      image: member.portrait.src,
+      ...creditFor(member.id),
+      modifications: 'Square-cropped, resized to 512 × 512 pixels and converted to WebP by Bundeshaus Pack.',
+    }))
+    .sort((a, b) => a.memberName.localeCompare(b.memberName, 'de'))
+
+  const portraitCreditData = {
+    meta: {
+      source: 'Wikimedia Commons',
+      matchedVia: 'Wikidata property P1307 (Swiss parliament ID)',
+      modificationNotice: 'All downloaded source images were square-cropped, resized to 512 × 512 pixels and converted to WebP.',
+      count: portraitCredits.length,
+    },
+    credits: portraitCredits,
+  }
+
   await mkdir(dirname(OUT), { recursive: true })
-  await writeFile(OUT, JSON.stringify({ meta, members: built }, null, 2))
+  await Promise.all([
+    writeFile(OUT, JSON.stringify({ meta, members: built }, null, 2)),
+    writeFile(PORTRAIT_CREDITS_OUT, JSON.stringify(portraitCreditData, null, 2)),
+  ])
 
   process.stdout.write(`\nWrote ${built.length} members → ${OUT}\n`)
+  process.stdout.write(`Wrote ${portraitCredits.length} portrait credits → ${PORTRAIT_CREDITS_OUT}\n`)
   process.stdout.write(`Rarity: ${JSON.stringify(dist)}\n`)
   const top = built
     .slice(0, 5)

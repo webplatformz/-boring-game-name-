@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
 import { useBattle } from './game/useBattle'
 import { Home } from './screens/Home'
@@ -14,11 +14,13 @@ import { TabBar } from './components/TabBar'
 import { LegalFooter } from './components/LegalFooter'
 import { hasAcknowledgedDisclaimer, ProjectDisclaimer } from './components/ProjectDisclaimer'
 
-type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'disclaimer'
+const PortraitCredits = lazy(() => import('./screens/PortraitCredits'))
+
+type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'photo-credits' | 'disclaimer'
 
 function infoPageFromHash(): InfoPage | null {
   const page = window.location.hash.slice(1)
-  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'disclaimer' ? page : null
+  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'photo-credits' || page === 'disclaimer' ? page : null
 }
 
 export function App() {
@@ -78,6 +80,10 @@ export function App() {
             <DataMethodology onClose={closeInfoPage} />
           ) : infoPage === 'privacy' ? (
             <Privacy onClose={closeInfoPage} />
+          ) : infoPage === 'photo-credits' ? (
+            <Suspense fallback={null}>
+              <PortraitCredits onClose={closeInfoPage} />
+            </Suspense>
           ) : infoPage === 'disclaimer' ? (
             <Disclaimer onClose={closeInfoPage} />
           ) : (

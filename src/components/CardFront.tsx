@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 import type { LobbyingSector, Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { LEGISLATURE, STRIPES, SWEEP, TIERS, partyColors } from '../theme'
-import { Portrait, PortraitCredit } from './Portrait'
+import { Portrait } from './Portrait'
 import { Flag } from './Flag'
 import { MythicCardFront } from './MythicCardFront'
 import { ScoreStat, type ScoreKind } from './ScoreStat'
@@ -403,8 +403,7 @@ export function CardFront({
           />
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: -4 }}>
-          <PortraitCredit member={m} style={{ flex: 1, minWidth: 0 }} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: -4 }}>
           <div style={{ flex: 'none', fontFamily: MONO, fontSize: 6.5, letterSpacing: '.1em', color: '#8B7334' }}>
             #{m.ratings.cardNumber}
           </div>
