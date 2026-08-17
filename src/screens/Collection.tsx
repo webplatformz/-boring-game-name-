@@ -14,6 +14,51 @@ import { useI18n } from '../i18n'
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
+type SortHeaderProps = {
+  label: string
+  column: SortKey
+  activeColumn: SortKey
+  direction: -1 | 1
+  align?: 'left' | 'right'
+  color?: string
+  onSort: (column: SortKey) => void
+}
+
+function SortHeader({ label, column, activeColumn, direction, align = 'left', color = '#5C7391', onSort }: SortHeaderProps) {
+  const active = column === activeColumn
+
+  return (
+    <div
+      role="columnheader"
+      aria-sort={active ? (direction === 1 ? 'ascending' : 'descending') : 'none'}
+      style={{ minWidth: 0 }}
+    >
+      <button
+        type="button"
+        onClick={() => onSort(column)}
+        data-sort-key={column}
+        style={{
+          width: '100%',
+          minWidth: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: align === 'right' ? 'flex-end' : 'flex-start',
+          gap: 3,
+          fontFamily: MONO,
+          fontSize: 8.5,
+          letterSpacing: '.12em',
+          color: active ? '#FFD87A' : color,
+          textAlign: align,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
+        {active && <span aria-hidden="true">{direction === 1 ? '↑' : '↓'}</span>}
+      </button>
+    </div>
+  )
+}
+
 export function Collection({ game }: { game: Game }) {
   const { t, rarity, party } = useI18n()
   // Read once per mount so the chips come back exactly as they were left,
@@ -87,10 +132,14 @@ export function Collection({ game }: { game: Game }) {
         return b.member.ratings.ovr - a.member.ratings.ovr
       }
 
-      const av: string | number =
-        sortKey === 'name' ? a.member.name : a.member.ratings[sortKey]
-      const bv: string | number =
-        sortKey === 'name' ? b.member.name : b.member.ratings[sortKey]
+      if (sortKey === 'name') {
+        const byLastName = a.member.last.localeCompare(b.member.last) * sortDir
+        if (byLastName !== 0) return byLastName
+        return a.member.name.localeCompare(b.member.name) * sortDir
+      }
+
+      const av = a.member.ratings[sortKey]
+      const bv = b.member.ratings[sortKey]
 
       if (av < bv) return -1 * sortDir
       if (av > bv) return 1 * sortDir
@@ -124,8 +173,8 @@ export function Collection({ game }: { game: Game }) {
 
   return (
     <div
-      className="screen-fill tabbed-screen"
-      style={{ padding: '14px 20px 24px', display: 'flex', flexDirection: 'column', gap: 16, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
+      className="screen-fill tabbed-screen collection-screen"
+      style={{ padding: '14px 20px 16px', display: 'flex', flexDirection: 'column', gap: 12, overflow: 'hidden', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -200,36 +249,6 @@ export function Collection({ game }: { game: Game }) {
                   }}
                 >
                   {rarity(r)}
-                </button>
-              )
-            })}
-          </div>
-
-          {/* sort chips */}
-          <div style={{ flex: 'none', display: 'flex', gap: 6, overflow: 'auto', paddingBottom: 4 }} className="no-scrollbar">
-            {(['rarity', 'ovr', 'atk', 'def', 'name'] as SortKey[]).map((k) => {
-              const on = sortKey === k
-              const label = k === 'ovr' ? 'OVR' : k === 'atk' ? 'ATK' : k === 'def' ? 'DEF' : k === 'rarity' ? t('rarity') : t('name')
-              const arrow = on ? (sortDir < 0 ? ' ↓' : ' ↑') : ''
-              return (
-                <button
-                  key={k}
-                  onClick={() => toggleSort(k)}
-                  style={{
-                    flex: 'none',
-                    padding: '6px 10px',
-                    borderRadius: 9,
-                    fontFamily: MONO,
-                    fontSize: 9,
-                    letterSpacing: '.12em',
-                    whiteSpace: 'nowrap',
-                    background: on ? 'rgba(255,197,61,.14)' : 'rgba(234,242,255,.05)',
-                    border: on ? '1px solid rgba(255,197,61,.5)' : '1px solid rgba(234,242,255,.12)',
-                    color: on ? '#FFD87A' : '#7690AE',
-                  }}
-                >
-                  {label}
-                  {arrow}
                 </button>
               )
             })}
@@ -327,39 +346,49 @@ export function Collection({ game }: { game: Game }) {
           </div>
 
           {/* table */}
-          <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginTop: 12, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}>
+          <div
+            role="table"
+            aria-label={t('collectionTitle')}
+            style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(234,242,255,.1)', background: '#0B121D' }}
+          >
             {/* header row */}
-            <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: '1fr 40px 40px 44px', gap: 8, padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#5C7391' }}>{t('member')}</div>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FF9EC4', textAlign: 'right' }}>ATK</div>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#8FEDE3', textAlign: 'right' }}>DEF</div>
-              <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: '#FFD87A', textAlign: 'right' }}>OVR</div>
+            <div
+              role="row"
+              className="collection-table-grid"
+              style={{ flex: 'none', padding: '10px 12px', background: 'rgba(234,242,255,.05)', borderBottom: '1px solid rgba(234,242,255,.1)' }}
+            >
+              <SortHeader label={t('member')} column="name" activeColumn={sortKey} direction={sortDir} onSort={toggleSort} />
+              <SortHeader label={t('rarity')} column="rarity" activeColumn={sortKey} direction={sortDir} onSort={toggleSort} />
+              <SortHeader label="ATK" column="atk" activeColumn={sortKey} direction={sortDir} align="right" color="#FF9EC4" onSort={toggleSort} />
+              <SortHeader label="DEF" column="def" activeColumn={sortKey} direction={sortDir} align="right" color="#8FEDE3" onSort={toggleSort} />
+              <SortHeader label="OVR" column="ovr" activeColumn={sortKey} direction={sortDir} align="right" color="#FFD87A" onSort={toggleSort} />
             </div>
 
             {/* rows */}
-            <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
+            <div role="rowgroup" style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
               {sorted.map((r) => {
-                const t = TIERS[r.member.ratings.rarity]
+                const tier = TIERS[r.member.ratings.rarity]
                 const pc = partyColors(r.member.partyCode)
                 return (
                   <div
                     key={r.member.id}
+                    role="row"
+                    className="collection-table-grid collection-table-row"
+                    data-member-name={r.member.name}
+                    data-rarity={r.member.ratings.rarity}
                     onClick={() => setOpenCardMember(r.member)}
                     style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 40px 40px 44px',
-                      gap: 8,
                       padding: '11px 12px',
                       borderBottom: '1px solid rgba(234,242,255,.07)',
-                      borderLeft: `3px solid ${t.c}`,
+                      borderLeft: `3px solid ${tier.c}`,
                       cursor: 'pointer',
                       transition: 'background 150ms',
                     }}
                   >
                     {/* member cell */}
-                    <div style={{ minWidth: 0 }}>
+                    <div role="cell" style={{ minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <div style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <div className="collection-member-name" style={{ fontFamily: AB, fontSize: 13, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {r.member.name}
                         </div>
                         {r.count > 1 && (
@@ -393,18 +422,23 @@ export function Collection({ game }: { game: Game }) {
                           {party(r.member.partyCode, r.member.party)}
                         </span>
                         <Flag canton={r.member.canton} height={10} />
-                        <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{r.member.cantonName}</span>
+                        <span style={{ minWidth: 0, fontFamily: MONO, fontSize: 9, color: '#7690AE', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.member.cantonName}</span>
                       </div>
                     </div>
 
+                    {/* rarity */}
+                    <div role="cell" className="collection-rarity-cell" style={{ color: tier.c }}>
+                      {rarity(r.member.ratings.rarity)}
+                    </div>
+
                     {/* stats */}
-                    <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>
+                    <div role="cell" style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>
                       {r.member.ratings.atk}
                     </div>
-                    <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>
+                    <div role="cell" style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>
                       {r.member.ratings.def}
                     </div>
-                    <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>
+                    <div role="cell" style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: tier.ovrTint }}>
                       {r.member.ratings.ovr}
                     </div>
                   </div>

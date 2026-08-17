@@ -365,6 +365,44 @@ a:hover {
   height: 100%;
 }
 
+/* The collection table uses the same five-column proportions for its header
+   and rows. The compact mobile values keep rarity visible without squeezing
+   the three rating columns; larger screens give names and labels more room. */
+.collection-table-grid {
+  display: grid;
+  grid-template-columns: minmax(86px, 1fr) minmax(58px, 78px) 32px 32px 36px;
+  gap: 5px;
+}
+.collection-rarity-cell {
+  min-width: 0;
+  align-self: center;
+  overflow: hidden;
+  color: #7690ae;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 7.5px;
+  letter-spacing: .035em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 359px) {
+  .collection-screen {
+    padding-inline: 12px !important;
+  }
+}
+
+@media (min-width: 700px) {
+  .collection-table-grid {
+    grid-template-columns: minmax(180px, 1fr) 110px 50px 50px 54px;
+    gap: 10px;
+  }
+
+  .collection-rarity-cell {
+    font-size: 9px;
+    letter-spacing: .08em;
+  }
+}
+
 /* ── screen transitions ────────────────────────────────────────────────── */
 /* Entrance animation applied whenever the active screen changes. Keyed by
    the screen name in App.tsx so React remounts the wrapper and replays it. */
