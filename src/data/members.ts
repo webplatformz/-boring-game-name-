@@ -59,6 +59,17 @@ export interface MemberScoring {
   ageYears: number
 }
 
+/** Ratings and card presentation fields created by this project, not Parliament. */
+export interface ProjectDerivedRatings {
+  scoring: MemberScoring
+  atk: number
+  def: number
+  ovr: number
+  strengths: MemberStrengths
+  rarity: RarityKey
+  cardNumber: string
+}
+
 export type LobbyingSector =
   | 'Economy & finance'
   | 'Health & social'
@@ -182,21 +193,18 @@ export interface Member {
   committeeCount: number
   voteCount: number
   voteOutcomes: VoteOutcomes | null
-  scoring: MemberScoring
-  atk: number
-  def: number
-  ovr: number
-  strengths: MemberStrengths
+  /** Explicit boundary around every project-created game rating. */
+  ratings: ProjectDerivedRatings
   lobbying: LobbyingDisclosure
   financing: FinancingDisclosure
-  rarity: RarityKey
   mandates: string | null
   portrait: Portrait
-  no: string
 }
 
 export interface MembersMeta {
   source: string
+  datasetVersion: string
+  dataRetrievedAt: string
   algorithmVersion: number
   scoreSources: {
     openData: string
@@ -209,7 +217,6 @@ export interface MembersMeta {
     financing: string
   }
   portraitSource: string
-  generatedAt: string
   count: number
   rarity: Record<RarityKey, number>
   note: string

@@ -182,7 +182,7 @@ export function MythicCardFront({
               letterSpacing: '-.055em',
             }}
           >
-            {m.ovr}
+            {m.ratings.ovr}
           </div>
         </div>
 

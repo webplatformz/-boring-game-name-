@@ -134,7 +134,7 @@ export function CardFront({
   const [hoveredSector, setHoveredSector] = useState<LobbyingSector | null>(null)
   useCardTooltipDismiss(openMetric !== null, () => setOpenMetric(null))
 
-  if (m.rarity === 'mythic') {
+  if (m.ratings.rarity === 'mythic') {
     return (
       <MythicCardFront
         member={m}
@@ -146,8 +146,10 @@ export function CardFront({
     )
   }
 
-  const t = TIERS[m.rarity]
-  const animate = foil && (m.rarity === 'ultra' || m.rarity === 'legend')
+  const t = TIERS[m.ratings.rarity]
+  const animate =
+    foil &&
+    (m.ratings.rarity === 'ultra' || m.ratings.rarity === 'legend')
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
@@ -186,7 +188,7 @@ export function CardFront({
       {/* top-left: OVR, party, flag, chamber */}
       <div style={{ position: 'absolute', left: 16, top: 12, zIndex: 5 }}>
         <div style={{ fontFamily: AB, fontSize: 72, lineHeight: 0.86, letterSpacing: '-.04em', color: ovrInk }}>
-          {m.ovr}
+          {m.ratings.ovr}
         </div>
         <div
           style={{
@@ -229,7 +231,9 @@ export function CardFront({
           gap: 6,
         }}
       >
-        <div style={tagStyle(m.rarity, t.c, t.ink)}>{rarity(m.rarity)}</div>
+        <div style={tagStyle(m.ratings.rarity, t.c, t.ink)}>
+          {rarity(m.ratings.rarity)}
+        </div>
         <div style={legislatureTagStyle}>L {LEGISLATURE}</div>
         {cardSectors.length > 0 && (
           <div
@@ -362,8 +366,8 @@ export function CardFront({
               </>
             ) : (
               <>
-                <Bar pct={m.atk} from="#FF3D8B" to="#FF9EC4" />
-                <Bar pct={m.def} from="#2FD3C4" to="#8FEDE3" />
+                <Bar pct={m.ratings.atk} from="#FF3D8B" to="#FF9EC4" />
+                <Bar pct={m.ratings.def} from="#2FD3C4" to="#8FEDE3" />
               </>
             )}
           </div>
@@ -402,7 +406,7 @@ export function CardFront({
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: -4 }}>
           <PortraitCredit member={m} style={{ flex: 1, minWidth: 0 }} />
           <div style={{ flex: 'none', fontFamily: MONO, fontSize: 6.5, letterSpacing: '.1em', color: '#8B7334' }}>
-            #{m.no}
+            #{m.ratings.cardNumber}
           </div>
         </div>
       </div>

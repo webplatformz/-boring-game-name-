@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "datasetVersion": "ch-parliament-l52-2026-08-14",
+  "legislature": 52,
+  "retrievedAt": "2026-08-14",
+  "requiredAttribution": "Parlamentsdienste der Bundesversammlung, Bern",
+  "termsUrl": "https://www.parlament.ch/de/%C3%BCber-das-parlament/fakten-und-zahlen/open-data-web-services",
+  "officialRecordLabel": "Official source records",
+  "datasets": [
+    {
+      "id": "members",
+      "label": "Current council and Federal Council membership",
+      "endpoint": "https://ws.parlament.ch/odata.svc/MemberCouncil",
+      "retrievedAt": "2026-08-13",
+      "rawCaches": ["src/data/raw/members-council.json"]
+    },
+    {
+      "id": "councilHistory",
+      "label": "Council membership history",
+      "endpoint": "https://ws.parlament.ch/odata.svc/MemberCouncilHistory",
+      "retrievedAt": "2026-08-13",
+      "rawCaches": ["src/data/raw/council-history.json"]
+    },
+    {
+      "id": "committees",
+      "label": "Current committee memberships",
+      "endpoint": "https://ws.parlament.ch/odata.svc/MemberCommittee",
+      "retrievedAt": "2026-08-13",
+      "rawCaches": ["src/data/raw/committees.json"]
+    },
+    {
+      "id": "interests",
+      "label": "Declared interests",
+      "endpoint": "https://ws.parlament.ch/odata.svc/PersonInterest",
+      "retrievedAt": "2026-08-14",
+      "rawCaches": ["src/data/raw/interests.json"]
+    },
+    {
+      "id": "authoredAffairs",
+      "label": "Personally authored parliamentary affairs",
+      "endpoint": "https://ws.parlament.ch/odata.svc/BusinessRole",
+      "retrievedAt": "2026-08-14",
+      "rawCaches": ["src/data/raw/authored-affairs-current.json"]
+    },
+    {
+      "id": "businessStatus",
+      "label": "Official status of authored parliamentary affairs",
+      "endpoint": "https://ws.parlament.ch/odata.svc/Business",
+      "retrievedAt": "2026-08-14",
+      "rawCaches": ["src/data/raw/authored-business-status-current.json"]
+    },
+    {
+      "id": "votingWorkbooks",
+      "label": "National Council and Council of States voting workbooks",
+      "endpoint": "https://www.parlament.ch/de/ratsbetrieb/abstimmungen/abstimmung-nr-xls",
+      "retrievedAt": "2026-08-14",
+      "rawCaches": [
+        "src/data/raw/national-council-vote-outcomes-current.json",
+        "src/data/raw/council-of-states-vote-outcomes-current.json",
+        "src/data/raw/vote-outcomes-current.json"
+      ]
+    }
+  ],
+  "projectDerivation": {
+    "label": "Project-created game ratings",
+    "algorithmVersion": 2,
+    "fields": [
+      "ratings.scoring",
+      "ratings.strengths",
+      "ratings.atk",
+      "ratings.def",
+      "ratings.ovr",
+      "ratings.rarity",
+      "ratings.cardNumber"
+    ],
+    "notice": "These fields are calculated by Bundeshaus Pack. They are not source fields, official ratings, or ratings endorsed by the Swiss Federal Assembly.",
+    "termsInterpretation": {
+      "classification": "derivation_not_alteration",
+      "statement": "Official source records remain unchanged. Project-created ratings and rankings are stored and presented as separate editorial game outputs, not as fields, corrections or assessments supplied by Parliamentary Services."
+    }
+  }
+}

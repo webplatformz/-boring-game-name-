@@ -39,19 +39,25 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const RAW_DIR = join(__dirname, '..', 'src', 'data', 'raw')
 const OUT = join(__dirname, '..', 'src', 'data', 'members.json')
+const PROVENANCE_PATH = join(__dirname, '..', 'src', 'data', 'provenance.json')
+const PROVENANCE = JSON.parse(await readFile(PROVENANCE_PATH, 'utf8'))
 
-const NOW = Date.parse('2026-08-14T00:00:00Z') // fixed reference so builds are reproducible
+const NOW = Date.parse(`${PROVENANCE.retrievedAt}T00:00:00Z`)
 const YEAR_MS = 365.25 * 24 * 3600 * 1000
 const CURRENT_LEGISLATURE_START = Date.parse('2023-12-04T00:00:00Z')
 const PROPOSAL_MATURITY_MS = YEAR_MS
 
-const PARLIAMENT_OPEN_DATA_SOURCE =
-  'https://www.parlament.ch/de/%C3%BCber-das-parlament/fakten-und-zahlen/open-data-web-services'
+function provenanceEndpoint(id) {
+  const dataset = PROVENANCE.datasets.find((entry) => entry.id === id)
+  if (!dataset) throw new Error(`Missing provenance dataset: ${id}`)
+  return dataset.endpoint
+}
+
+const PARLIAMENT_OPEN_DATA_SOURCE = PROVENANCE.termsUrl
 const PARLIAMENT_ODATA_SOURCE = 'https://ws.parlament.ch/odata.svc/'
 const PARLIAMENT_VOTING_SOURCE = 'https://www.parlament.ch/de/ratsbetrieb/abstimmungen'
-const PARLIAMENT_VOTE_XLSX_SOURCE =
-  'https://www.parlament.ch/de/ratsbetrieb/abstimmungen/abstimmung-nr-xls'
-const SCORE_ALGORITHM_VERSION = 2
+const PARLIAMENT_VOTE_XLSX_SOURCE = provenanceEndpoint('votingWorkbooks')
+const SCORE_ALGORITHM_VERSION = PROVENANCE.projectDerivation.algorithmVersion
 
 // ── party normalisation: raw PartyAbbreviation → { code (for colour), label } ──
 const PARTY_MAP = {
@@ -827,44 +833,49 @@ async function main() {
       committeeCount: r.committeeCount,
       voteCount: r.voteCount,
       voteOutcomes: r.votes,
-      scoring: {
-        proposalCount: r.authoredAffairs.length,
-        proposalPoints: r.proposalPoints,
-        proposalPointsPerYear: Math.round(r._proposalDrive * 100) / 100,
-        matureProposalCount: r.authoredAffairs.filter((affair) => affair.mature).length,
-        advancedProposalCount: r.authoredAffairs.filter((affair) => affair.advanced).length,
-        advancedProposalPoints: r.advancedProposalPoints,
-        advancedProposalPointsPerYear: Math.round(r._proposalProgress * 100) / 100,
-        leadershipPoints: r._leadershipPoints,
-        committeeWorkPoints: Math.round(r._workloadPoints * 100) / 100,
-        participationRate:
-          r.chamber === 'BR' ? null : Math.round(r._participationRate * 10000) / 10000,
-        experienceYears: Math.round(r._tenureYears * 100) / 100,
-        ageYears: Math.round(r._ageYears * 100) / 100,
+      ratings: {
+        scoring: {
+          proposalCount: r.authoredAffairs.length,
+          proposalPoints: r.proposalPoints,
+          proposalPointsPerYear: Math.round(r._proposalDrive * 100) / 100,
+          matureProposalCount: r.authoredAffairs.filter((affair) => affair.mature).length,
+          advancedProposalCount: r.authoredAffairs.filter((affair) => affair.advanced).length,
+          advancedProposalPoints: r.advancedProposalPoints,
+          advancedProposalPointsPerYear: Math.round(r._proposalProgress * 100) / 100,
+          leadershipPoints: r._leadershipPoints,
+          committeeWorkPoints: Math.round(r._workloadPoints * 100) / 100,
+          participationRate:
+            r.chamber === 'BR' ? null : Math.round(r._participationRate * 10000) / 10000,
+          experienceYears: Math.round(r._tenureYears * 100) / 100,
+          ageYears: Math.round(r._ageYears * 100) / 100,
+        },
+        atk: r._atk,
+        def: r._def,
+        ovr: r._ovr,
+        strengths: r._strengths,
+        rarity: r._rarity,
+        cardNumber: '',
       },
-      atk: r._atk,
-      def: r._def,
-      ovr: r._ovr,
-      strengths: r._strengths,
       lobbying: buildLobbyingDisclosure(
         interestsByPerson.get(r.m.PersonNumber) ?? [],
         r.cmtes,
         r.chamber,
       ),
       financing: financingByPerson.get(r.m.PersonNumber),
-      rarity: r._rarity,
       mandates: r.m.Mandates || null,
       portrait: portraitFor(r.m.PersonNumber),
     }
   })
 
   // Stable card numbers: by OVR desc, then name.
-  built.sort((a, b) => b.ovr - a.ovr || a.name.localeCompare(b.name))
-  built.forEach((m, i) => (m.no = String(i + 1).padStart(3, '0')))
+  built.sort((a, b) => b.ratings.ovr - a.ratings.ovr || a.name.localeCompare(b.name))
+  built.forEach((m, i) => (m.ratings.cardNumber = String(i + 1).padStart(3, '0')))
 
   // ── report ──
   const dist = {}
-  for (const m of built) dist[m.rarity] = (dist[m.rarity] || 0) + 1
+  for (const m of built) {
+    dist[m.ratings.rarity] = (dist[m.ratings.rarity] || 0) + 1
+  }
   const missingPortraits = built.filter((m) => !m.portrait)
   if (missingPortraits.length) {
     throw new Error(
@@ -875,7 +886,9 @@ async function main() {
   }
 
   const meta = {
-    source: 'Swiss Federal Assembly Open Data and official parliamentary voting workbooks',
+    source: PROVENANCE.requiredAttribution,
+    datasetVersion: PROVENANCE.datasetVersion,
+    dataRetrievedAt: PROVENANCE.retrievedAt,
     algorithmVersion: SCORE_ALGORITHM_VERSION,
     scoreSources: {
       openData: PARLIAMENT_OPEN_DATA_SOURCE,
@@ -889,7 +902,6 @@ async function main() {
     },
     portraitSource:
       'Wikimedia Commons, matched via Wikidata property P1307 (Swiss parliament ID). Mostly official Parliamentary Services portraits; see public/portraits/CREDITS.md for per-image author and licence.',
-    generatedAt: new Date(NOW).toISOString().slice(0, 10),
     count: built.length,
     rarity: dist,
     note: 'ATK = 45% personally authored proposal drive + 30% mature authored proposals that advanced + 25% current committee/parliamentary-group leadership. DEF = 20% voting reliability + 45% current standing-committee work + 30% parliamentary experience + 5% age/network experience. Proposal types are weighted 3 points for parliamentary initiatives/motions, 2 for postulates, and 1 for interpellations/questions. Advancement is type-aware: questions/interpellations require an answer; motions/postulates require an explicit scheduled, committee, referral, or reporting stage; parliamentary initiatives require scheduling or committee/preliminary review. A generic closed status alone is not proof. Yes, no and abstention count as participation; non-participation counts against reliability; excused, presiding, source-marked unknown, and present-without-decision records are excluded. NR and SR inputs are normalized inside their chamber and mapped to the same 45–97 rating curve. Federal Councillors use institutional baselines plus executive tenure and age/network experience. OVR = 0.45·ATK + 0.45·DEF + 0.10·min(ATK,DEF). Party size, party prestige, party finances, lobbying and campaign-finance disclosures never affect ATK, DEF or OVR. Regular-card rarity is reapplied from the new OVR distribution; rarity never changes performance.',
@@ -900,7 +912,9 @@ async function main() {
 
   process.stdout.write(`\nWrote ${built.length} members → ${OUT}\n`)
   process.stdout.write(`Rarity: ${JSON.stringify(dist)}\n`)
-  const top = built.slice(0, 5).map((m) => `${m.name} (${m.rarity} ${m.ovr})`)
+  const top = built
+    .slice(0, 5)
+    .map((m) => `${m.name} (${m.ratings.rarity} ${m.ratings.ovr})`)
   process.stdout.write(`Top pulls: ${top.join(', ')}\n`)
 }
 

@@ -30,7 +30,7 @@ function useCardScale() {
   return { ref, scale }
 }
 
-const ring = (m: Member) => TIERS[m.rarity].c + '8c'
+const ring = (m: Member) => TIERS[m.ratings.rarity].c + '8c'
 
 /**
  * The pack-opening flow, covering both the "tear" and "reveal" screens as a
@@ -156,7 +156,10 @@ export function PackOpening({ game }: { game: Game }) {
                 flex: 1,
                 height: 3,
                 borderRadius: 99,
-                background: i < revealIdx ? TIERS[m.rarity].c : 'rgba(234,242,255,.14)',
+                background:
+                  i < revealIdx
+                    ? TIERS[m.ratings.rarity].c
+                    : 'rgba(234,242,255,.14)',
                 transition: 'background 200ms',
               }}
             />
@@ -171,7 +174,9 @@ export function PackOpening({ game }: { game: Game }) {
         <div ref={sizerRef} style={{ position: 'relative', width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504' }}>
           {/* rarity glow behind the deck — only once the top card is face up,
               so it never gives the pull away early */}
-          {revealing && topCard && faceUp && <FixedCardGlow rarity={topCard.rarity} anchor={sizerRef} />}
+          {revealing && topCard && faceUp && (
+            <FixedCardGlow rarity={topCard.ratings.rarity} anchor={sizerRef} />
+          )}
 
           {/* the card just revealed, dealing off to the left */}
           {revealing && outgoing && (

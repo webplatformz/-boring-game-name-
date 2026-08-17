@@ -104,7 +104,7 @@ export function ScoreStat({
   const tooltipId = useId()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const score = SCORE_STYLE[kind]
-  const value = member[kind]
+  const value = member.ratings[kind]
 
   const root: CSSProperties = {
     position: 'relative',
@@ -221,7 +221,7 @@ function Tooltip({
             }}
           >
             {rows.map((row) => {
-              const strength = member.strengths?.[row.key] ?? 0
+              const strength = member.ratings.strengths?.[row.key] ?? 0
               return (
                 <div key={row.key} style={{ display: 'contents' }}>
                   <div style={{ color: score.muted, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>

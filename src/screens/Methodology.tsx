@@ -1,17 +1,10 @@
 import type { CSSProperties, ReactNode } from 'react'
-import { META } from '../data/members'
 import { SwissCross } from '../components/CardBack'
+import { DataProvenance } from '../components/DataProvenance'
 import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
-const SCORE_SOURCES = META.scoreSources ?? {
-  openData: 'https://www.parlament.ch/de/%C3%BCber-das-parlament/fakten-und-zahlen/open-data-web-services',
-  odata: 'https://ws.parlament.ch/odata.svc/',
-  voting: 'https://www.parlament.ch/de/ratsbetrieb/abstimmungen',
-  votingWorkbooks: 'https://www.parlament.ch/de/ratsbetrieb/abstimmungen/abstimmung-nr-xls',
-}
-
 const section: CSSProperties = {
   padding: '17px 18px',
   borderRadius: 14,
@@ -28,14 +21,6 @@ function Metric({ weight, color, title, children }: { weight: string; color: str
         <div style={{ marginTop: 3, color: '#91A6C1', fontSize: 12, lineHeight: 1.5 }}>{children}</div>
       </div>
     </div>
-  )
-}
-
-function SourceLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} target="_blank" rel="noreferrer" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>
-      {children} ↗
-    </a>
   )
 }
 
@@ -111,13 +96,7 @@ export function Methodology({ onClose }: { onClose: () => void }) {
       <section style={section}>
         <h2 style={{ margin: '0 0 9px', fontFamily: AB, fontSize: 15, color: '#C9B8FF' }}>{t('dataSources')}</h2>
         <div style={{ color: '#9FB6D2', fontSize: 12, lineHeight: 1.65 }}>
-          <p style={{ margin: '0 0 8px' }}>{t('scoreSnapshot', { date: META.generatedAt, version: META.algorithmVersion ?? 2 })}</p>
-          <ul style={{ margin: 0, paddingLeft: 18 }}>
-            <li><SourceLink href={SCORE_SOURCES.openData}>{t('sourceOpenData')}</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.odata}>{t('sourceOData')}</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.voting}>{t('sourceVoting')}</SourceLink></li>
-            <li><SourceLink href={SCORE_SOURCES.votingWorkbooks}>{t('sourceWorkbooks')}</SourceLink></li>
-          </ul>
+          <DataProvenance showTitle={false} />
           <p style={{ margin: '10px 0 0', color: '#7187A4' }}>{t('methodologyDisclaimer')}</p>
           <a
             href="#disclaimer"

@@ -61,10 +61,10 @@ interface CachedMemberScore {
 }
 
 interface MemberScoreCache {
-  format: 2
+  format: 3
   algorithmVersion: number
   revision: string
-  generatedAt: string
+  dataRetrievedAt: string
   updatedAt: string
   scores: Record<number, CachedMemberScore>
 }
@@ -75,12 +75,15 @@ function currentScoreRevision(): string {
   // Compact deterministic FNV-1a fingerprint of exactly the values consumers
   // cache. It updates even if the data date stays unchanged during development.
   let hash = 0x811c9dc5
-  const input = `${META.algorithmVersion}|${MEMBERS.map((m) => `${m.id}:${m.atk}:${m.def}:${m.ovr}:${m.rarity}`).join('|')}`
+  const input = `${META.algorithmVersion}|${MEMBERS.map(
+    (m) =>
+      `${m.id}:${m.ratings.atk}:${m.ratings.def}:${m.ratings.ovr}:${m.ratings.rarity}`,
+  ).join('|')}`
   for (let i = 0; i < input.length; i++) {
     hash ^= input.charCodeAt(i)
     hash = Math.imul(hash, 0x01000193)
   }
-  return `${META.generatedAt}-${(hash >>> 0).toString(16).padStart(8, '0')}`
+  return `${META.datasetVersion}-${(hash >>> 0).toString(16).padStart(8, '0')}`
 }
 
 /** Refresh the local score cache when the bundled score dataset changes. */
@@ -90,17 +93,25 @@ export function syncMemberScoreCache(): void {
     const raw = localStorage.getItem(SCORE_CACHE_KEY)
     if (raw) {
       const cached = JSON.parse(raw) as Partial<MemberScoreCache>
-      if (cached.format === 2 && cached.revision === revision) return
+      if (cached.format === 3 && cached.revision === revision) return
     }
 
     const scores = Object.fromEntries(
-      MEMBERS.map((m) => [m.id, { atk: m.atk, def: m.def, ovr: m.ovr, rarity: m.rarity }]),
+      MEMBERS.map((m) => [
+        m.id,
+        {
+          atk: m.ratings.atk,
+          def: m.ratings.def,
+          ovr: m.ratings.ovr,
+          rarity: m.ratings.rarity,
+        },
+      ]),
     ) as Record<number, CachedMemberScore>
     const next: MemberScoreCache = {
-      format: 2,
+      format: 3,
       algorithmVersion: META.algorithmVersion,
       revision,
-      generatedAt: META.generatedAt,
+      dataRetrievedAt: META.dataRetrievedAt,
       updatedAt: new Date().toISOString(),
       scores,
     }

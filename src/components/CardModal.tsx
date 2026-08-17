@@ -60,11 +60,11 @@ export function CardModal({ member, onClose }: { member: Member | null; onClose:
         }}
       >
         <div style={{ width: '100%', maxWidth: CARD_MAX_W, aspectRatio: '336 / 504', position: 'relative' }}>
-          <CardGlow rarity={member.rarity} />
+          <CardGlow rarity={member.ratings.rarity} />
           <CardFront
             member={member}
             foil
-            style={{ boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[member.rarity].c}8c` }}
+            style={{ boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${TIERS[member.ratings.rarity].c}8c` }}
           />
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: '#5C7391' }}>{t('tapClose')}</div>

@@ -23,7 +23,7 @@ export function Home({ game }: { game: Game }) {
   const total = MEMBERS.length
   const ownedCount = ownedList.length
   const best = ownedList.reduce<(typeof ownedList)[number] | null>(
-    (b, m) => (!b || m.ovr > b.ovr ? m : b),
+    (b, m) => (!b || m.ratings.ovr > b.ratings.ovr ? m : b),
     null,
   )
   const progress = Math.round((ownedCount / total) * 100)
@@ -139,8 +139,8 @@ export function Home({ game }: { game: Game }) {
           <div style={{ fontFamily: AB, fontSize: 17, lineHeight: 1.05, marginTop: 3, color: '#EAF2FF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {best ? best.name : '—'}
           </div>
-          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '.1em', marginTop: 4, color: best ? TIERS[best.rarity].ovrTint : '#5C7391' }}>
-            {best ? `${rarity(best.rarity)} · ${best.ovr} OVR` : t('ripAPack')}
+          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: '.1em', marginTop: 4, color: best ? TIERS[best.ratings.rarity].ovrTint : '#5C7391' }}>
+            {best ? `${rarity(best.ratings.rarity)} · ${best.ratings.ovr} OVR` : t('ripAPack')}
           </div>
         </button>
       </div>

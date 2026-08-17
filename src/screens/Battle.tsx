@@ -76,7 +76,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, hideStat
   return (
     <div style={{ width, height, position: 'relative' }}>
       <div style={{ width: CARD_MAX_W, height: CARD_MAX_W * (504 / 336), position: 'absolute', top: 0, left: 0, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-        <CardGlow rarity={member.rarity} />
+        <CardGlow rarity={member.ratings.rarity} />
         <CardFront member={member} foil={foil} highlightStat={highlightStat} hideStats={hideStats} style={style} />
       </div>
     </div>
@@ -91,7 +91,7 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
     return Object.keys(game.state.owned)
       .map((id) => MEMBERS_BY_ID.get(Number(id)))
       .filter((m): m is Member => Boolean(m))
-      .sort((a, b) => b.ovr - a.ovr)
+      .sort((a, b) => b.ratings.ovr - a.ratings.ovr)
   }, [game.state.owned])
 
   return (
@@ -185,7 +185,7 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
         </div>
         <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
           {ownedList.map((m) => {
-            const t = TIERS[m.rarity]
+            const t = TIERS[m.ratings.rarity]
             const pc = partyColors(m.partyCode)
             return (
               <div
@@ -201,9 +201,9 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
                     <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{m.cantonName}</span>
                   </div>
                 </div>
-                <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>{m.atk}</div>
-                <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>{m.def}</div>
-                <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>{m.ovr}</div>
+                <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>{m.ratings.atk}</div>
+                <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>{m.ratings.def}</div>
+                <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>{m.ratings.ovr}</div>
               </div>
             )
           })}
@@ -382,7 +382,7 @@ function BattleCard({
   hideStats?: boolean
 }) {
   const { t } = useI18n()
-  const tier = TIERS[member.rarity]
+  const tier = TIERS[member.ratings.rarity]
   return (
     <div
       style={{

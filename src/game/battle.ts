@@ -17,9 +17,11 @@ export interface BattleResult {
  * thrown against something wildly out of its league.
  */
 export function pickOpponent(playerCard: Member): Member {
-  const idx = RARITY_ORDER.indexOf(playerCard.rarity)
+  const idx = RARITY_ORDER.indexOf(playerCard.ratings.rarity)
   const nearbyTiers = new Set(RARITY_ORDER.filter((_, i) => Math.abs(i - idx) <= 1))
-  let pool = MEMBERS.filter((m) => m.id !== playerCard.id && nearbyTiers.has(m.rarity))
+  let pool = MEMBERS.filter(
+    (m) => m.id !== playerCard.id && nearbyTiers.has(m.ratings.rarity),
+  )
   // Defensive fallback in case a tier window is ever empty (shouldn't happen
   // with the current data, but never leave the AI with no opponent to pick).
   if (pool.length === 0) pool = MEMBERS.filter((m) => m.id !== playerCard.id)
@@ -31,9 +33,9 @@ export function pickOpponent(playerCard: Member): Member {
  * ATK than DEF is more likely to attack, and vice versa.
  */
 export function chooseAiAction(card: Member): Action {
-  const total = card.atk + card.def
+  const total = card.ratings.atk + card.ratings.def
   if (total <= 0) return Math.random() < 0.5 ? 'attack' : 'defend'
-  return Math.random() < card.atk / total ? 'attack' : 'defend'
+  return Math.random() < card.ratings.atk / total ? 'attack' : 'defend'
 }
 
 /**
@@ -47,7 +49,9 @@ function compareStat(
   oppCard: Member,
 ): 'player' | 'opponent' {
   if (playerValue !== oppValue) return playerValue > oppValue ? 'player' : 'opponent'
-  if (playerCard.ovr !== oppCard.ovr) return playerCard.ovr > oppCard.ovr ? 'player' : 'opponent'
+  if (playerCard.ratings.ovr !== oppCard.ratings.ovr) {
+    return playerCard.ratings.ovr > oppCard.ratings.ovr ? 'player' : 'opponent'
+  }
   return Math.random() < 0.5 ? 'player' : 'opponent'
 }
 
@@ -66,18 +70,37 @@ export function resolveRound(
   let winner: 'player' | 'opponent'
 
   if (playerAction === 'attack' && oppAction === 'attack') {
-    winner = compareStat(playerCard.atk, oppCard.atk, playerCard, oppCard)
+    winner = compareStat(
+      playerCard.ratings.atk,
+      oppCard.ratings.atk,
+      playerCard,
+      oppCard,
+    )
   } else if (playerAction === 'defend' && oppAction === 'defend') {
-    winner = compareStat(playerCard.def, oppCard.def, playerCard, oppCard)
+    winner = compareStat(
+      playerCard.ratings.def,
+      oppCard.ratings.def,
+      playerCard,
+      oppCard,
+    )
   } else {
     // One side attacks, the other defends: attacker wins if their ATK
     // beats the defender's DEF, ties broken the same way as above.
     const playerIsAttacker = playerAction === 'attack'
-    const attackerAtk = playerIsAttacker ? playerCard.atk : oppCard.atk
-    const defenderDef = playerIsAttacker ? oppCard.def : playerCard.def
+    const attackerAtk = playerIsAttacker
+      ? playerCard.ratings.atk
+      : oppCard.ratings.atk
+    const defenderDef = playerIsAttacker
+      ? oppCard.ratings.def
+      : playerCard.ratings.def
     const attackerWins =
       attackerAtk === defenderDef
-        ? compareStat(playerCard.ovr, oppCard.ovr, playerCard, oppCard) === (playerIsAttacker ? 'player' : 'opponent')
+        ? compareStat(
+            playerCard.ratings.ovr,
+            oppCard.ratings.ovr,
+            playerCard,
+            oppCard,
+          ) === (playerIsAttacker ? 'player' : 'opponent')
         : attackerAtk > defenderDef
     winner = attackerWins ? (playerIsAttacker ? 'player' : 'opponent') : playerIsAttacker ? 'opponent' : 'player'
   }

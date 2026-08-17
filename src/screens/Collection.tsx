@@ -65,7 +65,7 @@ export function Collection({ game }: { game: Game }) {
   const filtered = useMemo(() => {
     let result = ownedList
     if (selectedRarities.size > 0) {
-      result = result.filter((r) => selectedRarities.has(r.member.rarity))
+      result = result.filter((r) => selectedRarities.has(r.member.ratings.rarity))
     }
     if (selectedCantons.size > 0) {
       result = result.filter((r) => selectedCantons.has(r.member.canton))
@@ -79,15 +79,17 @@ export function Collection({ game }: { game: Game }) {
     const rarityIndex = (r: RarityKey) => RARITY_ORDER.indexOf(r)
     cmp.sort((a, b) => {
       if (sortKey === 'rarity') {
-        const ai = rarityIndex(a.member.rarity)
-        const bi = rarityIndex(b.member.rarity)
+        const ai = rarityIndex(a.member.ratings.rarity)
+        const bi = rarityIndex(b.member.ratings.rarity)
         if (ai !== bi) return (ai - bi) * sortDir
         // tiebreaker: OVR descending
-        return b.member.ovr - a.member.ovr
+        return b.member.ratings.ovr - a.member.ratings.ovr
       }
 
-      const av: string | number = a.member[sortKey]
-      const bv: string | number = b.member[sortKey]
+      const av: string | number =
+        sortKey === 'name' ? a.member.name : a.member.ratings[sortKey]
+      const bv: string | number =
+        sortKey === 'name' ? b.member.name : b.member.ratings[sortKey]
 
       if (av < bv) return -1 * sortDir
       if (av > bv) return 1 * sortDir
@@ -331,7 +333,7 @@ export function Collection({ game }: { game: Game }) {
             {/* rows */}
             <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}>
               {sorted.map((r) => {
-                const t = TIERS[r.member.rarity]
+                const t = TIERS[r.member.ratings.rarity]
                 const pc = partyColors(r.member.partyCode)
                 return (
                   <div
@@ -391,13 +393,13 @@ export function Collection({ game }: { game: Game }) {
 
                     {/* stats */}
                     <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>
-                      {r.member.atk}
+                      {r.member.ratings.atk}
                     </div>
                     <div style={{ fontFamily: AB, fontSize: 15, color: '#2FD3C4', textAlign: 'right', alignSelf: 'center' }}>
-                      {r.member.def}
+                      {r.member.ratings.def}
                     </div>
                     <div style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: t.ovrTint }}>
-                      {r.member.ovr}
+                      {r.member.ratings.ovr}
                     </div>
                   </div>
                 )

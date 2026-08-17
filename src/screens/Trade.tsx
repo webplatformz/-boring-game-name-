@@ -35,11 +35,11 @@ export function Trade({ game }: { game: Game }) {
     for (const [idStr, count] of Object.entries(game.state.owned)) {
       if (count <= 0) continue
       const m = MEMBERS_BY_ID.get(Number(idStr))
-      if (m && m.rarity === selectedRarity) {
+      if (m && m.ratings.rarity === selectedRarity) {
         list.push({ member: m, totalOwned: count })
       }
     }
-    return list.sort((a, b) => a.member.ovr - b.member.ovr)
+    return list.sort((a, b) => a.member.ratings.ovr - b.member.ratings.ovr)
   }, [game.state.owned, selectedRarity])
 
   // Count how many of each member ID are currently selected in slots
@@ -245,7 +245,7 @@ export function Trade({ game }: { game: Game }) {
                       {member.name.split(' ').pop()}
                     </div>
                     <div style={{ fontFamily: AB, fontSize: 11, color: currentTier.ovrTint, marginTop: 2 }}>
-                      {member.ovr}
+                      {member.ratings.ovr}
                     </div>
                     <div
                       style={{
@@ -477,7 +477,7 @@ export function Trade({ game }: { game: Game }) {
                       color: currentTier.ovrTint,
                     }}
                   >
-                    {member.ovr}
+                    {member.ratings.ovr}
                   </div>
                 </div>
               )

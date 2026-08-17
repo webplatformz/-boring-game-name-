@@ -1,4 +1,5 @@
 import { SwissCross } from '../components/CardBack'
+import { DataProvenance } from '../components/DataProvenance'
 import { DisclaimerText } from '../components/ProjectDisclaimer'
 import { useI18n } from '../i18n'
 
@@ -39,6 +40,17 @@ export function Disclaimer({ onClose }: { onClose: () => void }) {
         }}
       >
         <DisclaimerText />
+      </section>
+
+      <section
+        style={{
+          padding: '22px 20px',
+          borderRadius: 14,
+          background: '#0B121D',
+          border: '1px solid rgba(201,184,255,.25)',
+        }}
+      >
+        <DataProvenance />
       </section>
 
       <a

@@ -15,11 +15,11 @@ export function drawPack(size = PACK_SIZE): Member[] {
 
   for (let n = 0; n < size && pool.length; n++) {
     let total = 0
-    for (const m of pool) total += TIERS[m.rarity].weight
+    for (const m of pool) total += TIERS[m.ratings.rarity].weight
     let roll = Math.random() * total
     let hit = pool.length - 1
     for (let i = 0; i < pool.length; i++) {
-      roll -= TIERS[pool[i].rarity].weight
+      roll -= TIERS[pool[i].ratings.rarity].weight
       if (roll <= 0) {
         hit = i
         break
@@ -28,7 +28,11 @@ export function drawPack(size = PACK_SIZE): Member[] {
     picked.push(pool.splice(hit, 1)[0])
   }
 
-  picked.sort((a, b) => RARITY_ORDER.indexOf(a.rarity) - RARITY_ORDER.indexOf(b.rarity))
+  picked.sort(
+    (a, b) =>
+      RARITY_ORDER.indexOf(a.ratings.rarity) -
+      RARITY_ORDER.indexOf(b.ratings.rarity),
+  )
   return picked
 }
 
@@ -42,7 +46,7 @@ export function getNextRarity(rarity: RarityKey): RarityKey | null {
  * Draw a single random card of the specified target rarity for a trade-in pack.
  */
 export function drawTradePackCard(targetRarity: RarityKey): Member[] {
-  const pool = MEMBERS.filter((m) => m.rarity === targetRarity)
+  const pool = MEMBERS.filter((m) => m.ratings.rarity === targetRarity)
   if (pool.length === 0) return []
   const hit = Math.floor(Math.random() * pool.length)
   return [pool[hit]]
