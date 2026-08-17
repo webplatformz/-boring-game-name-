@@ -167,12 +167,20 @@ export function Home({ game }: { game: Game }) {
         <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>{t('tradeIn')}</div>
       </button>
 
-      <a
-        href="#methodology"
-        style={{ alignSelf: 'center', fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
-      >
-        {t('methodologyLink')}
-      </a>
+      <footer style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 16px' }}>
+        <a
+          href="#methodology"
+          style={{ fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
+        >
+          {t('methodologyLink')}
+        </a>
+        <a
+          href="#disclaimer"
+          style={{ fontFamily: MONO, fontSize: 9.5, color: '#7187A4', textDecoration: 'underline', textUnderlineOffset: 3 }}
+        >
+          {t('projectDisclaimerLink')}
+        </a>
+      </footer>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>

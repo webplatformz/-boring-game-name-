@@ -1,16 +1,26 @@
 import { flagUrl } from '../data/members'
 
-/** Small official cantonal flag chip. Swiss cantonal arms are ~0.83:1 (portrait). */
-export function Flag({ canton, name, height = 24 }: { canton: string; name?: string; height?: number }) {
+/** Small square canton-flag chip. */
+export function Flag({
+  canton,
+  name,
+  height = 24,
+}: {
+  canton: string
+  name?: string
+  height?: number
+}) {
   return (
     <img
       src={flagUrl(canton)}
-      alt={name ? `${name} coat of arms` : `${canton} coat of arms`}
+      alt={`${name ?? canton} canton flag`}
       style={{
         height,
-        width: 'auto',
+        width: height,
+        objectFit: 'contain',
         flex: 'none',
-        background: 'transparent',
+        // Some source SVGs encode their white field as transparency.
+        background: '#fff',
       }}
     />
   )

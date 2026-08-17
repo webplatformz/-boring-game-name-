@@ -7,24 +7,35 @@ import { Collection } from './screens/Collection'
 import { Trade } from './screens/Trade'
 import { Battle } from './screens/Battle'
 import { Methodology } from './screens/Methodology'
+import { Disclaimer } from './screens/Disclaimer'
 import { TabBar } from './components/TabBar'
+import { hasAcknowledgedDisclaimer, ProjectDisclaimer } from './components/ProjectDisclaimer'
 
 export function App() {
   const game = useGame()
   const battle = useBattle()
-  const [showMethodology, setShowMethodology] = useState(() => window.location.hash === '#methodology')
+  const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
+  const [infoPage, setInfoPage] = useState<'methodology' | 'disclaimer' | null>(() => {
+    if (window.location.hash === '#methodology') return 'methodology'
+    if (window.location.hash === '#disclaimer') return 'disclaimer'
+    return null
+  })
   const { screen } = game.state
-  const showTabs = !showMethodology && (screen === 'home' || screen === 'collection' || screen === 'trade')
+  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'trade')
 
   useEffect(() => {
-    const syncHash = () => setShowMethodology(window.location.hash === '#methodology')
+    const syncHash = () => {
+      if (window.location.hash === '#methodology') setInfoPage('methodology')
+      else if (window.location.hash === '#disclaimer') setInfoPage('disclaimer')
+      else setInfoPage(null)
+    }
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
   }, [])
 
-  const closeMethodology = () => {
+  const closeInfoPage = () => {
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
-    setShowMethodology(false)
+    setInfoPage(null)
   }
 
   return (
@@ -51,11 +62,13 @@ export function App() {
         }}
       >
         <div
-          key={showMethodology ? 'methodology' : screen === 'tear' || screen === 'reveal' ? 'pack-opening' : screen}
+          key={infoPage ?? (screen === 'tear' || screen === 'reveal' ? 'pack-opening' : screen)}
           className="screen-transition"
         >
-          {showMethodology ? (
-            <Methodology onClose={closeMethodology} />
+          {infoPage === 'methodology' ? (
+            <Methodology onClose={closeInfoPage} />
+          ) : infoPage === 'disclaimer' ? (
+            <Disclaimer onClose={closeInfoPage} />
           ) : (
             <>
               {screen === 'home' && <Home game={game} />}
@@ -68,6 +81,7 @@ export function App() {
         </div>
         {showTabs && <TabBar game={game} />}
       </div>
+      {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
     </div>
   )
 }

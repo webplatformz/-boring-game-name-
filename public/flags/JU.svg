@@ -1,31 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24.03 29" preserveAspectRatio="xMinYMid">
-    <defs>
-        <style>.cls-1,.cls-4,.cls-6{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{fill:#fff;}.cls-4,.cls-6{stroke:#171714;}.cls-4{stroke-miterlimit:11.47;stroke-width:0.08px;}.cls-5{fill:#c2172e;}.cls-6{stroke-miterlimit:3.86;stroke-width:0.45px;}</style>
-        <clipPath id="clip-path" >
-            <rect class="cls-1" width="24.03" height="29"/>
-        </clipPath>
-    </defs>
-    <g>
-        <g>
-            <g class="cls-2">
-                <path class="cls-3" d="M23.6.55H12v0L.42.57v17.2c0,6,5.19,10.94,11.59,10.94S23.6,23.82,23.6,17.77Z" />
-            </g>
-            <line class="cls-4" x1="23.57" y1="12.63" x2="23.57" y2="8.6"/>
-            <rect class="cls-5" x="12.01" y="0.4" width="11.59" height="4.02"/>
-            <rect class="cls-5" x="12.01" y="8.6" width="11.59" height="4.02"/>
-            <g class="cls-2">
-                <path class="cls-5" d="M23.6,16.64H12v4H23.2a10.35,10.35,0,0,0,.41-2.9V16.64Z" />
-                <path class="cls-5" d="M12,28.71a11.83,11.83,0,0,0,9-4H12v4Z" />
-            </g>
-            <rect class="cls-5" x="4.61" y="9.78" width="6.26" height="0.66"/>
-            <rect class="cls-5" x="5.51" y="10.69" width="4.46" height="0.66"/>
-            <rect class="cls-5" x="5.51" y="8.86" width="4.46" height="0.66"/>
-            <polygon class="cls-5" points="6.2 21.66 4.23 23.94 5.74 11.62 7.74 11.62 9.73 11.62 11.25 23.94 9.28 21.66 7.74 26.56 6.18 21.66 6.2 21.66"/>
-            <g class="cls-2">
-                <path class="cls-5" d="M6.17,8.62a10.25,10.25,0,0,0,.24-3.75A1.71,1.71,0,0,0,5,3.45c-1.38-.19-1.61,1-1.55.94A1.49,1.49,0,0,1,5,4.46,1.62,1.62,0,0,1,4.9,7,2,2,0,0,1,2.57,7a2,2,0,0,1-.91-1.11,3.43,3.43,0,0,1,.71-3.23A4,4,0,0,1,7,2C9.15,3,9.26,8.63,9.26,8.63l-3.08,0" />
-                <path class="cls-6" d="M12,28.6V.4M.23,17.68V.23H23.81V17.67c0,7.38-6.71,11.1-11.8,11.1C6.52,28.78.22,25.06.23,17.68Z" />
-            </g>
-        </g>
-    </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generator: Adobe Illustrator 16.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg id="Ebene_1" width="350" height="350" enable-background="new -204.866 -205.348 471.661 473.088" version="1.1" viewBox="-204.866 -205.348 350 350" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata id="metadata59"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/></cc:Work></rdf:RDF></metadata>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<g id="g3870" transform="matrix(.7479108 0 0 .7453316 -51.64452 -52.27499)"><g id="g1664" transform="translate(0 .0233192)" fill="#ffffff"><rect id="rect9" x="-204.866" y="-205.399" width="467.9703" height="469.5896" stroke-width="1.00005"/></g><g id="g1814" transform="translate(0 -1.706973)" stroke="#000000" stroke-width="2.3439"><path id="path13" d="m-186.315-136.684c0 21.738 10.059 47.387 38.395 48.121 5.254 0.145 18.43-0.48 27.328-9.152 5.543-5.406001 8.359-12.941 8.359-22.406 0-15.883-7.961-22.777-14.648-25.754-7.336-3.27-15.992-3.031-21.328-1.598 1.801-4.52 6.137-11.418 19.992-11.883 5.582-0.184 13.609 1.25 20.113 9.168 8.167996 9.93 15.527 31.977 4.238 80.57l-0.512 2.168h57.832l0.023-1.754c0.719-50.719-9.488-87.176-30.367-108.359-16.863-17.105-35.886-18.941-43.288-18.941-65.375 8e-3 -66.137 59.223-66.137 59.82" fill="#e8423f"/><rect id="rect17" x="-114.089" y="-63.203" width="77.582" height="11.938" fill="#e8423f"/><rect id="rect19" x="-114.089" y="-63.195" width="77.582" height="11.93" fill="none" stroke-miterlimit="10"/><rect id="rect21" x="-114.089" y="-30.289" width="77.582" height="11.934" fill="#e8423f"/><rect id="rect23" x="-114.089" y="-30.273" width="77.582" height="11.918" fill="none" stroke-miterlimit="10"/><rect id="rect25" x="-129.753" y="-46.691" width="108.918" height="11.93" fill="#e8423f"/><rect id="rect27" x="-129.753" y="-46.691" width="108.918" height="11.93" fill="none" stroke-miterlimit="10"/><polygon id="polygon29" transform="translate(-1.776004 -1.767999)" points="-100.656 169.167 -134.699 210.354 -108.371 -11.697 -38.961 -11.697 -12.379 210.354 -46.672 169.401 -73.539 257.683" fill="#e8423f"/><polygon id="polygon31" transform="translate(-1.776004 -1.767999)" points="-100.656 169.167 -134.699 210.354 -108.371 -11.697 -38.961 -11.697 -12.379 210.354 -46.672 169.401 -73.539 257.683" fill="none" stroke-miterlimit="10"/></g><g id="g1679" fill="#e8423f" stroke-width="2.343896"><rect id="rect33" x="28.478" y="-205.3757" width="234.625" height="67.08423"/><rect id="rect39" x="28.478" y="-71.20724" width="234.625" height="67.08423"/><rect id="rect45" x="28.478" y="62.96122" width="234.625" height="67.08423"/><rect id="rect51" x="28.478" y="197.1297" width="234.625" height="67.08423"/></g><g fill="none" stroke="#000000"><path id="path3804" d="m29.11914-205.3757v469.5896" stroke-width="3.51584"/><g stroke-width="2.3439"><path id="path3804-7" d="m28.478-138.2915h234.625"/><path id="path3804-7-5" d="m28.478-71.17601h234.625"/><path id="path3804-7-8" d="m28.478-4.123016h234.625"/><path id="path3804-7-4" d="m28.478 62.96122h234.625"/><path id="path3804-7-3" d="m28.478 130.055h234.625"/><path id="path3804-7-1" d="m28.478 197.1297h234.625"/></g></g></g></svg>

@@ -6,6 +6,7 @@ const LEGENDARY_ID = 4053
 /** Seeds a save holding one legendary card, so the collection is deterministic. */
 async function seedLegendary(page: Page) {
   await page.addInitScript((id: number) => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
     localStorage.setItem(
       'bundeshaus-pack-v1',
       JSON.stringify({ packs: 10, owned: { [id]: 1 }, refillAt: null }),

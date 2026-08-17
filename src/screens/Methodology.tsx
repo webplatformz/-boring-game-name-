@@ -119,6 +119,12 @@ export function Methodology({ onClose }: { onClose: () => void }) {
             <li><SourceLink href={SCORE_SOURCES.votingWorkbooks}>{t('sourceWorkbooks')}</SourceLink></li>
           </ul>
           <p style={{ margin: '10px 0 0', color: '#7187A4' }}>{t('methodologyDisclaimer')}</p>
+          <a
+            href="#disclaimer"
+            style={{ display: 'inline-block', marginTop: 10, fontFamily: MONO, fontSize: 10, textDecoration: 'underline', textUnderlineOffset: 3 }}
+          >
+            {t('projectDisclaimerLink')}
+          </a>
         </div>
       </section>
     </main>
