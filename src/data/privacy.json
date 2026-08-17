@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "noticeVersion": "2026-08-17",
+  "lastUpdated": "2026-08-17",
+  "controller": {
+    "name": "Lucas Schnüriger, Timo Spring",
+    "privacyEmail": "bundeshauspack@gmail.com"
+  },
+  "hosting": {
+    "provider": "GitHub Pages (GitHub)",
+    "dataLocations": [
+      "United States",
+      "other countries where GitHub or its subprocessors operate"
+    ],
+    "subprocessors": [
+      "GitHub's published subprocessors"
+    ]
+  },
+  "retention": {
+    "publishedProfiles": "While a person remains within the current card-game scope and the profile is needed for the stated purpose",
+    "sourceSnapshots": "Only while needed for accuracy, reproducibility, corrections or disputes",
+    "rightsRequests": "Only while needed to process the request and document its outcome",
+    "hostingLogs": "According to the hosting provider's security and operational retention rules"
+  },
+  "governance": {
+    "legalJustificationStatus": "pending_controller_and_counsel_review",
+    "dpiaStatus": "draft_pending_controller_decision",
+    "controllerApprovedAt": null,
+    "privacyReviewReference": null
+  }
+}
