@@ -132,7 +132,16 @@ export function CardFront({
   const { t: tr, rarity, sector: sectorName, party } = useI18n()
   const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | 'cmte' | null>(null)
   const [hoveredSector, setHoveredSector] = useState<LobbyingSector | null>(null)
-  useCardTooltipDismiss(openMetric !== null, () => setOpenMetric(null))
+  const [selectedSector, setSelectedSector] = useState<LobbyingSector | null>(null)
+  const dismissMetric = () => {
+    setOpenMetric(null)
+    setSelectedSector(null)
+  }
+  const toggleMetric = (metric: ScoreKind | DisclosureKind | 'cmte') => {
+    setSelectedSector(null)
+    setOpenMetric((current) => (current === metric ? null : metric))
+  }
+  useCardTooltipDismiss(openMetric !== null, dismissMetric)
 
   if (m.ratings.rarity === 'mythic') {
     return (
@@ -246,58 +255,80 @@ export function CardFront({
               paddingRight: 8,
             }}
           >
-            {cardSectors.map((sector, index) => (
-              <span
-                key={sector}
-                tabIndex={0}
-                aria-label={tr('sectorAria', { sector: sectorName(sector) })}
-                aria-describedby={hoveredSector === sector ? `sector-tooltip-${m.id}-${index}` : undefined}
-                onMouseEnter={() => setHoveredSector(sector)}
-                onMouseLeave={() => setHoveredSector(null)}
-                onFocus={() => setHoveredSector(sector)}
-                onBlur={() => setHoveredSector(null)}
-                style={{
-                  display: 'grid',
-                  position: 'relative',
-                  width: 22,
-                  height: 22,
-                  placeItems: 'center',
-                  borderRadius: 99,
-                  border: '1px solid rgba(185,166,255,.28)',
-                  background: 'rgba(7,12,19,.55)',
-                  boxShadow: '0 3px 10px rgba(0,0,0,.28)',
-                  outline: 'none',
-                }}
-              >
-                <SectorIcon sector={sector} size={11} />
-                {hoveredSector === sector && (
-                  <span
-                    id={`sector-tooltip-${m.id}-${index}`}
-                    role="tooltip"
-                    style={{
-                      position: 'absolute',
-                      right: 'calc(100% + 6px)',
-                      top: '50%',
-                      zIndex: 10,
-                      padding: '4px 7px',
-                      transform: 'translateY(-50%)',
-                      borderRadius: 5,
-                      border: '1px solid rgba(185,166,255,.35)',
-                      background: 'rgba(5,9,17,.96)',
-                      boxShadow: '0 6px 16px rgba(0,0,0,.4)',
-                      color: '#D7CAFF',
-                      fontFamily: MONO,
-                      fontSize: 7.5,
-                      letterSpacing: '.06em',
-                      whiteSpace: 'nowrap',
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    {sectorName(sector).toUpperCase()}
-                  </span>
-                )}
-              </span>
-            ))}
+            {cardSectors.map((sector, index) => {
+              const disclosureKind: DisclosureKind = m.lobbying.sectors.includes(sector) ? 'ties' : 'camp'
+              const selected = selectedSector === sector && openMetric === disclosureKind
+              return (
+                <button
+                  key={sector}
+                  type="button"
+                  className="sector-link-button"
+                  data-card-tooltip-interactive
+                  aria-expanded={selected}
+                  aria-label={tr('showSectorLinksAria', { sector: sectorName(sector) })}
+                  aria-describedby={hoveredSector === sector ? `sector-tooltip-${m.id}-${index}` : undefined}
+                  onPointerDown={(event) => event.stopPropagation()}
+                  onPointerUp={(event) => event.stopPropagation()}
+                  onPointerCancel={(event) => event.stopPropagation()}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    if (selected) {
+                      dismissMetric()
+                      return
+                    }
+                    setSelectedSector(sector)
+                    setOpenMetric(disclosureKind)
+                  }}
+                  onMouseEnter={() => setHoveredSector(sector)}
+                  onMouseLeave={() => setHoveredSector(null)}
+                  onFocus={() => setHoveredSector(sector)}
+                  onBlur={() => setHoveredSector(null)}
+                  style={{
+                    display: 'grid',
+                    position: 'relative',
+                    width: 22,
+                    height: 22,
+                    padding: 0,
+                    placeItems: 'center',
+                    borderRadius: 99,
+                    border: selected ? '1px solid rgba(215,202,255,.8)' : '1px solid rgba(185,166,255,.28)',
+                    background: selected ? 'rgba(185,166,255,.22)' : 'rgba(7,12,19,.55)',
+                    boxShadow: selected ? '0 0 0 2px rgba(185,166,255,.12),0 3px 10px rgba(0,0,0,.28)' : '0 3px 10px rgba(0,0,0,.28)',
+                    color: 'inherit',
+                    cursor: 'pointer',
+                    touchAction: 'manipulation',
+                  }}
+                >
+                  <SectorIcon sector={sector} size={11} />
+                  {hoveredSector === sector && (
+                    <span
+                      id={`sector-tooltip-${m.id}-${index}`}
+                      role="tooltip"
+                      style={{
+                        position: 'absolute',
+                        right: 'calc(100% + 6px)',
+                        top: '50%',
+                        zIndex: 10,
+                        padding: '4px 7px',
+                        transform: 'translateY(-50%)',
+                        borderRadius: 5,
+                        border: '1px solid rgba(185,166,255,.35)',
+                        background: 'rgba(5,9,17,.96)',
+                        boxShadow: '0 6px 16px rgba(0,0,0,.4)',
+                        color: '#D7CAFF',
+                        fontFamily: MONO,
+                        fontSize: 7.5,
+                        letterSpacing: '.06em',
+                        whiteSpace: 'nowrap',
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      {sectorName(sector).toUpperCase()}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
@@ -346,14 +377,14 @@ export function CardFront({
                 member={m}
                 kind="atk"
                 open={openMetric === 'atk'}
-                onToggle={() => setOpenMetric((current) => (current === 'atk' ? null : 'atk'))}
+                onToggle={() => toggleMetric('atk')}
                 highlighted={highlightStat === 'atk'}
               />
               <ScoreStat
                 member={m}
                 kind="def"
                 open={openMetric === 'def'}
-                onToggle={() => setOpenMetric((current) => (current === 'def' ? null : 'def'))}
+                onToggle={() => toggleMetric('def')}
                 highlighted={highlightStat === 'def'}
               />
             </>
@@ -387,19 +418,21 @@ export function CardFront({
           <CommitteeStat
             member={m}
             open={openMetric === 'cmte'}
-            onToggle={() => setOpenMetric((current) => (current === 'cmte' ? null : 'cmte'))}
+            onToggle={() => toggleMetric('cmte')}
           />
           <DisclosureStat
             member={m}
             kind="ties"
             open={openMetric === 'ties'}
-            onToggle={() => setOpenMetric((current) => (current === 'ties' ? null : 'ties'))}
+            onToggle={() => toggleMetric('ties')}
+            sectorFilter={openMetric === 'ties' ? selectedSector : null}
           />
           <DisclosureStat
             member={m}
             kind="camp"
             open={openMetric === 'camp'}
-            onToggle={() => setOpenMetric((current) => (current === 'camp' ? null : 'camp'))}
+            onToggle={() => toggleMetric('camp')}
+            sectorFilter={openMetric === 'camp' ? selectedSector : null}
           />
         </div>
 

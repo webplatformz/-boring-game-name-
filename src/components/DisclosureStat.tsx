@@ -83,37 +83,46 @@ function SectorPill({ sector, detail }: { sector: LobbyingSector; detail: string
   )
 }
 
-function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
+function TiesTooltip({ disclosure, sectorFilter }: { disclosure: LobbyingDisclosure; sectorFilter: LobbyingSector | null }) {
   const { t, sector: sectorName } = useI18n()
   if (disclosure.coverage === 'not_applicable') {
     return <div style={{ color: '#97A8BF' }}>{t('tiesNotApplicable')}</div>
   }
+  const ties = sectorFilter ? disclosure.ties.filter((tie) => tie.sector === sectorFilter) : disclosure.ties
   return (
     <>
-      <div style={{ marginBottom: 7, color: '#97A8BF' }}>
-        {t('tiesIntro')}
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
-        <Metric label={t('declaredInterests')} value={disclosure.total} />
-        <Metric label={t('paidMandates')} value={disclosure.paid} color="#D7CAFF" />
-        <Metric label={t('leadershipRolesMetric')} value={disclosure.leadership} />
-        <Metric label={t('committeeOverlaps')} value={disclosure.committeeOverlaps} />
-        <Metric label={t('classifiedLinks')} value={`${disclosure.classifiedTotal} / ${disclosure.total}`} />
-      </div>
-      {disclosure.sectorBreakdown.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
-          {disclosure.sectorBreakdown.slice(0, 3).map((summary) => (
-            <SectorPill key={summary.sector} sector={summary.sector} detail={String(summary.count)} />
-          ))}
+      {sectorFilter ? (
+        <div style={{ marginBottom: 7 }}>
+          <SectorPill sector={sectorFilter} detail={String(ties.length)} />
         </div>
+      ) : (
+        <>
+          <div style={{ marginBottom: 7, color: '#97A8BF' }}>
+            {t('tiesIntro')}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px 10px' }}>
+            <Metric label={t('declaredInterests')} value={disclosure.total} />
+            <Metric label={t('paidMandates')} value={disclosure.paid} color="#D7CAFF" />
+            <Metric label={t('leadershipRolesMetric')} value={disclosure.leadership} />
+            <Metric label={t('committeeOverlaps')} value={disclosure.committeeOverlaps} />
+            <Metric label={t('classifiedLinks')} value={`${disclosure.classifiedTotal} / ${disclosure.total}`} />
+          </div>
+          {disclosure.sectorBreakdown.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 7 }}>
+              {disclosure.sectorBreakdown.slice(0, 3).map((summary) => (
+                <SectorPill key={summary.sector} sector={summary.sector} detail={String(summary.count)} />
+              ))}
+            </div>
+          )}
+        </>
       )}
-      {disclosure.ties.length > 0 && (
-        <div style={{ marginTop: 8, paddingTop: 7, borderTop: '1px solid rgba(185,166,255,.2)' }}>
+      {ties.length > 0 && (
+        <div style={{ marginTop: sectorFilter ? 0 : 8, paddingTop: 7, borderTop: '1px solid rgba(185,166,255,.2)' }}>
           <div style={{ marginBottom: 3, color: '#B9A6FF', fontSize: 7.5, letterSpacing: '.08em' }}>
             {t('declaredInterestsTitle')}
           </div>
           <div style={{ maxHeight: 104, overflowY: 'auto', overscrollBehavior: 'contain', paddingRight: 3 }}>
-            {disclosure.ties.map((tie) => (
+            {ties.map((tie) => (
               <div key={`${tie.organization}-${tie.role}`} style={{ marginTop: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0, color: '#E7E0FF' }}>
                   {tie.sector && <SectorIcon sector={tie.sector} size={10} title={sectorName(tie.sector)} />}
@@ -143,8 +152,34 @@ function TiesTooltip({ disclosure }: { disclosure: LobbyingDisclosure }) {
   )
 }
 
-function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
+function DirectFinance({ disclosure, sectorFilter }: { disclosure: FinancingDisclosure; sectorFilter: LobbyingSector | null }) {
   const { language, t, sector: sectorName } = useI18n()
+  if (sectorFilter) {
+    const donors = disclosure.topLargeDonors.filter((donor) => donor.sector === sectorFilter)
+    const summary = disclosure.donorSectors.find((item) => item.sector === sectorFilter)
+    return (
+      <>
+        <div style={{ marginBottom: 7 }}>
+          <SectorPill sector={sectorFilter} detail={summary ? money(summary.value, language) : String(donors.length)} />
+        </div>
+        {donors.length > 0 && (
+          <div style={{ paddingTop: 7, borderTop: '1px solid rgba(255,211,106,.2)' }}>
+            <div style={{ marginBottom: 3, color: '#FFD36A', fontSize: 7.5, letterSpacing: '.08em' }}>
+              {t('namedGifts')}
+            </div>
+            {donors.map((donor) => (
+              <div key={`${donor.name}-${donor.value}`} style={{ display: 'flex', gap: 8, justifyContent: 'space-between', marginTop: 3 }}>
+                <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: '#F4E7C5' }}>
+                  {donor.name}
+                </span>
+                <span style={{ color: '#FFD36A', whiteSpace: 'nowrap' }}>{money(donor.value, language)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </>
+    )
+  }
   return (
     <>
       <div style={{ marginBottom: 7, color: '#97A8BF' }}>
@@ -201,7 +236,7 @@ function DirectFinance({ disclosure }: { disclosure: FinancingDisclosure }) {
   )
 }
 
-function CampTooltip({ disclosure }: { disclosure: FinancingDisclosure }) {
+function CampTooltip({ disclosure, sectorFilter }: { disclosure: FinancingDisclosure; sectorFilter: LobbyingSector | null }) {
   const { language, t } = useI18n()
   if (disclosure.coverage === 'not_applicable') {
     return <div style={{ color: '#97A8BF' }}>{t('financeNotApplicable')}</div>
@@ -227,7 +262,7 @@ function CampTooltip({ disclosure }: { disclosure: FinancingDisclosure }) {
       </>
     )
   }
-  return <DirectFinance disclosure={disclosure} />
+  return <DirectFinance disclosure={disclosure} sectorFilter={sectorFilter} />
 }
 
 export function DisclosureStat({
@@ -236,12 +271,14 @@ export function DisclosureStat({
   open,
   onToggle,
   compact = false,
+  sectorFilter = null,
 }: {
   member: Member
   kind: DisclosureKind
   open: boolean
   onToggle: () => void
   compact?: boolean
+  sectorFilter?: LobbyingSector | null
 }) {
   const { t, sector: sectorName } = useI18n()
   const tooltipId = useId()
@@ -344,10 +381,10 @@ export function DisclosureStat({
 
       {open && (compact ? (
         <OverflowTooltip anchor={buttonRef} width={284}>
-          <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact />
+          <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact sectorFilter={sectorFilter} />
         </OverflowTooltip>
       ) : (
-        <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact={false} />
+        <Tooltip member={member} kind={kind} tooltipId={tooltipId} compact={false} sectorFilter={sectorFilter} />
       ))}
     </div>
   )
@@ -358,11 +395,13 @@ function Tooltip({
   kind,
   tooltipId,
   compact,
+  sectorFilter,
 }: {
   member: Member
   kind: DisclosureKind
   tooltipId: string
   compact: boolean
+  sectorFilter: LobbyingSector | null
 }) {
   const { t } = useI18n()
   const appearance = STYLE[kind]
@@ -398,7 +437,11 @@ function Tooltip({
           <div style={{ marginBottom: 5, color: appearance.color, fontFamily: AB, fontSize: 10, letterSpacing: '.08em' }}>
             {kind === 'ties' ? t('disclosedLinks') : t('campaignFinancing')}
           </div>
-          {kind === 'ties' ? <TiesTooltip disclosure={member.lobbying} /> : <CampTooltip disclosure={member.financing} />}
+          {kind === 'ties' ? (
+            <TiesTooltip disclosure={member.lobbying} sectorFilter={sectorFilter} />
+          ) : (
+            <CampTooltip disclosure={member.financing} sectorFilter={sectorFilter} />
+          )}
           <a
             href={source}
             target="_blank"

@@ -485,3 +485,7 @@ a:hover {
 .hovertext:hover {
   color: #eaf2ff;
 }
+.sector-link-button:focus-visible {
+  outline: 2px solid rgba(215, 202, 255, .9);
+  outline-offset: 2px;
+}
