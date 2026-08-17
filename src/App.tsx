@@ -30,10 +30,13 @@ export function App() {
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const { screen } = game.state
   const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'battle' || screen === 'trade')
-  // Home can grow taller than a phone viewport as feature tiles are added.
-  // Let it participate in normal page flow so the footer follows the content;
-  // data-heavy tab screens keep their viewport-constrained internal scrollers.
-  const naturalHome = !infoPage && screen === 'home'
+  // Home and an active battle can grow taller than a short phone viewport.
+  // Keep them in normal page flow so the legal footer always follows their
+  // content. Picker/data-heavy tab screens retain their viewport-constrained
+  // internal scrollers.
+  const naturalFlowScreen = !infoPage && (
+    screen === 'home' || (screen === 'battle' && battle.state.step !== 'pick')
+  )
 
   useEffect(() => {
     const syncHash = () => setInfoPage(infoPageFromHash())
@@ -50,7 +53,7 @@ export function App() {
     <div
       style={{
         minHeight: '100vh',
-        height: showTabs && !naturalHome ? '100dvh' : undefined,
+        height: showTabs && !naturalFlowScreen ? '100dvh' : undefined,
         display: 'flex',
         justifyContent: 'center',
         // Painted against the viewport so the gradient always spans the whole
@@ -76,7 +79,7 @@ export function App() {
         <div
           key={infoPage ?? (screen === 'tear' || screen === 'reveal' ? 'pack-opening' : screen)}
           className="screen-transition"
-          style={{ flex: naturalHome ? 'none' : 1, minHeight: naturalHome ? undefined : 0 }}
+          style={{ flex: naturalFlowScreen ? 'none' : 1, minHeight: naturalFlowScreen ? undefined : 0 }}
         >
           {infoPage === 'methodology' ? (
             <Methodology onClose={closeInfoPage} />
@@ -100,7 +103,7 @@ export function App() {
             </>
           )}
         </div>
-        <LegalFooter aboveTabs={showTabs} pushToBottom={naturalHome} />
+        <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} />
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
     </div>

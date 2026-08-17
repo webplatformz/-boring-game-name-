@@ -21,13 +21,13 @@ const MONO = "'IBM Plex Mono',monospace"
 const FIGHT_CARD_W_MAX = Math.min(0.6 * CARD_MAX_W, 210)
 const CARD_ASPECT = 504 / 336
 
-/** Non-card vertical chrome around the two stacked cards inside the
- * Battle screen: outer padding, header row, gaps, labels, VS separator,
- * and the footer button row. Kept as a constant estimate — being a bit
- * generous is fine (cards just render slightly smaller), being too small
- * isn't (buttons get pushed off screen, which is the bug we're fixing).
- * Includes the compact top navigation and the remaining in-screen chrome. */
-const ARENA_CHROME_H = 312
+/** Non-card vertical chrome around the two stacked cards inside the Battle
+ * screen. Besides the navigation, labels and buttons, this reserves room for
+ * the shared legal footer and the taller result panel. The cards keep one
+ * stable size throughout fight/reveal/result, avoiding a resize when the
+ * win/loss controls appear. Normal document flow remains the final fallback
+ * on screens too short to fit even the minimum readable card size. */
+const ARENA_CHROME_H = 447
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -52,7 +52,7 @@ function computeFightCardWidth(): number {
   const widthFromHeight = heightBudget / 2 / CARD_ASPECT
   // Also respect narrow viewports (side padding ~20px each side).
   const widthFromWidth = vw - 40
-  return Math.max(120, Math.min(FIGHT_CARD_W_MAX, widthFromHeight, widthFromWidth))
+  return Math.max(112, Math.min(FIGHT_CARD_W_MAX, widthFromHeight, widthFromWidth))
 }
 
 /**
