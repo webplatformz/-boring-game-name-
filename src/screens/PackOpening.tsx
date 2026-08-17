@@ -42,7 +42,7 @@ const ring = (m: Member) => TIERS[m.rarity].c + '8c'
  */
 export function PackOpening({ game }: { game: Game }) {
   const { state } = game
-  const { screen, ripped, grown, pack, isTradePack, tradeRarity, revealIdx, drag, dragging, faceUp, outgoing } = state
+  const { screen, ripped, grown, pack, isTradePack, tradeRarity, revealIdx, drag, dragging, faceUp, outgoing, outgoingDrag } = state
   const revealing = screen === 'reveal'
   const { ref: sizerRef, scale } = useCardScale()
 
@@ -175,7 +175,7 @@ export function PackOpening({ game }: { game: Game }) {
 
           {/* the card just revealed, dealing off to the left */}
           {revealing && outgoing && (
-            <div style={outgoingStyle}>
+            <div style={outgoingStyle(outgoingDrag)}>
               <CardFront member={outgoing} foil style={{ boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${ring(outgoing)}` }} />
             </div>
           )}
@@ -193,7 +193,7 @@ export function PackOpening({ game }: { game: Game }) {
               const isTop = depth === 0
               const up = isTop && faceUp
               return (
-                <div key={m.id} style={stackStyle(depth, isTop, drag, dragging)} {...(isTop ? game.cardHandlers : {})}>
+                <div key={m.id} style={stackStyle(depth, isTop, !outgoing, drag, dragging)} {...(isTop && !outgoing ? game.cardHandlers : {})}>
                   <div style={flipStyle(up)}>
                     <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)' }} />
                     <CardFront member={m} foil style={{ boxShadow: `0 24px 60px -18px rgba(255,197,61,.4),0 0 0 1px ${ring(m)}` }} />
@@ -234,17 +234,18 @@ export function PackOpening({ game }: { game: Game }) {
   )
 }
 
-function stackStyle(depth: number, isTop: boolean, drag: number, dragging: boolean): CSSProperties {
+function stackStyle(depth: number, isTop: boolean, interactive: boolean, drag: number, dragging: boolean): CSSProperties {
   return {
     position: 'absolute',
     inset: 0,
     perspective: 1400,
     zIndex: 10 - depth,
-    transform: `translateX(${isTop ? drag : depth * 15}px) scale(${1 - depth * 0.03}) rotate(${isTop ? drag * 0.05 : depth * 1.1}deg)`,
-    transition: dragging && isTop ? 'none' : 'transform 300ms cubic-bezier(.2,.9,.2,1)',
+    transform: `translate3d(${isTop ? drag : depth * 15}px,0,0) scale(${1 - depth * 0.03}) rotate(${isTop ? drag * 0.035 : depth * 1.1}deg)`,
+    transition: dragging && isTop ? 'none' : 'transform 340ms cubic-bezier(.22,.8,.25,1)',
+    willChange: isTop ? 'transform' : undefined,
     touchAction: 'none',
-    cursor: isTop ? 'pointer' : undefined,
-    pointerEvents: isTop ? undefined : 'none',
+    cursor: isTop && interactive ? 'pointer' : undefined,
+    pointerEvents: isTop && interactive ? undefined : 'none',
   }
 }
 
@@ -258,10 +259,18 @@ function flipStyle(up: boolean): CSSProperties {
   }
 }
 
-const outgoingStyle: CSSProperties = {
-  position: 'absolute',
-  inset: 0,
-  zIndex: 20,
-  pointerEvents: 'none',
-  animation: 'swipeOutLeft 420ms cubic-bezier(.4,.05,.6,1) forwards',
+function outgoingStyle(releaseDrag: number): CSSProperties {
+  const direction = releaseDrag > 0 ? 1 : -1
+  return {
+    position: 'absolute',
+    inset: 0,
+    zIndex: 20,
+    pointerEvents: 'none',
+    willChange: 'transform, opacity',
+    animation: 'swipeOut 420ms cubic-bezier(.22,.7,.2,1) forwards',
+    ['--swipe-start-x' as string]: `${releaseDrag}px`,
+    ['--swipe-start-rotation' as string]: `${releaseDrag * 0.035}deg`,
+    ['--swipe-end-x' as string]: `${direction * 160}%`,
+    ['--swipe-end-rotation' as string]: `${direction * 18}deg`,
+  }
 }

@@ -24,6 +24,7 @@ export interface GameState {
   dragging: boolean
   faceUp: boolean
   outgoing: Member | null
+  outgoingDrag: number
   ripped: boolean
   /** Pack has zoomed up from its Home size to card size; gates the tear. */
   grown: boolean
@@ -46,6 +47,7 @@ const INITIAL: GameState = {
   dragging: false,
   faceUp: false,
   outgoing: null,
+  outgoingDrag: 0,
   ripped: false,
   grown: false,
 }
@@ -115,7 +117,7 @@ export function useGame(): Game {
     if (stateRef.current.packs <= 0) return
     // The pack is drawn up front so the Tear screen can already stack the cards
     // (hidden) inside the sealed pack and fade them in as it comes apart.
-    patch({ screen: 'tear', ripped: false, grown: false, pack: drawPack(), revealIdx: 0, faceUp: false, outgoing: null })
+    patch({ screen: 'tear', ripped: false, grown: false, pack: drawPack(), revealIdx: 0, faceUp: false, outgoing: null, outgoingDrag: 0 })
     // Let the pack mount at Home size for a frame, zoom it to card size, then tear.
     after(30, () => patch({ grown: true }))
     after(30 + PACK_GROW_MS + 160, rip)
@@ -142,6 +144,7 @@ export function useGame(): Game {
         pack: [],
         revealIdx: 0,
         outgoing: null,
+        outgoingDrag: 0,
         faceUp: false,
         isTradePack: false,
       }
@@ -165,17 +168,19 @@ export function useGame(): Game {
     return () => clearInterval(id)
   }, [state.refillAt])
 
-  const advance = useCallback(() => {
+  const advance = useCallback((releaseDrag = stateRef.current.drag) => {
     const s = stateRef.current
     const next = s.revealIdx + 1
-    if (next >= s.pack.length) {
-      finishPack()
-      return
-    }
-    // Deal the current card off the deck (tinder-style swipe out); the next card
-    // stays face-down until the user taps it.
-    patch({ outgoing: s.pack[s.revealIdx], revealIdx: next, faceUp: false })
-    after(470, () => patch({ outgoing: null }))
+    const current = s.pack[s.revealIdx]
+    if (!current || s.outgoing) return
+    // Start the exit where the gesture ended so a swiped card never snaps back
+    // to the centre before leaving. Taps use the default leftward exit.
+    patch({ outgoing: current, outgoingDrag: releaseDrag, revealIdx: next, faceUp: false })
+    after(470, () => {
+      if (stateRef.current.outgoing?.id !== current.id) return
+      if (next >= stateRef.current.pack.length) finishPack()
+      else patch({ outgoing: null, outgoingDrag: 0 })
+    })
   }, [patch, after, finishPack])
 
   const goHome = useCallback(() => patch({ screen: 'home' }), [patch])
@@ -211,6 +216,7 @@ export function useGame(): Game {
         revealIdx: 0,
         faceUp: false,
         outgoing: null,
+        outgoingDrag: 0,
         isTradePack: true,
         tradeRarity: sourceRarity,
       })
@@ -240,26 +246,20 @@ export function useGame(): Game {
     },
     [patch],
   )
-  const onPointerUp = useCallback((e: React.PointerEvent) => {
+  const onPointerUp = useCallback(() => {
     if (!stateRef.current.dragging) return
     const isTap = moved.current < 6
     const swiped = Math.abs(stateRef.current.drag) > 70
-    const swipedLeft = stateRef.current.drag < -70
-    const isTouch = e.pointerType === 'touch'
+    const releaseDrag = stateRef.current.drag
     patch({ dragging: false, drag: 0 })
     // A tap always flips a face-down card, regardless of input type.
     if (!stateRef.current.faceUp) {
       if (isTap) patch({ faceUp: true })
       return
     }
-    // Touch users must deliberately swipe left. A tap leaves the face-up card
-    // in place so its stat controls can be explored without advancing the deck.
-    if (isTouch) {
-      if (swipedLeft) advance()
-      return
-    }
-    // Preserve the existing mouse/desktop interaction.
-    if (swiped || isTap) advance()
+    // Stat controls stop pointer propagation, so taps elsewhere on a face-up
+    // card can advance on both touch and desktop without closing a tooltip.
+    if (swiped || isTap) advance(releaseDrag)
   }, [patch, advance])
 
   const onPointerCancel = useCallback(() => {

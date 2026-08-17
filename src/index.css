@@ -135,7 +135,7 @@ a:hover {
 @keyframes shimmerText {
   0%,
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   50% {
     background-position: 100% 50%;
@@ -186,7 +186,7 @@ a:hover {
 @keyframes mythicPrismShift {
   0%,
   100% {
-    background-position: 0% 20%;
+    background-position: 0 20%;
     filter: hue-rotate(0deg) saturate(1.15);
   }
   50% {
@@ -197,7 +197,7 @@ a:hover {
 @keyframes mythicTagShift {
   0%,
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
     box-shadow: 0 0 10px rgba(99, 232, 255, 0.28);
   }
   50% {
@@ -208,7 +208,7 @@ a:hover {
 @keyframes mythicPlatinumShine {
   0%,
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
     filter: drop-shadow(0 0 6px rgba(224, 220, 205, 0.12));
   }
   50% {
@@ -271,13 +271,15 @@ a:hover {
     transform: scale(1.06);
   }
 }
-@keyframes swipeOutLeft {
+@keyframes swipeOut {
   from {
-    transform: translateX(0) translateY(0) rotate(0deg);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translate3d(var(--swipe-start-x, 0px), 0, 0) rotate(var(--swipe-start-rotation, 0deg));
     opacity: 1;
   }
   to {
-    transform: translateX(-160%) translateY(-14px) rotate(-22deg);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translate3d(var(--swipe-end-x, -160%), -18px, 0) rotate(var(--swipe-end-rotation, -18deg));
     opacity: 0;
   }
 }
@@ -287,12 +289,16 @@ a:hover {
 @keyframes statHighlight {
   0%,
   100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--stat-glow) 55%, transparent);
-    background: color-mix(in srgb, var(--stat-glow) 10%, transparent);
+    /*noinspection CssUnresolvedCustomProperty*/
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--stat-glow, #ffc53d) 55%, transparent);
+    /*noinspection CssUnresolvedCustomProperty*/
+    background: color-mix(in srgb, var(--stat-glow, #ffc53d) 10%, transparent);
   }
   50% {
-    box-shadow: 0 0 16px 4px color-mix(in srgb, var(--stat-glow) 65%, transparent);
-    background: color-mix(in srgb, var(--stat-glow) 22%, transparent);
+    /*noinspection CssUnresolvedCustomProperty*/
+    box-shadow: 0 0 16px 4px color-mix(in srgb, var(--stat-glow, #ffc53d) 65%, transparent);
+    /*noinspection CssUnresolvedCustomProperty*/
+    background: color-mix(in srgb, var(--stat-glow, #ffc53d) 22%, transparent);
   }
 }
 
