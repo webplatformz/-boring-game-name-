@@ -156,8 +156,16 @@ async function importCouncil(path, council) {
 
   return [...campaigns.values()].map((campaign) => ({
     ...campaign,
-    candidates: campaign.candidates.map(({ _key, ...candidate }) => candidate),
-    largeDonors: campaign.largeDonors.map(({ _key, ...donor }) => donor),
+    candidates: campaign.candidates.map((candidateWithKey) => {
+      const { _key, ...candidate } = candidateWithKey
+      void _key
+      return candidate
+    }),
+    largeDonors: campaign.largeDonors.map((donorWithKey) => {
+      const { _key, ...donor } = donorWithKey
+      void _key
+      return donor
+    }),
   }))
 }
 

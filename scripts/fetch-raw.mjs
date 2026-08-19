@@ -118,7 +118,8 @@ const rows = (payload) => {
 async function getAllPaged(path, params) {
   const url = `${BASE}/${path}?${params}&$format=json`
   let payload = await getJson(url)
-  let { rows: acc, next } = rows(payload)
+  const { rows: acc, next: firstNext } = rows(payload)
+  let next = firstNext
   const all = [...acc]
   let guard = 0
   while (next && guard++ < 500) {
