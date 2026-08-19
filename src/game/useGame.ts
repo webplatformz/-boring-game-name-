@@ -183,8 +183,14 @@ export function useGame(): Game {
     if (count <= 0) return
     setState((s) => {
       const packs = s.packs + count
-      persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt: s.refillAt })
-      return { ...s, packs }
+      // A pending refill-cooldown timer unconditionally resets packs to a flat
+      // STARTING_PACKS once it elapses (see the effect below) — if we didn't
+      // clear it here, that reset would silently wipe out whatever bonus packs
+      // were just granted. Getting packs above zero means the player is no
+      // longer "out of packs", so the cooldown no longer applies.
+      const refillAt = packs > 0 ? null : s.refillAt
+      persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+      return { ...s, packs, refillAt }
     })
   }, [])
 
