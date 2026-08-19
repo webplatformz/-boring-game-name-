@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 import { SwissCross } from '../components/CardBack'
 import { PRIVACY_CONFIGURATION, PRIVACY_CONFIGURATION_MISSING } from '../data/privacy'
 import { privacyContent } from '../content/privacy'
+import { recordContactEmailClicked } from '../game/achievements'
 import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
@@ -57,7 +58,7 @@ export function Privacy({ onClose }: { onClose: () => void }) {
         <p style={{ margin: 0 }}>{copy.controllerContactBody}</p>
         <p style={{ margin: '9px 0 0', color: '#EAF2FF' }}>
           <strong>{value(config.controller.name, copy.pending)}</strong><br />
-          {config.controller.privacyEmail ? <a href={`mailto:${config.controller.privacyEmail}`}>{config.controller.privacyEmail}</a> : copy.pending}
+          {config.controller.privacyEmail ? <a href={`mailto:${config.controller.privacyEmail}`} onClick={recordContactEmailClicked}>{config.controller.privacyEmail}</a> : copy.pending}
         </p>
       </Section>
 
@@ -84,7 +85,7 @@ export function Privacy({ onClose }: { onClose: () => void }) {
         <p style={{ margin: 0 }}>{copy.correctionIntro}</p>
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>{copy.correctionSteps.map((item) => <li key={item} style={{ marginTop: 6 }}>{item}</li>)}</ol>
         {config.controller.privacyEmail ? (
-          <a href={`mailto:${config.controller.privacyEmail}`} style={{ display: 'inline-block', marginTop: 12, fontFamily: MONO, fontSize: 10 }}>{config.controller.privacyEmail} →</a>
+          <a href={`mailto:${config.controller.privacyEmail}`} onClick={recordContactEmailClicked} style={{ display: 'inline-block', marginTop: 12, fontFamily: MONO, fontSize: 10 }}>{config.controller.privacyEmail} →</a>
         ) : (
           <p style={{ margin: '11px 0 0', color: '#FFD0E4' }}>{copy.correctionUnavailable}</p>
         )}

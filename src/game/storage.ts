@@ -236,3 +236,86 @@ export function persistBattleRecord(record: BattleRecord): void {
     /* ignore quota / private-mode failures */
   }
 }
+
+// ── achievement progress ────────────────────────────────────────────────────
+// Kept apart from the save, same reasoning as collection prefs and the battle
+// record: a corrupt or absent value should never cost the player their
+// packs/cards, and unlocked achievements should never regress.
+
+export interface AchievementProgress {
+  /** Achievement id → the timestamp (ms) it was unlocked at. */
+  unlocked: Record<string, number>
+  tradesCompleted: number
+  /** Current consecutive-day pack-opening streak. */
+  streakCurrent: number
+  /** Longest streak ever reached — achievements never regress once earned. */
+  streakBest: number
+  /** Local date (YYYY-MM-DD) a pack was last completed on, or null. */
+  streakLastDate: string | null
+  /** Language codes the player has actively switched to at least once. */
+  languagesUsed: string[]
+  /** Info-page hashes the player has opened at least once. */
+  legalPagesOpened: string[]
+  contactEmailClicked: boolean
+  /** A pack was torn open between 3am and 4am local time. */
+  sleeplessTriggered: boolean
+  /** A Mythic card was pulled straight from a regular (non trade-in) pack. */
+  mythicDirectPull: boolean
+}
+
+const ACHIEVEMENTS_KEY = 'bundeshaus-achievements-v1'
+
+export const DEFAULT_ACHIEVEMENT_PROGRESS: AchievementProgress = {
+  unlocked: {},
+  tradesCompleted: 0,
+  streakCurrent: 0,
+  streakBest: 0,
+  streakLastDate: null,
+  languagesUsed: [],
+  legalPagesOpened: [],
+  contactEmailClicked: false,
+  sleeplessTriggered: false,
+  mythicDirectPull: false,
+}
+
+function isValidUnlocked(value: unknown): value is Record<string, number> {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    Object.values(value as Record<string, unknown>).every((v) => isValidCount(v))
+  )
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((v) => typeof v === 'string')
+}
+
+export function loadAchievementProgress(): AchievementProgress {
+  try {
+    const raw = localStorage.getItem(ACHIEVEMENTS_KEY)
+    if (!raw) return DEFAULT_ACHIEVEMENT_PROGRESS
+    const p = JSON.parse(raw) as Partial<AchievementProgress>
+    return {
+      unlocked: isValidUnlocked(p.unlocked) ? p.unlocked : {},
+      tradesCompleted: isValidCount(p.tradesCompleted) ? p.tradesCompleted : 0,
+      streakCurrent: isValidCount(p.streakCurrent) ? p.streakCurrent : 0,
+      streakBest: isValidCount(p.streakBest) ? p.streakBest : 0,
+      streakLastDate: typeof p.streakLastDate === 'string' ? p.streakLastDate : null,
+      languagesUsed: isStringArray(p.languagesUsed) ? p.languagesUsed : [],
+      legalPagesOpened: isStringArray(p.legalPagesOpened) ? p.legalPagesOpened : [],
+      contactEmailClicked: p.contactEmailClicked === true,
+      sleeplessTriggered: p.sleeplessTriggered === true,
+      mythicDirectPull: p.mythicDirectPull === true,
+    }
+  } catch {
+    return DEFAULT_ACHIEVEMENT_PROGRESS
+  }
+}
+
+export function persistAchievementProgress(progress: AchievementProgress): void {
+  try {
+    localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(progress))
+  } catch {
+    /* ignore quota / private-mode failures */
+  }
+}

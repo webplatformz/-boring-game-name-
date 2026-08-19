@@ -6,6 +6,9 @@ async function openApp(page: Page, save: Record<string, unknown>) {
   await page.addInitScript(() => {
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
     localStorage.setItem('bundeshaus-language-v1', 'en')
+    // This suite asserts exact pack counts unrelated to achievements — pre-unlock
+    // "first pull" so its bonus pack doesn't shift the numbers under test.
+    localStorage.setItem('bundeshaus-achievements-v1', JSON.stringify({ unlocked: { 'first-pull': Date.now() } }))
   })
   await page.goto('/')
   await page.evaluate(

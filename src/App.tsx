@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
 import { useBattle } from './game/useBattle'
+import { useAchievements } from './game/useAchievements'
+import { recordLegalPageOpened, LEGAL_PAGES } from './game/achievements'
 import { Home } from './screens/Home'
 import { PackOpening } from './screens/PackOpening'
 import { Collection } from './screens/Collection'
@@ -10,22 +12,28 @@ import { Methodology } from './screens/Methodology'
 import { Disclaimer } from './screens/Disclaimer'
 import { Privacy } from './screens/Privacy'
 import { DataMethodology } from './screens/DataMethodology'
+import { Achievements } from './screens/Achievements'
 import { TabBar } from './components/TabBar'
 import { LegalFooter } from './components/LegalFooter'
+import { AchievementToast } from './components/AchievementToast'
 import { hasAcknowledgedDisclaimer, ProjectDisclaimer } from './components/ProjectDisclaimer'
 
 const PortraitCredits = lazy(() => import('./screens/PortraitCredits'))
 
-type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'photo-credits' | 'disclaimer'
+type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'photo-credits' | 'disclaimer' | 'achievements'
+const LEGAL_INFO_PAGES: readonly string[] = LEGAL_PAGES
 
 function infoPageFromHash(): InfoPage | null {
   const page = window.location.hash.slice(1)
-  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'photo-credits' || page === 'disclaimer' ? page : null
+  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'photo-credits' || page === 'disclaimer' || page === 'achievements'
+    ? page
+    : null
 }
 
 export function App() {
   const game = useGame()
   const battle = useBattle()
+  const achievements = useAchievements(game)
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const { screen } = game.state
@@ -43,6 +51,11 @@ export function App() {
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
   }, [])
+
+  // Tracks the "Law Student" hidden achievement — visiting every legal/info page.
+  useEffect(() => {
+    if (infoPage && LEGAL_INFO_PAGES.includes(infoPage)) recordLegalPageOpened(infoPage)
+  }, [infoPage])
 
   const closeInfoPage = () => {
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
@@ -93,9 +106,16 @@ export function App() {
             </Suspense>
           ) : infoPage === 'disclaimer' ? (
             <Disclaimer onClose={closeInfoPage} />
+          ) : infoPage === 'achievements' ? (
+            <Achievements
+              onClose={closeInfoPage}
+              achievements={achievements.achievements}
+              unlockedCount={achievements.unlockedCount}
+              totalCount={achievements.totalCount}
+            />
           ) : (
             <>
-              {screen === 'home' && <Home game={game} />}
+              {screen === 'home' && <Home game={game} unlockedAchievements={achievements.unlockedCount} totalAchievements={achievements.totalCount} />}
               {(screen === 'tear' || screen === 'reveal') && <PackOpening game={game} />}
               {screen === 'collection' && <Collection game={game} />}
               {screen === 'battle' && <Battle game={game} battle={battle} />}
@@ -106,6 +126,8 @@ export function App() {
         <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} />
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
+      <AchievementToast achievement={achievements.toast} onDismiss={achievements.dismissToast} />
     </div>
   )
 }
+

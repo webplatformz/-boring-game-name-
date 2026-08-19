@@ -4,17 +4,19 @@ import { MEMBERS, MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
 import { LEGISLATURE, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
+import { recordLanguageUsed } from '../game/achievements'
 import { PackFace } from '../components/PackArt'
 import { SwissCross } from '../components/CardBack'
 import { CardModal } from '../components/CardModal'
 import { OpeningStats } from '../components/OpeningStats'
+import { TrophyIcon } from '../components/TrophyIcon'
 import { PACK_SIZE } from '../game/pack'
 import { LANGUAGES, useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
-export function Home({ game }: { game: Game }) {
+export function Home({ game, unlockedAchievements, totalAchievements }: { game: Game; unlockedAchievements: number; totalAchievements: number }) {
   const { language, setLanguage, t, rarity } = useI18n()
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
   const { packs, owned, refillAt } = game.state
@@ -46,7 +48,10 @@ export function Home({ game }: { game: Game }) {
               <button
                 key={code}
                 type="button"
-                onClick={() => setLanguage(code)}
+                onClick={() => {
+                  setLanguage(code)
+                  recordLanguageUsed(code)
+                }}
                 aria-pressed={language === code}
                 style={{
                   minWidth: 25,
@@ -186,12 +191,41 @@ export function Home({ game }: { game: Game }) {
         <div style={{ fontFamily: AB, fontSize: 12, color: '#FFC53D', whiteSpace: 'nowrap' }}>{t('tradeIn')}</div>
       </button>
 
-      <OpeningStats
-        cardsRevealed={game.state.cardsRevealed}
-        packsOpened={game.state.packsOpened}
-        compact
-        style={{ width: 'calc((100% - 10px) / 2)', alignSelf: 'flex-start' }}
-      />
+      <div style={{ display: 'flex', gap: 10 }}>
+        <OpeningStats
+          cardsRevealed={game.state.cardsRevealed}
+          packsOpened={game.state.packsOpened}
+          compact
+          style={{ width: 'calc((100% - 10px) / 2)' }}
+        />
+        <a
+          href="#achievements"
+          aria-label={t('achievementsLinkAria')}
+          style={{
+            width: 'calc((100% - 10px) / 2)',
+            padding: '9px 12px 10px',
+            borderRadius: 13,
+            background: '#0B121D',
+            border: '1px solid rgba(234,242,255,.1)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 9,
+            textDecoration: 'none',
+          }}
+        >
+          <div style={{ flex: 'none', color: '#FFC53D' }}>
+            <TrophyIcon size={18} />
+          </div>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontFamily: MONO, fontSize: 7, letterSpacing: '.06em', color: '#7690AE', whiteSpace: 'nowrap' }}>
+              {t('achievements')}
+            </div>
+            <div style={{ fontFamily: AB, fontSize: 15, lineHeight: 1, color: '#EAF2FF', marginTop: 2 }}>
+              {unlockedAchievements} <span style={{ fontFamily: MONO, fontSize: 10, color: '#5C7391' }}>/ {totalAchievements}</span>
+            </div>
+          </div>
+        </a>
+      </div>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
     </div>

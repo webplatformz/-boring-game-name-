@@ -156,7 +156,11 @@ export function Collection({ game }: { game: Game }) {
 
   const toggleCantonFilter = (canton: string) => {
     const next = new Set(selectedCantons)
-    next.has(canton) ? next.delete(canton) : next.add(canton)
+    if (next.has(canton)) {
+      next.delete(canton)
+    } else {
+      next.add(canton)
+    }
     setSelectedCantons(next)
   }
 

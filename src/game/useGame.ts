@@ -34,6 +34,14 @@ export interface GameState {
   isTradePack?: boolean
   /** Rarity of cards traded in to create this special pack. */
   tradeRarity?: RarityKey | null
+  /** Increments every time a pack finishes; achievement tracking watches this to react once per completion. */
+  packCompletionSeq: number
+  /** Members from the most recently completed pack (regular or trade-in). */
+  lastPackMembers: Member[]
+  /** Whether the most recently completed pack was a trade-in pack. */
+  lastPackWasTrade: boolean
+  /** Successful trade-ins executed this session; achievement tracking watches this. */
+  tradesExecuted: number
 }
 
 const save = loadSave()
@@ -54,6 +62,10 @@ const INITIAL: GameState = {
   outgoingDrag: 0,
   ripped: false,
   grown: false,
+  packCompletionSeq: 0,
+  lastPackMembers: [],
+  lastPackWasTrade: false,
+  tradesExecuted: 0,
 }
 
 export interface Game {
@@ -66,6 +78,8 @@ export interface Game {
   goBattle: () => void
   goTrade: () => void
   executeTrade: (tradedMemberIds: number[], sourceRarity: RarityKey) => void
+  /** Grants extra unopened packs (used by achievement rewards) and persists them. */
+  grantBonusPacks: (count: number) => void
   cardHandlers: {
     onPointerDown: (e: React.PointerEvent) => void
     onPointerMove: (e: React.PointerEvent) => void
@@ -158,7 +172,19 @@ export function useGame(): Game {
         outgoingDrag: 0,
         faceUp: false,
         isTradePack: false,
+        packCompletionSeq: s.packCompletionSeq + 1,
+        lastPackMembers: s.pack,
+        lastPackWasTrade: s.isTradePack ?? false,
       }
+    })
+  }, [])
+
+  const grantBonusPacks = useCallback((count: number) => {
+    if (count <= 0) return
+    setState((s) => {
+      const packs = s.packs + count
+      persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt: s.refillAt })
+      return { ...s, packs }
     })
   }, [])
 
@@ -242,6 +268,7 @@ export function useGame(): Game {
         outgoingDrag: 0,
         isTradePack: true,
         tradeRarity: sourceRarity,
+        tradesExecuted: stateRef.current.tradesExecuted + 1,
       })
 
       after(30, () => patch({ grown: true }))
@@ -298,6 +325,7 @@ export function useGame(): Game {
     goCollection,
     goTrade,
     executeTrade,
+    grantBonusPacks,
     goBattle,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   }
