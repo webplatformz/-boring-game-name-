@@ -77,38 +77,102 @@ Voters only ever move one-way, same-side: `Undecided → Rather(mine)` or
 `Rather(mine) → Firm(mine)`. They **never** flip straight from one side to
 the other, and Firm/Undecided are one-way destinations.
 
-### Turn actions (ATK has two identities; DEF has one)
+### Turn actions & outcome table
 
-- **Defend** — always secures some of your own Rather voters into Firm,
-  sized by your **DEF**. Never touches Undecided or the opponent's pool.
-- **Attack vs. Defend** — a *challenge*: your **ATK** vs. their **DEF**; on
-  success, destabilizes some of their Rather voters into Undecided.
-- **Attack vs. Attack** — a *recruiting race*: both sides pull from the
-  shared Undecided pool into their own Rather, sized by their own ATK
-  (proportional split if combined demand exceeds supply). No destabilizing.
+Every turn compares the relevant stat(s) for the two chosen actions. The
+rule is symmetric and independent of who's the player vs. the AI: **the
+higher-value side of any comparison always pulls something new out of
+Undecided; the lower side never does.** Defend is the only action that can
+be a true no-op (a loss on Defend/Defend gains nothing); Attack always
+touches Undecided in some way, win, lose, or tie.
 
-| You | Opponent | Effect |
-|---|---|---|
-| Defend | Defend | Both secure own Rather → Firm. Undecided untouched. |
-| Attack | Defend | ATK vs their DEF; may destabilize their Rather → Undecided. They still secure whatever Rather survives, via their DEF. |
-| Defend | Attack | Mirror of the above. |
-| Attack | Attack | Both recruit from shared Undecided → own Rather, sized by own ATK. |
+| # | Actions | Comparison | Result | Effect |
+|---|---------|-----------|--------|--------|
+| 1 | Defend/Defend | DEF(A) vs DEF(B) | A higher | Both secure own Rather→Firm (own DEF, as always) **+** A trickles `Undecided → Rather(A)`, sized by the DEF margin. |
+| 2 | Defend/Defend | DEF(A) vs DEF(B) | tie | Both secure own Rather→Firm (own DEF). No Undecided movement. |
+| 3 | Defend/Defend | DEF(A) vs DEF(B) | B higher | Mirror of #1. |
+| 4 | Attack/Defend | ATK(attacker) vs DEF(defender) | attacker higher | Destabilize `Rather(defender) → Undecided` **+** recruit `Undecided → Rather(attacker)`, both sized by the margin. Defender still secures whatever Rather survives via their own DEF. |
+| 5 | Attack/Defend | ATK(attacker) vs DEF(defender) | tie | No destabilize, but attacker still recruits a small flat `Undecided → Rather(attacker)` (ATK-based, not margin-based). Defender secures normally. |
+| 6 | Attack/Defend | ATK(attacker) vs DEF(defender) | defender higher | Attack repelled. Defender gets a bonus secure (`Rather(defender) → Firm(defender)`, margin-sized) **+** attacker suffers backlash (`Rather(attacker) → Undecided`, margin-sized). |
+| 7 | Attack/Attack | ATK(A) vs ATK(B) | A higher | Proportional recruit split favoring A, sized by own ATK (scarcity-aware, see formula). |
+| 8 | Attack/Attack | ATK(A) vs ATK(B) | tie | Even 50/50 recruit split of whatever Undecided demand is satisfiable. |
+| 9 | Attack/Attack | ATK(A) vs ATK(B) | B higher | Mirror of #7. |
 
 All deltas for a turn are computed from the same pre-turn snapshot and
-applied atomically (a defend doesn't protect voters from that same turn's
-incoming attack, only future ones).
+applied atomically, with one deliberate exception: within a single
+Attack/Defend cell, the attacker's effect ("first move") resolves against
+the pre-turn `Rather(defender)`, and the defender's own baseline secure
+then resolves against whatever remains — the attack lands first, then the
+defender rallies with what's left. Every margin-based amount is floored at
+1 once the margin is `> 0` (still capped by the available pool), so a won
+comparison always has *some* visible effect — the "nothing happens" case is
+now reserved for actual ties only.
 
 ### Formulas (`K = 6`, a tunable constant, unverified by playtesting)
 
 ```ts
-secureAmount = min(ratherMine, round(DEF_mine / K))                 // Defend
-margin = ATK_attacker - DEF_defender
-destabilizeAmount = margin > 0 ? min(ratherDefender, round(margin / K)) : 0  // Attack vs Defend
+const amt = (margin: number, pool: number) =>
+  margin > 0 ? min(pool, max(1, round(margin / K))) : 0
 
-desiredMine = round(ATK_mine / K); desiredOpp = round(ATK_opp / K)  // Attack vs Attack
-if (desiredMine + desiredOpp <= undecided) { recruitMine = desiredMine; recruitOpp = desiredOpp }
-else { recruitMine = round(undecided * desiredMine / (desiredMine + desiredOpp)); recruitOpp = undecided - recruitMine }
+// Defend vs Defend — baseline secure always applies, independent of comparison
+secureAmount_A = min(ratherA, round(DEF_A / K))
+secureAmount_B = min(ratherB, round(DEF_B / K))
+// higher DEF additionally trickles Undecided -> own Rather; the lower side gets nothing
+defMargin = DEF_A - DEF_B
+if (defMargin !== 0) {
+  winner = defMargin > 0 ? 'A' : 'B'
+  trickle = amt(abs(defMargin), undecided)
+  rather[winner] += trickle; undecided -= trickle
+}
+
+// Attack vs Defend — attacker's branch resolves first (pre-turn snapshot),
+// defender's baseline secure resolves second, against the remainder
+margin = ATK_attacker - DEF_defender
+if (margin > 0) {                                                  // row 4: attacker wins
+  destabilize = amt(margin, ratherDefender)                         // Rather(defender) -> Undecided
+  recruit = amt(margin, undecided)                                  // Undecided -> Rather(attacker), pre-turn undecided
+  ratherDefender -= destabilize; ratherAttacker += recruit
+  undecided += destabilize - recruit
+} else if (margin === 0) {                                          // row 5: stalemate
+  recruit = min(undecided, max(1, round(ATK_attacker / (K * 2))))    // smaller flat pull, no destabilize
+  undecided -= recruit; ratherAttacker += recruit
+} else {                                                             // row 6: defender wins
+  secureBonus = amt(-margin, ratherDefender)                         // extra Rather(defender) -> Firm(defender), first
+  ratherDefender -= secureBonus; firmDefender += secureBonus
+  backlash = amt(-margin, ratherAttacker)                            // Rather(attacker) -> Undecided
+  ratherAttacker -= backlash; undecided += backlash
+}
+// defender's baseline secure (own DEF) applies last, against whatever Rather(defender) remains
+baselineSecure = min(ratherDefender, round(DEF_defender / K))
+ratherDefender -= baselineSecure; firmDefender += baselineSecure
+
+// Attack vs Attack (rows 7-9, recruiting race, scarcity-aware)
+desiredMine = round(ATK_mine / K); desiredOpp = round(ATK_opp / K)
+if (desiredMine + desiredOpp === 0) {
+  recruitMine = 0; recruitOpp = 0                                   // defensive guard, unreachable with real stat ranges
+} else if (desiredMine + desiredOpp <= undecided) {
+  recruitMine = desiredMine; recruitOpp = desiredOpp
+} else {
+  recruitMine = round(undecided * desiredMine / (desiredMine + desiredOpp)); recruitOpp = undecided - recruitMine
+}
 ```
+
+**Edge cases, resolved:**
+- Rows 4/6: the attacker's branch resolves against the pre-turn Rather
+  pool; the defender's baseline secure resolves second, against the
+  remainder — the two can never together over-draw the pool.
+- Every margin-based amount floors at 1 (not 0) once the margin is `> 0`,
+  so winning a comparison is never invisible — reserved for true ties.
+- `desiredMine + desiredOpp === 0` can't happen with real stats (min ATK 45
+  vs. `K = 6` needs ATK < 3 to floor to 0) — the guard exists only for
+  future retuning or debuffed-stat content, not a live concern.
+- A side's Rather pool hitting 0 (fully converted to Firm) makes that side
+  permanently immune to further destabilize/backlash — intentional, the
+  payoff for consistent defending.
+- Once Undecided hits 0, the remaining 100 points are entirely Firm+Rather
+  split between the two sides, so one side already has a majority (the
+  existing win condition fires) unless it's an exact 50/50 split — no
+  separate handling needed.
 
 With real stat ranges (ATK/DEF 45–97, avg ~71), one action moves roughly
 8–16 points — meaningful within 5 turns, not a one-shot blowout.
