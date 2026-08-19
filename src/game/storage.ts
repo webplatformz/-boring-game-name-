@@ -33,27 +33,30 @@ export function loadSave(): SaveState {
     const raw = localStorage.getItem(KEY)
     if (raw) {
       const s = JSON.parse(raw) as Partial<SaveState>
+      const now = Date.now()
       let packs = isValidCount(s.packs) ? s.packs : STARTING_PACKS
       let refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
       const cardsRevealed = isValidCount(s.cardsRevealed) ? s.cardsRevealed : 0
       const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
-      if (refillAt !== null && Date.now() >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
-        const elapsedIntervals = Math.floor((Date.now() - refillAt) / REFILL_INTERVAL_MS) + 1
+      if (refillAt !== null && now >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
+        const elapsedIntervals = Math.floor((now - refillAt) / REFILL_INTERVAL_MS) + 1
         const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals)
         packs += granted
         refillAt = packs < MAX_AUTOMATIC_PACKS ? refillAt + granted * REFILL_INTERVAL_MS : null
       } else if (packs >= MAX_AUTOMATIC_PACKS) {
         refillAt = null
       } else if (refillAt === null) {
-        refillAt = Date.now() + REFILL_INTERVAL_MS
+        refillAt = now + REFILL_INTERVAL_MS
       }
-      return {
+      const normalized: SaveState = {
         owned: s.owned ?? {},
         packs,
         cardsRevealed,
         packsOpened,
         refillAt,
       }
+      persist(normalized)
+      return normalized
     }
   } catch {
     /* ignore corrupt / unavailable storage */
