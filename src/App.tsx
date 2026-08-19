@@ -65,7 +65,7 @@ export function App() {
   return (
     <div
       style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         height: showTabs && !naturalFlowScreen ? '100dvh' : undefined,
         display: 'flex',
         justifyContent: 'center',
@@ -78,7 +78,7 @@ export function App() {
       <div
         className="app-shell-width"
         style={{
-          minHeight: '100vh',
+          minHeight: '100dvh',
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',

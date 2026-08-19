@@ -16,11 +16,17 @@ body {
   font-family: Archivo, sans-serif;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
-  /* Card glows/backdrops bleed past the content column on purpose; clip them at
-     the viewport so they stay uncut but never cause sideways scrolling. */
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+/* Card glows/backdrops bleed past the content column on purpose; clip them at
+   the viewport so they stay uncut but never cause sideways scrolling. Set on
+   `html` (not just `body`): mobile Safari's document scrolling element is
+   `html`, so `body`'s own overflow doesn't stop the page itself from
+   becoming horizontally scrollable when a descendant overflows. */
+html,
+body {
+  overflow-x: hidden;
 }
 img {
   max-width: 100%;
@@ -435,9 +441,19 @@ a:hover {
   max-width: 430px;
 }
 
-/* Pack reveals use the card's 330px design canvas and zoom it as one unit.
-   PackOpening computes the viewport-relative scale while preserving this ratio. */
+/* Pack reveals use the card's 336:504 design ratio at a size that fits both
+   the viewport's width and height, computed entirely in CSS (no JS resize
+   listeners): `min()` picks the smallest of the design cap, the width budget
+   (viewport width minus the screen's horizontal padding) and the height
+   budget (80% of viewport height, converted to an equivalent width via the
+   card's own aspect ratio). `dvw`/`dvh` track the *actual visible* viewport
+   (unlike static `vw`/`vh`, which on iOS Safari can exceed it while the
+   address bar is shown), so this can never size the card larger than what's
+   really on screen. */
 .pack-opening-card {
+  --card-w: min(330px, calc(100dvw - 40px), calc(80dvh * 336 / 504));
+  width: var(--card-w);
+  aspect-ratio: 336 / 504;
   flex: none;
 }
 .app-navigation {

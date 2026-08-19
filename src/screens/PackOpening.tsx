@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { CARD_MAX_W, PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP, TIERS } from '../theme'
+import { PACK_GROW_MS, PACK_RIP_MS, PACK_STRIP_CLIP, PACK_TORN_CLIP, TIERS } from '../theme'
 import type { Game } from '../game/useGame'
 import type { Member } from '../data/members'
 import { PACK_H, PACK_TOP_H, PACK_W, PackFoil, PackLabel, PackShell, PackTop, packBodyBg } from '../components/PackArt'
@@ -13,33 +13,11 @@ const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 const GROW_EASE = 'cubic-bezier(.34,1.06,.4,1)'
 const CROSSFADE = 'opacity 200ms ease-out'
-const CARD_ASPECT_HEIGHT = CARD_MAX_W * (504 / 336)
-const MOBILE_CARD_MARGIN = 20
-
-function useOpeningCardScale() {
-  const [scale, setScale] = useState(1)
-
-  useEffect(() => {
-    const update = () => {
-      const viewportHeight = window.visualViewport?.height ?? window.innerHeight
-      const heightScale = (viewportHeight * 0.8) / CARD_ASPECT_HEIGHT
-      const widthScale = window.innerWidth < 700
-        ? (window.innerWidth - MOBILE_CARD_MARGIN * 2) / CARD_MAX_W
-        : (window.innerWidth - 40) / CARD_MAX_W
-      setScale(Math.max(0.1, Math.min(heightScale, widthScale)))
-    }
-
-    update()
-    window.addEventListener('resize', update)
-    window.visualViewport?.addEventListener('resize', update)
-    return () => {
-      window.removeEventListener('resize', update)
-      window.visualViewport?.removeEventListener('resize', update)
-    }
-  }, [])
-
-  return scale
-}
+// The fanned card-back stack offsets each card by 15px on the 330px design
+// canvas (see `.pack-opening-card` in index.css). Expressed as a percentage
+// of the card's own width so the fan stays proportional at whatever size the
+// card is actually rendered at, instead of needing a JS-measured scale factor.
+const FAN_STEP_PCT = (15 / 330) * 100
 
 /** Scale factor that takes the Home-sized pack up to the revealed card width. */
 function useCardScale() {
@@ -72,7 +50,6 @@ export function PackOpening({ game }: { game: Game }) {
   const { screen, ripped, grown, pack, isTradePack, tradeRarity, revealIdx, drag, dragging, faceUp, outgoing, outgoingDrag } = state
   const revealing = screen === 'reveal'
   const { ref: sizerRef, scale } = useCardScale()
-  const openingCardScale = useOpeningCardScale()
 
   const rarityTier = tradeRarity ? TIERS[tradeRarity] : null
   const packAccentColor = isTradePack ? rarityTier?.c : undefined
@@ -96,7 +73,7 @@ export function PackOpening({ game }: { game: Game }) {
     pointerEvents: 'none',
     opacity: ripped ? 1 : 0,
     transform: ripped
-      ? `translateX(${depth * 15}px) scale(${1 - depth * 0.03}) rotate(${depth * 1.1}deg)`
+      ? `translateX(${depth * FAN_STEP_PCT}%) scale(${1 - depth * 0.03}) rotate(${depth * 1.1}deg)`
       : `translateY(20px) scale(${0.88 - depth * 0.03})`,
     transition: `opacity ${PACK_RIP_MS * 0.5}ms ease-out ${PACK_RIP_MS * 0.28 + depth * 45}ms,transform ${PACK_RIP_MS * 0.8}ms cubic-bezier(.2,.9,.2,1) ${PACK_RIP_MS * 0.22 + depth * 45}ms`,
   })
@@ -152,7 +129,7 @@ export function PackOpening({ game }: { game: Game }) {
   })
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', padding: '18px 20px 26px', touchAction: 'none', userSelect: 'none' }}>
+    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', padding: '18px 20px 26px', touchAction: 'none', userSelect: 'none' }}>
       {/* header: intro title while tearing, card counter + skip once revealing —
           both layers share the same box so the deck below never shifts */}
       <div style={{ position: 'relative', minHeight: 20 }}>
@@ -197,17 +174,18 @@ export function PackOpening({ game }: { game: Game }) {
 
       {/* the deck — one persistent container for both phases, so the fanned
           card-back stack that tearing ends on carries straight into the stack
-          that revealing starts from with no visual handoff at all */}
+          that revealing starts from with no visual handoff at all. Left
+          unclipped on purpose: the fanned stack (`cardStyle`/`stackStyle`)
+          deliberately bleeds a little past the card's own box for the
+          peeking effect, and on narrow phones `--card-w` already fills the
+          space up to the screen's side padding, leaving no slack for a clip
+          here to avoid cutting into it. `html`/`body { overflow-x: hidden }`
+          already stops that bleed from ever causing page scroll. */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }}>
         <div
           ref={sizerRef}
           className="pack-opening-card"
-          style={{
-            position: 'relative',
-            width: CARD_MAX_W,
-            aspectRatio: '336 / 504',
-            zoom: openingCardScale,
-          }}
+          style={{ position: 'relative' }}
         >
           {/* rarity glow behind the deck — only once the top card is face up,
               so it never gives the pull away early */}
@@ -287,7 +265,7 @@ function stackStyle(depth: number, isTop: boolean, interactive: boolean, drag: n
     inset: 0,
     perspective: 1400,
     zIndex: 10 - depth,
-    transform: `translate3d(${isTop ? drag : depth * 15}px,0,0) scale(${1 - depth * 0.03}) rotate(${isTop ? drag * 0.035 : depth * 1.1}deg)`,
+    transform: `translate3d(${isTop ? `${drag}px` : `${depth * FAN_STEP_PCT}%`},0,0) scale(${1 - depth * 0.03}) rotate(${isTop ? drag * 0.035 : depth * 1.1}deg)`,
     transition: dragging && isTop ? 'none' : 'transform 340ms cubic-bezier(.22,.8,.25,1)',
     willChange: isTop ? 'transform' : undefined,
     touchAction: 'none',
