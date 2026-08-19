@@ -193,9 +193,12 @@ export function PackOpening({ game }: { game: Game }) {
             <FixedCardGlow rarity={topCard.ratings.rarity} anchor={sizerRef} />
           )}
 
-          {/* the card just revealed, dealing off to the left */}
+          {/* the card just revealed, dealing off to the left. Keyed by id so an
+              overlapping advance() (see useGame's advanceLockedUntil) always
+              mounts a fresh element and restarts the exit animation cleanly,
+              rather than mutating the still-animating previous one. */}
           {revealing && outgoing && (
-            <div style={outgoingStyle(outgoingDrag)}>
+            <div key={outgoing.id} style={outgoingStyle(outgoingDrag)}>
               <CardFront member={outgoing} foil style={{ boxShadow: `0 24px 60px -18px rgba(0,0,0,.6),0 0 0 1px ${ring(outgoing)}` }} />
             </div>
           )}
@@ -216,8 +219,8 @@ export function PackOpening({ game }: { game: Game }) {
                 <div
                   key={m.id}
                   className={`pack-opening-stack-card${isTop ? ' pack-opening-top-card' : ''}`}
-                  style={stackStyle(depth, isTop, !outgoing, drag, dragging)}
-                  {...(isTop && !outgoing ? game.cardHandlers : {})}
+                  style={stackStyle(depth, isTop, drag, dragging)}
+                  {...(isTop ? game.cardHandlers : {})}
                 >
                   <div style={flipStyle(up)}>
                     <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)' }} />
@@ -259,7 +262,7 @@ export function PackOpening({ game }: { game: Game }) {
   )
 }
 
-function stackStyle(depth: number, isTop: boolean, interactive: boolean, drag: number, dragging: boolean): CSSProperties {
+function stackStyle(depth: number, isTop: boolean, drag: number, dragging: boolean): CSSProperties {
   return {
     position: 'absolute',
     inset: 0,
@@ -269,8 +272,8 @@ function stackStyle(depth: number, isTop: boolean, interactive: boolean, drag: n
     transition: dragging && isTop ? 'none' : 'transform 340ms cubic-bezier(.22,.8,.25,1)',
     willChange: isTop ? 'transform' : undefined,
     touchAction: 'none',
-    cursor: isTop && interactive ? 'pointer' : undefined,
-    pointerEvents: isTop && interactive ? undefined : 'none',
+    cursor: isTop ? 'pointer' : undefined,
+    pointerEvents: isTop ? undefined : 'none',
   }
 }
 

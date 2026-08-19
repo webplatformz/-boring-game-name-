@@ -110,6 +110,10 @@ export function useGame(): Game {
   const moved = useRef(0)
   const stateRef = useRef(state)
   stateRef.current = state
+  // Earliest time a *new* advance() call is allowed. Kept separate from the
+  // outgoing card's full cleanup (see `advance`) so the next card can be
+  // tapped well before the previous one's exit animation has fully finished.
+  const advanceLockedUntil = useRef(0)
 
   const after = useCallback((ms: number, fn: () => void) => {
     const id = setTimeout(fn, ms)
@@ -223,7 +227,15 @@ export function useGame(): Game {
     const s = stateRef.current
     const next = s.revealIdx + 1
     const current = s.pack[s.revealIdx]
-    if (!current || s.outgoing) return
+    const now = Date.now()
+    if (!current || now < advanceLockedUntil.current) return
+    // A little overlap with the previous card's exit is intentional: the
+    // swipe-out's easing front-loads the motion, so it's already ~95%
+    // off-screen well before its animation technically ends (420ms). Locking
+    // just long enough for that (rather than the full cleanup below) keeps
+    // back-to-back taps feeling instant without ever visibly cutting an
+    // exit short.
+    advanceLockedUntil.current = now + 260
     // Start the exit where the gesture ended so a swiped card never snaps back
     // to the centre before leaving. Taps use the default leftward exit.
     patch({ outgoing: current, outgoingDrag: releaseDrag, revealIdx: next, faceUp: false })
