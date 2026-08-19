@@ -13,13 +13,14 @@ export interface SaveState {
   cardsRevealed: number
   /** Total regular and trade packs completed. */
   packsOpened: number
-  /** Timestamp (ms) when the next batch of packs unlocks, or null if not waiting. */
+  /** Timestamp (ms) when the next automatic pack unlocks, or null if not waiting. */
   refillAt: number | null
 }
 
 const KEY = 'bundeshaus-pack-v1'
-export const STARTING_PACKS = 10
-export const REFILL_COOLDOWN_MS = 15_000
+export const STARTING_PACKS = 5
+export const MAX_AUTOMATIC_PACKS = 5
+export const REFILL_INTERVAL_MS = import.meta.env.DEV ? 60_000 : 60 * 60 * 1_000
 
 // A valid count is a finite, non-negative integer — guards against corrupt
 // localStorage values like negatives, fractions, NaN or Infinity.
@@ -32,22 +33,23 @@ export function loadSave(): SaveState {
     const raw = localStorage.getItem(KEY)
     if (raw) {
       const s = JSON.parse(raw) as Partial<SaveState>
-      const refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
+      let packs = isValidCount(s.packs) ? s.packs : STARTING_PACKS
+      let refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
       const cardsRevealed = isValidCount(s.cardsRevealed) ? s.cardsRevealed : 0
       const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
-      // Cooldown already elapsed (e.g. app was closed) — grant the next batch now.
-      if (refillAt !== null && Date.now() >= refillAt) {
-        return {
-          owned: s.owned ?? {},
-          packs: STARTING_PACKS,
-          cardsRevealed,
-          packsOpened,
-          refillAt: null,
-        }
+      if (refillAt !== null && Date.now() >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
+        const elapsedIntervals = Math.floor((Date.now() - refillAt) / REFILL_INTERVAL_MS) + 1
+        const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals)
+        packs += granted
+        refillAt = packs < MAX_AUTOMATIC_PACKS ? refillAt + granted * REFILL_INTERVAL_MS : null
+      } else if (packs >= MAX_AUTOMATIC_PACKS) {
+        refillAt = null
+      } else if (refillAt === null) {
+        refillAt = Date.now() + REFILL_INTERVAL_MS
       }
       return {
         owned: s.owned ?? {},
-        packs: typeof s.packs === 'number' ? s.packs : STARTING_PACKS,
+        packs,
         cardsRevealed,
         packsOpened,
         refillAt,

@@ -136,6 +136,21 @@ export function Home({ game, unlockedAchievements, totalAchievements }: { game: 
       <button onClick={game.ripNow} disabled={!canRip} className="rip-btn" style={openBtn(canRip)}>
         {canRip ? t('ripOpen') : refillAt ? t('nextPackIn', { time: countdown }) : t('noPacksLeft')}
       </button>
+      {refillAt && canRip && (
+        <div
+          aria-live="polite"
+          style={{
+            marginTop: -7,
+            textAlign: 'center',
+            fontFamily: MONO,
+            fontSize: 10,
+            letterSpacing: '.14em',
+            color: '#7690AE',
+          }}
+        >
+          {t('nextPackIn', { time: countdown })}
+        </div>
+      )}
 
       {/* stat tiles */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10 }}>

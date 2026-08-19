@@ -54,12 +54,10 @@ test('a legacy save that already qualifies for an achievement grants exactly one
   expect(Object.keys(achievements.unlocked)).toEqual(['first-pull'])
 })
 
-test('a bonus pack granted while a refill cooldown is pending is not wiped out once the cooldown elapses', async ({ page }) => {
-  // Regression test: the player was out of packs (0) with a refill cooldown
-  // already running when the "First Pull" achievement fired and granted a
-  // bonus pack, bringing packs to 1. The cooldown effect used to unconditionally
-  // reset packs to a flat STARTING_PACKS once it elapsed, silently discarding
-  // that bonus pack instead of leaving it in place.
+test('an achievement pack does not reset an independent refill timer', async ({ page }) => {
+  // The player was out of packs with a refill already due when the "First Pull"
+  // achievement fired. Loading grants the automatic pack and the achievement
+  // adds another pack without cancelling the next automatic refill.
   await page.addInitScript(() => {
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
     localStorage.setItem('bundeshaus-language-v1', 'en')
@@ -75,10 +73,10 @@ test('a bonus pack granted while a refill cooldown is pending is not wiped out o
 
   await expect(page.getByRole('status')).toBeVisible()
 
-  // The bonus grant should have already cleared the cooldown; wait well past
-  // the point where the (now-stale) refill timer would otherwise have fired.
+  // The due automatic refill and the achievement reward should both remain.
   await page.waitForTimeout(1_500)
 
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
-  expect(stored).toMatchObject({ packs: 1, refillAt: null })
+  expect(stored.packs).toBe(2)
+  expect(stored.refillAt).toBeGreaterThan(Date.now())
 })

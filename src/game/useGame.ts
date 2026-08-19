@@ -5,9 +5,9 @@ import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
 import { drawPack, drawTradePackCard, getNextRarity } from './pack'
 import {
   loadSave,
+  MAX_AUTOMATIC_PACKS,
   persist,
-  REFILL_COOLDOWN_MS,
-  STARTING_PACKS,
+  REFILL_INTERVAL_MS,
   syncMemberScoreCache,
 } from './storage'
 
@@ -154,7 +154,9 @@ export function useGame(): Game {
       let refillAt = s.refillAt
       if (!s.isTradePack) {
         packs = Math.max(0, s.packs - 1)
-        refillAt = packs <= 0 ? Date.now() + REFILL_COOLDOWN_MS : s.refillAt
+        refillAt = packs < MAX_AUTOMATIC_PACKS
+          ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS)
+          : null
       }
       persist({ owned, packs, cardsRevealed, packsOpened, refillAt })
       const returnScreen = s.isTradePack ? 'trade' : 'home'
@@ -183,33 +185,33 @@ export function useGame(): Game {
     if (count <= 0) return
     setState((s) => {
       const packs = s.packs + count
-      // A pending refill-cooldown timer unconditionally resets packs to a flat
-      // STARTING_PACKS once it elapses (see the effect below) — if we didn't
-      // clear it here, that reset would silently wipe out whatever bonus packs
-      // were just granted. Getting packs above zero means the player is no
-      // longer "out of packs", so the cooldown no longer applies.
-      const refillAt = packs > 0 ? null : s.refillAt
+      // Achievement packs are independent from the automatic refill timer.
+      const refillAt = s.refillAt
       persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
       return { ...s, packs, refillAt }
     })
   }, [])
 
-  // While waiting on the refill cooldown, tick once a second so the UI countdown
-  // stays live, and grant the next batch of packs once it elapses.
+  // While waiting on the refill timer, tick once a second so the UI countdown
+  // stays live, and grant one automatic pack when it elapses.
   useEffect(() => {
     if (state.refillAt == null) return
     const id = setInterval(() => {
       setState((s) => {
         if (s.refillAt == null) return s
         if (Date.now() >= s.refillAt) {
+          const packs = s.packs < MAX_AUTOMATIC_PACKS ? s.packs + 1 : s.packs
+          const refillAt = packs < MAX_AUTOMATIC_PACKS
+            ? s.refillAt + REFILL_INTERVAL_MS
+            : null
           persist({
             owned: s.owned,
-            packs: STARTING_PACKS,
+            packs,
             cardsRevealed: s.cardsRevealed,
             packsOpened: s.packsOpened,
-            refillAt: null,
+            refillAt,
           })
-          return { ...s, packs: STARTING_PACKS, refillAt: null }
+          return { ...s, packs, refillAt }
         }
         return { ...s }
       })
