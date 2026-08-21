@@ -1,6 +1,7 @@
-# Battle Mode
+# Debate Mode
 
-Single-player-vs-AI battle mode built on card `atk`/`def`/`ovr` stats. This
+Single-player-vs-AI debate mode built on card `atk`/`def`/`ovr` stats. The
+feature runs in-product under the name **Debate**. This
 doc tracks three layers: the **current implementation** (live), the
 **planned v2 resolution mechanic** (designed, not built), and **future
 stakes/rewards** (designed, not built). No votation/initiative data is
@@ -13,8 +14,9 @@ used; no test framework exists in this repo — verification relies on
 
 Each battle is one sudden-death round: player picks a card from `owned`,
 faces an AI opponent drawn from `MEMBERS` **tier-matched** to the player's
-card (same rarity ± 1, never the same card — `pickOpponent` in
-`src/game/battle.ts`), both secretly choose Attack or Defend, and a single
+card (same rarity ± 1, never the same card, and never the same party when
+another eligible option exists — `pickOpponent` in `src/game/battle.ts`),
+both secretly choose Attack or Defend, and a single
 stat comparison decides the winner. No rewards beyond a persisted win/loss
 counter.
 
@@ -57,13 +59,18 @@ counter.
   on them if one appears in a battle. Included in the pool anyway,
   deferred intentionally.
 
-## Part 2 — Planned v2: Polling Duel (designed, not implemented)
+## Part 2 — Planned v2: Debate (Polling Duel) (designed, not implemented)
 
 **Status: mechanics finalized, not implemented.** Replaces only the
-**round resolution** — picker, tier-matched `pickOpponent`, AI weighting,
-and persistence scaffolding all carry over.
+**round resolution** — picker, tier-matched cross-party `pickOpponent`, AI
+weighting, and persistence scaffolding all carry over.
 
 ### Concept
+
+Debate is an abstract card-game simulation, not a representation of any
+portrayed person's political opinions, positions, or statements. Feedback
+copy must describe only card stats, chosen actions, poll movement, and game
+rules.
 
 Instead of one coin-flip, a battle becomes a debate over a simulated public
 opinion poll across up to **5 turns**. A pool of 100 points is split into
@@ -108,7 +115,7 @@ defender rallies with what's left. Every margin-based amount is floored at
 comparison always has *some* visible effect — the "nothing happens" case is
 now reserved for actual ties only.
 
-### Formulas (`K = 6`, a tunable constant, unverified by playtesting)
+### Formulas (`K = 4`, a tunable constant; recommended starting point)
 
 ```ts
 const amt = (margin: number, pool: number) =>
@@ -121,13 +128,14 @@ secureAmount_B = min(ratherB, round(DEF_B / K))
 defMargin = DEF_A - DEF_B
 if (defMargin !== 0) {
   winner = defMargin > 0 ? 'A' : 'B'
-  trickle = amt(abs(defMargin), undecided)
+  trickle = min(undecided, round(amt(abs(defMargin), undecided) * 1.5))
   rather[winner] += trickle; undecided -= trickle
 }
 
 // Attack vs Defend — attacker's branch resolves first (pre-turn snapshot),
 // defender's baseline secure resolves second, against the remainder
 margin = ATK_attacker - DEF_defender
+undecidedBefore = undecided
 if (margin > 0) {                                                  // row 4: attacker wins
   destabilize = amt(margin, ratherDefender)                         // Rather(defender) -> Undecided
   recruit = amt(margin, undecided)                                  // Undecided -> Rather(attacker), pre-turn undecided
@@ -141,6 +149,8 @@ if (margin > 0) {                                                  // row 4: att
   ratherDefender -= secureBonus; firmDefender += secureBonus
   backlash = amt(-margin, ratherAttacker)                            // Rather(attacker) -> Undecided
   ratherAttacker -= backlash; undecided += backlash
+  recruit = min(undecidedBefore, amt(-margin, undecidedBefore))      // normal-strength Undecided -> Rather(defender)
+  undecided -= recruit; ratherDefender += recruit
 }
 // defender's baseline secure (own DEF) applies last, against whatever Rather(defender) remains
 baselineSecure = min(ratherDefender, round(DEF_defender / K))
@@ -163,8 +173,11 @@ if (desiredMine + desiredOpp === 0) {
   remainder — the two can never together over-draw the pool.
 - Every margin-based amount floors at 1 (not 0) once the margin is `> 0`,
   so winning a comparison is never invisible — reserved for true ties.
+- Case 6's defender recruit uses `undecidedBefore`, so the backlash and recruit
+  are both based on the same pre-turn snapshot; the recruit cannot amplify
+  itself from the backlash.
 - `desiredMine + desiredOpp === 0` can't happen with real stats (min ATK 45
-  vs. `K = 6` needs ATK < 3 to floor to 0) — the guard exists only for
+  vs. `K = 4` needs ATK < 3 to floor to 0) — the guard exists only for
   future retuning or debuffed-stat content, not a live concern.
 - A side's Rather pool hitting 0 (fully converted to Firm) makes that side
   permanently immune to further destabilize/backlash — intentional, the
@@ -175,7 +188,9 @@ if (desiredMine + desiredOpp === 0) {
   separate handling needed.
 
 With real stat ranges (ATK/DEF 45–97, avg ~71), one action moves roughly
-8–16 points — meaningful within 5 turns, not a one-shot blowout.
+8–16 points — meaningful within 5 turns, not a one-shot blowout. The
+defensive tuning below increases the impact of a successful defense without
+making Defend universally dominant.
 
 ### Starting distribution
 
@@ -198,8 +213,9 @@ Undecided voters count for neither side either way.
 - `battle.ts`: `resolveRound` → `PollState` + `INITIAL_POLL(...)` +
   `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction): PollState`
   (pure, per-turn) + `checkWin(poll, turnsPlayed, turnLimit)`.
-  `pickOpponent`/`chooseAiAction` unchanged; `chooseAiAction` now called
-  once per turn.
+  `pickOpponent` gains the cross-party filter described below;
+  `chooseAiAction` remains weighted by the card's stats and is called once per
+  turn.
 - `useBattle.ts`: `'fight'`/`'reveal'` steps now loop per turn. New state:
   `poll`, `turn` (1–5), `winner: { winner, majority } | null` (replaces
   single-shot `BattleResult`). Same timer-cancellation and double-submit
@@ -216,23 +232,86 @@ Undecided voters count for neither side either way.
 
 ### Implementation plan
 
-1. **Poll model + pure resolution logic** (`battle.ts`): `PollState`,
-   `INITIAL_POLL`, `resolveTurn`, `checkWin`. Verify via scratch script
-   against hand-computed examples (including K exhausting a small Rather
-   pool, proportional split under scarcity, forced turn-limit ties).
-2. **Turn-loop state machine** (`useBattle.ts`): extend state, loop
-   `chooseAction` through reveal → resolve → check-win → next turn or
-   result. Re-verify timer/double-submit guards hold under looping.
-3. **Poll meter UI** (`Battle.tsx`): five-bucket meter, turn counter,
-   per-turn feedback text, updated result screen (final split + win type).
-4. **Verification pass**: full 5-turn playthroughs across lopsided/mirrored
-   stat combos to sanity-check `K` pacing; confirm early majority wins,
-   turn-limit wins, and ties all resolve correctly; `tsc`/`build` clean.
+The following sequence is ready for handover. The pure model must land before
+the hook or UI work begins; the UI should not duplicate poll arithmetic.
 
-### Open TODOs
+1. **Freeze the v2 rules and interfaces.** Treat `K = 4`, the `1.5x` higher-DEF
+   DEF/DEF trickle, and the normal-strength case-6 defender recruit as the
+   initial tuning. Confirm that case-6 recruitment uses `undecidedBefore` and
+   that all other deltas are calculated from one pre-turn snapshot. Keep
+   `resolveRound` available until the Debate screen is wired, unless the
+   branch explicitly replaces v1. Use Debate consistently for the new screen,
+   state labels, result copy, and analytics names.
+
+2. **Implement opponent selection and the pure poll model.** Update
+   `pickOpponent` so it first applies the rarity window and card exclusion,
+   then removes the player's party if that leaves any candidates; fall back
+   to the full eligible rarity pool only when necessary. Then implement the
+   pure poll model in `src/game/battle.ts`. Add
+   `PollState`, `PollWinner`, `INITIAL_POLL(playerCard, oppCard)`,
+   `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction, options?)`,
+   and `checkWin(poll, turnsPlayed, turnLimit)`. Keep `pickOpponent` and
+   `chooseAiAction` unchanged apart from calling the AI once per turn.
+   Centralize clamping, margin amounts, the DEF/DEF multiplier, and the case-6
+   pre-turn recruit so no caller can create negative buckets or totals other
+   than 100.
+
+3. **Add model-level verification before UI work.** Use the existing
+   `scripts/simulate-battle.mjs` as a regression/sensitivity tool and add
+   deterministic hand-check cases for: tied OVR initialization; lean in both
+   directions; DEF/DEF secure plus boosted trickle; attack victory with
+   destabilize/recruit; attack tie; case-6 secure/backlash/recruit using the
+   pre-turn pool; Attack/Attack scarcity; early majority; five-turn winner;
+   OVR tie-break; and coin-flip tie-break. Verify symmetry by mirroring every
+   non-tie case. Do not introduce a test framework solely for this feature.
+
+4. **Replace the one-shot hook flow in `src/game/useBattle.ts`.** Preserve the
+   existing `pick → fight → reveal → result` timing and cancellation guards,
+   but make `fight`/`reveal` represent one turn. Store `poll`, `turn`,
+   `winner`, and the locked actions in state. On reveal, resolve exactly once,
+   check for a majority, then either show the result or advance to the next
+   turn. Retain the double-submit guard per turn and clear timers on reset,
+   unmount, and a completed battle.
+
+5. **Implement the Debate UI in `src/screens/Battle.tsx`.** Replace or
+   supplement the card-focused arena with five labeled buckets:
+   `Firm (mine)`, `Rather (mine)`, `Undecided`, `Rather (opponent)`, and
+   `Firm (opponent)`. Show `turn / 5`, conceal opponent stats until the action
+   is committed, and provide one concise, politically neutral reveal
+   explanation for each outcome row. Copy may say “ATK exceeded DEF,”
+   “defense secured support,” or “the poll remained tied,” but must not imply
+   that the portrayed member said, believes, supports, or opposes anything.
+   The result view must show the final split and distinguish majority wins from
+   turn-limit wins. Preserve the existing empty-picker, responsive layout, and
+   card persistence behavior.
+
+6. **Update persistence after the loop works.** Extend `BattleRecord` with
+   validated `majorityWins` and `turnLimitWins` fields while retaining
+   `wins = majorityWins + turnLimitWins` for existing UI compatibility.
+   Treat missing fields as zero and reject malformed or negative values using
+   the established storage validation pattern. Do not add rewards or stakes in
+   this implementation.
+
+7. **Run the handover verification pass.** Play through mirrored lopsided,
+   even, and near-tie cards; confirm early majority, five-turn resolution,
+   exact ties, reset during suspense, unmount during a turn, and repeated
+   action submission. Run the repository type-check/build and lint commands.
+   Re-run the simulation with the documented recommended settings and record
+   any tuning change in this document before merging.
+
+### Open TODOs and tuning notes
 
 - Reward differential between majority vs. turn-limit win (see Part 3).
-- `K = 6` is an unverified starting guess — expect retuning in step 4.
+- Simulation recommendation: start with `K = 4`. With stat-weighted actions,
+  K = 4 produced about 17–20% majority wins by turn 5 in the tested model;
+  K = 6 produced about 3%. K = 3 was faster but risked making resolution too
+  explosive.
+- Simulation recommendation: multiply the higher-DEF DEF/DEF trickle by
+  `1.5`, while keeping the case-6 defended-attack recruit at the normal
+  `amt(margin, undecided)` strength. This reduced stalemate-like outcomes
+  substantially without making Defend a clear winning strategy.
+- Reproducible simulation: `npm run simulate:battle`. The script supports
+  `DEF_TRICKLE_MULTIPLIER` and `REPELLED_TRICKLE_MULTIPLIER` for tuning.
 - Per-turn UI feedback copy not yet written.
 - How this composes with the stakes/rewards layer below is not yet
   addressed — that layer should work with either resolution mechanic.
