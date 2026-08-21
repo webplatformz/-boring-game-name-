@@ -28,6 +28,13 @@ test('keeps the mobile acknowledgement visible with content scrolled to the top'
   expect(await content.evaluate((element) => element.scrollTop)).toBe(0)
   expect(await content.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
 
+  await dialog.evaluate(async (element) => {
+    await Promise.all(
+      element
+        .getAnimations({ subtree: true })
+        .map((animation) => animation.finished),
+    )
+  })
   const before = await acknowledge.boundingBox()
   await content.evaluate((element) => { element.scrollTop = element.scrollHeight })
   const after = await acknowledge.boundingBox()
