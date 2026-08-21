@@ -5,7 +5,7 @@ import type { Member } from '../data/members'
 import { CARD_MAX_W, TIERS, partyColors } from '../theme'
 import type { Game } from '../game/useGame'
 import type { Battle as BattleHook } from '../game/useBattle'
-import type { Action, BattleResult } from '../game/battle'
+import type { Action, PollWinner } from '../game/battle'
 import { CardFront } from '../components/CardFront'
 import { CardGlow } from '../components/CardGlow'
 import { Flag } from '../components/Flag'
@@ -84,7 +84,9 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, hideStat
 
 export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
   const { t } = useI18n()
-  const { step, record, playerCard, oppCard, playerAction, oppAction, result } = battle.state
+  const { step, record, playerCard, oppCard, playerAction, oppAction, winner } = battle.state
+
+  useEffect(() => battle.reset, [battle.reset])
 
   const ownedList = useMemo(() => {
     return Object.keys(game.state.owned)
@@ -124,7 +126,7 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
           oppCard={oppCard}
           playerAction={playerAction}
           oppAction={oppAction}
-          result={result}
+          winner={winner}
           onChoose={battle.chooseAction}
           onFightAgain={battle.reset}
         />
@@ -211,7 +213,7 @@ function Arena({
   oppCard,
   playerAction,
   oppAction,
-  result,
+  winner,
   onChoose,
   onFightAgain,
 }: {
@@ -220,14 +222,14 @@ function Arena({
   oppCard: Member
   playerAction: Action | null
   oppAction: Action | null
-  result: BattleResult | null
+  winner: PollWinner | null
   onChoose: (action: Action) => void
   onFightAgain: () => void
 }) {
   const { t } = useI18n()
   const locked = playerAction !== null
   const revealed = step === 'reveal' || step === 'result'
-  const won = result?.winner === 'player'
+  const won = winner?.winner === 'player'
   const cardW = useFightCardWidth()
 
   return (
@@ -299,13 +301,13 @@ function Arena({
           </div>
         )}
 
-        {step === 'result' && result && (
+        {step === 'result' && winner && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, animation: 'riseIn 320ms ease-out' }}>
             <div style={{ fontFamily: AB, fontSize: 22, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
               {won ? t('youWon') : t('youLost')}
             </div>
             <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>
-              {result.winner === 'player'
+              {winner.winner === 'player'
                 ? playerAction === 'attack' ? t('battlePlayerAttackWin') : t('battlePlayerDefendWin')
                 : oppAction === 'attack' ? t('battleOpponentAttackWin') : t('battleOpponentDefendWin')}
             </div>

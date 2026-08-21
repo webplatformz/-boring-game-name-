@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
-import type { Action, BattleResult } from './battle'
-import { chooseAiAction, pickOpponent, resolveRound } from './battle'
+import type { Action, PollState, PollWinner } from './battle'
+import {
+  checkWin,
+  chooseAiAction,
+  DEBATE_TURN_LIMIT,
+  INITIAL_POLL,
+  pickOpponent,
+  resolveTurn,
+} from './battle'
 import type { BattleRecord } from './storage'
 import { loadBattleRecord, persistBattleRecord } from './storage'
 
@@ -21,7 +28,10 @@ export interface BattleState {
   oppCard: Member | null
   playerAction: Action | null
   oppAction: Action | null
-  result: BattleResult | null
+  pollBefore: PollState | null
+  poll: PollState | null
+  turn: number
+  winner: PollWinner | null
 }
 
 export interface Battle {
@@ -31,14 +41,21 @@ export interface Battle {
   reset: () => void
 }
 
-const INITIAL: BattleState = {
+const PICK_STATE: Omit<BattleState, 'record'> = {
   step: 'pick',
-  record: loadBattleRecord(),
   playerCard: null,
   oppCard: null,
   playerAction: null,
   oppAction: null,
-  result: null,
+  pollBefore: null,
+  poll: null,
+  turn: 1,
+  winner: null,
+}
+
+const INITIAL: BattleState = {
+  record: loadBattleRecord(),
+  ...PICK_STATE,
 }
 
 /**
@@ -56,11 +73,15 @@ export function useBattle(): Battle {
   )
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+  const actionLocked = useRef(false)
   const stateRef = useRef(state)
   stateRef.current = state
 
   const after = useCallback((ms: number, fn: () => void) => {
-    const id = setTimeout(fn, ms)
+    const id = setTimeout(() => {
+      timers.current = timers.current.filter((timer) => timer !== id)
+      fn()
+    }, ms)
     timers.current.push(id)
     return id
   }, [])
@@ -77,13 +98,19 @@ export function useBattle(): Battle {
   const pickPlayerCard = useCallback(
     (member: Member) => {
       clearTimers()
+      actionLocked.current = false
+      const oppCard = pickOpponent(member)
+      const poll = INITIAL_POLL(member, oppCard)
       patch({
         step: 'fight',
         playerCard: member,
-        oppCard: pickOpponent(member),
+        oppCard,
         playerAction: null,
         oppAction: null,
-        result: null,
+        pollBefore: poll,
+        poll,
+        turn: 1,
+        winner: null,
       })
     },
     [patch, clearTimers],
@@ -92,40 +119,82 @@ export function useBattle(): Battle {
   const chooseAction = useCallback(
     (action: Action) => {
       const s = stateRef.current
-      // Guard against double-submits: once an action is chosen the step stays
-      // 'fight' throughout the suspense delay, so also require playerAction
-      // to still be unset.
-      if (s.step !== 'fight' || s.playerAction !== null || !s.playerCard || !s.oppCard) return
+      if (
+        actionLocked.current ||
+        s.step !== 'fight' ||
+        s.playerAction !== null ||
+        !s.playerCard ||
+        !s.oppCard ||
+        !s.poll
+      ) {
+        return
+      }
+      actionLocked.current = true
       const oppAction = chooseAiAction(s.oppCard)
       patch({ playerAction: action, oppAction })
       after(BATTLE_SUSPENSE_MS, () => {
-        patch({ step: 'reveal' })
-        after(BATTLE_RESULT_MS, () => {
-          const cur = stateRef.current
-          if (!cur.playerCard || !cur.oppCard || !cur.playerAction || !cur.oppAction) return
-          const result = resolveRound(cur.playerCard, cur.playerAction, cur.oppCard, cur.oppAction)
-          const record: BattleRecord = {
-            wins: cur.record.wins + (result.winner === 'player' ? 1 : 0),
-            losses: cur.record.losses + (result.winner === 'opponent' ? 1 : 0),
+        const cur = stateRef.current
+        if (
+          !cur.playerCard ||
+          !cur.oppCard ||
+          !cur.playerAction ||
+          !cur.oppAction ||
+          !cur.poll
+        ) {
+            console.error('Debate turn lost required state before reveal')
+            clearTimers()
+            actionLocked.current = false
+            patch(PICK_STATE)
+            return
           }
-          persistBattleRecord(record)
-          patch({ step: 'result', result, record })
+        const pollBefore = cur.poll
+        const poll = resolveTurn(
+          pollBefore,
+          cur.playerCard,
+          cur.playerAction,
+          cur.oppCard,
+          cur.oppAction,
+        )
+        const winner = checkWin(
+          poll,
+          cur.turn,
+          DEBATE_TURN_LIMIT,
+          cur.playerCard,
+          cur.oppCard,
+        )
+        patch({ step: 'reveal', pollBefore, poll, winner })
+
+        after(BATTLE_RESULT_MS, () => {
+          if (winner) {
+            clearTimers()
+            const record: BattleRecord = {
+              wins: cur.record.wins + (winner.winner === 'player' ? 1 : 0),
+              losses: cur.record.losses + (winner.winner === 'opponent' ? 1 : 0),
+            }
+            persistBattleRecord(record)
+            patch({ step: 'result', record })
+            return
+          }
+
+          actionLocked.current = false
+          patch({
+            step: 'fight',
+            pollBefore: poll,
+            turn: cur.turn + 1,
+            playerAction: null,
+            oppAction: null,
+            winner: null,
+          })
         })
       })
     },
-    [patch, after],
+    [after, clearTimers, patch],
   )
 
   const reset = useCallback(() => {
     clearTimers()
-    patch({
-      step: 'pick',
-      playerCard: null,
-      oppCard: null,
-      playerAction: null,
-      oppAction: null,
-      result: null,
-    })
+    actionLocked.current = false
+    patch(PICK_STATE)
   }, [patch, clearTimers])
 
   return { state, pickPlayerCard, chooseAction, reset }

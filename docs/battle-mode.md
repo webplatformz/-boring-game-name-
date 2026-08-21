@@ -3,10 +3,10 @@
 Single-player-vs-AI debate mode built on card `atk`/`def`/`ovr` stats. The
 feature runs in-product under the name **Debate**. This
 doc tracks three layers: the **current implementation** (live), the
-**planned v2 resolution mechanic** (designed, not built), and **future
+**v2 resolution mechanic** (pure model built, product wiring pending), and **future
 stakes/rewards** (designed, not built). No votation/initiative data is
-used; no test framework exists in this repo — verification relies on
-`tsc --noEmit` / `npm run build` plus deleted scratch scripts.
+used. Model checks use Node's built-in test runner via `npm run verify:debate`;
+product verification uses `npm run build`.
 
 ## Part 1 — Current implementation (v1: Attack/Defend coin-flip)
 
@@ -61,9 +61,10 @@ counter.
 
 ## Part 2 — Planned v2: Debate (Polling Duel) (designed, not implemented)
 
-**Status: mechanics finalized, not implemented.** Replaces only the
-**round resolution** — picker, tier-matched cross-party `pickOpponent`, AI
-weighting, and persistence scaffolding all carry over.
+**Status: pure model, cross-party matchmaking, and multi-turn hook implemented;
+Debate UI wiring pending.** Replaces only the **round resolution** — picker,
+tier-matched cross-party `pickOpponent`, AI weighting, and persistence
+scaffolding all carry over.
 
 ### Concept
 
@@ -163,7 +164,12 @@ if (desiredMine + desiredOpp === 0) {
 } else if (desiredMine + desiredOpp <= undecided) {
   recruitMine = desiredMine; recruitOpp = desiredOpp
 } else {
-  recruitMine = round(undecided * desiredMine / (desiredMine + desiredOpp)); recruitOpp = undecided - recruitMine
+  exactMine = undecided * desiredMine / (desiredMine + desiredOpp)
+  exactOpp = undecided * desiredOpp / (desiredMine + desiredOpp)
+  recruitMine = floor(exactMine); recruitOpp = floor(exactOpp)
+  // Give an indivisible remainder to the larger fractional share. If both
+  // shares are exact halves, compare OVR, then use an injectable coin flip.
+  assignRemainderByFractionThenOvrThenCoinFlip()
 }
 ```
 
@@ -179,6 +185,8 @@ if (desiredMine + desiredOpp === 0) {
 - `desiredMine + desiredOpp === 0` can't happen with real stats (min ATK 45
   vs. `K = 4` needs ATK < 3 to floor to 0) — the guard exists only for
   future retuning or debuffed-stat content, not a live concern.
+- Scarce Attack/Attack recruitment allocates indivisible points by fractional
+  share, then OVR, then a coin flip. This avoids a player-slot rounding bias.
 - A side's Rather pool hitting 0 (fully converted to Firm) makes that side
   permanently immune to further destabilize/backlash — intentional, the
   payoff for consistent defending.
@@ -208,18 +216,20 @@ rest is Undecided. Tied OVR → fully neutral start (0/0/100/0/0).
 
 Undecided voters count for neither side either way.
 
-### Architecture changes needed
+### Architecture
 
-- `battle.ts`: `resolveRound` → `PollState` + `INITIAL_POLL(...)` +
+- `debate.ts`: pure `PollState` + `INITIAL_POLL(...)` +
   `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction): PollState`
-  (pure, per-turn) + `checkWin(poll, turnsPlayed, turnLimit)`.
-  `pickOpponent` gains the cross-party filter described below;
-  `chooseAiAction` remains weighted by the card's stats and is called once per
-  turn.
-- `useBattle.ts`: `'fight'`/`'reveal'` steps now loop per turn. New state:
+  (pure, per-turn) + `checkWin(...)`, centralized tuning and poll invariants,
+  and injectable randomness for deterministic verification.
+- `battle.ts`: re-exports the Debate model while retaining v1 `resolveRound`;
+  `pickOpponent` now prefers cross-party candidates. `chooseAiAction` remains
+  weighted by the card's stats and will be called once per turn.
+- `useBattle.ts`: `'fight'`/`'reveal'` steps loop per turn. State includes
   `poll`, `turn` (1–5), `winner: { winner, majority } | null` (replaces
-  single-shot `BattleResult`). Same timer-cancellation and double-submit
-  guard patterns apply **per turn now**, not just once per battle.
+  single-shot `BattleResult`), plus `pollBefore` for reveal animation.
+  Timer cancellation and a synchronous double-submit guard apply per turn;
+  leaving the Battle screen resets an active debate.
 - `Battle.tsx`: card-focused `Arena` layout replaced/supplemented with a
   five-bucket horizontal poll meter; needs a "turn N / 5" indicator and
   per-turn reveal copy (why an attack whiffed vs. succeeded). Not designed
@@ -247,7 +257,7 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
    `pickOpponent` so it first applies the rarity window and card exclusion,
    then removes the player's party if that leaves any candidates; fall back
    to the full eligible rarity pool only when necessary. Then implement the
-   pure poll model in `src/game/battle.ts`. Add
+   pure poll model in `src/game/debate.ts`, re-exported by `battle.ts`. Add
    `PollState`, `PollWinner`, `INITIAL_POLL(playerCard, oppCard)`,
    `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction, options?)`,
    and `checkWin(poll, turnsPlayed, turnLimit)`. Keep `pickOpponent` and
@@ -263,7 +273,7 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
    destabilize/recruit; attack tie; case-6 secure/backlash/recruit using the
    pre-turn pool; Attack/Attack scarcity; early majority; five-turn winner;
    OVR tie-break; and coin-flip tie-break. Verify symmetry by mirroring every
-   non-tie case. Do not introduce a test framework solely for this feature.
+   non-tie case. Use the dependency-free built-in `node:test` runner.
 
 4. **Replace the one-shot hook flow in `src/game/useBattle.ts`.** Preserve the
    existing `pick → fight → reveal → result` timing and cancellation guards,
@@ -302,10 +312,10 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
 ### Open TODOs and tuning notes
 
 - Reward differential between majority vs. turn-limit win (see Part 3).
-- Simulation recommendation: start with `K = 4`. With stat-weighted actions,
-  K = 4 produced about 17–20% majority wins by turn 5 in the tested model;
-  K = 6 produced about 3%. K = 3 was faster but risked making resolution too
-  explosive.
+- Simulation recommendation: start with `K = 4`. With stat-weighted actions
+  and the frozen `1.5x`/normal-strength tuning, K = 4 produced 23.5% majority
+  wins by turn 5 in the 2026-08-21 seeded 100,000-trial run; K = 6 produced
+  3.9%. K = 3 was faster but risked making resolution too explosive.
 - Simulation recommendation: multiply the higher-DEF DEF/DEF trickle by
   `1.5`, while keeping the case-6 defended-attack recruit at the normal
   `amt(margin, undecided)` strength. This reduced stalemate-like outcomes

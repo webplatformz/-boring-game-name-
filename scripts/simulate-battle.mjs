@@ -8,8 +8,8 @@ const cards = data.members
 const tiers = ['common', 'uncommon', 'rare', 'ultra', 'legend', 'mythic']
 const trials = Number(process.env.TRIALS ?? 100000)
 const seedStart = Number(process.env.SEED ?? 20260821)
-const defTrickleMultiplier = Number(process.env.DEF_TRICKLE_MULTIPLIER ?? 1)
-const repelledTrickleMultiplier = Number(process.env.REPELLED_TRICKLE_MULTIPLIER ?? 0)
+const defTrickleMultiplier = Number(process.env.DEF_TRICKLE_MULTIPLIER ?? 1.5)
+const repelledTrickleMultiplier = Number(process.env.REPELLED_TRICKLE_MULTIPLIER ?? 1)
 
 function rng(seed) {
   return () => {
@@ -36,7 +36,7 @@ function amount(margin, pool, k) {
   return margin > 0 ? Math.min(pool, Math.max(1, Math.round(margin / k))) : 0
 }
 
-function resolve(s, a, pa, b, pb, k) {
+function resolve(s, a, pa, b, pb, k, random) {
   const n = clone(s)
   const atk = (side) => side === 'player' ? a.ratings.atk : b.ratings.atk
   const def = (side) => side === 'player' ? a.ratings.def : b.ratings.def
@@ -59,7 +59,16 @@ function resolve(s, a, pa, b, pb, k) {
     const wantO = Math.round(atk('opponent') / k)
     let recruitP, recruitO
     if (wantP + wantO <= n.undecided) [recruitP, recruitO] = [wantP, wantO]
-    else { recruitP = Math.round(n.undecided * wantP / (wantP + wantO)); recruitO = n.undecided - recruitP }
+    else {
+      const exactP = n.undecided * wantP / (wantP + wantO)
+      const exactO = n.undecided * wantO / (wantP + wantO)
+      recruitP = Math.floor(exactP); recruitO = Math.floor(exactO)
+      if (recruitP + recruitO < n.undecided) {
+        const fractionP = exactP - recruitP, fractionO = exactO - recruitO
+        if (fractionP > fractionO || (fractionP === fractionO && (a.ratings.ovr > b.ratings.ovr || (a.ratings.ovr === b.ratings.ovr && random() < .5)))) recruitP++
+        else recruitO++
+      }
+    }
     n.undecided -= recruitP + recruitO; n.ratherPlayer += recruitP; n.ratherOpponent += recruitO
     return n
   }
@@ -129,7 +138,7 @@ function run(k, playerPolicy, opponentPolicy, seed, accept = () => true) {
     let state = initial(a, b), moved = 0, out
     for (let t = 1; t <= 5; t++) {
       const before = state
-      state = resolve(state, a, pp(), b, op(), k)
+      state = resolve(state, a, pp(), b, op(), k, random)
       const delta = 100 - state.undecided - (100 - before.undecided)
       moved += Math.abs(delta)
       out = result(state, t, a, b)

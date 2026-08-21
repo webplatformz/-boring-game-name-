@@ -42,8 +42,14 @@ test('keeps the footer after every tab screen, including battle results', async 
 
   await page.getByRole('button', { name: 'BATTLE', exact: true }).click()
   await page.getByText('Thomas Aeschi', { exact: true }).click()
-  await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
-  await expect(page.getByText(/YOU (?:WON!|LOST)/)).toBeVisible({ timeout: 5_000 })
+  const attack = page.getByRole('button', { name: 'ATTACK', exact: true })
+  const outcome = page.getByText(/YOU (?:WON!|LOST)/)
+  for (let turn = 0; turn < 5; turn++) {
+    await expect(attack.or(outcome)).toBeVisible({ timeout: 5_000 })
+    if (await outcome.isVisible()) break
+    await attack.click()
+  }
+  await expect(outcome).toBeVisible({ timeout: 5_000 })
 
   const fightAgain = page.getByRole('button', { name: 'FIGHT AGAIN' })
   await expectBeforeFooter(page, fightAgain)

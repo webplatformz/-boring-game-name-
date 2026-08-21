@@ -1,7 +1,26 @@
 import { MEMBERS, type Member } from '../data/members'
 import { RARITY_ORDER } from '../theme'
+import type { DebateAction } from './debate'
 
-export type Action = 'attack' | 'defend'
+export {
+  checkWin,
+  DEBATE_TURN_LIMIT,
+  DEFAULT_DEBATE_RULES,
+  INITIAL_POLL,
+  resolveTurn,
+} from './debate'
+export type {
+  CheckWinOptions,
+  DebateAction,
+  DebateCard,
+  DebateRules,
+  PollSide,
+  PollState,
+  PollWinner,
+  ResolveTurnOptions,
+} from './debate'
+
+export type Action = DebateAction
 
 export interface BattleResult {
   winner: 'player' | 'opponent'
@@ -11,7 +30,8 @@ export interface BattleResult {
 /**
  * Draw a random opponent matched to the player's card by rarity tier (same
  * tier, or one tier up/down), regardless of ownership. Excludes the
- * player's chosen card so battles never mirror a card against itself.
+ * player's chosen card so battles never mirror a card against itself. Prefers
+ * a different party whenever the eligible rarity window permits it.
  * Tier-matching keeps fights meaningful in both directions — a strong card
  * no longer just stomps random weak opponents, and a weak card isn't
  * thrown against something wildly out of its league.
@@ -22,6 +42,8 @@ export function pickOpponent(playerCard: Member): Member {
   let pool = MEMBERS.filter(
     (m) => m.id !== playerCard.id && nearbyTiers.has(m.ratings.rarity),
   )
+  const crossPartyPool = pool.filter((m) => m.partyCode !== playerCard.partyCode)
+  if (crossPartyPool.length > 0) pool = crossPartyPool
   // Defensive fallback in case a tier window is ever empty (shouldn't happen
   // with the current data, but never leave the AI with no opponent to pick).
   if (pool.length === 0) pool = MEMBERS.filter((m) => m.id !== playerCard.id)
