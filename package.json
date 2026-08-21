@@ -13,7 +13,7 @@
     "data:financing": "node scripts/import-efk-financing.mjs",
     "data:build": "node scripts/build-members.mjs",
     "simulate:battle": "node scripts/simulate-battle.mjs",
-    "verify:debate": "node --experimental-strip-types --test unit-tests/debate.test.ts",
+    "verify:debate": "node --experimental-strip-types --test unit-tests/*.test.ts",
     "check:provenance": "node scripts/check-provenance.mjs",
     "check:privacy": "node scripts/check-privacy.mjs",
     "check:portraits": "node scripts/check-portrait-credits.mjs",

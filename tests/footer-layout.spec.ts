@@ -40,7 +40,7 @@ test('keeps the footer after every tab screen, including battle results', async 
   await page.getByRole('button', { name: 'TRADE', exact: true }).click()
   await expectBeforeFooter(page, page.locator('.screen-fill'))
 
-  await page.getByRole('button', { name: 'BATTLE', exact: true }).click()
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await page.getByText('Thomas Aeschi', { exact: true }).click()
   const attack = page.getByRole('button', { name: 'ATTACK', exact: true })
   const outcome = page.getByText(/YOU (?:WON!|LOST)/)
@@ -51,7 +51,7 @@ test('keeps the footer after every tab screen, including battle results', async 
   }
   await expect(outcome).toBeVisible({ timeout: 5_000 })
 
-  const fightAgain = page.getByRole('button', { name: 'FIGHT AGAIN' })
+  const fightAgain = page.getByRole('button', { name: 'DEBATE AGAIN' })
   await expectBeforeFooter(page, fightAgain)
 
   // At the app's regular desktop-test height, the reserved result/footer

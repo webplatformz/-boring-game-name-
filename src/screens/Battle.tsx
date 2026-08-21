@@ -4,8 +4,20 @@ import { MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
 import { CARD_MAX_W, TIERS, partyColors } from '../theme'
 import type { Game } from '../game/useGame'
-import type { Battle as BattleHook } from '../game/useBattle'
-import type { Action, PollWinner } from '../game/battle'
+import type {
+  Battle as BattleHook,
+  CompletedDebateTurn,
+} from '../game/useBattle'
+import {
+  DEBATE_TURN_LIMIT,
+  type Action,
+  type PollState,
+  type PollWinner,
+} from '../game/battle'
+import {
+  getDebateFeedbackKey,
+  getPollDeltas,
+} from '../game/debateFeedback'
 import { CardFront } from '../components/CardFront'
 import { CardGlow } from '../components/CardGlow'
 import { Flag } from '../components/Flag'
@@ -14,20 +26,9 @@ import { useI18n } from '../i18n'
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
-/** Width used for the two stacked cards during the fight/reveal steps —
- * smaller than the full-size card so both fit one viewport with the
- * action buttons below. Capped statically; the runtime hook below can
- * shrink it further on short viewports so the buttons stay reachable. */
-const FIGHT_CARD_W_MAX = Math.min(0.6 * CARD_MAX_W, 210)
+const DEBATE_CARD_W_MAX = Math.min(0.4 * CARD_MAX_W, 125)
 const CARD_ASPECT = 504 / 336
-
-/** Non-card vertical chrome around the two stacked cards inside the Battle
- * screen. Besides the navigation, labels and buttons, this reserves room for
- * the shared legal footer and the taller result panel. The cards keep one
- * stable size throughout fight/reveal/result, avoiding a resize when the
- * win/loss controls appear. Normal document flow remains the final fallback
- * on screens too short to fit even the minimum readable card size. */
-const ARENA_CHROME_H = 447
+const DEBATE_CHROME_H = 465
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -44,15 +45,13 @@ function useFightCardWidth(): number {
 }
 
 function computeFightCardWidth(): number {
-  if (typeof window === 'undefined') return FIGHT_CARD_W_MAX
+  if (typeof window === 'undefined') return DEBATE_CARD_W_MAX
   const vh = window.innerHeight
   const vw = window.innerWidth
-  // Two cards stack vertically; solve for width from remaining height.
-  const heightBudget = Math.max(0, vh - ARENA_CHROME_H)
+  const heightBudget = Math.max(0, vh - DEBATE_CHROME_H)
   const widthFromHeight = heightBudget / 2 / CARD_ASPECT
-  // Also respect narrow viewports (side padding ~20px each side).
   const widthFromWidth = vw - 40
-  return Math.max(112, Math.min(FIGHT_CARD_W_MAX, widthFromHeight, widthFromWidth))
+  return Math.max(100, Math.min(DEBATE_CARD_W_MAX, widthFromHeight, widthFromWidth))
 }
 
 /**
@@ -62,12 +61,11 @@ function computeFightCardWidth(): number {
  * the whole thing down with a CSS transform, so every proportion (text,
  * wedge, bars) shrinks together correctly.
  */
-function ScaledCard({ width, member, foil = true, highlightStat = null, hideStats = false, style }: {
+function ScaledCard({ width, member, foil = true, highlightStat = null, style }: {
   width: number
   member: Member
   foil?: boolean
   highlightStat?: 'atk' | 'def' | null
-  hideStats?: boolean
   style?: CSSProperties
 }) {
   const scale = width / CARD_MAX_W
@@ -76,7 +74,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, hideStat
     <div style={{ width, height, position: 'relative' }}>
       <div style={{ width: CARD_MAX_W, height: CARD_MAX_W * (504 / 336), position: 'absolute', top: 0, left: 0, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
         <CardGlow rarity={member.ratings.rarity} />
-        <CardFront member={member} foil={foil} highlightStat={highlightStat} hideStats={hideStats} style={style} />
+        <CardFront member={member} foil={foil} highlightStat={highlightStat} style={style} />
       </div>
     </div>
   )
@@ -84,7 +82,18 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, hideStat
 
 export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
   const { t } = useI18n()
-  const { step, record, playerCard, oppCard, playerAction, oppAction, winner } = battle.state
+  const {
+    step,
+    record,
+    playerCard,
+    oppCard,
+    playerAction,
+    oppAction,
+    poll,
+    lastTurn,
+    turn,
+    winner,
+  } = battle.state
 
   useEffect(() => battle.reset, [battle.reset])
 
@@ -119,13 +128,19 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
        * never unmount+remount between them — that full-tree swap was the
        * cause of the jarring instant cut into the result screen. Only the
        * footer content (buttons → status → banner) changes underneath. */}
-      {(step === 'fight' || step === 'reveal' || step === 'result') && playerCard && oppCard && (
+      {(step === 'fight' || step === 'reveal' || step === 'result') &&
+        playerCard &&
+        oppCard &&
+        poll && (
         <Arena
           step={step}
           playerCard={playerCard}
           oppCard={oppCard}
           playerAction={playerAction}
           oppAction={oppAction}
+          poll={poll}
+          lastTurn={lastTurn}
+          turn={turn}
           winner={winner}
           onChoose={battle.chooseAction}
           onFightAgain={battle.reset}
@@ -198,14 +213,7 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
   )
 }
 
-// ── fight / reveal / result: one persistent arena, opponent stacked above
-// the player's own card ─────────────────────────────────────────────────
-// Vertical stacking (rather than side by side) is deliberate — this app is
-// mobile-width first, and two full-height cards side by side would be
-// cramped. The player's card always anchors the bottom so it's unambiguous
-// which one is "yours". Kept as a single component across all three steps
-// (rather than swapping between separate Fight/Result components) so the
-// cards themselves never unmount — only the footer content changes.
+// ── debate arena: compact persistent cards around the animated poll ──────────
 
 function Arena({
   step,
@@ -213,6 +221,9 @@ function Arena({
   oppCard,
   playerAction,
   oppAction,
+  poll,
+  lastTurn,
+  turn,
   winner,
   onChoose,
   onFightAgain,
@@ -222,6 +233,9 @@ function Arena({
   oppCard: Member
   playerAction: Action | null
   oppAction: Action | null
+  poll: PollState
+  lastTurn: CompletedDebateTurn | null
+  turn: number
   winner: PollWinner | null
   onChoose: (action: Action) => void
   onFightAgain: () => void
@@ -233,49 +247,51 @@ function Arena({
   const cardW = useFightCardWidth()
 
   return (
-    // No overflowY:auto here — that would force overflow-x to 'auto' too
-    // (per the CSS overflow spec) and clip CardGlow's horizontal bleed.
-    // Card sizes are chosen to fit typical viewports without scrolling.
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, paddingBottom: 4 }}>
+    <div
+      style={{
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 9,
+        paddingBottom: 4,
+      }}
+    >
       <BattleCard
+        side="opponent"
         label={t('opponent')}
         labelColor="#FF9EC4"
         member={oppCard}
         width={cardW}
         highlightStat={revealed ? statFor(oppAction) : null}
-        actionLabel={revealed ? oppAction : null}
         bump={step === 'reveal' && oppAction === 'attack' ? 'down' : null}
         dimmed={step === 'result' && won}
-        hideStats={!locked}
       />
 
-      <div
-        style={{
-          flex: 'none',
-          fontFamily: AB,
-          fontSize: 13,
-          letterSpacing: '.1em',
-          color: '#5C7391',
-          animation: step === 'reveal' ? 'vsFlash 420ms ease-out' : undefined,
-        }}
-      >
-        {t('versus')}
-      </div>
+      <PollMeter
+        step={step}
+        turn={turn}
+        poll={poll}
+        lastTurn={lastTurn}
+        playerCard={playerCard}
+        oppCard={oppCard}
+        playerAction={playerAction}
+        oppAction={oppAction}
+      />
 
       <BattleCard
+        side="player"
         label={t('yourCard')}
         labelColor="#8FEDE3"
         member={playerCard}
         width={cardW}
         highlightStat={revealed ? statFor(playerAction) : null}
-        actionLabel={revealed ? playerAction : null}
         bump={step === 'reveal' && playerAction === 'attack' ? 'up' : null}
         dimmed={step === 'result' && !won}
       />
 
-      {/* Footer swaps content (buttons → locking/resolving status → result
-       * banner) but stays the same box, so nothing else jumps around it. */}
-      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 320, marginTop: 6, minHeight: 68 }}>
+      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 340, marginTop: 4, minHeight: 82 }}>
         {step === 'fight' && !locked && (
           <div style={{ display: 'flex', gap: 10, width: '100%' }}>
             <button onClick={() => onChoose('attack')} style={actionButtonStyle('#FF3D8B')}>
@@ -287,7 +303,7 @@ function Arena({
           </div>
         )}
 
-        {step !== 'result' && locked && (
+        {step === 'fight' && locked && (
           <div
             style={{
               fontFamily: MONO,
@@ -297,7 +313,7 @@ function Arena({
               animation: 'glowPulse 1000ms ease-in-out infinite',
             }}
           >
-            {step === 'reveal' ? t('resolving') : t('lockingIn')}
+            {t('lockingIn')}
           </div>
         )}
 
@@ -308,17 +324,213 @@ function Arena({
             </div>
             <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>
               {winner.winner === 'player'
-                ? playerAction === 'attack' ? t('battlePlayerAttackWin') : t('battlePlayerDefendWin')
-                : oppAction === 'attack' ? t('battleOpponentAttackWin') : t('battleOpponentDefendWin')}
+                ? winner.majority
+                  ? t('debateMajorityWin')
+                  : t('debateTurnLimitWin')
+                : winner.majority
+                  ? t('debateMajorityLoss')
+                  : t('debateTurnLimitLoss')}
             </div>
             <button
               onClick={onFightAgain}
               style={{ marginTop: 2, padding: '13px 26px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
             >
-              {t('fightAgain')}
+              {t('debateAgain')}
             </button>
           </div>
         )}
+      </div>
+    </div>
+  )
+}
+
+const POLL_SEGMENTS: {
+  bucket: keyof PollState
+  color: string
+  label: 'pollFirm' | 'pollLean' | 'pollUndecided'
+  side: 'player' | 'neutral' | 'opponent'
+}[] = [
+  { bucket: 'firmPlayer', color: '#168E85', label: 'pollFirm', side: 'player' },
+  { bucket: 'ratherPlayer', color: '#45D8CB', label: 'pollLean', side: 'player' },
+  { bucket: 'undecided', color: '#52647A', label: 'pollUndecided', side: 'neutral' },
+  { bucket: 'ratherOpponent', color: '#FF87B8', label: 'pollLean', side: 'opponent' },
+  { bucket: 'firmOpponent', color: '#C93672', label: 'pollFirm', side: 'opponent' },
+]
+
+function PollMeter({
+  step,
+  turn,
+  poll,
+  lastTurn,
+  playerCard,
+  oppCard,
+  playerAction,
+  oppAction,
+}: {
+  step: 'fight' | 'reveal' | 'result'
+  turn: number
+  poll: PollState
+  lastTurn: CompletedDebateTurn | null
+  playerCard: Member
+  oppCard: Member
+  playerAction: Action | null
+  oppAction: Action | null
+}) {
+  const { t } = useI18n()
+  const revealed = step === 'reveal' || step === 'result'
+  const feedbackKey = lastTurn
+    ? getDebateFeedbackKey(
+        playerCard,
+        lastTurn.playerAction,
+        oppCard,
+        lastTurn.oppAction,
+      )
+    : null
+  const deltas = lastTurn
+    ? getPollDeltas(lastTurn.pollBefore, lastTurn.poll)
+    : []
+  const deltaLabels: Record<keyof PollState, string> = {
+    firmPlayer: `◆ ${t('pollFirm')}`,
+    ratherPlayer: `◆ ${t('pollLean')}`,
+    undecided: t('pollUndecided'),
+    ratherOpponent: `${t('pollLean')} ◆`,
+    firmOpponent: `${t('pollFirm')} ◆`,
+  }
+
+  return (
+    <div
+      data-testid="debate-poll"
+      aria-label={t('debatePollAria', {
+        firmPlayer: poll.firmPlayer,
+        ratherPlayer: poll.ratherPlayer,
+        undecided: poll.undecided,
+        ratherOpponent: poll.ratherOpponent,
+        firmOpponent: poll.firmOpponent,
+      })}
+      style={{
+        flex: 'none',
+        width: '100%',
+        maxWidth: 390,
+        padding: '10px 10px 9px',
+        borderRadius: 13,
+        border: '1px solid rgba(234,242,255,.1)',
+        background: 'rgba(11,18,29,.92)',
+      }}
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto minmax(0,1fr)', alignItems: 'start', gap: 8 }}>
+        <PollSideAction
+          side="player"
+          label={`◆ ${t('debateYou')}`}
+          action={revealed ? playerAction : null}
+        />
+        <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.13em', color: '#9FB6D2' }}>
+          {t('debateTurn', { current: turn, total: DEBATE_TURN_LIMIT })}
+        </span>
+        <PollSideAction
+          side="opponent"
+          label={`${t('opponent')} ◆`}
+          action={revealed ? oppAction : null}
+        />
+      </div>
+
+      <div
+        data-testid="poll-track"
+        style={{ position: 'relative', display: 'flex', height: 26, marginTop: 8, overflow: 'hidden', borderRadius: 7, background: '#263446' }}
+      >
+        {POLL_SEGMENTS.map(({ bucket, color }) => (
+          <div
+            key={bucket}
+            data-bucket={bucket}
+            style={{
+              width: `${poll[bucket]}%`,
+              flex: 'none',
+              minWidth: 0,
+              background: color,
+              transition: 'width 1600ms cubic-bezier(.22,.75,.2,1)',
+            }}
+          />
+        ))}
+        <div
+          data-testid="poll-midpoint"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            zIndex: 1,
+            top: 0,
+            bottom: 0,
+            left: '50%',
+            width: 2,
+            transform: 'translateX(-1px)',
+            background: '#F4F8FF',
+            boxShadow: '0 0 0 1px rgba(7,12,19,.65),0 0 8px rgba(234,242,255,.7)',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', marginTop: 5 }}>
+        {POLL_SEGMENTS.map(({ bucket, label, side }) => (
+          <div key={bucket} style={{ minWidth: 0, textAlign: 'center' }}>
+            <div style={{ fontFamily: AB, fontSize: 8, letterSpacing: '.04em', color: '#91A7C1', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {side === 'player' ? '◆ ' : ''}{t(label)}{side === 'opponent' ? ' ◆' : ''}
+            </div>
+            <div style={{ marginTop: 1, fontFamily: MONO, fontSize: 11, color: '#EAF2FF' }}>
+              {poll[bucket]}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        data-testid="debate-feedback"
+        role="status"
+        aria-live="polite"
+        style={{ minHeight: 54, marginTop: 7, paddingTop: 7, borderTop: '1px solid rgba(234,242,255,.08)', textAlign: 'center' }}
+      >
+        {feedbackKey ? (
+          <>
+            <div style={{ fontSize: 11, lineHeight: 1.35, color: '#C9D8EA' }}>{t(feedbackKey)}</div>
+            <div data-testid="poll-deltas" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '3px 8px', marginTop: 5 }}>
+              {deltas.map(({ bucket, amount }) => (
+                <span key={bucket} style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '.04em', color: amount > 0 ? '#FFD87A' : '#7890AC' }}>
+                  {deltaLabels[bucket]} {amount > 0 ? '+' : ''}{amount}
+                </span>
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function PollSideAction({
+  side,
+  label,
+  action,
+}: {
+  side: 'player' | 'opponent'
+  label: string
+  action: Action | null
+}) {
+  const { t } = useI18n()
+  return (
+    <div style={{ minWidth: 0, textAlign: side === 'player' ? 'left' : 'right' }}>
+      <div style={{ fontFamily: AB, fontSize: 9, letterSpacing: '.12em', color: side === 'player' ? '#45D8CB' : '#FF87B8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        {label}
+      </div>
+      <div
+        style={{
+          minHeight: 10,
+          marginTop: 2,
+          fontFamily: MONO,
+          fontSize: 8,
+          letterSpacing: '.08em',
+          color: action === 'attack' ? '#FF87B8' : '#72E2D8',
+          visibility: action ? 'visible' : 'hidden',
+        }}
+      >
+        {action ? (action === 'attack' ? t('attacked') : t('defended')) : '\u00a0'}
       </div>
     </div>
   )
@@ -346,30 +558,28 @@ function actionButtonStyle(color: string): CSSProperties {
 }
 
 function BattleCard({
+  side,
   label,
   labelColor,
   member,
   width,
   highlightStat,
-  actionLabel,
   bump,
   dimmed = false,
-  hideStats = false,
 }: {
+  side: 'player' | 'opponent'
   label: string
   labelColor: string
   member: Member
   width: number
   highlightStat: 'atk' | 'def' | null
-  actionLabel: Action | null
   bump: 'up' | 'down' | null
   dimmed?: boolean
-  hideStats?: boolean
 }) {
-  const { t } = useI18n()
   const tier = TIERS[member.ratings.rarity]
   return (
     <div
+      data-testid={`debate-card-${side}`}
       style={{
         flex: 'none',
         display: 'flex',
@@ -386,23 +596,9 @@ function BattleCard({
           width={width}
           member={member}
           highlightStat={highlightStat}
-          hideStats={hideStats}
           style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${tier.c}8c` }}
         />
       </div>
-      {actionLabel && (
-        <div
-          style={{
-            fontFamily: AB,
-            fontSize: 11,
-            letterSpacing: '.08em',
-            color: actionLabel === 'attack' ? '#FF5FA2' : '#2FD3C4',
-            animation: 'popIn 220ms ease-out',
-          }}
-        >
-          {actionLabel === 'attack' ? t('attacked') : t('defended')}
-        </div>
-      )}
     </div>
   )
 }

@@ -59,12 +59,12 @@ counter.
   on them if one appears in a battle. Included in the pool anyway,
   deferred intentionally.
 
-## Part 2 — Planned v2: Debate (Polling Duel) (designed, not implemented)
+## Part 2 — Debate (Polling Duel)
 
-**Status: pure model, cross-party matchmaking, and multi-turn hook implemented;
-Debate UI wiring pending.** Replaces only the **round resolution** — picker,
-tier-matched cross-party `pickOpponent`, AI weighting, and persistence
-scaffolding all carry over.
+**Status: pure model, cross-party matchmaking, multi-turn hook, and localized
+responsive UI implemented; persistence counters pending.** Replaces only the
+**round resolution** — picker, tier-matched cross-party `pickOpponent`, AI
+weighting, and persistence scaffolding all carry over.
 
 ### Concept
 
@@ -227,13 +227,15 @@ Undecided voters count for neither side either way.
   weighted by the card's stats and will be called once per turn.
 - `useBattle.ts`: `'fight'`/`'reveal'` steps loop per turn. State includes
   `poll`, `turn` (1–5), `winner: { winner, majority } | null` (replaces
-  single-shot `BattleResult`), plus `pollBefore` for reveal animation.
+  single-shot `BattleResult`), plus a `lastTurn` snapshot so feedback persists
+  while the next action is chosen.
   Timer cancellation and a synchronous double-submit guard apply per turn;
   leaving the Battle screen resets an active debate.
-- `Battle.tsx`: card-focused `Arena` layout replaced/supplemented with a
-  five-bucket horizontal poll meter; needs a "turn N / 5" indicator and
-  per-turn reveal copy (why an attack whiffed vs. succeeded). Not designed
-  in detail yet.
+- `Battle.tsx`: compact persistent cards surround an animated five-bucket poll
+  meter with a fixed 50/50 marker, turn indicator, neutral per-turn explanation,
+  signed bucket deltas that persist until the next result, fixed action-reveal
+  slots, visible opponent stats, and distinct majority versus turn-limit result
+  copy.
 - `storage.ts`: `BattleRecord` gains `majorityWins`/`turnLimitWins` fields
   (decided — turn-limit wins should be tracked separately since they're
   meant to feel less decisive), validated the same way as `wins`/`losses`.
@@ -286,9 +288,10 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
 5. **Implement the Debate UI in `src/screens/Battle.tsx`.** Replace or
    supplement the card-focused arena with five labeled buckets:
    `Firm (mine)`, `Rather (mine)`, `Undecided`, `Rather (opponent)`, and
-   `Firm (opponent)`. Show `turn / 5`, conceal opponent stats until the action
-   is committed, and provide one concise, politically neutral reveal
-   explanation for each outcome row. Copy may say “ATK exceeded DEF,”
+   `Firm (opponent)`. Show `turn / 5`, keep both cards' stats visible, reveal
+   actions in fixed-height poll-header slots, and provide one concise,
+   politically neutral reveal explanation for each outcome row that remains
+   until the next turn resolves. Copy may say “ATK exceeded DEF,”
    “defense secured support,” or “the poll remained tied,” but must not imply
    that the portrayed member said, believes, supports, or opposes anything.
    The result view must show the final split and distinguish majority wins from
@@ -322,7 +325,6 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
   substantially without making Defend a clear winning strategy.
 - Reproducible simulation: `npm run simulate:battle`. The script supports
   `DEF_TRICKLE_MULTIPLIER` and `REPELLED_TRICKLE_MULTIPLIER` for tuning.
-- Per-turn UI feedback copy not yet written.
 - How this composes with the stakes/rewards layer below is not yet
   addressed — that layer should work with either resolution mechanic.
 

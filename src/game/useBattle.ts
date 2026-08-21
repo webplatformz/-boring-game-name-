@@ -21,6 +21,13 @@ export const BATTLE_SUSPENSE_MS = 900
  * the result banner — kept long enough to actually read what was chosen. */
 export const BATTLE_RESULT_MS = 1800
 
+export interface CompletedDebateTurn {
+  pollBefore: PollState
+  poll: PollState
+  playerAction: Action
+  oppAction: Action
+}
+
 export interface BattleState {
   step: BattleStep
   record: BattleRecord
@@ -28,8 +35,8 @@ export interface BattleState {
   oppCard: Member | null
   playerAction: Action | null
   oppAction: Action | null
-  pollBefore: PollState | null
   poll: PollState | null
+  lastTurn: CompletedDebateTurn | null
   turn: number
   winner: PollWinner | null
 }
@@ -47,8 +54,8 @@ const PICK_STATE: Omit<BattleState, 'record'> = {
   oppCard: null,
   playerAction: null,
   oppAction: null,
-  pollBefore: null,
   poll: null,
+  lastTurn: null,
   turn: 1,
   winner: null,
 }
@@ -107,8 +114,8 @@ export function useBattle(): Battle {
         oppCard,
         playerAction: null,
         oppAction: null,
-        pollBefore: poll,
         poll,
+        lastTurn: null,
         turn: 1,
         winner: null,
       })
@@ -141,12 +148,12 @@ export function useBattle(): Battle {
           !cur.oppAction ||
           !cur.poll
         ) {
-            console.error('Debate turn lost required state before reveal')
-            clearTimers()
-            actionLocked.current = false
-            patch(PICK_STATE)
-            return
-          }
+          console.error('Debate turn lost required state before reveal')
+          clearTimers()
+          actionLocked.current = false
+          patch(PICK_STATE)
+          return
+        }
         const pollBefore = cur.poll
         const poll = resolveTurn(
           pollBefore,
@@ -162,7 +169,17 @@ export function useBattle(): Battle {
           cur.playerCard,
           cur.oppCard,
         )
-        patch({ step: 'reveal', pollBefore, poll, winner })
+        patch({
+          step: 'reveal',
+          poll,
+          winner,
+          lastTurn: {
+            pollBefore,
+            poll,
+            playerAction: cur.playerAction,
+            oppAction: cur.oppAction,
+          },
+        })
 
         after(BATTLE_RESULT_MS, () => {
           if (winner) {
@@ -179,7 +196,6 @@ export function useBattle(): Battle {
           actionLocked.current = false
           patch({
             step: 'fight',
-            pollBefore: poll,
             turn: cur.turn + 1,
             playerAction: null,
             oppAction: null,

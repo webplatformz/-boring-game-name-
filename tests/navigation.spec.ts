@@ -17,8 +17,8 @@ test('keeps compact tab navigation in the header on desktop', async ({ page }) =
   expect(box?.height).toBeLessThan(55)
   await expect(page.getByRole('button', { name: 'PACKS' })).toHaveAttribute('aria-current', 'page')
 
-  await page.getByRole('button', { name: 'BATTLE' }).click()
-  await expect(page.getByRole('button', { name: 'BATTLE' })).toHaveAttribute('aria-current', 'page')
+  await page.getByRole('button', { name: 'DEBATE' }).click()
+  await expect(page.getByRole('button', { name: 'DEBATE' })).toHaveAttribute('aria-current', 'page')
   await expect(navigation).toBeVisible()
 })
 
