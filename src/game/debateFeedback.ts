@@ -5,6 +5,7 @@ import type {
 } from './debate'
 
 export type DebateFeedbackKey =
+  | 'debateFeedbackNoMovement'
   | 'debateFeedbackDefendLead'
   | 'debateFeedbackDefendTie'
   | 'debateFeedbackAttackRace'
@@ -31,7 +32,12 @@ export function getDebateFeedbackKey(
   playerAction: DebateAction,
   oppCard: DebateCard,
   oppAction: DebateAction,
+  before: PollState,
+  after: PollState,
 ): DebateFeedbackKey {
+  if (getPollDeltas(before, after).length === 0) {
+    return 'debateFeedbackNoMovement'
+  }
   if (playerAction === 'defend' && oppAction === 'defend') {
     return playerCard.ratings.def === oppCard.ratings.def
       ? 'debateFeedbackDefendTie'

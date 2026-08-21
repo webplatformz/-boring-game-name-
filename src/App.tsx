@@ -1,13 +1,13 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
-import { useBattle } from './game/useBattle'
+import { useDebate } from './game/useDebate'
 import { useAchievements } from './game/useAchievements'
 import { recordLegalPageOpened, LEGAL_PAGES } from './game/achievements'
 import { Home } from './screens/Home'
 import { PackOpening } from './screens/PackOpening'
 import { Collection } from './screens/Collection'
 import { Trade } from './screens/Trade'
-import { Battle } from './screens/Battle'
+import { Debate } from './screens/Debate'
 import { Methodology } from './screens/Methodology'
 import { Disclaimer } from './screens/Disclaimer'
 import { Privacy } from './screens/Privacy'
@@ -32,18 +32,18 @@ function infoPageFromHash(): InfoPage | null {
 
 export function App() {
   const game = useGame()
-  const battle = useBattle()
+  const debate = useDebate()
   const achievements = useAchievements(game)
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const { screen } = game.state
-  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'battle' || screen === 'trade')
-  // Home and an active battle can grow taller than a short phone viewport.
+  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
+  // Home and an active debate can grow taller than a short phone viewport.
   // Keep them in normal page flow so the legal footer always follows their
   // content. Picker/data-heavy tab screens retain their viewport-constrained
   // internal scrollers.
   const naturalFlowScreen = !infoPage && (
-    screen === 'home' || (screen === 'battle' && battle.state.step !== 'pick')
+    screen === 'home' || (screen === 'debate' && debate.state.step !== 'pick')
   )
 
   useEffect(() => {
@@ -118,7 +118,7 @@ export function App() {
               {screen === 'home' && <Home game={game} unlockedAchievements={achievements.unlockedCount} totalAchievements={achievements.totalCount} />}
               {(screen === 'tear' || screen === 'reveal') && <PackOpening game={game} />}
               {screen === 'collection' && <Collection game={game} />}
-              {screen === 'battle' && <Battle game={game} battle={battle} />}
+              {screen === 'debate' && <Debate game={game} debate={debate} />}
               {screen === 'trade' && <Trade game={game} />}
             </>
           )}
@@ -130,4 +130,3 @@ export function App() {
     </div>
   )
 }
-

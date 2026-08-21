@@ -212,6 +212,23 @@ test('checkWin breaks a support tie by OVR, then injected randomness', () => {
   )
 })
 
+test('resolves a full five-turn debate chain before applying the final tie-break', () => {
+  const player = card(4, 4, 70)
+  const opponent = card(4, 4, 70)
+  let poll = INITIAL_POLL(player, opponent)
+
+  for (let turn = 1; turn <= 5; turn++) {
+    poll = resolveTurn(poll, player, 'attack', opponent, 'attack')
+    const winner = checkWin(poll, turn, 5, player, opponent, {
+      random: () => 0.25,
+    })
+    if (turn < 5) assert.equal(winner, null)
+    else assert.deepEqual(winner, { winner: 'player', majority: false })
+  }
+
+  assert.deepEqual(poll, neutral(5, 90, 5))
+})
+
 test('resolveTurn rejects malformed polls instead of hiding arithmetic errors', () => {
   const malformed = { ...neutral(0, 100, 0), undecided: 99 }
   assert.throws(

@@ -290,7 +290,7 @@ a:hover {
   }
 }
 
-/* Battle mode: pulses a soft glow, in the stat's own colour, around the
+/* Debate mode: pulses a soft glow, in the stat's own colour, around the
    ATK/DEF number that decided a round. Colour supplied via --stat-glow. */
 @keyframes statHighlight {
   0%,
@@ -308,7 +308,7 @@ a:hover {
   }
 }
 
-/* Battle mode: the attacking card lunges toward its opponent and springs
+/* Debate mode: the attacking card lunges toward its opponent and springs
    back, like a physical clash. Direction (up/down) depends on whether the
    attacker is the top (opponent) or bottom (player) card in the stack. */
 @keyframes bumpDown {

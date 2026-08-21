@@ -5,15 +5,15 @@ import type { Member } from '../data/members'
 import { CARD_MAX_W, TIERS, partyColors } from '../theme'
 import type { Game } from '../game/useGame'
 import type {
-  Battle as BattleHook,
+  Debate as DebateHook,
   CompletedDebateTurn,
-} from '../game/useBattle'
+} from '../game/useDebate'
 import {
   DEBATE_TURN_LIMIT,
-  type Action,
+  type DebateAction,
   type PollState,
   type PollWinner,
-} from '../game/battle'
+} from '../game/debate'
 import {
   getDebateFeedbackKey,
   getPollDeltas,
@@ -80,7 +80,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, style }:
   )
 }
 
-export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
+export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
   const { t } = useI18n()
   const {
     step,
@@ -93,9 +93,9 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
     lastTurn,
     turn,
     winner,
-  } = battle.state
+  } = debate.state
 
-  useEffect(() => battle.reset, [battle.reset])
+  useEffect(() => debate.reset, [debate.reset])
 
   const ownedList = useMemo(() => {
     return Object.keys(game.state.owned)
@@ -114,7 +114,7 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-        <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('battleTitle')}</div>
+        <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('debateTitle')}</div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontFamily: MONO, fontSize: 11, letterSpacing: '.1em' }}>
           <span style={{ color: '#8FEDE3' }}>{t('winsShort', { count: record.wins })}</span>
           <span style={{ color: '#3E5170' }}>·</span>
@@ -122,7 +122,7 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
         </div>
       </div>
 
-      {step === 'pick' && <Picker ownedList={ownedList} onPick={battle.pickPlayerCard} onGoHome={game.goHome} />}
+      {step === 'pick' && <Picker ownedList={ownedList} onPick={debate.pickPlayerCard} onGoHome={game.goHome} />}
 
       {/* fight/reveal/result share one persistent Arena instance so the cards
        * never unmount+remount between them — that full-tree swap was the
@@ -142,8 +142,8 @@ export function Battle({ game, battle }: { game: Game; battle: BattleHook }) {
           lastTurn={lastTurn}
           turn={turn}
           winner={winner}
-          onChoose={battle.chooseAction}
-          onFightAgain={battle.reset}
+          onChoose={debate.chooseAction}
+          onFightAgain={debate.reset}
         />
       )}
     </div>
@@ -231,13 +231,13 @@ function Arena({
   step: 'fight' | 'reveal' | 'result'
   playerCard: Member
   oppCard: Member
-  playerAction: Action | null
-  oppAction: Action | null
+  playerAction: DebateAction | null
+  oppAction: DebateAction | null
   poll: PollState
   lastTurn: CompletedDebateTurn | null
   turn: number
   winner: PollWinner | null
-  onChoose: (action: Action) => void
+  onChoose: (action: DebateAction) => void
   onFightAgain: () => void
 }) {
   const { t } = useI18n()
@@ -258,7 +258,7 @@ function Arena({
         paddingBottom: 4,
       }}
     >
-      <BattleCard
+      <DebateCard
         side="opponent"
         label={t('opponent')}
         labelColor="#FF9EC4"
@@ -280,7 +280,7 @@ function Arena({
         oppAction={oppAction}
       />
 
-      <BattleCard
+      <DebateCard
         side="player"
         label={t('yourCard')}
         labelColor="#8FEDE3"
@@ -373,8 +373,8 @@ function PollMeter({
   lastTurn: CompletedDebateTurn | null
   playerCard: Member
   oppCard: Member
-  playerAction: Action | null
-  oppAction: Action | null
+  playerAction: DebateAction | null
+  oppAction: DebateAction | null
 }) {
   const { t } = useI18n()
   const revealed = step === 'reveal' || step === 'result'
@@ -384,6 +384,8 @@ function PollMeter({
         lastTurn.playerAction,
         oppCard,
         lastTurn.oppAction,
+        lastTurn.pollBefore,
+        lastTurn.poll,
       )
     : null
   const deltas = lastTurn
@@ -511,7 +513,7 @@ function PollSideAction({
 }: {
   side: 'player' | 'opponent'
   label: string
-  action: Action | null
+  action: DebateAction | null
 }) {
   const { t } = useI18n()
   return (
@@ -536,7 +538,7 @@ function PollSideAction({
   )
 }
 
-function statFor(action: Action | null): 'atk' | 'def' | null {
+function statFor(action: DebateAction | null): 'atk' | 'def' | null {
   if (action === 'attack') return 'atk'
   if (action === 'defend') return 'def'
   return null
@@ -557,7 +559,7 @@ function actionButtonStyle(color: string): CSSProperties {
   }
 }
 
-function BattleCard({
+function DebateCard({
   side,
   label,
   labelColor,

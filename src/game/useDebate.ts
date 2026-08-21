@@ -1,54 +1,58 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { Member } from '../data/members'
-import type { Action, PollState, PollWinner } from './battle'
+import { MEMBERS, type Member } from '../data/members'
+import { RARITY_ORDER } from '../theme'
+import type {
+  DebateAction,
+  PollState,
+  PollWinner,
+} from './debate'
 import {
   checkWin,
-  chooseAiAction,
   DEBATE_TURN_LIMIT,
   INITIAL_POLL,
-  pickOpponent,
   resolveTurn,
-} from './battle'
-import type { BattleRecord } from './storage'
-import { loadBattleRecord, persistBattleRecord } from './storage'
+} from './debate'
+import { chooseAiAction, pickOpponentFrom } from './debateMatch'
+import type { DebateRecord } from './storage'
+import { loadDebateRecord, persistDebateRecord } from './storage'
 
-export type BattleStep = 'pick' | 'fight' | 'reveal' | 'result'
+export type DebateStep = 'pick' | 'fight' | 'reveal' | 'result'
 
 /** Delay between the player's tap and both actions being revealed, so the
  * choice lands with some suspense instead of resolving instantly. */
-export const BATTLE_SUSPENSE_MS = 900
+export const DEBATE_SUSPENSE_MS = 900
 /** Delay between the reveal (stat highlight + action labels appearing) and
  * the result banner — kept long enough to actually read what was chosen. */
-export const BATTLE_RESULT_MS = 1800
+export const DEBATE_RESULT_MS = 1800
 
 export interface CompletedDebateTurn {
   pollBefore: PollState
   poll: PollState
-  playerAction: Action
-  oppAction: Action
+  playerAction: DebateAction
+  oppAction: DebateAction
 }
 
-export interface BattleState {
-  step: BattleStep
-  record: BattleRecord
+export interface DebateState {
+  step: DebateStep
+  record: DebateRecord
   playerCard: Member | null
   oppCard: Member | null
-  playerAction: Action | null
-  oppAction: Action | null
+  playerAction: DebateAction | null
+  oppAction: DebateAction | null
   poll: PollState | null
   lastTurn: CompletedDebateTurn | null
   turn: number
   winner: PollWinner | null
 }
 
-export interface Battle {
-  state: BattleState
+export interface Debate {
+  state: DebateState
   pickPlayerCard: (member: Member) => void
-  chooseAction: (action: Action) => void
+  chooseAction: (action: DebateAction) => void
   reset: () => void
 }
 
-const PICK_STATE: Omit<BattleState, 'record'> = {
+const PICK_STATE: Omit<DebateState, 'record'> = {
   step: 'pick',
   playerCard: null,
   oppCard: null,
@@ -60,21 +64,21 @@ const PICK_STATE: Omit<BattleState, 'record'> = {
   winner: null,
 }
 
-const INITIAL: BattleState = {
-  record: loadBattleRecord(),
+const INITIAL: DebateState = {
+  record: loadDebateRecord(),
   ...PICK_STATE,
 }
 
 /**
- * Standalone battle-mode state machine, kept separate from useGame's
+ * Standalone Debate state machine, kept separate from useGame's
  * pack-opening flow since the two are unrelated. Screen-level transition
- * into/out of 'battle' still lives in useGame/App.
+ * into/out of 'debate' still lives in useGame/App.
  */
-export function useBattle(): Battle {
-  const [state, setState] = useState<BattleState>(INITIAL)
+export function useDebate(): Debate {
+  const [state, setState] = useState<DebateState>(INITIAL)
 
   const patch = useCallback(
-    (p: Partial<BattleState> | ((s: BattleState) => Partial<BattleState>)) =>
+    (p: Partial<DebateState> | ((s: DebateState) => Partial<DebateState>)) =>
       setState((s) => ({ ...s, ...(typeof p === 'function' ? p(s) : p) })),
     [],
   )
@@ -106,7 +110,7 @@ export function useBattle(): Battle {
     (member: Member) => {
       clearTimers()
       actionLocked.current = false
-      const oppCard = pickOpponent(member)
+      const oppCard = pickOpponentFrom(MEMBERS, member, RARITY_ORDER)
       const poll = INITIAL_POLL(member, oppCard)
       patch({
         step: 'fight',
@@ -124,7 +128,7 @@ export function useBattle(): Battle {
   )
 
   const chooseAction = useCallback(
-    (action: Action) => {
+    (action: DebateAction) => {
       const s = stateRef.current
       if (
         actionLocked.current ||
@@ -139,7 +143,7 @@ export function useBattle(): Battle {
       actionLocked.current = true
       const oppAction = chooseAiAction(s.oppCard)
       patch({ playerAction: action, oppAction })
-      after(BATTLE_SUSPENSE_MS, () => {
+      after(DEBATE_SUSPENSE_MS, () => {
         const cur = stateRef.current
         if (
           !cur.playerCard ||
@@ -181,14 +185,22 @@ export function useBattle(): Battle {
           },
         })
 
-        after(BATTLE_RESULT_MS, () => {
+        after(DEBATE_RESULT_MS, () => {
           if (winner) {
             clearTimers()
-            const record: BattleRecord = {
-              wins: cur.record.wins + (winner.winner === 'player' ? 1 : 0),
+            const majorityWins =
+              cur.record.majorityWins +
+              (winner.winner === 'player' && winner.majority ? 1 : 0)
+            const turnLimitWins =
+              cur.record.turnLimitWins +
+              (winner.winner === 'player' && !winner.majority ? 1 : 0)
+            const record: DebateRecord = {
+              wins: majorityWins + turnLimitWins,
               losses: cur.record.losses + (winner.winner === 'opponent' ? 1 : 0),
+              majorityWins,
+              turnLimitWins,
             }
-            persistBattleRecord(record)
+            persistDebateRecord(record)
             patch({ step: 'result', record })
             return
           }

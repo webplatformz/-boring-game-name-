@@ -204,46 +204,61 @@ export function persistPrefs(prefs: CollectionPrefs): void {
   }
 }
 
-// ── battle mode record ──────────────────────────────────────────────────────
+// ── Debate record ───────────────────────────────────────────────────────────
 // Kept apart from the save, same reasoning as collection prefs: a corrupt or
 // absent value should never cost the player their packs/cards.
 
-export interface BattleRecord {
+export interface DebateRecord {
   wins: number
   losses: number
+  majorityWins: number
+  turnLimitWins: number
 }
 
-const BATTLE_KEY = 'bundeshaus-battle-v1'
+// Keep the selected v2 key stable across the internal Battle-to-Debate rename.
+const DEBATE_KEY = 'bundeshaus-battle-v2'
 
-export const DEFAULT_BATTLE_RECORD: BattleRecord = {
+export const DEFAULT_DEBATE_RECORD: DebateRecord = {
   wins: 0,
   losses: 0,
+  majorityWins: 0,
+  turnLimitWins: 0,
 }
 
-export function loadBattleRecord(): BattleRecord {
+export function loadDebateRecord(): DebateRecord {
   try {
-    const raw = localStorage.getItem(BATTLE_KEY)
-    if (!raw) return DEFAULT_BATTLE_RECORD
-    const r = JSON.parse(raw) as Partial<BattleRecord>
+    const raw = localStorage.getItem(DEBATE_KEY)
+    if (!raw) return DEFAULT_DEBATE_RECORD
+    const r = JSON.parse(raw) as Partial<DebateRecord>
+    const majorityWins = isValidCount(r.majorityWins) ? r.majorityWins : 0
+    const turnLimitWins = isValidCount(r.turnLimitWins) ? r.turnLimitWins : 0
     return {
-      wins: isValidCount(r.wins) ? r.wins : DEFAULT_BATTLE_RECORD.wins,
-      losses: isValidCount(r.losses) ? r.losses : DEFAULT_BATTLE_RECORD.losses,
+      wins: majorityWins + turnLimitWins,
+      losses: isValidCount(r.losses) ? r.losses : DEFAULT_DEBATE_RECORD.losses,
+      majorityWins,
+      turnLimitWins,
     }
   } catch {
-    return DEFAULT_BATTLE_RECORD
+    return DEFAULT_DEBATE_RECORD
   }
 }
 
-export function persistBattleRecord(record: BattleRecord): void {
+export function persistDebateRecord(record: DebateRecord): void {
   try {
-    localStorage.setItem(BATTLE_KEY, JSON.stringify(record))
+    localStorage.setItem(
+      DEBATE_KEY,
+      JSON.stringify({
+        ...record,
+        wins: record.majorityWins + record.turnLimitWins,
+      }),
+    )
   } catch {
     /* ignore quota / private-mode failures */
   }
 }
 
 // ── achievement progress ────────────────────────────────────────────────────
-// Kept apart from the save, same reasoning as collection prefs and the battle
+// Kept apart from the save, same reasoning as collection prefs and the Debate
 // record: a corrupt or absent value should never cost the player their
 // packs/cards, and unlocked achievements should never regress.
 

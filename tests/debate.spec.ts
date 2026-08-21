@@ -1,5 +1,11 @@
 import { expect, test, type Page } from '@playwright/test'
 
+declare global {
+  interface Window {
+    __debateRandomCalls: number
+  }
+}
+
 const OWNED_MEMBER_ID = 4053
 
 async function seedOwnedCard(page: Page, deterministic = false) {
@@ -17,7 +23,13 @@ async function seedOwnedCard(page: Page, deterministic = false) {
           refillAt: null,
         }),
       )
-      if (deterministic) Math.random = () => 0
+      if (deterministic) {
+        window.__debateRandomCalls = 0
+        Math.random = () => {
+          window.__debateRandomCalls += 1
+          return 0
+        }
+      }
     },
     { memberId: OWNED_MEMBER_ID, deterministic },
   )
@@ -36,8 +48,65 @@ test('leaving Debate cancels the active turn and returns to the picker', async (
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await expect(page.getByText('CHOOSE YOUR DEBATER', { exact: true })).toBeVisible()
   await expect
-    .poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-battle-v1')))
+    .poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-battle-v2')))
     .toBeNull()
+})
+
+test('leaving during a revealed turn prevents delayed record persistence', async ({ page }) => {
+  await seedOwnedCard(page, true)
+
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
+  await expect(page.getByTestId('debate-feedback')).not.toBeEmpty({
+    timeout: 2_000,
+  })
+  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.waitForTimeout(2_500)
+
+  await expect
+    .poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-battle-v2')))
+    .toBeNull()
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await expect(page.getByText('CHOOSE YOUR DEBATER', { exact: true })).toBeVisible()
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await expect(page.getByRole('button', { name: 'ATTACK', exact: true })).toBeEnabled()
+})
+
+test('Debate starts a fresh v2 record instead of classifying legacy wins', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'bundeshaus-battle-v1',
+      JSON.stringify({ wins: 12, losses: 4 }),
+    )
+  })
+  await seedOwnedCard(page)
+
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await expect(page.getByText('0W', { exact: true })).toBeVisible()
+  await expect(page.getByText('0L', { exact: true })).toBeVisible()
+  await expect
+    .poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-battle-v1')))
+    .not.toBeNull()
+})
+
+test('Debate derives total wins and rejects malformed v2 counters', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'bundeshaus-battle-v2',
+      JSON.stringify({
+        wins: 99,
+        losses: -1,
+        majorityWins: 2.5,
+        turnLimitWins: 3,
+      }),
+    )
+  })
+  await seedOwnedCard(page)
+
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await expect(page.getByText('3W', { exact: true })).toBeVisible()
+  await expect(page.getByText('0L', { exact: true })).toBeVisible()
 })
 
 test('Debate reveals poll movement and automatically advances the turn', async ({ page }) => {
@@ -100,4 +169,30 @@ test('Debate reveals poll movement and automatically advances the turn', async (
   expect(playerBox?.width).toBeLessThanOrEqual(125)
   expect(pollBox?.width).toBeLessThanOrEqual(320)
   expect(horizontalOverflow).toBeLessThanOrEqual(0)
+})
+
+test('Debate ignores a repeated action submission in the same event loop', async ({ page }) => {
+  await seedOwnedCard(page, true)
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+
+  const randomCallsBefore = await page.evaluate(
+    () => window.__debateRandomCalls,
+  )
+  await page.getByRole('button', { name: 'ATTACK', exact: true }).evaluate((button) => {
+    const actionButton = button as HTMLButtonElement
+    actionButton.click()
+    actionButton.click()
+  })
+  await expect(page.getByTestId('debate-feedback')).not.toBeEmpty({
+    timeout: 2_000,
+  })
+  const randomCallsAfter = await page.evaluate(
+    () => window.__debateRandomCalls,
+  )
+
+  expect(randomCallsAfter - randomCallsBefore).toBe(1)
+  await expect(page.getByTestId('debate-poll')).toContainText('TURN 2 / 5', {
+    timeout: 4_000,
+  })
 })

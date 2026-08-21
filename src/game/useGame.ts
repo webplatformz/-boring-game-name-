@@ -11,7 +11,7 @@ import {
   syncMemberScoreCache,
 } from './storage'
 
-export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade' | 'battle'
+export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade' | 'debate'
 
 export interface GameState {
   screen: Screen
@@ -75,7 +75,7 @@ export interface Game {
   finishPack: () => void
   goHome: () => void
   goCollection: () => void
-  goBattle: () => void
+  goDebate: () => void
   goTrade: () => void
   executeTrade: (tradedMemberIds: number[], sourceRarity: RarityKey) => void
   /** Grants extra unopened packs (used by achievement rewards) and persists them. */
@@ -249,7 +249,7 @@ export function useGame(): Game {
   const goHome = useCallback(() => patch({ screen: 'home' }), [patch])
   const goCollection = useCallback(() => patch({ screen: 'collection' }), [patch])
   const goTrade = useCallback(() => patch({ screen: 'trade' }), [patch])
-  const goBattle = useCallback(() => patch({ screen: 'battle' }), [patch])
+  const goDebate = useCallback(() => patch({ screen: 'debate' }), [patch])
 
   const executeTrade = useCallback(
     (tradedMemberIds: number[], sourceRarity: RarityKey) => {
@@ -346,7 +346,7 @@ export function useGame(): Game {
     goTrade,
     executeTrade,
     grantBonusPacks,
-    goBattle,
+    goDebate,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   }
 }

@@ -37,12 +37,12 @@ Linked only from the Home screen, next to the stats panel (not in the tab bar).
 - [ ] **Trade Veteran** — Complete 100 trade-ins
 - [ ] **Trade Master** — Complete 1000 trade-ins
 
-## Battle
-Let's skip these battle achievements for the moment, as there are bigger changes incoming for the battle system.
+## Debate
+Debate achievements remain deferred while rewards and stakes are designed.
 
-- [ ] **First Victory** — Win a battle
-- [ ] **Battle Veteran** — Win 10 battles
-- [ ] **Battle Champion** — Win 100 battles
+- [ ] **First Victory** — Win a Debate
+- [ ] **Debate Veteran** — Win 10 Debates
+- [ ] **Debate Champion** — Win 100 Debates
 
 ## Streaks
 

@@ -28,7 +28,7 @@ async function expectBeforeFooter(page: Page, content: Locator) {
   expect((contentBox?.y ?? 0) + (contentBox?.height ?? 0)).toBeLessThanOrEqual((footerBox?.y ?? 0) + 1)
 }
 
-test('keeps the footer after every tab screen, including battle results', async ({ page }) => {
+test('keeps the footer after every tab screen, including debate results', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 667 })
   await openSeededApp(page)
 
@@ -50,12 +50,26 @@ test('keeps the footer after every tab screen, including battle results', async 
     await attack.click()
   }
   await expect(outcome).toBeVisible({ timeout: 5_000 })
+  const debateRecord = await page.evaluate(() => {
+    const raw = localStorage.getItem('bundeshaus-battle-v2')
+    return raw ? JSON.parse(raw) as {
+      wins: number
+      losses: number
+      majorityWins: number
+      turnLimitWins: number
+    } : null
+  })
+  expect(debateRecord).not.toBeNull()
+  expect(debateRecord?.wins).toBe(
+    (debateRecord?.majorityWins ?? 0) + (debateRecord?.turnLimitWins ?? 0),
+  )
+  expect((debateRecord?.wins ?? 0) + (debateRecord?.losses ?? 0)).toBe(1)
 
   const fightAgain = page.getByRole('button', { name: 'DEBATE AGAIN' })
   await expectBeforeFooter(page, fightAgain)
 
   // At the app's regular desktop-test height, the reserved result/footer
-  // chrome should keep the entire battle and footer inside the viewport.
+  // chrome should keep the entire debate and footer inside the viewport.
   await page.setViewportSize({ width: 690, height: 900 })
   await expectBeforeFooter(page, fightAgain)
   const desktopFooter = await page.getByRole('contentinfo').boundingBox()

@@ -80,7 +80,7 @@ const en: PrivacyContent = {
       { title: 'Public office-holder identity', body: 'Name, portrait, age, party, canton, council, tenure, committees and public roles.' },
       { title: 'Political activity — specially protected', body: 'Party and parliamentary activity, authored affairs, voting participation, committee work, declared interests and published campaign-finance disclosures. These records can reveal political activity or views.' },
       { title: 'Project-created inferences', body: 'Sector classifications, component strengths, ATK, DEF, OVR, rarity, card order and rankings. These are calculated editorial game outputs, not official assessments.' },
-      { title: 'Visitor game state', body: 'Packs, collection, preferences, battle record, language and disclaimer acknowledgement are stored in the visitor’s browser. The app does not transmit this game state to the project.' },
+      { title: 'Visitor game state', body: 'Packs, collection, preferences, debate record, language and disclaimer acknowledgement are stored in the visitor’s browser. The app does not transmit this game state to the project.' },
       { title: 'Technical access and analytics data', body: 'GitHub Pages may receive IP address, request time, requested URL, browser information and security logs when serving the site. Cloudflare Web Analytics receives cookie-free page-view and performance metrics such as host and path, referrer, browser or device information and approximate country.' },
     ],
     purposesTitle: 'Purposes',

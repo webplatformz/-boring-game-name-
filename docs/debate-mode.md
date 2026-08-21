@@ -1,70 +1,24 @@
 # Debate Mode
 
-Single-player-vs-AI debate mode built on card `atk`/`def`/`ovr` stats. The
-feature runs in-product under the name **Debate**. This
-doc tracks three layers: the **current implementation** (live), the
-**v2 resolution mechanic** (pure model built, product wiring pending), and **future
-stakes/rewards** (designed, not built). No votation/initiative data is
-used. Model checks use Node's built-in test runner via `npm run verify:debate`;
-product verification uses `npm run build`.
+Single-player-vs-AI Debate mode built on card `atk`/`def`/`ovr` stats.
+The five-turn polling duel is fully wired in the product. Future stakes and
+rewards remain design-only. No votation/initiative data is used.
 
-## Part 1 — Current implementation (v1: Attack/Defend coin-flip)
+Model checks use Node's built-in test runner via `npm run verify:debate`;
+the production-rule simulation runs via `npm run simulate:debate`.
 
-**Status: implemented and verified.**
+## Legacy history
 
-Each battle is one sudden-death round: player picks a card from `owned`,
-faces an AI opponent drawn from `MEMBERS` **tier-matched** to the player's
-card (same rarity ± 1, never the same card, and never the same party when
-another eligible option exists — `pickOpponent` in `src/game/battle.ts`),
-both secretly choose Attack or Defend, and a single
-stat comparison decides the winner. No rewards beyond a persisted win/loss
-counter.
+The removed v1 mode resolved one Attack/Defend choice as sudden death. Its
+browser-only `bundeshaus-battle-v1` records remain untouched because those wins
+cannot be truthfully classified as Debate majority or turn-limit wins. No v1
+resolver or product route remains.
 
-**Resolution rules** (`resolveRound`):
-- Attack vs Attack → higher `atk` wins.
-- Defend vs Defend → higher `def` wins (sudden death always needs a winner).
-- Attack vs Defend → attacker wins if `atk > defender.def`, else defender wins.
-- Ties → compare `ovr`, then coin-flip.
+## Current implementation — Debate polling duel
 
-**AI action selection** (`chooseAiAction`): `P(attack) = atk / (atk + def)`.
-
-**Architecture:**
-- `src/game/battle.ts` — pure logic: `pickOpponent`, `chooseAiAction`, `resolveRound`.
-- `src/game/useBattle.ts` — standalone hook (not merged into `useGame`),
-  state machine `pick → fight → reveal → result`. Only the `'battle'`
-  screen transition (`goBattle()`) lives in `useGame`/`App.tsx`. Handles
-  timer cancellation on reset/unmount and a double-submit guard on actions.
-  Timing: `BATTLE_SUSPENSE_MS = 900` (tap → reveal), `BATTLE_RESULT_MS = 1800`
-  (reveal → result banner) — tuned up from 600/500 so players can actually
-  read what was chosen.
-- `src/screens/Battle.tsx` — `Picker` (table-row fighter selection, with a
-  "NO FIGHTERS YET" empty state), `Arena` (one persistent component shared
-  across fight/reveal/result so cards never unmount between steps — only
-  the footer swaps between buttons → "LOCKING IN…"/"RESOLVING…" status text
-  → win/lose banner), `ScaledCard` (renders `CardFront`/`CardGlow` at native
-  330px size and shrinks via CSS `transform: scale()`, since those
-  components use fixed-px sizing that doesn't scale responsively).
-- `src/game/storage.ts` — `BattleRecord { wins, losses }` under a separate
-  `bundeshaus-battle-v1` key, validated as finite non-negative integers
-  per-field (falls back safely on corrupt/missing localStorage).
-- `src/components/CardFront.tsx` — `highlightStat` prop (pulsing glow on
-  the deciding stat via a `statHighlight` keyframe) and `hideStats` prop
-  (masks the opponent's ATK/DEF with `?`/hatched bars until the player
-  commits an action, so their stats are secret beforehand).
-- Reveal juice: attacking card "bumps" toward the opponent (`bumpUp`/
-  `bumpDown` keyframes) with a `vsFlash` pulse on the VS divider; result
-  screen dims the losing card in place rather than resizing.
-- **Known limitation**: mythic cards hide their ATK/DEF block entirely
-  (`CardFront.tsx`), so `highlightStat`/`hideStats` have no visible effect
-  on them if one appears in a battle. Included in the pool anyway,
-  deferred intentionally.
-
-## Part 2 — Debate (Polling Duel)
-
-**Status: pure model, cross-party matchmaking, multi-turn hook, and localized
-responsive UI implemented; persistence counters pending.** Replaces only the
-**round resolution** — picker, tier-matched cross-party `pickOpponent`, AI
-weighting, and persistence scaffolding all carry over.
+**Status: implemented and verified.** The picker uses tier-matched,
+cross-party-preferred matchmaking, the AI weights actions by card stats, and
+each Debate runs for up to five turns.
 
 ### Concept
 
@@ -73,7 +27,7 @@ portrayed person's political opinions, positions, or statements. Feedback
 copy must describe only card stats, chosen actions, poll movement, and game
 rules.
 
-Instead of one coin-flip, a battle becomes a debate over a simulated public
+Instead of one coin-flip, a Debate runs over a simulated public
 opinion poll across up to **5 turns**. A pool of 100 points is split into
 five buckets:
 
@@ -222,44 +176,39 @@ Undecided voters count for neither side either way.
   `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction): PollState`
   (pure, per-turn) + `checkWin(...)`, centralized tuning and poll invariants,
   and injectable randomness for deterministic verification.
-- `battle.ts`: re-exports the Debate model while retaining v1 `resolveRound`;
-  `pickOpponent` now prefers cross-party candidates. `chooseAiAction` remains
-  weighted by the card's stats and will be called once per turn.
-- `useBattle.ts`: `'fight'`/`'reveal'` steps loop per turn. State includes
+- `debateMatch.ts`: pure cross-party-preferred matchmaking and stat-weighted
+  `chooseAiAction`, shared by the app and simulator.
+- `useDebate.ts`: `'fight'`/`'reveal'` steps loop per turn. State includes
   `poll`, `turn` (1–5), `winner: { winner, majority } | null` (replaces
-  single-shot `BattleResult`), plus a `lastTurn` snapshot so feedback persists
+  single-shot v1 result), plus a `lastTurn` snapshot so feedback persists
   while the next action is chosen.
   Timer cancellation and a synchronous double-submit guard apply per turn;
-  leaving the Battle screen resets an active debate.
-- `Battle.tsx`: compact persistent cards surround an animated five-bucket poll
+  leaving the Debate screen resets an active debate.
+- `Debate.tsx`: compact persistent cards surround an animated five-bucket poll
   meter with a fixed 50/50 marker, turn indicator, neutral per-turn explanation,
   signed bucket deltas that persist until the next result, fixed action-reveal
   slots, visible opponent stats, and distinct majority versus turn-limit result
   copy.
-- `storage.ts`: `BattleRecord` gains `majorityWins`/`turnLimitWins` fields
-  (decided — turn-limit wins should be tracked separately since they're
-  meant to feel less decisive), validated the same way as `wins`/`losses`.
-  `wins` stays as its own field (`= majorityWins + turnLimitWins`) so
-  existing UI doesn't need to change shape immediately.
+- `storage.ts`: `DebateRecord` includes validated `majorityWins` and
+  `turnLimitWins`; `wins` is persisted as their derived sum so the existing UI
+  keeps its total. Debate uses a fresh `bundeshaus-battle-v2` key because v1
+  sudden-death wins cannot be truthfully assigned to either category.
 
-### Implementation plan
+### Completed implementation sequence
 
-The following sequence is ready for handover. The pure model must land before
-the hook or UI work begins; the UI should not duplicate poll arithmetic.
+The feature was delivered in this order so UI code never duplicated poll
+arithmetic:
 
-1. **Freeze the v2 rules and interfaces.** Treat `K = 4`, the `1.5x` higher-DEF
+1. **Freeze the rules and interfaces.** Treat `K = 4`, the `1.5x` higher-DEF
    DEF/DEF trickle, and the normal-strength case-6 defender recruit as the
-   initial tuning. Confirm that case-6 recruitment uses `undecidedBefore` and
-   that all other deltas are calculated from one pre-turn snapshot. Keep
-   `resolveRound` available until the Debate screen is wired, unless the
-   branch explicitly replaces v1. Use Debate consistently for the new screen,
-   state labels, result copy, and analytics names.
+   initial tuning. Case-6 recruitment uses `undecidedBefore`; all other deltas
+   are calculated from one pre-turn snapshot.
 
 2. **Implement opponent selection and the pure poll model.** Update
-   `pickOpponent` so it first applies the rarity window and card exclusion,
+   `pickOpponentFrom` so it first applies the rarity window and card exclusion,
    then removes the player's party if that leaves any candidates; fall back
    to the full eligible rarity pool only when necessary. Then implement the
-   pure poll model in `src/game/debate.ts`, re-exported by `battle.ts`. Add
+   pure poll model in `src/game/debate.ts`. Add
    `PollState`, `PollWinner`, `INITIAL_POLL(playerCard, oppCard)`,
    `resolveTurn(poll, playerCard, playerAction, oppCard, oppAction, options?)`,
    and `checkWin(poll, turnsPlayed, turnLimit)`. Keep `pickOpponent` and
@@ -269,7 +218,7 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
    than 100.
 
 3. **Add model-level verification before UI work.** Use the existing
-   `scripts/simulate-battle.mjs` as a regression/sensitivity tool and add
+   `scripts/simulate-debate.mts` as a regression/sensitivity tool and add
    deterministic hand-check cases for: tied OVR initialization; lean in both
    directions; DEF/DEF secure plus boosted trickle; attack victory with
    destabilize/recruit; attack tie; case-6 secure/backlash/recruit using the
@@ -277,15 +226,15 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
    OVR tie-break; and coin-flip tie-break. Verify symmetry by mirroring every
    non-tie case. Use the dependency-free built-in `node:test` runner.
 
-4. **Replace the one-shot hook flow in `src/game/useBattle.ts`.** Preserve the
+4. **Replace the one-shot hook flow in `src/game/useDebate.ts`.** Preserve the
    existing `pick → fight → reveal → result` timing and cancellation guards,
    but make `fight`/`reveal` represent one turn. Store `poll`, `turn`,
    `winner`, and the locked actions in state. On reveal, resolve exactly once,
    check for a majority, then either show the result or advance to the next
    turn. Retain the double-submit guard per turn and clear timers on reset,
-   unmount, and a completed battle.
+   unmount, and a completed Debate.
 
-5. **Implement the Debate UI in `src/screens/Battle.tsx`.** Replace or
+5. **Implement the Debate UI in `src/screens/Debate.tsx`.** Replace or
    supplement the card-focused arena with five labeled buckets:
    `Firm (mine)`, `Rather (mine)`, `Undecided`, `Rather (opponent)`, and
    `Firm (opponent)`. Show `turn / 5`, keep both cards' stats visible, reveal
@@ -298,39 +247,43 @@ the hook or UI work begins; the UI should not duplicate poll arithmetic.
    turn-limit wins. Preserve the existing empty-picker, responsive layout, and
    card persistence behavior.
 
-6. **Update persistence after the loop works.** Extend `BattleRecord` with
-   validated `majorityWins` and `turnLimitWins` fields while retaining
+6. **Update persistence after the loop works.** `DebateRecord` uses validated
+   `majorityWins` and `turnLimitWins` fields while retaining
    `wins = majorityWins + turnLimitWins` for existing UI compatibility.
-   Treat missing fields as zero and reject malformed or negative values using
-   the established storage validation pattern. Do not add rewards or stakes in
-   this implementation.
+   Missing fields become zero and malformed or negative values are rejected
+   using the established validation pattern. A fresh v2 key deliberately
+   leaves unclassifiable sudden-death records in v1. No rewards or stakes are
+   included.
 
-7. **Run the handover verification pass.** Play through mirrored lopsided,
-   even, and near-tie cards; confirm early majority, five-turn resolution,
-   exact ties, reset during suspense, unmount during a turn, and repeated
-   action submission. Run the repository type-check/build and lint commands.
-   Re-run the simulation with the documented recommended settings and record
-   any tuning change in this document before merging.
+7. **Handover verification completed.** Deterministic model cases cover
+   mirrored lopsided, even, and near-tie cards, early majority, five-turn
+   resolution, and exact OVR/coin ties. Browser coverage confirms suspense
+   cancellation during suspense and result hold, screen unmount, synchronous
+   repeated submissions, persistent
+   feedback, responsive layout, and v2 record invariants. The build and lint
+   pass. The seeded 100,000-trial simulation runs the production model directly,
+   so simulation and gameplay cannot drift.
 
 ### Open TODOs and tuning notes
 
 - Reward differential between majority vs. turn-limit win (see Part 3).
 - Simulation recommendation: start with `K = 4`. With stat-weighted actions
-  and the frozen `1.5x`/normal-strength tuning, K = 4 produced 23.5% majority
+  and the frozen `1.5x`/normal-strength tuning, K = 4 produced 23.4% majority
   wins by turn 5 in the 2026-08-21 seeded 100,000-trial run; K = 6 produced
   3.9%. K = 3 was faster but risked making resolution too explosive.
 - Simulation recommendation: multiply the higher-DEF DEF/DEF trickle by
   `1.5`, while keeping the case-6 defended-attack recruit at the normal
   `amt(margin, undecided)` strength. This reduced stalemate-like outcomes
   substantially without making Defend a clear winning strategy.
-- Reproducible simulation: `npm run simulate:battle`. The script supports
+- Reproducible simulation: `npm run simulate:debate`. The script imports the
+  production model and supports
   `DEF_TRICKLE_MULTIPLIER` and `REPELLED_TRICKLE_MULTIPLIER` for tuning.
 - How this composes with the stakes/rewards layer below is not yet
   addressed — that layer should work with either resolution mechanic.
 
-## Part 3 — Future: stakes & rewards (designed, not implemented)
+## Future: stakes & rewards (designed, not implemented)
 
-**Status: design only.** Battles today (either mechanic) have no stakes —
+**Status: design only.** Debates today have no stakes —
 just a persisted win/loss counter.
 
 ### Base wager/reward system (prerequisite)
@@ -365,7 +318,7 @@ just a persisted win/loss counter.
 ### Open questions
 
 - Exact base reward-draw odds (needs tuning against trade-in EV).
-- Per-card daily battle cooldown, and its cap, alongside dupes-only wagering.
+- Per-card daily Debate cooldown, and its cap, alongside dupes-only wagering.
 - Bank/Push UI: a new screen/step between `result` and the next `fight` —
   not designed yet.
 - Whether "push" should be blocked while the *original* wagered card is

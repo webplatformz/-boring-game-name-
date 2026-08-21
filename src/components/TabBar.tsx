@@ -46,10 +46,10 @@ function pillStyle(index: number, count: number): CSSProperties {
 export function TabBar({ game }: { game: Game }) {
   const { t } = useI18n()
   const s = game.state.screen
-  const tabs: { screen: 'home' | 'collection' | 'battle' | 'trade'; label: string; onClick: () => void }[] = [
+  const tabs: { screen: 'home' | 'collection' | 'debate' | 'trade'; label: string; onClick: () => void }[] = [
     { screen: 'home', label: t('tabPacks'), onClick: game.goHome },
     { screen: 'collection', label: t('tabCollection'), onClick: game.goCollection },
-    { screen: 'battle', label: t('tabBattle'), onClick: game.goBattle },
+    { screen: 'debate', label: t('tabDebate'), onClick: game.goDebate },
     { screen: 'trade', label: t('tabTrade'), onClick: game.goTrade },
   ]
   const activeIndex = Math.max(0, tabs.findIndex((t) => t.screen === s))

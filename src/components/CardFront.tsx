@@ -121,9 +121,9 @@ export function CardFront({
   member: Member
   foil?: boolean
   style?: CSSProperties
-  /** Battle mode: draws attention to the stat that decided a round. No-op elsewhere. */
+  /** Debate mode: draws attention to the stat that decided a turn. No-op elsewhere. */
   highlightStat?: 'atk' | 'def' | null
-  /** Battle mode: masks ATK/DEF (numbers + bars) with placeholders so the
+  /** Debate mode: masks ATK/DEF (numbers + bars) with placeholders so the
    * opponent's stats stay secret until the player has committed to an
    * action. No-op elsewhere (and already a no-op for mythic cards, which
    * hide their stat block regardless). */
@@ -454,7 +454,7 @@ function Bar({ pct, from, to }: { pct: number; from: string; to: string }) {
   )
 }
 
-// Battle mode: stands in for Bar when a stat is hidden — a static, neutral
+// Debate mode: stands in for Bar when a stat is hidden — a static, neutral
 // track (no dynamic width) so it can't leak the real value's relative size.
 function HiddenBar() {
   return (
