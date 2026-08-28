@@ -20,25 +20,22 @@ async function redeem(page: Page, code: string) {
   await page.getByRole('button', { name: 'REDEEM', exact: true }).click()
 }
 
-test('a refill voucher grants its encoded pack amount and can be redeemed again', async ({ page }) => {
+test('a refill voucher grants its encoded pack amount and can only be redeemed once', async ({ page }) => {
   const code = await generateVoucherCode({ type: 'refill', rarity: null, amount: 3 })
   await openHome(page, { packs: 1, owned: {}, cardsRevealed: 0, packsOpened: 0, refillAt: null })
 
   await redeem(page, code)
   await expect(page.getByText('PACKS REFILLED TO 4!')).toBeVisible()
 
-  let stored = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
   expect(stored.packs).toBe(4)
 
-  // Refill vouchers are deliberately exempt from the per-device single-use
-  // check, unlike rarity/timer vouchers: the exact same code redeems again,
-  // adding its amount on top of whatever the player already has. The dialog
-  // stays open after a refill success, so just fill and submit again.
+  // The dialog stays open after a refill success, so submit the same code again.
   await page.getByPlaceholder('ENTER CODE').fill(code)
   await page.getByRole('button', { name: 'REDEEM', exact: true }).click()
-  await expect(page.getByText('PACKS REFILLED TO 7!')).toBeVisible()
-  stored = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
-  expect(stored.packs).toBe(7)
+  await expect(page.getByText('THIS VOUCHER HAS ALREADY BEEN USED.')).toBeVisible()
+  const afterSecondAttempt = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
+  expect(afterSecondAttempt.packs).toBe(4)
 })
 
 test('a rarity voucher opens a 5-card pack of a single non-mythic rarity, and can only be redeemed once', async ({ page }) => {

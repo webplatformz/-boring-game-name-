@@ -336,10 +336,9 @@ export function useGame(): Game {
       const s = stateRef.current
       const { type, rarity, amount } = result.payload
 
-      // Refill vouchers are deliberately exempt from the per-device single-use
-      // check — they're meant to be reusable, unlike rarity/timer vouchers.
-      // They grant `amount` packs on top of whatever the player already has,
-      // same as an achievement's bonus-pack reward.
+      const redeemed = loadRedeemedVouchers()
+      if (redeemed.has(result.nonce)) return { ok: false, reason: 'already-redeemed' }
+
       if (type === 'refill') {
         const packs = s.packs + (amount ?? 1)
         const refillAt = packs < MAX_AUTOMATIC_PACKS ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS) : null
@@ -351,12 +350,11 @@ export function useGame(): Game {
           regularPacksOpened: s.regularPacksOpened,
           refillAt,
         })
+        redeemed.add(result.nonce)
+        persistRedeemedVouchers(redeemed)
         patch({ packs, refillAt })
         return { ok: true, type, packs }
       }
-
-      const redeemed = loadRedeemedVouchers()
-      if (redeemed.has(result.nonce)) return { ok: false, reason: 'already-redeemed' }
 
       if (type === 'timer') {
         if (s.refillAt == null) return { ok: false, reason: 'no-timer' }
