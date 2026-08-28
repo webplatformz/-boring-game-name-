@@ -34,7 +34,7 @@ const CARD_ASPECT = 504 / 336
 const DEBATE_CARD_W_MAX = 165
 const DEBATE_CARD_W_MIN = 66
 const DEBATE_SIDE_PADDING = 40 // screen-fill's left+right padding
-const DEBATE_ROW_RESERVED_W = 60 // VS badge + the two flex gaps around it
+const DEBATE_ROW_RESERVED_W = 60 // VS label + the two flex gaps around it
 // Everything in the viewport-constrained column besides the card itself:
 // tab bar, legal footer, screen padding, header, poll meter, the gaps
 // between them, and — since attack/defend now stack under the player's own
@@ -354,7 +354,7 @@ function Arena({
           actionSlot={playerMoveSlot}
         />
 
-        <VsBadge flash={clash?.flash ?? null} />
+        <VsBadge width={cardW} flash={clash?.flash ?? null} />
 
         <DebateCard
           side="opponent"
@@ -471,34 +471,32 @@ function motionStyle(motion: CardMotion | null): CSSProperties {
   }
 }
 
-function VsBadge({ flash }: { flash: 'hit' | 'block' | null }) {
+function VsBadge({ width, flash }: { width: number; flash: 'hit' | 'block' | null }) {
   return (
     <div
       aria-hidden="true"
       style={{
         flex: 'none',
-        width: 38,
-        height: 38,
-        marginTop: 8,
+        width: 40,
+        height: 28,
+        marginTop: width * CARD_ASPECT / 2 + 3,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '50%',
-        background: 'linear-gradient(155deg,#1B2739,#0A0F18)',
-        border: '1px solid rgba(234,242,255,.16)',
-        boxShadow: '0 8px 18px -8px rgba(0,0,0,.7)',
         animation: flash ? 'vsFlash 480ms ease-out' : undefined,
       }}
     >
       <span
         style={{
+          display: 'inline-block',
+          padding: '0 5px 0 3px',
           fontFamily: AB,
           fontStyle: 'italic',
-          fontSize: 13,
+          fontSize: 16,
           letterSpacing: '-.02em',
           backgroundImage: flash === 'block' ? 'linear-gradient(160deg,#DFF7F3,#8FEDE3)' : 'linear-gradient(160deg,#FFD87A,#FF3D8B)',
+          color: 'transparent',
           WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}
       >
@@ -767,6 +765,10 @@ function DebateCard({
           fontSize: 9,
           letterSpacing: '.16em',
           color: labelColor,
+          boxSizing: 'border-box',
+          height: 25,
+          display: 'flex',
+          alignItems: 'center',
           // The own-card badge (pill background + border) is the primary
           // "this one is you" signal — the ring/glow on the card below
           // reinforces it, but the label is what's visible even before
