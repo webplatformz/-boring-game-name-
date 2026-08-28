@@ -3,9 +3,9 @@ import type { ReactNode } from 'react'
 import type { LobbyingSector } from './data/members'
 import type { RarityKey } from './theme'
 
-export type Language = 'en' | 'de' | 'fr' | 'it'
+export type Language = 'en' | 'de' | 'fr' | 'it' | 'rm'
 
-export const LANGUAGES: readonly Language[] = ['en', 'de', 'fr', 'it']
+export const LANGUAGES: readonly Language[] = ['en', 'de', 'fr', 'it', 'rm']
 
 const STORAGE_KEY = 'bundeshaus-language-v1'
 
@@ -447,13 +447,101 @@ const it: Partial<Record<TranslationKey, string>> = {
   redeemVoucherLink: 'HAI UN VOUCHER?', redeemVoucherAria: 'Riscatta un codice voucher', voucherModalTitle: 'RISCATTA VOUCHER', voucherModalSubtitle: 'Inserisci un codice voucher per sbloccare il premio.', voucherCodePlaceholder: 'INSERISCI IL CODICE', voucherRedeemBtn: 'RISCATTA', voucherCloseAria: 'Chiudi', voucherSuccessRefill: 'PACK RIPORTATI A {count}!', voucherSuccessTimer: 'ATTESA SALTATA — I TUOI PACK SONO STATI RICARICATI!', voucherErrorInvalid: 'QUESTO CODICE NON È VALIDO.', voucherErrorUsed: 'QUESTO VOUCHER È GIÀ STATO USATO.', voucherErrorNoTimer: 'AL MOMENTO NON C’È ALCUNA ATTESA IN CORSO.',
 }
 
-const translations: Record<Language, Partial<Record<TranslationKey, string>>> = { en, de, fr, it }
+const rm: Partial<Record<TranslationKey, string>> = {
+  documentTitle: 'Bundeshaus Pack — Avrir in pachet. Construir la chasa.',
+  languageSwitcher: 'Lingua d’affichage',
+  legislature: 'LEGISLATURA {number}',
+  packs: 'PACHETS',
+  homeHeadlineOne: 'AVRA IN PACHET.',
+  homeHeadlineTwo: 'CONSTRUESCHA LA CHASA.',
+  homeSubtitle: '{count} commembers per pachet, naginas repetiziuns en quel. La raritad reflecta la derasaziun dals puncts totals.',
+  ripPackAria: 'Avrir in pachet',
+  ripOpen: 'AVRIR IL PACHET',
+  nextPackIn: 'PROXIM PACHET EN {time}',
+  noPacksLeft: 'NAGINS PACHETS',
+  openCollectionAria: 'Avrir las cartas',
+  collected: 'COLLECTÀ',
+  bestPull: 'MILLURA CARTA',
+  showCardAria: 'Mussar la carta da {name}',
+  ripAPack: 'AVRA IN PACHET',
+  cardDuplicates: 'CARTAS DOPLAS?',
+  tradeHint: 'Barattar 5 cartas → survegnir 1 raritad pli auta',
+  tradeIn: 'BARATAR →',
+  tabPacks: 'PACHETS',
+  tabCollection: 'CARTAS',
+  tabDebate: 'DEBAT',
+  tabTrade: 'BARAT',
+  collectionTitle: 'LAS CARTAS',
+  collectionCount: '{owned} DA {total} COMMEMBERS',
+  openingStats: 'STATISTICAS DAL PACHET',
+  cardsRevealed: 'CARTAS REVELADAS',
+  packsOpened: 'PACHETS AVRITS',
+  all: 'TUTTAS',
+  rarity: 'RARITAD',
+  name: 'NUM',
+  cantons: 'CHANTUNS',
+  cantonsToggle: 'CHANTUNS ▾',
+  cantonsSelected: 'CHANTUNS · {count} TSCHERNIDS ▾',
+  cantonCount: '{count} CH',
+  member: 'COMMEMBER',
+  nothingHere: 'ANC NAGUT',
+  collectionEmpty: 'Avra tes emprimas cartas e {count} commembers da chasa cumparan en questa tabella.',
+  getPack: 'OBTENER IN PACHET',
+  tradeTitle: 'BARAT DA CARTAS',
+  tradeSubtitle: 'BARATTA 5 CARTAS CUN 1 DA RARITAD PLI AUTA',
+  selectedCount: '{count} / 5 TSCHERNIDS',
+  autoFill: 'TSCHERNIR AUTOMATIC',
+  dupes: 'DOPLAS',
+  clear: 'VIDER',
+  tradeReady: 'BARATTA PER 1 {rarity}',
+  tradeSelect: 'TSCHERNIR 5 PER BARATAR',
+  availableCards: 'CARTAS {rarity} DISPONIBLAS',
+  types: '{count} CARTAS UNICAS',
+  availableShort: '{count} disponiblas',
+  noRarityOwned: 'NAGINAS CARTAS {rarity}',
+  acquireRarity: 'Avra pachets u baratta cartas da raritad pli bassa per survegnir cartas {rarity}.',
+  tearingOpen: 'AVERTURA DAL PACHET',
+  specialTradePack: 'PACHET DA BARAT SPECIAL {rarity}',
+  membersIncoming: '{count} COMMEMBERS ARRIVAN',
+  tradePackLabel: '1 CARTA · BARAT {rarity}',
+  standardPackLabel: '{count} CARTAS · NAGINAS DOPLAS',
+  packLabel: '{count} CARTAS · NAGINAS DOPLAS',
+  tear: 'AVRIR',
+  cardProgress: 'CARTA {current} / {total}',
+  skipAll: 'SALTAR TUTTAS →',
+  revealNextDesktop: 'CLICCAR U FAR SCULAR PER LA PROXIMA CARTA',
+  revealNextTouch: 'FAR SCULAR A SANIESTRA PER LA PROXIMA CARTA',
+  revealTurn: 'CLICCAR PER GIRAR LA CARTA',
+  home: '← EN CASA',
+  debateTitle: 'DEBAT',
+  winsShort: '{count}V',
+  lossesShort: '{count}P',
+  noFighters: 'ANC NAGINAS CARTAS DA DEBAT',
+  noFightersBody: 'Avra in pachet avant — ti dovras almain ina carta per entrar en in debat.',
+  chooseFighter: 'TSCHERNER TIA CARTA DA DEBAT',
+  opponent: 'OPPONENT',
+  yourCard: 'TIA CARTA',
+  attack: 'ATTATGAR',
+  defend: 'DEFENDER',
+  attacked: 'ATTATGÀ',
+  defended: 'DEFENDÌ',
+  lockingIn: 'CONFIRMAR…',
+  youWon: 'TI HAS VINZIU!',
+  youLost: 'TI HAS PERS',
+  debateTurn: 'TUR {current} / {total}',
+  debateYou: 'TI',
+  debateAgain: 'ANC INA VEZ DEBAT',
+  tapClose: 'CLICCAR PER SERRAR',
+}
+
+const translations: Record<Language, Partial<Record<TranslationKey, string>>> = { en, de, fr, it, rm }
 
 const rarityNames: Record<Language, Record<RarityKey, string>> = {
   en: { common: 'COMMON', uncommon: 'UNCOMMON', rare: 'RARE', ultra: 'ULTRA RARE', legend: 'LEGENDARY', mythic: 'MYTHIC' },
   de: { common: 'GEWÖHNLICH', uncommon: 'UNGEWÖHNLICH', rare: 'SELTEN', ultra: 'ULTRASELTEN', legend: 'LEGENDÄR', mythic: 'MYTHISCH' },
   fr: { common: 'COMMUNE', uncommon: 'PEU COMMUNE', rare: 'RARE', ultra: 'ULTRA RARE', legend: 'LÉGENDAIRE', mythic: 'MYTHIQUE' },
   it: { common: 'COMUNE', uncommon: 'NON COMUNE', rare: 'RARA', ultra: 'ULTRA RARA', legend: 'LEGGENDARIA', mythic: 'MITICA' },
+  rm: { common: 'ORDINARIA', uncommon: 'NUN ORDINARIA', rare: 'RARA', ultra: 'ULTRA RARA', legend: 'LEGENDARICA', mythic: 'MITICA' },
 }
 
 const sectorNames: Record<Language, Record<LobbyingSector, string>> = {
@@ -461,6 +549,7 @@ const sectorNames: Record<Language, Record<LobbyingSector, string>> = {
   de: { 'Economy & finance': 'Wirtschaft & Finanzen', 'Health & social': 'Gesundheit & Soziales', 'Entertainment & hospitality': 'Unterhaltung & Gastgewerbe', 'Technology & innovation': 'Technologie & Innovation', 'Sports & recreation': 'Sport & Freizeit', 'Energy & environment': 'Energie & Umwelt', 'Transport & telecom': 'Verkehr & Telekom', 'Education & culture': 'Bildung & Kultur', 'Agriculture & food': 'Landwirtschaft & Ernährung', 'Security & defence': 'Sicherheit & Verteidigung', 'Law & justice': 'Recht & Justiz', 'Foreign affairs': 'Aussenpolitik', 'Politics & civic': 'Politik & Zivilgesellschaft' },
   fr: { 'Economy & finance': 'Économie & finances', 'Health & social': 'Santé & social', 'Entertainment & hospitality': 'Divertissement & hôtellerie', 'Technology & innovation': 'Technologie & innovation', 'Sports & recreation': 'Sports & loisirs', 'Energy & environment': 'Énergie & environnement', 'Transport & telecom': 'Transports & télécoms', 'Education & culture': 'Formation & culture', 'Agriculture & food': 'Agriculture & alimentation', 'Security & defence': 'Sécurité & défense', 'Law & justice': 'Droit & justice', 'Foreign affairs': 'Affaires étrangères', 'Politics & civic': 'Politique & société civile' },
   it: { 'Economy & finance': 'Economia & finanza', 'Health & social': 'Salute & sociale', 'Entertainment & hospitality': 'Intrattenimento & ospitalità', 'Technology & innovation': 'Tecnologia & innovazione', 'Sports & recreation': 'Sport & tempo libero', 'Energy & environment': 'Energia & ambiente', 'Transport & telecom': 'Trasporti & telecom', 'Education & culture': 'Formazione & cultura', 'Agriculture & food': 'Agricoltura & alimentazione', 'Security & defence': 'Sicurezza & difesa', 'Law & justice': 'Diritto & giustizia', 'Foreign affairs': 'Affari esteri', 'Politics & civic': 'Politica & società civile' },
+  rm: { 'Economy & finance': 'Economia e finanzas', 'Health & social': 'Sanadad e social', 'Entertainment & hospitality': 'Divertiment e hotellaria', 'Technology & innovation': 'Tecnologia e innovaziun', 'Sports & recreation': 'Sport e temp liber', 'Energy & environment': 'Energia e ambient', 'Transport & telecom': 'Traffic e telecom', 'Education & culture': 'Furmaziun e cultura', 'Agriculture & food': 'Agricultura e nutriment', 'Security & defence': 'Segirezza e defensiun', 'Law & justice': 'Dretg e giustia', 'Foreign affairs': 'Affars externs', 'Politics & civic': 'Politica e societad civila' },
 }
 
 const partyNames: Record<Language, Record<string, string>> = {
@@ -468,6 +557,7 @@ const partyNames: Record<Language, Record<string, string>> = {
   de: { SVP: 'SVP', SP: 'SP', FDP: 'FDP', LDP: 'LDP', MITTE: 'DIE MITTE', GRUENE: 'GRÜNE', GLP: 'GLP', EVP: 'EVP', EDU: 'EDU', LEGA: 'LEGA', MCG: 'MCG', AL: 'PdA/AL', NONE: 'PARTEILOS' },
   fr: { SVP: 'UDC', SP: 'PS', FDP: 'PLR', LDP: 'PLD', MITTE: 'LE CENTRE', GRUENE: 'LES VERT-E-S', GLP: 'PVL', EVP: 'PEV', EDU: 'UDF', LEGA: 'LEGA', MCG: 'MCG', AL: 'PdA/AL', NONE: 'SANS PARTI' },
   it: { SVP: 'UDC', SP: 'PS', FDP: 'PLR', LDP: 'PLD', MITTE: 'IL CENTRO', GRUENE: 'VERDI', GLP: 'PVL', EVP: 'PEV', EDU: 'UDF', LEGA: 'LEGA', MCG: 'MCG', AL: 'PdA/AL', NONE: 'INDIPENDENTE' },
+  rm: { SVP: 'UDC', SP: 'PS', FDP: 'PLR', LDP: 'PLD', MITTE: 'IL CENTRE', GRUENE: 'VERDS', GLP: 'PVL', EVP: 'PEV', EDU: 'UDF', LEGA: 'LEGA', MCG: 'MCG', AL: 'PdA/AL', NONE: 'SEN PARTI' },
 }
 
 export function normalizeLanguage(value: string | null | undefined): Language | null {

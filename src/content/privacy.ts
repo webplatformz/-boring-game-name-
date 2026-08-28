@@ -263,8 +263,8 @@ const it: PrivacyContent = {
   },
 }
 
-const content: Record<Language, PrivacyContent> = { en, de, fr, it }
+const content: Record<Exclude<Language, 'rm'>, PrivacyContent> = { en, de, fr, it }
 
 export function privacyContent(language: Language): PrivacyContent {
-  return content[language]
+  return content[language === 'rm' ? 'en' : language]
 }

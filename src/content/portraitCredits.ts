@@ -15,7 +15,7 @@ interface PortraitCreditsCopy {
   sourceLink: string
 }
 
-const content: Record<Language, PortraitCreditsCopy> = {
+const content: Record<Exclude<Language, 'rm'>, PortraitCreditsCopy> = {
   en: {
     eyebrow: 'PHOTO CREDITS',
     title: 'Portrait sources and licences',
@@ -75,5 +75,5 @@ const content: Record<Language, PortraitCreditsCopy> = {
 }
 
 export function portraitCreditsContent(language: Language): PortraitCreditsCopy {
-  return content[language]
+  return content[language === 'rm' ? 'en' : language]
 }

@@ -21,7 +21,7 @@ function stopPointer(e: ReactPointerEvent<HTMLElement>) {
 }
 
 function money(value: number, language: Language): string {
-  const locale = { en: 'en-CH', de: 'de-CH', fr: 'fr-CH', it: 'it-CH' }[language]
+  const locale = { en: 'en-CH', de: 'de-CH', fr: 'fr-CH', it: 'it-CH', rm: 'rm-CH' }[language]
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'CHF',
