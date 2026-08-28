@@ -35,7 +35,7 @@ test('uses one compact navigation row on mobile', async ({ page }) => {
   expect(boxes.every((box) => box.width >= 70)).toBe(true)
 
   const navigationBottom = ((await navigation.boundingBox())?.y ?? 0) + ((await navigation.boundingBox())?.height ?? 0)
-  await navigation.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await navigation.getByRole('button', { name: 'CARDS', exact: true }).click()
   await page.waitForTimeout(300)
   expect((await page.getByText('THE COLLECTION').boundingBox())?.y).toBeGreaterThanOrEqual(navigationBottom)
   const collection = await page.locator('.screen-fill').boundingBox()

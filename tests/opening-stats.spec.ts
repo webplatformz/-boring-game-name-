@@ -29,7 +29,7 @@ test('loads legacy saves with zero opening stats on Home and Collection', async 
   await expect(statValue(homeStats, 'CARDS REVEALED', '0')).toBeVisible()
   await expect(statValue(homeStats, 'PACKS OPENED', '0')).toBeVisible()
 
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   const collectionStats = page.getByRole('group', { name: 'PACK OPENING STATS' })
   await expect(statValue(collectionStats, 'CARDS REVEALED', '0')).toBeVisible()
   await expect(statValue(collectionStats, 'PACKS OPENED', '0')).toBeVisible()
@@ -83,7 +83,7 @@ test('Skip all counts every card and one pack, persists, and renders below the t
   await expect(statValue(reloadedStats, 'CARDS REVEALED', '12')).toBeVisible()
   await expect(statValue(reloadedStats, 'PACKS OPENED', '3')).toBeVisible()
 
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   const collectionStats = page.getByRole('group', { name: 'PACK OPENING STATS' })
   await expect(statValue(collectionStats, 'CARDS REVEALED', '12')).toBeVisible()
   await expect(statValue(collectionStats, 'PACKS OPENED', '3')).toBeVisible()

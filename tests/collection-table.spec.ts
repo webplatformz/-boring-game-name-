@@ -21,7 +21,7 @@ async function openCollection(page: Page) {
     )
   }, { owned: OWNED })
   await page.goto('/')
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
 }
 
 async function memberOrder(page: Page) {

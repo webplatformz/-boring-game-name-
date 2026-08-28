@@ -34,7 +34,7 @@ test('keeps the footer after every tab screen, including debate results', async 
 
   await expectBeforeFooter(page, page.locator('.tabbed-screen').first())
 
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   await expectBeforeFooter(page, page.locator('.collection-screen'))
 
   await page.getByRole('button', { name: 'TRADE', exact: true }).click()

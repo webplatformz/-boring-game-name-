@@ -17,7 +17,7 @@ async function seedLegendary(page: Page) {
 async function openLegendaryCard(page: Page) {
   await seedLegendary(page)
   await page.goto('/')
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   await page.getByText('Thomas Aeschi').click()
   // Let the modal's entry animation and the glow's anchor measurement settle.
   await page.waitForTimeout(700)

@@ -42,7 +42,7 @@ test('leaving Debate cancels the active turn and returns to the picker', async (
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await page.getByText('Thomas Aeschi', { exact: true }).click()
   await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   await page.waitForTimeout(3_000)
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
@@ -61,7 +61,7 @@ test('leaving during a revealed turn prevents delayed record persistence', async
   await expect(page.getByTestId('debate-feedback')).not.toBeEmpty({
     timeout: 2_000,
   })
-  await page.getByRole('button', { name: 'COLLECTION', exact: true }).click()
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   await page.waitForTimeout(2_500)
 
   await expect
