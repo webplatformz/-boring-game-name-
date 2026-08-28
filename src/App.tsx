@@ -38,13 +38,12 @@ export function App() {
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const { screen } = game.state
   const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
-  // Home and an active debate can grow taller than a short phone viewport.
-  // Keep them in normal page flow so the legal footer always follows their
-  // content. Picker/data-heavy tab screens retain their viewport-constrained
-  // internal scrollers.
-  const naturalFlowScreen = !infoPage && (
-    screen === 'home' || (screen === 'debate' && debate.state.step !== 'pick')
-  )
+  // Home can grow taller than a short phone viewport — keep it in normal
+  // page flow so the legal footer always follows its content. Tab screens
+  // (including an active debate) are viewport-constrained instead: debate's
+  // Arena sizes its cards to whatever room is actually available so the
+  // fight/reveal/result steps never need to scroll.
+  const naturalFlowScreen = !infoPage && screen === 'home'
 
   useEffect(() => {
     const syncHash = () => setInfoPage(infoPageFromHash())
@@ -79,6 +78,12 @@ export function App() {
         className="app-shell-width"
         style={{
           minHeight: '100dvh',
+          // Needs an explicit height (not just minHeight) whenever the
+          // screen below is viewport-constrained — otherwise this column
+          // has no definite height for its flex:1/minHeight:0 children to
+          // shrink against, so they'd grow to content size instead of
+          // filling exactly one screen, defeating the "no scroll" contract.
+          height: showTabs && !naturalFlowScreen ? '100dvh' : undefined,
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',

@@ -27,8 +27,14 @@ const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
 const DEBATE_CARD_W_MAX = Math.min(0.4 * CARD_MAX_W, 125)
+const DEBATE_CARD_W_MIN = 50
 const CARD_ASPECT = 504 / 336
-const DEBATE_CHROME_H = 465
+// Everything in the viewport-constrained column besides the two cards
+// themselves: tab bar, legal footer, screen padding, header, poll meter,
+// action row, and the gaps between them. The footer stays visible through
+// every step (tests rely on it framing the result screen), so its height
+// is budgeted here too even though it sits outside the Arena.
+const DEBATE_CHROME_H = 468
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -51,7 +57,7 @@ function computeFightCardWidth(): number {
   const heightBudget = Math.max(0, vh - DEBATE_CHROME_H)
   const widthFromHeight = heightBudget / 2 / CARD_ASPECT
   const widthFromWidth = vw - 40
-  return Math.max(100, Math.min(DEBATE_CARD_W_MAX, widthFromHeight, widthFromWidth))
+  return Math.max(DEBATE_CARD_W_MIN, Math.min(DEBATE_CARD_W_MAX, widthFromHeight, widthFromWidth))
 }
 
 /**
@@ -110,7 +116,7 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
       // No overflow:hidden here (unlike Collection) — the fight/reveal/result
       // steps render CardGlow directly in the flow, and its bloom is meant to
       // bleed past the card edges (see CardModal/Reveal for the same pattern).
-      style={{ padding: '14px 20px 24px', display: 'flex', flexDirection: 'column', gap: 16, animation: 'riseIn 300ms ease-out' }}
+      style={{ padding: '10px 20px 12px', display: 'flex', flexDirection: 'column', gap: 10, animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
@@ -248,14 +254,19 @@ function Arena({
 
   return (
     <div
+      // overflowY is a safety net, not the primary fit mechanism: cardW is
+      // sized against DEBATE_CHROME_H to fit without clipping on real
+      // devices, but this guards against edge cases (browser chrome
+      // resize, font load) so the arena never forces a page scroll.
       style={{
         flex: 1,
         minHeight: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 9,
+        gap: 6,
         paddingBottom: 4,
+        overflowY: 'hidden',
       }}
     >
       <DebateCard
@@ -291,7 +302,7 @@ function Arena({
         dimmed={step === 'result' && !won}
       />
 
-      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 340, marginTop: 4, minHeight: 82 }}>
+      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 340, marginTop: 2, minHeight: 72 }}>
         {step === 'fight' && !locked && (
           <div style={{ display: 'flex', gap: 10, width: '100%' }}>
             <button onClick={() => onChoose('attack')} style={actionButtonStyle('#FF3D8B')}>
@@ -318,8 +329,8 @@ function Arena({
         )}
 
         {step === 'result' && winner && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, animation: 'riseIn 320ms ease-out' }}>
-            <div style={{ fontFamily: AB, fontSize: 22, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, animation: 'riseIn 320ms ease-out' }}>
+            <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
               {won ? t('youWon') : t('youLost')}
             </div>
             <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '.08em', color: '#9FB6D2', textAlign: 'center' }}>
@@ -333,7 +344,7 @@ function Arena({
             </div>
             <button
               onClick={onFightAgain}
-              style={{ marginTop: 2, padding: '13px 26px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
+              style={{ marginTop: 0, padding: '11px 24px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
             >
               {t('debateAgain')}
             </button>
@@ -413,7 +424,7 @@ function PollMeter({
         flex: 'none',
         width: '100%',
         maxWidth: 390,
-        padding: '10px 10px 9px',
+        padding: '8px 10px 6px',
         borderRadius: 13,
         border: '1px solid rgba(234,242,255,.1)',
         background: 'rgba(11,18,29,.92)',
@@ -437,7 +448,7 @@ function PollMeter({
 
       <div
         data-testid="poll-track"
-        style={{ position: 'relative', display: 'flex', height: 26, marginTop: 8, overflow: 'hidden', borderRadius: 7, background: '#263446' }}
+        style={{ position: 'relative', display: 'flex', height: 26, marginTop: 6, overflow: 'hidden', borderRadius: 7, background: '#263446' }}
       >
         {POLL_SEGMENTS.map(({ bucket, color }) => (
           <div
@@ -470,7 +481,7 @@ function PollMeter({
         />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', marginTop: 5 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))', marginTop: 4 }}>
         {POLL_SEGMENTS.map(({ bucket, label, side }) => (
           <div key={bucket} style={{ minWidth: 0, textAlign: 'center' }}>
             <div style={{ fontFamily: AB, fontSize: 8, letterSpacing: '.04em', color: '#91A7C1', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -487,7 +498,7 @@ function PollMeter({
         data-testid="debate-feedback"
         role="status"
         aria-live="polite"
-        style={{ minHeight: 54, marginTop: 7, paddingTop: 7, borderTop: '1px solid rgba(234,242,255,.08)', textAlign: 'center' }}
+        style={{ minHeight: 54, marginTop: 5, paddingTop: 5, borderTop: '1px solid rgba(234,242,255,.08)', textAlign: 'center' }}
       >
         {feedbackKey ? (
           <>
