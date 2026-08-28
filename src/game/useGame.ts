@@ -211,7 +211,6 @@ export function useGame(): Game {
         outgoingDrag: 0,
         faceUp: false,
         isTradePack: false,
-        tradeRarity: null,
         isVoucherPack: false,
         voucherRarity: null,
         packCompletionSeq: s.packCompletionSeq + 1,
