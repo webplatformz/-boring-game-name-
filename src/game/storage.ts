@@ -158,7 +158,7 @@ export function syncMemberScoreCache(): void {
 // Kept apart from the save so a corrupt/absent value never costs the player
 // their cards.
 
-export type SortKey = 'rarity' | 'ovr' | 'atk' | 'def' | 'name'
+export type SortKey = 'rarity' | 'ovr' | 'atk' | 'def' | 'name' | 'ties' | 'finance'
 
 export interface CollectionPrefs {
   sortKey: SortKey
@@ -171,7 +171,7 @@ export interface CollectionPrefs {
 }
 
 const PREFS_KEY = 'bundeshaus-collection-v1'
-const SORT_KEYS: SortKey[] = ['rarity', 'ovr', 'atk', 'def', 'name']
+const SORT_KEYS: SortKey[] = ['rarity', 'ovr', 'atk', 'def', 'name', 'ties', 'finance']
 
 export const DEFAULT_PREFS: CollectionPrefs = {
   sortKey: 'rarity',

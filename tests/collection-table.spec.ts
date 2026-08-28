@@ -35,8 +35,8 @@ test('collection headers replace sort chips and sort each table column', async (
 
   const table = page.getByRole('table', { name: 'COLLECTION' })
   await expect(table).toBeVisible()
-  await expect(table.getByRole('columnheader')).toHaveCount(5)
-  await expect(table.locator('button[data-sort-key]')).toHaveCount(5)
+  await expect(table.getByRole('columnheader')).toHaveCount(7)
+  await expect(table.locator('button[data-sort-key]')).toHaveCount(7)
   await expect(table.locator('[data-sort-key="rarity"]')).toHaveText(/RARITY/)
   await expect(table.locator('[role="columnheader"][aria-sort="descending"]')).toContainText('RARITY')
   expect(await memberOrder(page)).toEqual([
@@ -66,7 +66,7 @@ test('collection headers replace sort chips and sort each table column', async (
   ])
 })
 
-test('five-column collection table fits and uses the available mobile height', async ({ page }) => {
+test('seven-column collection table fits and uses the available mobile height', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 740 })
   await openCollection(page)
 
@@ -84,7 +84,7 @@ test('five-column collection table fits and uses the available mobile height', a
       scrollWidth: grid.scrollWidth,
     }
   })
-  expect(gridMetrics.columns).toBe(5)
+  expect(gridMetrics.columns).toBe(7)
   expect(gridMetrics.scrollWidth).toBeLessThanOrEqual(gridMetrics.clientWidth)
   await expect(table.locator('.collection-rarity-cell').first()).toBeVisible()
 })

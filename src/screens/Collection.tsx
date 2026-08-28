@@ -8,11 +8,34 @@ import type { SortKey } from '../game/storage'
 import { loadPrefs, persistPrefs } from '../game/storage'
 import { Flag } from '../components/Flag'
 import { CardModal } from '../components/CardModal'
+import { compactMoney } from '../components/DisclosureStat'
 import { OpeningStats } from '../components/OpeningStats'
 import { useI18n } from '../i18n'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
+
+function tiesValue(member: Member): number {
+  return member.lobbying.coverage === 'not_applicable' ? 0 : member.lobbying.total
+}
+
+function financeValue(member: Member): number {
+  const finance = member.financing
+  if (finance.coverage === 'direct') return finance.directIncome
+  if (finance.coverage === 'shared') return finance.sharedCampaignIncome
+  return 0
+}
+
+function tiesDisplay(member: Member): string {
+  return member.lobbying.coverage === 'not_applicable' ? '—' : String(member.lobbying.total)
+}
+
+function financeDisplay(member: Member): string {
+  const finance = member.financing
+  if (finance.coverage === 'direct') return compactMoney(finance.directIncome)
+  if (finance.coverage === 'shared') return compactMoney(finance.sharedCampaignIncome)
+  return '—'
+}
 
 type SortHeaderProps = {
   label: string
@@ -136,6 +159,22 @@ export function Collection({ game }: { game: Game }) {
         const byLastName = a.member.last.localeCompare(b.member.last) * sortDir
         if (byLastName !== 0) return byLastName
         return a.member.name.localeCompare(b.member.name) * sortDir
+      }
+
+      if (sortKey === 'ties') {
+        const av = tiesValue(a.member)
+        const bv = tiesValue(b.member)
+        if (av < bv) return -1 * sortDir
+        if (av > bv) return 1 * sortDir
+        return 0
+      }
+
+      if (sortKey === 'finance') {
+        const av = financeValue(a.member)
+        const bv = financeValue(b.member)
+        if (av < bv) return -1 * sortDir
+        if (av > bv) return 1 * sortDir
+        return 0
       }
 
       const av = a.member.ratings[sortKey]
@@ -366,6 +405,8 @@ export function Collection({ game }: { game: Game }) {
               <SortHeader label="ATK" column="atk" activeColumn={sortKey} direction={sortDir} align="right" color="#FF9EC4" onSort={toggleSort} />
               <SortHeader label="DEF" column="def" activeColumn={sortKey} direction={sortDir} align="right" color="#8FEDE3" onSort={toggleSort} />
               <SortHeader label="OVR" column="ovr" activeColumn={sortKey} direction={sortDir} align="right" color="#FFD87A" onSort={toggleSort} />
+              <SortHeader label={t('ties')} column="ties" activeColumn={sortKey} direction={sortDir} align="right" color="#B9A6FF" onSort={toggleSort} />
+              <SortHeader label={t('camp')} column="finance" activeColumn={sortKey} direction={sortDir} align="right" color="#FFD36A" onSort={toggleSort} />
             </div>
 
             {/* rows */}
@@ -444,6 +485,12 @@ export function Collection({ game }: { game: Game }) {
                     </div>
                     <div role="cell" style={{ fontFamily: AB, fontSize: 15, textAlign: 'right', alignSelf: 'center', color: tier.ovrTint }}>
                       {r.member.ratings.ovr}
+                    </div>
+                    <div role="cell" style={{ fontFamily: MONO, fontSize: 10, textAlign: 'right', alignSelf: 'center', color: '#B9A6FF' }}>
+                      {tiesDisplay(r.member)}
+                    </div>
+                    <div role="cell" style={{ fontFamily: MONO, fontSize: 10, textAlign: 'right', alignSelf: 'center', color: '#FFD36A' }}>
+                      {financeDisplay(r.member)}
                     </div>
                   </div>
                 )

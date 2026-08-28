@@ -371,13 +371,14 @@ a:hover {
   height: 100%;
 }
 
-/* The collection table uses the same five-column proportions for its header
+/* The collection table uses the same seven-column proportions for its header
    and rows. The compact mobile values keep rarity visible without squeezing
-   the three rating columns; larger screens give names and labels more room. */
+   the five rating/disclosure columns; larger screens give names and labels
+   more room. */
 .collection-table-grid {
   display: grid;
-  grid-template-columns: minmax(86px, 1fr) minmax(58px, 78px) 32px 32px 36px;
-  gap: 5px;
+  grid-template-columns: minmax(70px, 1fr) minmax(40px, 56px) 24px 24px 28px 26px 38px;
+  gap: 4px;
 }
 .collection-rarity-cell {
   min-width: 0;
@@ -399,8 +400,8 @@ a:hover {
 
 @media (min-width: 700px) {
   .collection-table-grid {
-    grid-template-columns: minmax(180px, 1fr) 110px 50px 50px 54px;
-    gap: 10px;
+    grid-template-columns: minmax(150px, 1fr) 100px 46px 46px 50px 46px 64px;
+    gap: 8px;
   }
 
   .collection-rarity-cell {

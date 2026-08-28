@@ -29,7 +29,7 @@ function money(value: number, language: Language): string {
   }).format(value)
 }
 
-function compactMoney(value: number): string {
+export function compactMoney(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(value >= 10_000_000 ? 0 : 1)}M`
   if (value >= 1_000) return `${Math.round(value / 1_000)}K`
   return String(Math.round(value))
