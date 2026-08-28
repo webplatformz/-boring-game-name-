@@ -46,6 +46,7 @@ export function App() {
   const achievements = useAchievements(game)
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
+  const [hashSynced, setHashSynced] = useState(false)
   const [updatesUnread, setUpdatesUnread] = useState(hasUnreadUpdates)
   const [achievementTarget, setAchievementTarget] = useState<string | null>(null)
   const [achievementTargetRequest, setAchievementTargetRequest] = useState(0)
@@ -69,6 +70,7 @@ export function App() {
       else if (nextScreen === 'collection') goCollection()
       else if (nextScreen === 'debate') goDebate()
       else if (nextScreen === 'trade') goTrade()
+      setHashSynced(true)
     }
     syncHash()
     window.addEventListener('hashchange', syncHash)
@@ -78,13 +80,14 @@ export function App() {
   // Keep the main game screens addressable without exposing transient pack
   // opening phases as routes.
   useEffect(() => {
+    if (!hashSynced) return
     if (infoPageFromHash()) return
     if (screen !== 'home' && screen !== 'collection' && screen !== 'debate' && screen !== 'trade') return
     const nextHash = `#${screen}`
     if (window.location.hash !== nextHash) {
       window.history.pushState(null, '', nextHash)
     }
-  }, [screen])
+  }, [hashSynced, infoPage, screen])
 
   // Tracks the "Law Student" hidden achievement — visiting every legal/info page.
   useEffect(() => {
