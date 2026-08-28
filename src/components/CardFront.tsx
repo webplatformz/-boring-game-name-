@@ -175,6 +175,7 @@ export function CardFront({
     overflow: 'hidden',
     backfaceVisibility: 'hidden',
     WebkitBackfaceVisibility: 'hidden',
+    transform: 'rotateY(0deg)',
     background: '#0A0F18',
     ...style,
   }

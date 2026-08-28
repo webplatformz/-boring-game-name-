@@ -90,6 +90,7 @@ export function MythicCardFront({
     borderRadius: 18,
     backfaceVisibility: 'hidden',
     WebkitBackfaceVisibility: 'hidden',
+    transform: 'rotateY(0deg)',
     background: '#070b17',
     isolation: 'isolate',
     ...style,

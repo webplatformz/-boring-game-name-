@@ -228,12 +228,15 @@ export function PackOpening({ game }: { game: Game }) {
                   {...(isTop ? game.cardHandlers : {})}
                 >
                   <div style={flipStyle(up)}>
-                    {/* `visibility` is a defensive backstop on top of backfaceVisibility:
-                        some browsers (e.g. Firefox) mishandle backface-visibility inside
-                        preserve-3d and let the "down" face's content show through,
-                        mirrored, on cards that are still face-down in the stack. */}
-                    <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)', visibility: up ? 'hidden' : 'visible' }} />
-                    <CardFront member={m} foil style={{ boxShadow: `0 24px 60px -18px rgba(255,197,61,.4),0 0 0 1px ${ring(m)}`, visibility: up ? 'visible' : 'hidden' }} />
+                    <CardBack style={{ transform: 'rotateY(180deg) translateZ(1px)' }} />
+                    <CardFront
+                      member={m}
+                      foil
+                      style={{
+                        boxShadow: `0 24px 60px -18px rgba(255,197,61,.4),0 0 0 1px ${ring(m)}`,
+                        visibility: up ? 'visible' : 'hidden',
+                      }}
+                    />
                   </div>
                 </div>
               )
