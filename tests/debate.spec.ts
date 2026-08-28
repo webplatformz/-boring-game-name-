@@ -165,8 +165,8 @@ test('Debate reveals poll movement and automatically advances the turn', async (
     poll.boundingBox(),
     page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth),
   ])
-  expect(opponentBox?.width).toBeLessThanOrEqual(125)
-  expect(playerBox?.width).toBeLessThanOrEqual(125)
+  expect(opponentBox?.width).toBeLessThanOrEqual(165)
+  expect(playerBox?.width).toBeLessThanOrEqual(165)
   expect(pollBox?.width).toBeLessThanOrEqual(320)
   expect(horizontalOverflow).toBeLessThanOrEqual(0)
 })

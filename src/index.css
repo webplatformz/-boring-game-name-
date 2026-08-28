@@ -308,41 +308,119 @@ a:hover {
   }
 }
 
-/* Debate mode: the attacking card lunges toward its opponent and springs
-   back, like a physical clash. Direction (up/down) depends on whether the
-   attacker is the top (opponent) or bottom (player) card in the stack. */
-@keyframes bumpDown {
+/* Debate mode (cards side by side): the attacking card lunges horizontally
+   toward its opponent and springs back, like a physical clash. --lunge-x
+   sets how far — a big number for a landed hit, a small one for an attack
+   that gets blocked and bounces off. lungeRight is the player (left side)
+   attacking rightward; lungeLeft is the opponent (right side) attacking
+   leftward — both lunge toward the VS badge in the middle. */
+@keyframes lungeRight {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
-  30% {
-    transform: translateY(34px) scale(1.06);
+  32% {
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(var(--lunge-x, 44px)) scale(1.08) rotate(-3deg);
   }
   55% {
-    transform: translateY(-10px) scale(0.98);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(calc(var(--lunge-x, 44px) * -0.18)) scale(0.97) rotate(1.5deg);
   }
   75% {
-    transform: translateY(4px) scale(1.01);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(calc(var(--lunge-x, 44px) * 0.06)) scale(1.01) rotate(0deg);
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
 }
-@keyframes bumpUp {
+@keyframes lungeLeft {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
-  30% {
-    transform: translateY(-34px) scale(1.06);
+  32% {
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(calc(var(--lunge-x, 44px) * -1)) scale(1.08) rotate(3deg);
   }
   55% {
-    transform: translateY(10px) scale(0.98);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(calc(var(--lunge-x, 44px) * 0.18)) scale(0.97) rotate(-1.5deg);
   }
   75% {
-    transform: translateY(-4px) scale(1.01);
+    /*noinspection CssUnresolvedCustomProperty*/
+    transform: translateX(calc(var(--lunge-x, 44px) * -0.06)) scale(1.01) rotate(0deg);
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1) rotate(0deg);
+  }
+}
+/* The defending card braces: a quick inward squeeze then a glowing rebound,
+   in --brace-color (teal for a clean block, pink if it still takes a hit —
+   see braceFlinch for that case). Uses drop-shadow, not box-shadow, so the
+   glow follows the card's own rounded silhouette without needing to know
+   its border-radius. */
+@keyframes bracePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  35% {
+    transform: scale(0.94);
+    /*noinspection CssUnresolvedCustomProperty*/
+    filter: drop-shadow(0 0 3px color-mix(in srgb, var(--brace-color, #2fd3c4) 70%, transparent));
+  }
+  60% {
+    transform: scale(1.03);
+    /*noinspection CssUnresolvedCustomProperty*/
+    filter: drop-shadow(0 0 16px color-mix(in srgb, var(--brace-color, #2fd3c4) 60%, transparent));
+  }
+}
+/* Same brace, but the defense didn't fully hold — a shake and rotate get
+   layered into the same keyframe (rather than a second animation) since
+   two animations both writing `transform` would just clobber each other. */
+@keyframes braceFlinch {
+  0%,
+  100% {
+    transform: translateX(0) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  22% {
+    transform: translateX(0) scale(0.93);
+    /*noinspection CssUnresolvedCustomProperty*/
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--brace-color, #ff5fa2) 65%, transparent));
+  }
+  42% {
+    transform: translateX(-8px) rotate(-2deg) scale(0.98);
+  }
+  58% {
+    transform: translateX(7px) rotate(1.5deg) scale(1.02);
+  }
+  76% {
+    transform: translateX(-3px) rotate(0deg) scale(1);
+  }
+}
+/* The whole fight row jolts on a clean landed hit, selling the impact
+   beyond just the two cards moving. */
+@keyframes arenaShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-5px);
+  }
+  30% {
+    transform: translateX(4px);
+  }
+  45% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
   }
 }
 /* Brief flash on the VS divider at the moment of impact. */

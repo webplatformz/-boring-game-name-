@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
 import { CARD_MAX_W, TIERS, partyColors } from '../theme'
@@ -26,15 +26,23 @@ import { useI18n } from '../i18n'
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
 
-const DEBATE_CARD_W_MAX = Math.min(0.4 * CARD_MAX_W, 125)
-const DEBATE_CARD_W_MIN = 50
 const CARD_ASPECT = 504 / 336
-// Everything in the viewport-constrained column besides the two cards
-// themselves: tab bar, legal footer, screen padding, header, poll meter,
-// action row, and the gaps between them. The footer stays visible through
-// every step (tests rely on it framing the result screen), so its height
-// is budgeted here too even though it sits outside the Arena.
-const DEBATE_CHROME_H = 468
+// Cards sit side by side now, so width is driven by the shared app column
+// (capped at 430px, see .app-shell-width) as much as by height — a single
+// card row needs far less vertical room than the old stacked layout did,
+// which is what lets cards run bigger without risking a scroll.
+const DEBATE_CARD_W_MAX = 165
+const DEBATE_CARD_W_MIN = 66
+const DEBATE_SIDE_PADDING = 40 // screen-fill's left+right padding
+const DEBATE_ROW_RESERVED_W = 60 // VS badge + the two flex gaps around it
+// Everything in the viewport-constrained column besides the card itself:
+// tab bar, legal footer, screen padding, header, poll meter, the gaps
+// between them, and — since attack/defend now stack under the player's own
+// card instead of living in a separate row — that action slot's height too.
+// The footer stays visible through every step (tests rely on it framing the
+// result screen), so its height is budgeted here even though it sits
+// outside the Arena.
+const DEBATE_CHROME_H = 454
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -55,8 +63,9 @@ function computeFightCardWidth(): number {
   const vh = window.innerHeight
   const vw = window.innerWidth
   const heightBudget = Math.max(0, vh - DEBATE_CHROME_H)
-  const widthFromHeight = heightBudget / 2 / CARD_ASPECT
-  const widthFromWidth = vw - 40
+  const widthFromHeight = heightBudget / CARD_ASPECT
+  const arenaWidth = Math.min(vw, 430) - DEBATE_SIDE_PADDING
+  const widthFromWidth = (arenaWidth - DEBATE_ROW_RESERVED_W) / 2
   return Math.max(DEBATE_CARD_W_MIN, Math.min(DEBATE_CARD_W_MAX, widthFromHeight, widthFromWidth))
 }
 
@@ -252,6 +261,46 @@ function Arena({
   const won = winner?.winner === 'player'
   const cardW = useFightCardWidth()
 
+  // The clash only plays out once, during the reveal step itself — by the
+  // time we're in 'result' the lunge/brace animations have long finished
+  // (680ms, against an 1800ms reveal window) and playerAction/oppAction are
+  // just sitting there frozen for the stat highlight, not re-animating.
+  const clash = step === 'reveal' && playerAction && oppAction
+    ? getClashPlan(playerAction, oppAction, playerCard, oppCard)
+    : null
+
+  // Your move belongs under your own card, not floating full-width — it's
+  // your choice, not the match's. Reserves a fixed height so clicking
+  // ATTACK/DEFEND (buttons → "locking in…") doesn't jump the layout; it
+  // only disappears once the turn actually reveals.
+  const playerMoveSlot: ReactNode = step === 'fight' ? (
+    <div style={{ marginTop: 10, width: cardW, minHeight: 88, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {locked ? (
+        <div
+          style={{
+            fontFamily: MONO,
+            fontSize: 10,
+            letterSpacing: '.14em',
+            color: '#9FB6D2',
+            textAlign: 'center',
+            animation: 'glowPulse 1000ms ease-in-out infinite',
+          }}
+        >
+          {t('lockingIn')}
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+          <button onClick={() => onChoose('attack')} style={stackedActionButtonStyle('#FF3D8B')}>
+            {t('attack')}
+          </button>
+          <button onClick={() => onChoose('defend')} style={stackedActionButtonStyle('#2FD3C4')}>
+            {t('defend')}
+          </button>
+        </div>
+      )}
+    </div>
+  ) : null
+
   return (
     <div
       // overflowY is a safety net, not the primary fit mechanism: cardW is
@@ -264,22 +313,11 @@ function Arena({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 6,
+        gap: 10,
         paddingBottom: 4,
         overflowY: 'hidden',
       }}
     >
-      <DebateCard
-        side="opponent"
-        label={t('opponent')}
-        labelColor="#FF9EC4"
-        member={oppCard}
-        width={cardW}
-        highlightStat={revealed ? statFor(oppAction) : null}
-        bump={step === 'reveal' && oppAction === 'attack' ? 'down' : null}
-        dimmed={step === 'result' && won}
-      />
-
       <PollMeter
         step={step}
         turn={turn}
@@ -291,44 +329,47 @@ function Arena({
         oppAction={oppAction}
       />
 
-      <DebateCard
-        side="player"
-        label={t('yourCard')}
-        labelColor="#8FEDE3"
-        member={playerCard}
-        width={cardW}
-        highlightStat={revealed ? statFor(playerAction) : null}
-        bump={step === 'reveal' && playerAction === 'attack' ? 'up' : null}
-        dimmed={step === 'result' && !won}
-      />
+      <div
+        data-testid="debate-fight-row"
+        style={{
+          flex: 'none',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          gap: 10,
+          width: '100%',
+          animation: clash?.shake ? 'arenaShake 680ms cubic-bezier(.32,.72,.28,1)' : undefined,
+        }}
+      >
+        <DebateCard
+          side="player"
+          label={t('yourCard')}
+          labelColor="#8FEDE3"
+          member={playerCard}
+          width={cardW}
+          highlightStat={revealed ? statFor(playerAction) : null}
+          motion={clash?.player ?? null}
+          dimmed={step === 'result' && !won}
+          own
+          actionSlot={playerMoveSlot}
+        />
 
-      <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 340, marginTop: 2, minHeight: 72 }}>
-        {step === 'fight' && !locked && (
-          <div style={{ display: 'flex', gap: 10, width: '100%' }}>
-            <button onClick={() => onChoose('attack')} style={actionButtonStyle('#FF3D8B')}>
-              {t('attack')}
-            </button>
-            <button onClick={() => onChoose('defend')} style={actionButtonStyle('#2FD3C4')}>
-              {t('defend')}
-            </button>
-          </div>
-        )}
+        <VsBadge flash={clash?.flash ?? null} />
 
-        {step === 'fight' && locked && (
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 11,
-              letterSpacing: '.16em',
-              color: '#9FB6D2',
-              animation: 'glowPulse 1000ms ease-in-out infinite',
-            }}
-          >
-            {t('lockingIn')}
-          </div>
-        )}
+        <DebateCard
+          side="opponent"
+          label={t('opponent')}
+          labelColor="#FF9EC4"
+          member={oppCard}
+          width={cardW}
+          highlightStat={revealed ? statFor(oppAction) : null}
+          motion={clash?.opp ?? null}
+          dimmed={step === 'result' && won}
+        />
+      </div>
 
-        {step === 'result' && winner && (
+      {step === 'result' && winner && (
+        <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: 340 }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, animation: 'riseIn 320ms ease-out' }}>
             <div style={{ fontFamily: AB, fontSize: 20, letterSpacing: '-.02em', color: won ? '#FFC53D' : '#FF5FA2' }}>
               {won ? t('youWon') : t('youLost')}
@@ -349,8 +390,120 @@ function Arena({
               {t('debateAgain')}
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── clash choreography: what each card visually does when a turn reveals ──
+
+type CardMotion =
+  | { kind: 'lunge'; dir: 'right' | 'left'; power: 'hit' | 'blocked' }
+  | { kind: 'brace'; result: 'plain' | 'flinch' | 'block' }
+
+interface ClashPlan {
+  player: CardMotion
+  opp: CardMotion
+  shake: boolean
+  flash: 'hit' | 'block' | null
+}
+
+// Mirrors the win/tie/loss math in getDebateFeedbackKey (debateFeedback.ts)
+// so the animation always agrees with the feedback text and stat deltas —
+// same "attacker's ATK vs defender's DEF" comparison, just turned into a
+// motion instead of a sentence. Player lunges rightward (toward the VS
+// badge in the middle), opponent lunges leftward, since the player card
+// sits on the left.
+function getClashPlan(
+  playerAction: DebateAction,
+  oppAction: DebateAction,
+  playerCard: Member,
+  oppCard: Member,
+): ClashPlan {
+  if (playerAction === 'defend' && oppAction === 'defend') {
+    return {
+      player: { kind: 'brace', result: 'plain' },
+      opp: { kind: 'brace', result: 'plain' },
+      shake: false,
+      flash: null,
+    }
+  }
+  if (playerAction === 'attack' && oppAction === 'attack') {
+    return {
+      player: { kind: 'lunge', dir: 'right', power: 'hit' },
+      opp: { kind: 'lunge', dir: 'left', power: 'hit' },
+      shake: true,
+      flash: 'hit',
+    }
+  }
+  const playerAttacks = playerAction === 'attack'
+  const attackerCard = playerAttacks ? playerCard : oppCard
+  const defenderCard = playerAttacks ? oppCard : playerCard
+  const attackerWins = attackerCard.ratings.atk > defenderCard.ratings.def
+  const attackerMotion: CardMotion = {
+    kind: 'lunge',
+    dir: playerAttacks ? 'right' : 'left',
+    power: attackerWins ? 'hit' : 'blocked',
+  }
+  const defenderMotion: CardMotion = { kind: 'brace', result: attackerWins ? 'flinch' : 'block' }
+  return {
+    player: playerAttacks ? attackerMotion : defenderMotion,
+    opp: playerAttacks ? defenderMotion : attackerMotion,
+    shake: attackerWins,
+    flash: attackerWins ? 'hit' : 'block',
+  }
+}
+
+function motionStyle(motion: CardMotion | null): CSSProperties {
+  if (!motion) return {}
+  if (motion.kind === 'lunge') {
+    const distance = motion.power === 'hit' ? 46 : 16
+    return {
+      ['--lunge-x' as string]: `${distance}px`,
+      animation: `${motion.dir === 'right' ? 'lungeRight' : 'lungeLeft'} 680ms cubic-bezier(.32,.72,.28,1)`,
+    }
+  }
+  const braceColor = motion.result === 'flinch' ? '#FF5FA2' : motion.result === 'block' ? '#8FEDE3' : '#2FD3C4'
+  return {
+    ['--brace-color' as string]: braceColor,
+    animation: `${motion.result === 'flinch' ? 'braceFlinch' : 'bracePulse'} 680ms ease-out`,
+  }
+}
+
+function VsBadge({ flash }: { flash: 'hit' | 'block' | null }) {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        flex: 'none',
+        width: 38,
+        height: 38,
+        marginTop: 8,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '50%',
+        background: 'linear-gradient(155deg,#1B2739,#0A0F18)',
+        border: '1px solid rgba(234,242,255,.16)',
+        boxShadow: '0 8px 18px -8px rgba(0,0,0,.7)',
+        animation: flash ? 'vsFlash 480ms ease-out' : undefined,
+      }}
+    >
+      <span
+        style={{
+          fontFamily: AB,
+          fontStyle: 'italic',
+          fontSize: 13,
+          letterSpacing: '-.02em',
+          backgroundImage: flash === 'block' ? 'linear-gradient(160deg,#DFF7F3,#8FEDE3)' : 'linear-gradient(160deg,#FFD87A,#FF3D8B)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}
+      >
+        VS
+      </span>
     </div>
   )
 }
@@ -555,17 +708,18 @@ function statFor(action: DebateAction | null): 'atk' | 'def' | null {
   return null
 }
 
-function actionButtonStyle(color: string): CSSProperties {
+function stackedActionButtonStyle(color: string): CSSProperties {
   return {
-    flex: 1,
-    padding: '14px 10px',
-    borderRadius: 12,
+    width: '100%',
+    padding: '11px 8px',
+    borderRadius: 10,
     background: `${color}22`,
     border: `1px solid ${color}`,
     color,
     fontFamily: AB,
-    fontSize: 13,
-    letterSpacing: '.08em',
+    fontSize: 12,
+    letterSpacing: '.06em',
+    textAlign: 'center',
     cursor: 'pointer',
   }
 }
@@ -577,8 +731,10 @@ function DebateCard({
   member,
   width,
   highlightStat,
-  bump,
+  motion,
   dimmed = false,
+  own = false,
+  actionSlot = null,
 }: {
   side: 'player' | 'opponent'
   label: string
@@ -586,8 +742,10 @@ function DebateCard({
   member: Member
   width: number
   highlightStat: 'atk' | 'def' | null
-  bump: 'up' | 'down' | null
+  motion: CardMotion | null
   dimmed?: boolean
+  own?: boolean
+  actionSlot?: ReactNode
 }) {
   const tier = TIERS[member.ratings.rarity]
   return (
@@ -603,15 +761,41 @@ function DebateCard({
         transition: 'opacity 300ms ease-out',
       }}
     >
-      <div style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.16em', color: labelColor }}>{label}</div>
-      <div style={{ animation: bump ? `${bump === 'up' ? 'bumpUp' : 'bumpDown'} 560ms ease-out` : undefined }}>
+      <div
+        style={{
+          fontFamily: MONO,
+          fontSize: 9,
+          letterSpacing: '.16em',
+          color: labelColor,
+          // The own-card badge (pill background + border) is the primary
+          // "this one is you" signal — the ring/glow on the card below
+          // reinforces it, but the label is what's visible even before
+          // you've registered the card art.
+          ...(own
+            ? {
+                padding: '3px 9px',
+                borderRadius: 20,
+                background: 'rgba(143,237,227,.16)',
+                border: '1px solid rgba(143,237,227,.5)',
+              }
+            : {}),
+        }}
+      >
+        {label}
+      </div>
+      <div style={motionStyle(motion)}>
         <ScaledCard
           width={width}
           member={member}
           highlightStat={highlightStat}
-          style={{ boxShadow: `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${tier.c}8c` }}
+          style={{
+            boxShadow: own
+              ? '0 20px 46px -20px rgba(0,0,0,.75), 0 0 0 2px #8FEDE3, 0 0 24px 2px rgba(143,237,227,.4)'
+              : `0 20px 46px -20px rgba(0,0,0,.7),0 0 0 1px ${tier.c}8c`,
+          }}
         />
       </div>
+      {actionSlot}
     </div>
   )
 }
