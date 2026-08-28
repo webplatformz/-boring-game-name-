@@ -36,6 +36,8 @@ export function App() {
   const achievements = useAchievements(game)
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
+  const [achievementTarget, setAchievementTarget] = useState<string | null>(null)
+  const [achievementTargetRequest, setAchievementTargetRequest] = useState(0)
   const { screen } = game.state
   const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
   // Home can grow taller than a short phone viewport — keep it in normal
@@ -46,7 +48,11 @@ export function App() {
   const naturalFlowScreen = !infoPage && screen === 'home'
 
   useEffect(() => {
-    const syncHash = () => setInfoPage(infoPageFromHash())
+    const syncHash = () => {
+      const nextPage = infoPageFromHash()
+      setInfoPage(nextPage)
+      if (nextPage !== 'achievements') setAchievementTarget(null)
+    }
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
   }, [])
@@ -59,6 +65,15 @@ export function App() {
   const closeInfoPage = () => {
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
     setInfoPage(null)
+    setAchievementTarget(null)
+  }
+
+  const openAchievement = (achievementId: string) => {
+    window.history.pushState(null, '', '#achievements')
+    setAchievementTarget(achievementId)
+    setAchievementTargetRequest((request) => request + 1)
+    setInfoPage('achievements')
+    achievements.dismissToast()
   }
 
   return (
@@ -117,6 +132,8 @@ export function App() {
               achievements={achievements.achievements}
               unlockedCount={achievements.unlockedCount}
               totalCount={achievements.totalCount}
+              targetId={achievementTarget}
+              targetRequest={achievementTargetRequest}
             />
           ) : (
             <>
@@ -131,7 +148,7 @@ export function App() {
         <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} />
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
-      <AchievementToast achievement={achievements.toast} onDismiss={achievements.dismissToast} />
+      <AchievementToast item={achievements.toast} onDismiss={achievements.dismissToast} onSelect={openAchievement} />
     </div>
   )
 }

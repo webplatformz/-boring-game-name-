@@ -24,6 +24,7 @@ export interface GameState {
   owned: Record<number, number>
   cardsRevealed: number
   packsOpened: number
+  regularPacksOpened: number
   pack: Member[]
   revealIdx: number
   drag: number
@@ -61,6 +62,7 @@ const INITIAL: GameState = {
   owned: save.owned,
   cardsRevealed: save.cardsRevealed,
   packsOpened: save.packsOpened,
+  regularPacksOpened: save.regularPacksOpened,
   pack: [],
   revealIdx: 0,
   drag: 0,
@@ -169,6 +171,8 @@ export function useGame(): Game {
       for (const m of s.pack) owned[m.id] = (owned[m.id] || 0) + 1
       const cardsRevealed = s.cardsRevealed + s.pack.length
       const packsOpened = s.packsOpened + 1
+      const isRegularPack = !s.isTradePack && !s.isVoucherPack
+      const regularPacksOpened = s.regularPacksOpened + (isRegularPack ? 1 : 0)
       let packs = s.packs
       let refillAt = s.refillAt
       if (!s.isTradePack && !s.isVoucherPack) {
@@ -177,7 +181,7 @@ export function useGame(): Game {
           ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS)
           : null
       }
-      persist({ owned, packs, cardsRevealed, packsOpened, refillAt })
+      persist({ owned, packs, cardsRevealed, packsOpened, regularPacksOpened, refillAt })
       const returnScreen = s.isTradePack ? 'trade' : 'home'
       return {
         ...s,
@@ -185,6 +189,7 @@ export function useGame(): Game {
         packs,
         cardsRevealed,
         packsOpened,
+        regularPacksOpened,
         refillAt,
         screen: returnScreen,
         pack: [],
@@ -208,7 +213,14 @@ export function useGame(): Game {
       const packs = s.packs + count
       // Achievement packs are independent from the automatic refill timer.
       const refillAt = s.refillAt
-      persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+      persist({
+        owned: s.owned,
+        packs,
+        cardsRevealed: s.cardsRevealed,
+        packsOpened: s.packsOpened,
+        regularPacksOpened: s.regularPacksOpened,
+        refillAt,
+      })
       return { ...s, packs, refillAt }
     })
   }, [])
@@ -230,6 +242,7 @@ export function useGame(): Game {
             packs,
             cardsRevealed: s.cardsRevealed,
             packsOpened: s.packsOpened,
+            regularPacksOpened: s.regularPacksOpened,
             refillAt,
           })
           return { ...s, packs, refillAt }
@@ -290,6 +303,7 @@ export function useGame(): Game {
         packs: stateRef.current.packs,
         cardsRevealed: stateRef.current.cardsRevealed,
         packsOpened: stateRef.current.packsOpened,
+        regularPacksOpened: stateRef.current.regularPacksOpened,
         refillAt: stateRef.current.refillAt,
       })
 
@@ -329,7 +343,14 @@ export function useGame(): Game {
       if (type === 'refill') {
         const packs = s.packs + (amount ?? 1)
         const refillAt = packs < MAX_AUTOMATIC_PACKS ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS) : null
-        persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+        persist({
+          owned: s.owned,
+          packs,
+          cardsRevealed: s.cardsRevealed,
+          packsOpened: s.packsOpened,
+          regularPacksOpened: s.regularPacksOpened,
+          refillAt,
+        })
         patch({ packs, refillAt })
         return { ok: true, type, packs }
       }
@@ -341,7 +362,14 @@ export function useGame(): Game {
         if (s.refillAt == null) return { ok: false, reason: 'no-timer' }
         const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
         const refillAt = packs < MAX_AUTOMATIC_PACKS ? s.refillAt + REFILL_INTERVAL_MS : null
-        persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+        persist({
+          owned: s.owned,
+          packs,
+          cardsRevealed: s.cardsRevealed,
+          packsOpened: s.packsOpened,
+          regularPacksOpened: s.regularPacksOpened,
+          refillAt,
+        })
         redeemed.add(result.nonce)
         persistRedeemedVouchers(redeemed)
         patch({ packs, refillAt })

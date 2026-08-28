@@ -1,12 +1,20 @@
+import { useEffect } from 'react'
 import type { CSSProperties } from 'react'
 import { SwissCross } from '../components/CardBack'
 import { TrophyIcon } from '../components/TrophyIcon'
+import { RepeatIcon } from '../components/RepeatIcon'
 import { useI18n } from '../i18n'
 import type { AchievementView } from '../game/useAchievements'
 import type { AchievementCategory } from '../game/achievements'
+import { ACHIEVEMENT_TIER_REWARDS } from '../game/achievements'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
+const TIER_COLORS = {
+  bronze: '#D99567',
+  silver: '#B8C6D9',
+  gold: '#FFC53D',
+} as const
 
 const CATEGORY_ORDER: { key: AchievementCategory; titleKey: 'achCategoryCollection' | 'achCategoryPackOpening' | 'achCategoryTrading' | 'achCategoryStreaks' }[] = [
   { key: 'collection', titleKey: 'achCategoryCollection' },
@@ -26,11 +34,19 @@ const card: CSSProperties = {
 
 function AchievementCard({ achievement }: { achievement: AchievementView }) {
   const { t, language } = useI18n()
-  const showProgress = achievement.goal > 1 && !achievement.unlocked
+  const showProgress = achievement.goal > 1 && (Boolean(achievement.repeatEvery) || !achievement.unlocked)
   const pct = showProgress ? Math.min(100, Math.round((achievement.current / achievement.goal) * 100)) : 0
+  const tierColor = TIER_COLORS[achievement.tier]
+  const tierLabel = t(
+    achievement.tier === 'bronze' ? 'achievementTierBronze' : achievement.tier === 'silver' ? 'achievementTierSilver' : 'achievementTierGold',
+  )
 
   return (
-    <div style={{ ...card, borderColor: achievement.unlocked ? 'rgba(255,197,61,.4)' : 'rgba(234,242,255,.1)' }}>
+    <div
+      id={`achievement-${achievement.id}`}
+      tabIndex={-1}
+      style={{ ...card, scrollMarginTop: 18, borderColor: achievement.unlocked ? tierColor : 'rgba(234,242,255,.1)' }}
+    >
       <div
         style={{
           flex: 'none',
@@ -40,11 +56,11 @@ function AchievementCard({ achievement }: { achievement: AchievementView }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: achievement.unlocked ? 'rgba(255,197,61,.16)' : 'rgba(234,242,255,.06)',
-          color: achievement.unlocked ? '#FFC53D' : '#3E5170',
+          background: achievement.unlocked ? `${tierColor}24` : 'rgba(234,242,255,.06)',
+          color: achievement.unlocked ? tierColor : '#3E5170',
         }}
       >
-        <TrophyIcon size={17} />
+        {achievement.repeatEvery ? <RepeatIcon size={18} /> : <TrophyIcon size={17} />}
       </div>
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
@@ -56,6 +72,17 @@ function AchievementCard({ achievement }: { achievement: AchievementView }) {
           )}
         </div>
         <div style={{ marginTop: 3, fontSize: 11, lineHeight: 1.45, color: '#7690AE' }}>{t(achievement.descKey)}</div>
+        <div style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', gap: 6, fontFamily: MONO, fontSize: 8.5 }}>
+          <span style={{ color: tierColor }}>
+            {t(
+              ACHIEVEMENT_TIER_REWARDS[achievement.tier] === 1 ? 'achievementTierRewardOne' : 'achievementTierRewardMany',
+              { tier: tierLabel, count: ACHIEVEMENT_TIER_REWARDS[achievement.tier] },
+            )}
+          </span>
+          {achievement.repeatEvery && achievement.completions > 0 && (
+            <span style={{ color: '#8EA4BE' }}>{t('achievementRepeatCount', { count: achievement.completions })}</span>
+          )}
+        </div>
         {showProgress && (
           <>
             <div style={{ marginTop: 8, height: 4, borderRadius: 99, background: 'rgba(234,242,255,.1)', overflow: 'hidden' }}>
@@ -71,15 +98,24 @@ function AchievementCard({ achievement }: { achievement: AchievementView }) {
   )
 }
 
-export function Achievements({ onClose, achievements, unlockedCount, totalCount }: {
+export function Achievements({ onClose, achievements, unlockedCount, totalCount, targetId, targetRequest }: {
   onClose: () => void
   achievements: AchievementView[]
   unlockedCount: number
   totalCount: number
+  targetId: string | null
+  targetRequest: number
 }) {
   const { t } = useI18n()
   const hiddenUnlocked = achievements.filter((a) => a.hidden && a.unlocked)
   const hiddenLockedCount = achievements.filter((a) => a.hidden && !a.unlocked).length
+
+  useEffect(() => {
+    if (!targetId) return
+    const target = document.getElementById(`achievement-${targetId}`)
+    target?.focus({ preventScroll: true })
+    target?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [targetId, targetRequest])
 
   return (
     <main style={{ padding: '22px 20px 40px', display: 'flex', flexDirection: 'column', gap: 14, animation: 'riseIn 260ms ease-out' }}>

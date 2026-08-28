@@ -13,6 +13,8 @@ export interface SaveState {
   cardsRevealed: number
   /** Total regular and trade packs completed. */
   packsOpened: number
+  /** Total regular packs completed. Older saves seed this from packsOpened. */
+  regularPacksOpened: number
   /** Timestamp (ms) when the next automatic pack unlocks, or null if not waiting. */
   refillAt: number | null
 }
@@ -39,6 +41,7 @@ export function loadSave(): SaveState {
       let refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
       const cardsRevealed = isValidCount(s.cardsRevealed) ? s.cardsRevealed : 0
       const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
+      const regularPacksOpened = isValidCount(s.regularPacksOpened) ? s.regularPacksOpened : packsOpened
       if (refillAt !== null && now >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
         const elapsedIntervals = Math.floor((now - refillAt) / REFILL_INTERVAL_MS) + 1
         const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals * REFILL_BATCH_SIZE)
@@ -55,6 +58,7 @@ export function loadSave(): SaveState {
         packs,
         cardsRevealed,
         packsOpened,
+        regularPacksOpened,
         refillAt,
       }
       persist(normalized)
@@ -68,6 +72,7 @@ export function loadSave(): SaveState {
     owned: {},
     cardsRevealed: 0,
     packsOpened: 0,
+    regularPacksOpened: 0,
     refillAt: null,
   }
 }
@@ -265,9 +270,16 @@ export function persistDebateRecord(record: DebateRecord): void {
 // packs/cards, and unlocked achievements should never regress.
 
 export interface AchievementProgress {
+  schemaVersion: 2
   /** Achievement id → the timestamp (ms) it was unlocked at. */
   unlocked: Record<string, number>
+  /** Repeatable achievement id → number of reward cycles already granted. */
+  repeatCompletions: Record<string, number>
+  /** Repeatable achievement id → rewarded cycles in its current progress cycle. */
+  repeatCycleCompletions: Record<string, number>
   tradesCompleted: number
+  /** Source rarities used in successful trade-ins. */
+  tradeSourceRarities: string[]
   /** Current consecutive-day pack-opening streak. */
   streakCurrent: number
   /** Longest streak ever reached — achievements never regress once earned. */
@@ -283,13 +295,19 @@ export interface AchievementProgress {
   sleeplessTriggered: boolean
   /** A Mythic card was pulled straight from a regular (non trade-in) pack. */
   mythicDirectPull: boolean
+  /** A regular pack contained five distinct rarities. */
+  perfectlyMixedTriggered: boolean
 }
 
 const ACHIEVEMENTS_KEY = 'bundeshaus-achievements-v1'
 
 export const DEFAULT_ACHIEVEMENT_PROGRESS: AchievementProgress = {
+  schemaVersion: 2,
   unlocked: {},
+  repeatCompletions: {},
+  repeatCycleCompletions: {},
   tradesCompleted: 0,
+  tradeSourceRarities: [],
   streakCurrent: 0,
   streakBest: 0,
   streakLastDate: null,
@@ -298,6 +316,7 @@ export const DEFAULT_ACHIEVEMENT_PROGRESS: AchievementProgress = {
   contactEmailClicked: false,
   sleeplessTriggered: false,
   mythicDirectPull: false,
+  perfectlyMixedTriggered: false,
 }
 
 function isValidUnlocked(value: unknown): value is Record<string, number> {
@@ -317,9 +336,15 @@ export function loadAchievementProgress(): AchievementProgress {
     const raw = localStorage.getItem(ACHIEVEMENTS_KEY)
     if (!raw) return DEFAULT_ACHIEVEMENT_PROGRESS
     const p = JSON.parse(raw) as Partial<AchievementProgress>
-    return {
+    const normalized: AchievementProgress = {
+      schemaVersion: 2,
       unlocked: isValidUnlocked(p.unlocked) ? p.unlocked : {},
+      repeatCompletions: isValidUnlocked(p.repeatCompletions) ? p.repeatCompletions : {},
+      repeatCycleCompletions: isValidUnlocked(p.repeatCycleCompletions)
+        ? p.repeatCycleCompletions
+        : (isValidUnlocked(p.repeatCompletions) ? p.repeatCompletions : {}),
       tradesCompleted: isValidCount(p.tradesCompleted) ? p.tradesCompleted : 0,
+      tradeSourceRarities: isStringArray(p.tradeSourceRarities) ? p.tradeSourceRarities : [],
       streakCurrent: isValidCount(p.streakCurrent) ? p.streakCurrent : 0,
       streakBest: isValidCount(p.streakBest) ? p.streakBest : 0,
       streakLastDate: typeof p.streakLastDate === 'string' ? p.streakLastDate : null,
@@ -328,7 +353,10 @@ export function loadAchievementProgress(): AchievementProgress {
       contactEmailClicked: p.contactEmailClicked === true,
       sleeplessTriggered: p.sleeplessTriggered === true,
       mythicDirectPull: p.mythicDirectPull === true,
+      perfectlyMixedTriggered: p.perfectlyMixedTriggered === true,
     }
+    persistAchievementProgress(normalized)
+    return normalized
   } catch {
     return DEFAULT_ACHIEVEMENT_PROGRESS
   }

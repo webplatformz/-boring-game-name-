@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { TrophyIcon } from './TrophyIcon'
+import { RepeatIcon } from './RepeatIcon'
 import { useI18n } from '../i18n'
-import type { AchievementDef } from '../game/achievements'
-import { ACHIEVEMENT_REWARD_PACKS } from '../game/achievements'
+import type { AchievementToastItem } from '../game/useAchievements'
 
 const AB = "'Archivo Black',sans-serif"
 const MONO = "'IBM Plex Mono',monospace"
@@ -14,21 +14,27 @@ const AUTO_DISMISS_MS = 4200
  * Auto-dismisses, but a tap also closes it early. Portalled so it floats
  * above whichever screen is active when the unlock happens.
  */
-export function AchievementToast({ achievement, onDismiss }: { achievement: AchievementDef | null; onDismiss: () => void }) {
+export function AchievementToast({ item, onDismiss, onSelect }: {
+  item: AchievementToastItem | null
+  onDismiss: () => void
+  onSelect: (achievementId: string) => void
+}) {
   const { t } = useI18n()
   const [closing, setClosing] = useState(false)
 
   useEffect(() => {
-    if (!achievement) return
+    if (!item) return
     setClosing(false)
     const timer = setTimeout(() => setClosing(true), AUTO_DISMISS_MS)
     return () => clearTimeout(timer)
-  }, [achievement])
+  }, [item])
 
-  if (!achievement) return null
+  if (!item) return null
+  const { achievement, rewardPacks } = item
 
   return createPortal(
     <div
+      role="status"
       style={{
         position: 'fixed',
         top: 16,
@@ -40,14 +46,14 @@ export function AchievementToast({ achievement, onDismiss }: { achievement: Achi
         pointerEvents: 'none',
       }}
     >
-      <div
+      <button
+        type="button"
         // Keying on the achievement id forces a fresh DOM node per toast, so the
         // popIn keyframe animation replays even when consecutive toasts queue up
         // back-to-back (otherwise the `animation` style string is identical
         // between renders and the browser won't retrigger it).
         key={achievement.id}
-        role="status"
-        onClick={() => setClosing(true)}
+        onClick={() => onSelect(achievement.id)}
         onAnimationEnd={(e) => {
           if (e.target !== e.currentTarget) return
           if (closing) onDismiss()
@@ -64,6 +70,7 @@ export function AchievementToast({ achievement, onDismiss }: { achievement: Achi
           boxShadow: '0 14px 34px rgba(0,0,0,.5), 0 0 24px rgba(255,197,61,.18)',
           cursor: 'pointer',
           pointerEvents: 'auto',
+          textAlign: 'left',
           // Horizontal centering lives on the wrapper above, so these keyframes
           // are free to animate transform (scale/translateY) on their own
           // without fighting a translateX(-50%) centering offset.
@@ -83,7 +90,7 @@ export function AchievementToast({ achievement, onDismiss }: { achievement: Achi
             color: '#FFC53D',
           }}
         >
-          <TrophyIcon size={18} />
+          {achievement.repeatEvery ? <RepeatIcon size={19} /> : <TrophyIcon size={18} />}
         </div>
         <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontFamily: MONO, fontSize: 8.5, letterSpacing: '.14em', color: '#FFD87A' }}>
@@ -94,9 +101,9 @@ export function AchievementToast({ achievement, onDismiss }: { achievement: Achi
           </div>
         </div>
         <div style={{ flex: 'none', fontFamily: MONO, fontSize: 10, color: '#FFC53D', whiteSpace: 'nowrap' }}>
-          {t('achievementRewardShort', { count: ACHIEVEMENT_REWARD_PACKS })}
+          {t(rewardPacks === 1 ? 'achievementRewardOne' : 'achievementRewardMany', { count: rewardPacks })}
         </div>
-      </div>
+      </button>
     </div>,
     document.body,
   )

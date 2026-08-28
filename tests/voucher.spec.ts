@@ -54,6 +54,8 @@ test('a rarity voucher opens a 5-card pack of a single non-mythic rarity, and ca
   expect(stored.packs).toBe(2)
 
   await page.getByRole('button', { name: 'SKIP ALL →' }).click()
+  const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
+  expect(completed).toMatchObject({ packsOpened: 1, regularPacksOpened: 0 })
   await redeem(page, code)
   await expect(page.getByText('THIS VOUCHER HAS ALREADY BEEN USED.')).toBeVisible()
 })
