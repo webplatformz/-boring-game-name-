@@ -156,7 +156,20 @@ export function useGame(): Game {
     if (stateRef.current.packs <= 0) return
     // The pack is drawn up front so the Tear screen can already stack the cards
     // (hidden) inside the sealed pack and fade them in as it comes apart.
-    patch({ screen: 'tear', ripped: false, grown: false, pack: drawPack(), revealIdx: 0, faceUp: false, outgoing: null, outgoingDrag: 0 })
+    patch({
+      screen: 'tear',
+      ripped: false,
+      grown: false,
+      pack: drawPack(),
+      revealIdx: 0,
+      faceUp: false,
+      outgoing: null,
+      outgoingDrag: 0,
+      isTradePack: false,
+      tradeRarity: null,
+      isVoucherPack: false,
+      voucherRarity: null,
+    })
     // Let the pack mount at Home size for a frame, zoom it to card size, then tear.
     after(30, () => patch({ grown: true }))
     after(30 + PACK_GROW_MS + 160, rip)
@@ -198,6 +211,7 @@ export function useGame(): Game {
         outgoingDrag: 0,
         faceUp: false,
         isTradePack: false,
+        tradeRarity: null,
         isVoucherPack: false,
         voucherRarity: null,
         packCompletionSeq: s.packCompletionSeq + 1,

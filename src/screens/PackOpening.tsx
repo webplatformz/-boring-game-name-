@@ -150,7 +150,7 @@ export function PackOpening({ game }: { game: Game }) {
       {/* subtext while tearing, per-card progress pips while revealing */}
       <div style={{ position: 'relative', marginTop: 12, height: 15 }}>
         <div style={{ position: 'absolute', inset: 0, textAlign: 'center', opacity: revealing ? 0 : 1, transition: CROSSFADE }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier?.c ?? voucherTier?.c ?? '#5C7391', ...introStyle(60) }}>
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: packAccentColor ?? '#5C7391', ...introStyle(60) }}>
             {isTradePack
               ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK`
               : isVoucherPack
