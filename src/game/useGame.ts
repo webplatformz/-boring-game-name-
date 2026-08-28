@@ -7,6 +7,7 @@ import {
   loadSave,
   MAX_AUTOMATIC_PACKS,
   persist,
+  REFILL_BATCH_SIZE,
   REFILL_INTERVAL_MS,
   syncMemberScoreCache,
 } from './storage'
@@ -204,7 +205,7 @@ export function useGame(): Game {
       setState((s) => {
         if (s.refillAt == null) return s
         if (Date.now() >= s.refillAt) {
-          const packs = s.packs < MAX_AUTOMATIC_PACKS ? s.packs + 1 : s.packs
+          const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
           const refillAt = packs < MAX_AUTOMATIC_PACKS
             ? s.refillAt + REFILL_INTERVAL_MS
             : null

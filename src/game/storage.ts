@@ -20,7 +20,8 @@ export interface SaveState {
 const KEY = 'bundeshaus-pack-v1'
 export const STARTING_PACKS = 5
 export const MAX_AUTOMATIC_PACKS = 5
-export const REFILL_INTERVAL_MS = import.meta.env.DEV ? 60_000 : 60 * 60 * 1_000
+export const REFILL_BATCH_SIZE = 5
+export const REFILL_INTERVAL_MS = import.meta.env.DEV ? 5_000 : 30 * 60 * 1_000
 
 // A valid count is a finite, non-negative integer — guards against corrupt
 // localStorage values like negatives, fractions, NaN or Infinity.
@@ -40,9 +41,10 @@ export function loadSave(): SaveState {
       const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
       if (refillAt !== null && now >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
         const elapsedIntervals = Math.floor((now - refillAt) / REFILL_INTERVAL_MS) + 1
-        const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals)
+        const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals * REFILL_BATCH_SIZE)
+        const intervalsUsed = Math.ceil(granted / REFILL_BATCH_SIZE)
         packs += granted
-        refillAt = packs < MAX_AUTOMATIC_PACKS ? refillAt + granted * REFILL_INTERVAL_MS : null
+        refillAt = packs < MAX_AUTOMATIC_PACKS ? refillAt + intervalsUsed * REFILL_INTERVAL_MS : null
       } else if (packs >= MAX_AUTOMATIC_PACKS) {
         refillAt = null
       } else if (refillAt === null) {
