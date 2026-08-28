@@ -14,19 +14,21 @@ import { Disclaimer } from './screens/Disclaimer'
 import { Privacy } from './screens/Privacy'
 import { DataMethodology } from './screens/DataMethodology'
 import { Achievements } from './screens/Achievements'
+import { Updates } from './screens/Updates'
 import { TabBar } from './components/TabBar'
 import { LegalFooter } from './components/LegalFooter'
 import { AchievementToast } from './components/AchievementToast'
 import { hasAcknowledgedDisclaimer, ProjectDisclaimer } from './components/ProjectDisclaimer'
+import { hasUnreadUpdates, markUpdatesRead } from './content/updates'
 
 const PortraitCredits = lazy(() => import('./screens/PortraitCredits'))
 
-type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'photo-credits' | 'disclaimer' | 'achievements'
+type InfoPage = 'methodology' | 'data-methodology' | 'privacy' | 'photo-credits' | 'disclaimer' | 'achievements' | 'updates'
 const LEGAL_INFO_PAGES: readonly string[] = LEGAL_PAGES
 
 function infoPageFromHash(): InfoPage | null {
   const page = window.location.hash.slice(1)
-  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'photo-credits' || page === 'disclaimer' || page === 'achievements'
+  return page === 'methodology' || page === 'data-methodology' || page === 'privacy' || page === 'photo-credits' || page === 'disclaimer' || page === 'achievements' || page === 'updates'
     ? page
     : null
 }
@@ -44,6 +46,7 @@ export function App() {
   const achievements = useAchievements(game)
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
+  const [updatesUnread, setUpdatesUnread] = useState(hasUnreadUpdates)
   const [achievementTarget, setAchievementTarget] = useState<string | null>(null)
   const [achievementTargetRequest, setAchievementTargetRequest] = useState(0)
   const { screen } = game.state
@@ -86,6 +89,12 @@ export function App() {
   // Tracks the "Law Student" hidden achievement — visiting every legal/info page.
   useEffect(() => {
     if (infoPage && LEGAL_INFO_PAGES.includes(infoPage)) recordLegalPageOpened(infoPage)
+  }, [infoPage])
+
+  useEffect(() => {
+    if (infoPage !== 'updates') return
+    markUpdatesRead()
+    setUpdatesUnread(false)
   }, [infoPage])
 
   const closeInfoPage = () => {
@@ -161,6 +170,8 @@ export function App() {
               targetId={achievementTarget}
               targetRequest={achievementTargetRequest}
             />
+          ) : infoPage === 'updates' ? (
+            <Updates onClose={closeInfoPage} />
           ) : (
             <>
               {screen === 'home' && <Home game={game} unlockedAchievements={achievements.unlockedCount} totalAchievements={achievements.totalCount} />}
@@ -171,7 +182,7 @@ export function App() {
             </>
           )}
         </div>
-        <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} />
+        <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} updatesUnread={updatesUnread} />
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
       <AchievementToast item={achievements.toast} onDismiss={achievements.dismissToast} onSelect={openAchievement} />

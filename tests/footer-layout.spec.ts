@@ -6,6 +6,7 @@ async function openSeededApp(page: Page) {
   await page.addInitScript((memberId) => {
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
     localStorage.setItem('bundeshaus-language-v1', 'en')
+    localStorage.setItem('bundeshaus-updates-read-v1', '2026-08-28-updates')
     localStorage.setItem(
       'bundeshaus-pack-v1',
       JSON.stringify({ packs: 10, owned: { [memberId]: 1 }, cardsRevealed: 1, packsOpened: 1, refillAt: null }),
@@ -85,6 +86,7 @@ test('keeps the footer after pack opening and every information page', async ({ 
   await expectBeforeFooter(page, page.locator('.screen-transition > div'))
 
   const pages = [
+    { link: 'UPDATES', heading: 'Updates' },
     { link: 'SCORE METHOD', heading: 'HOW THE SCORES WORK' },
     { link: 'DATA METHOD', heading: 'How personal data becomes game data' },
     { link: 'PRIVACY', heading: 'Privacy' },
