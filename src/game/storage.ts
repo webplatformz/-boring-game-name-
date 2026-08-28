@@ -173,6 +173,8 @@ export interface CollectionPrefs {
   rarities: RarityKey[]
   /** Selected cantons, empty = no canton filter. */
   cantons: string[]
+  /** Selected party codes, empty = no party filter. */
+  parties: string[]
 }
 
 const PREFS_KEY = 'bundeshaus-collection-v1'
@@ -183,6 +185,7 @@ export const DEFAULT_PREFS: CollectionPrefs = {
   sortDir: -1,
   rarities: [],
   cantons: [],
+  parties: [],
 }
 
 export function loadPrefs(): CollectionPrefs {
@@ -197,6 +200,7 @@ export function loadPrefs(): CollectionPrefs {
         ? p.rarities.filter((r): r is RarityKey => RARITY_ORDER.includes(r as RarityKey))
         : DEFAULT_PREFS.rarities,
       cantons: Array.isArray(p.cantons) ? p.cantons.filter((c): c is string => typeof c === 'string') : [],
+      parties: Array.isArray(p.parties) ? p.parties.filter((p): p is string => typeof p === 'string') : [],
     }
   } catch {
     return DEFAULT_PREFS

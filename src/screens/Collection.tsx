@@ -94,6 +94,9 @@ export function Collection({ game }: { game: Game }) {
   const [openCantonDropdown, setOpenCantonDropdown] = useState(false)
   const cantonListRef = useRef<HTMLDivElement>(null)
   const [selectedCantons, setSelectedCantons] = useState<Set<string>>(new Set(savedPrefs.cantons))
+  const [openPartyDropdown, setOpenPartyDropdown] = useState(false)
+  const partyListRef = useRef<HTMLDivElement>(null)
+  const [selectedParties, setSelectedParties] = useState<Set<string>>(new Set(savedPrefs.parties))
 
   useEffect(() => {
     persistPrefs({
@@ -101,21 +104,24 @@ export function Collection({ game }: { game: Game }) {
       sortDir,
       rarities: [...selectedRarities],
       cantons: [...selectedCantons],
+      parties: [...selectedParties],
     })
-  }, [sortKey, sortDir, selectedRarities, selectedCantons])
+  }, [sortKey, sortDir, selectedRarities, selectedCantons, selectedParties])
 
   useEffect(() => {
-    if (!openCantonDropdown) return
+    if (!openCantonDropdown && !openPartyDropdown) return
 
     const handleOutsidePointer = (event: PointerEvent) => {
-      if (!cantonListRef.current?.contains(event.target as Node)) {
+      const target = event.target as Node
+      if (!cantonListRef.current?.contains(target)) {
         setOpenCantonDropdown(false)
       }
+      if (!partyListRef.current?.contains(target)) setOpenPartyDropdown(false)
     }
 
     document.addEventListener('pointerdown', handleOutsidePointer)
     return () => document.removeEventListener('pointerdown', handleOutsidePointer)
-  }, [openCantonDropdown])
+  }, [openCantonDropdown, openPartyDropdown])
 
   // Owned members
   const ownedList = useMemo(() => {
@@ -130,6 +136,11 @@ export function Collection({ game }: { game: Game }) {
     return Array.from(cantons).sort()
   }, [ownedList])
 
+  const availableParties = useMemo(() => {
+    const parties = new Set(ownedList.map((r) => r.member.partyCode))
+    return Array.from(parties).sort()
+  }, [ownedList])
+
   // Apply rarity and canton filters
   const filtered = useMemo(() => {
     let result = ownedList
@@ -139,8 +150,11 @@ export function Collection({ game }: { game: Game }) {
     if (selectedCantons.size > 0) {
       result = result.filter((r) => selectedCantons.has(r.member.canton))
     }
+    if (selectedParties.size > 0) {
+      result = result.filter((r) => selectedParties.has(r.member.partyCode))
+    }
     return result
-  }, [ownedList, selectedRarities, selectedCantons])
+  }, [ownedList, selectedRarities, selectedCantons, selectedParties])
 
   // Apply sort
   const sorted = useMemo(() => {
@@ -201,6 +215,13 @@ export function Collection({ game }: { game: Game }) {
       next.add(canton)
     }
     setSelectedCantons(next)
+  }
+
+  const togglePartyFilter = (partyCode: string) => {
+    const next = new Set(selectedParties)
+    if (next.has(partyCode)) next.delete(partyCode)
+    else next.add(partyCode)
+    setSelectedParties(next)
   }
 
   const toggleSort = (k: SortKey) => {
@@ -297,8 +318,9 @@ export function Collection({ game }: { game: Game }) {
             })}
           </div>
 
-          {/* canton filter dropdown */}
-          <div style={{ flex: 'none', position: 'relative', display: 'inline-block' }}>
+          <div style={{ flex: 'none', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            {/* canton filter dropdown */}
+            <div style={{ flex: 'none', position: 'relative', display: 'inline-block' }}>
             <button
               onPointerDown={(event) => event.stopPropagation()}
               onClick={() => setOpenCantonDropdown(!openCantonDropdown)}
@@ -325,7 +347,9 @@ export function Collection({ game }: { game: Game }) {
                   top: '100%',
                   left: 0,
                   marginTop: 6,
-                  minWidth: 140,
+                  width: 'max-content',
+                  minWidth: 190,
+                  maxWidth: 'calc(100vw - 40px)',
                   maxHeight: 280,
                   overflow: 'auto',
                   borderRadius: 9,
@@ -337,6 +361,26 @@ export function Collection({ game }: { game: Game }) {
                   paddingBottom: 4,
                 }}
               >
+                {selectedCantons.size > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCantons(new Set())}
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      borderBottom: '1px solid rgba(234,242,255,.12)',
+                      background: 'rgba(234,242,255,.04)',
+                      color: '#B795D9',
+                      fontFamily: MONO,
+                      fontSize: 9,
+                      letterSpacing: '.12em',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {t('clearSelection')}
+                  </button>
+                )}
                 {availableCantons.map((canton) => {
                   const isSelected = selectedCantons.has(canton)
                   return (
@@ -369,6 +413,7 @@ export function Collection({ game }: { game: Game }) {
                         style={{
                           width: 16,
                           height: 16,
+                          flexShrink: 0,
                           borderRadius: 3,
                           border: `1.5px solid ${isSelected ? '#B795D9' : 'rgba(234,242,255,.3)'}`,
                           background: isSelected ? 'rgba(138,110,202,.3)' : 'transparent',
@@ -386,6 +431,118 @@ export function Collection({ game }: { game: Game }) {
                 })}
               </div>
             )}
+            </div>
+
+            {/* party filter dropdown */}
+            <div style={{ flex: 'none', position: 'relative', display: 'inline-block' }}>
+            <button
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => {
+                setOpenPartyDropdown(!openPartyDropdown)
+                setOpenCantonDropdown(false)
+              }}
+              style={{
+                padding: '6px 10px',
+                borderRadius: 9,
+                fontFamily: MONO,
+                fontSize: 9,
+                letterSpacing: '.12em',
+                whiteSpace: 'nowrap',
+                background: selectedParties.size > 0 ? 'rgba(228,0,43,.14)' : 'rgba(234,242,255,.05)',
+                border: selectedParties.size > 0 ? '1px solid rgba(228,0,43,.5)' : '1px solid rgba(234,242,255,.12)',
+                color: selectedParties.size > 0 ? '#FF8FA5' : '#7690AE',
+                cursor: 'pointer',
+              }}
+            >
+              {selectedParties.size === 0 ? t('parties') : t('partiesSelected', { count: selectedParties.size })}
+            </button>
+            {openPartyDropdown && (
+              <div
+                ref={partyListRef}
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  marginTop: 6,
+                  width: 'max-content',
+                  minWidth: 190,
+                  maxWidth: 'calc(100vw - 40px)',
+                  maxHeight: 280,
+                  overflow: 'auto',
+                  borderRadius: 9,
+                  background: '#0A0F18',
+                  border: '1px solid rgba(234,242,255,.2)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,.5)',
+                  zIndex: 10,
+                  paddingTop: 4,
+                  paddingBottom: 4,
+                }}
+              >
+                {selectedParties.size > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedParties(new Set())}
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      borderBottom: '1px solid rgba(234,242,255,.12)',
+                      background: 'rgba(234,242,255,.04)',
+                      color: '#FF8FA5',
+                      fontFamily: MONO,
+                      fontSize: 9,
+                      letterSpacing: '.12em',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {t('clearSelection')}
+                  </button>
+                )}
+                {availableParties.map((partyCode) => {
+                  const isSelected = selectedParties.has(partyCode)
+                  return (
+                    <button
+                      key={partyCode}
+                      onClick={() => togglePartyFilter(partyCode)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        width: '100%',
+                        padding: '8px 12px',
+                        border: 'none',
+                        background: 'transparent',
+                        fontFamily: MONO,
+                        fontSize: 10,
+                        letterSpacing: '.12em',
+                        color: isSelected ? '#FF8FA5' : '#7690AE',
+                        cursor: 'pointer',
+                        transition: 'background 100ms',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 16,
+                          height: 16,
+                          flexShrink: 0,
+                          borderRadius: 3,
+                          border: `1.5px solid ${isSelected ? '#FF8FA5' : 'rgba(234,242,255,.3)'}`,
+                          background: isSelected ? 'rgba(228,0,43,.3)' : 'transparent',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: 10,
+                        }}
+                      >
+                        {isSelected && '✓'}
+                        </div>
+                      {party(partyCode, partyCode)}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
           </div>
 
           {/* table */}
