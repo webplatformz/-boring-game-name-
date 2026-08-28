@@ -78,7 +78,7 @@ export function MythicCardFront({
   highlightStat?: ScoreKind | null
   hideStats?: boolean
 }) {
-  const { t, rarity, party } = useI18n()
+  const { t, rarity, party, cantonName } = useI18n()
   const [openMetric, setOpenMetric] = useState<ScoreKind | null>(null)
   useCardTooltipDismiss(openMetric !== null, () => setOpenMetric(null))
   const pc = partyColors(m.partyCode)
@@ -297,7 +297,7 @@ export function MythicCardFront({
             >
               {party(m.partyCode, m.party)}
             </span>
-            <Flag canton={m.canton} name={m.cantonName} height={18} />
+            <Flag canton={m.canton} name={cantonName(m.canton)} height={18} />
             <span
               style={{
                 minWidth: 0,
@@ -308,7 +308,7 @@ export function MythicCardFront({
                 whiteSpace: 'nowrap',
               }}
             >
-              {m.cantonName.toUpperCase()} · {m.years} {t('yearsShort')} · {t('age')} {m.age}
+              {cantonName(m.canton).toUpperCase()} · {m.years} {t('yearsShort')} · {t('age')} {m.age}
             </span>
           </div>
         </div>

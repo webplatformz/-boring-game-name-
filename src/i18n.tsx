@@ -560,6 +560,14 @@ const partyNames: Record<Language, Record<string, string>> = {
   rm: { SVP: 'UDC', SP: 'PS', FDP: 'PLR', LDP: 'PLD', MITTE: 'IL CENTRE', GRUENE: 'VERDS', GLP: 'PVL', EVP: 'PEV', EDU: 'UDF', LEGA: 'LEGA', MCG: 'MCG', AL: 'PdA/AL', NONE: 'SEN PARTI' },
 }
 
+const cantonNames: Record<Language, Record<string, string>> = {
+  en: { AG: 'Aargau', AI: 'Appenzell Innerrhoden', AR: 'Appenzell Ausserrhoden', BE: 'Bern', BL: 'Basel-Landschaft', BS: 'Basel-Stadt', FR: 'Fribourg', GE: 'Geneva', GL: 'Glarus', GR: 'Grisons', JU: 'Jura', LU: 'Lucerne', NE: 'Neuchâtel', NW: 'Nidwalden', OW: 'Obwalden', SG: 'St. Gallen', SH: 'Schaffhausen', SO: 'Solothurn', SZ: 'Schwyz', TG: 'Thurgau', TI: 'Ticino', UR: 'Uri', VD: 'Vaud', VS: 'Valais', ZG: 'Zug', ZH: 'Zurich' },
+  de: { AG: 'Aargau', AI: 'Appenzell I.-Rh.', AR: 'Appenzell A.-Rh.', BE: 'Bern', BL: 'Basel-Landschaft', BS: 'Basel-Stadt', FR: 'Freiburg', GE: 'Genf', GL: 'Glarus', GR: 'Graubünden', JU: 'Jura', LU: 'Luzern', NE: 'Neuenburg', NW: 'Nidwalden', OW: 'Obwalden', SG: 'St. Gallen', SH: 'Schaffhausen', SO: 'Solothurn', SZ: 'Schwyz', TG: 'Thurgau', TI: 'Tessin', UR: 'Uri', VD: 'Waadt', VS: 'Wallis', ZG: 'Zug', ZH: 'Zürich' },
+  fr: { AG: 'Argovie', AI: 'Appenzell Rhodes-Intérieures', AR: 'Appenzell Rhodes-Extérieures', BE: 'Berne', BL: 'Bâle-Campagne', BS: 'Bâle-Ville', FR: 'Fribourg', GE: 'Genève', GL: 'Glaris', GR: 'Grisons', JU: 'Jura', LU: 'Lucerne', NE: 'Neuchâtel', NW: 'Nidwald', OW: 'Obwald', SG: 'Saint-Gall', SH: 'Schaffhouse', SO: 'Soleure', SZ: 'Schwytz', TG: 'Thurgovie', TI: 'Tessin', UR: 'Uri', VD: 'Vaud', VS: 'Valais', ZG: 'Zoug', ZH: 'Zurich' },
+  it: { AG: 'Argovia', AI: 'Appenzello Interno', AR: 'Appenzello Esterno', BE: 'Berna', BL: 'Basilea Campagna', BS: 'Basilea Città', FR: 'Friburgo', GE: 'Ginevra', GL: 'Glarona', GR: 'Grigioni', JU: 'Giura', LU: 'Lucerna', NE: 'Neuchâtel', NW: 'Nidvaldo', OW: 'Obvaldo', SG: 'San Gallo', SH: 'Sciaffusa', SO: 'Soletta', SZ: 'Svitto', TG: 'Turgovia', TI: 'Ticino', UR: 'Uri', VD: 'Vaud', VS: 'Vallese', ZG: 'Zugo', ZH: 'Zurigo' },
+  rm: { AG: 'Argovia', AI: 'Appenzell Dadens', AR: 'Appenzell Dadora', BE: 'Berna', BL: 'Basilea-Campagna', BS: 'Basilea-Citad', FR: 'Friburg', GE: 'Genevra', GL: 'Glaruna', GR: 'Grischun', JU: 'Giura', LU: 'Lucerna', NE: 'Neuchâtel', NW: 'Nidwalden', OW: 'Obwalden', SG: 'Son Gagl', SH: 'Schaffusa', SO: 'Soloturn', SZ: 'Sviz', TG: 'Turgovia', TI: 'Tessin', UR: 'Uri', VD: 'Vad', VS: 'Vallais', ZG: 'Zug', ZH: 'Turitg' },
+}
+
 export function normalizeLanguage(value: string | null | undefined): Language | null {
   const base = value?.trim().toLowerCase().split(/[-_]/)[0]
   return LANGUAGES.includes(base as Language) ? (base as Language) : null
@@ -596,6 +604,7 @@ interface I18nValue {
   rarity: (rarity: RarityKey) => string
   sector: (sector: LobbyingSector) => string
   party: (code: string, fallback: string) => string
+  cantonName: (code: string) => string
 }
 
 const I18nContext = createContext<I18nValue | null>(null)
@@ -624,6 +633,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     rarity: (rarity) => rarityNames[language][rarity],
     sector: (sector) => sectorNames[language][sector],
     party: (code, fallback) => partyNames[language][fallback] ?? partyNames[language][code] ?? fallback,
+    cantonName: (code) => cantonNames[language][code] ?? code,
   }), [language])
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>

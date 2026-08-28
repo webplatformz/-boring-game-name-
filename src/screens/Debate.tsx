@@ -170,7 +170,7 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
 // a quick pick step, not a browsing view.
 
 function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: (m: Member) => void; onGoHome: () => void }) {
-  const { t, party } = useI18n()
+  const { t, party, cantonName } = useI18n()
   if (ownedList.length === 0) {
     return (
       <div style={{ marginTop: 30, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, textAlign: 'center', padding: '0 10px' }}>
@@ -213,7 +213,7 @@ function Picker({ ownedList, onPick, onGoHome }: { ownedList: Member[]; onPick: 
                   <div style={{ display: 'flex', gap: 6, marginTop: 3, alignItems: 'center' }}>
                     <span style={{ padding: '2px 5px', borderRadius: 4, background: pc[0], fontFamily: AB, fontSize: 8, color: pc[1] }}>{party(m.partyCode, m.party)}</span>
                     <Flag canton={m.canton} height={10} />
-                    <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{m.cantonName}</span>
+                    <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>{cantonName(m.canton)}</span>
                   </div>
                 </div>
                 <div style={{ fontFamily: AB, fontSize: 15, color: '#FF5FA2', textAlign: 'right', alignSelf: 'center' }}>{m.ratings.atk}</div>

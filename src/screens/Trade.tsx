@@ -15,7 +15,7 @@ const MONO = "'IBM Plex Mono',monospace"
 const TRADEABLE_RARITIES: RarityKey[] = RARITY_ORDER.slice(0, -1) as RarityKey[]
 
 export function Trade({ game }: { game: Game }) {
-  const { t, rarity, party } = useI18n()
+  const { t, rarity, party, cantonName } = useI18n()
   const [selectedRarity, setSelectedRarity] = useState<RarityKey>(
     () => game.state.tradeRarity ?? 'common',
   )
@@ -449,7 +449,7 @@ export function Trade({ game }: { game: Game }) {
                       </span>
                       <Flag canton={member.canton} height={10} />
                       <span style={{ fontFamily: MONO, fontSize: 9, color: '#7690AE' }}>
-                        {member.cantonName}
+                        {cantonName(member.canton)}
                       </span>
                     </div>
                   </div>

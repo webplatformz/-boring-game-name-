@@ -129,7 +129,7 @@ export function CardFront({
    * hide their stat block regardless). */
   hideStats?: boolean
 }) {
-  const { t: tr, rarity, sector: sectorName, party } = useI18n()
+  const { t: tr, rarity, sector: sectorName, party, cantonName } = useI18n()
   const [openMetric, setOpenMetric] = useState<ScoreKind | DisclosureKind | 'cmte' | null>(null)
   const [hoveredSector, setHoveredSector] = useState<LobbyingSector | null>(null)
   const [selectedSector, setSelectedSector] = useState<LobbyingSector | null>(null)
@@ -162,7 +162,7 @@ export function CardFront({
   const pc = partyColors(m.partyCode)
   const ovrInk = t.wedge ? t.ink : '#ffffff'
   const accent = t.ovrTint
-  const sub = `${m.cantonName} · ${m.years} ${m.years === 1 ? tr('yearsServedOne') : tr('yearsServedMany')} · ${m.chamber}`
+  const sub = `${cantonName(m.canton)} · ${m.years} ${m.years === 1 ? tr('yearsServedOne') : tr('yearsServedMany')} · ${m.chamber}`
   const cardSectors = [...m.lobbying.sectors]
   if (m.financing.primaryDonorSector && !cardSectors.includes(m.financing.primaryDonorSector)) {
     cardSectors.push(m.financing.primaryDonorSector)
@@ -224,7 +224,7 @@ export function CardFront({
           >
             {party(m.partyCode, m.party)}
           </div>
-          <Flag canton={m.canton} name={m.cantonName} />
+          <Flag canton={m.canton} name={cantonName(m.canton)} />
         </div>
       </div>
 

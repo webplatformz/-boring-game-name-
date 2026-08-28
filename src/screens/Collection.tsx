@@ -83,7 +83,7 @@ function SortHeader({ label, column, activeColumn, direction, align = 'left', co
 }
 
 export function Collection({ game }: { game: Game }) {
-  const { t, rarity, party } = useI18n()
+  const { t, rarity, party, cantonName } = useI18n()
   // Read once per mount so the chips come back exactly as they were left,
   // including after switching tabs (which unmounts this screen).
   const [savedPrefs] = useState(loadPrefs)
@@ -380,7 +380,7 @@ export function Collection({ game }: { game: Game }) {
                       >
                         {isSelected && '✓'}
                       </div>
-                      {canton}
+                      {cantonName(canton)}
                     </button>
                   )
                 })}
@@ -467,7 +467,7 @@ export function Collection({ game }: { game: Game }) {
                           {party(r.member.partyCode, r.member.party)}
                         </span>
                         <Flag canton={r.member.canton} height={10} />
-                        <span style={{ minWidth: 0, fontFamily: MONO, fontSize: 9, color: '#7690AE', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.member.cantonName}</span>
+                        <span style={{ minWidth: 0, fontFamily: MONO, fontSize: 9, color: '#7690AE', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cantonName(r.member.canton)}</span>
                       </div>
                     </div>
 
