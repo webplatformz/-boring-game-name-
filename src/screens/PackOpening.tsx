@@ -167,7 +167,7 @@ export function PackOpening({ game }: { game: Game }) {
                 height: 3,
                 borderRadius: 99,
                 background:
-                  i < revealIdx
+                  i < revealIdx || (i === revealIdx && faceUp)
                     ? TIERS[m.ratings.rarity].c
                     : 'rgba(234,242,255,.14)',
                 transition: 'background 200ms',
