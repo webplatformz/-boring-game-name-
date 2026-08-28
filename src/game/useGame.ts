@@ -2,15 +2,18 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
-import { drawPack, drawTradePackCard, getNextRarity } from './pack'
+import { drawPack, drawRarityPack, drawTradePackCard, getNextRarity } from './pack'
 import {
+  loadRedeemedVouchers,
   loadSave,
   MAX_AUTOMATIC_PACKS,
   persist,
+  persistRedeemedVouchers,
   REFILL_BATCH_SIZE,
   REFILL_INTERVAL_MS,
   syncMemberScoreCache,
 } from './storage'
+import { verifyVoucherCode } from './vouchers'
 
 export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade' | 'debate'
 
@@ -35,6 +38,10 @@ export interface GameState {
   isTradePack?: boolean
   /** Rarity of cards traded in to create this special pack. */
   tradeRarity?: RarityKey | null
+  /** True if currently opening a rarity-voucher pack. */
+  isVoucherPack?: boolean
+  /** Target rarity of the voucher pack being opened. */
+  voucherRarity?: RarityKey | null
   /** Increments every time a pack finishes; achievement tracking watches this to react once per completion. */
   packCompletionSeq: number
   /** Members from the most recently completed pack (regular or trade-in). */
@@ -69,6 +76,11 @@ const INITIAL: GameState = {
   tradesExecuted: 0,
 }
 
+export type VoucherRedemptionResult =
+  | { ok: true; type: 'refill'; packs: number }
+  | { ok: true; type: 'timer' | 'rarity' }
+  | { ok: false; reason: 'invalid' | 'already-redeemed' | 'no-timer' }
+
 export interface Game {
   state: GameState
   ripNow: () => void
@@ -81,6 +93,8 @@ export interface Game {
   executeTrade: (tradedMemberIds: number[], sourceRarity: RarityKey) => void
   /** Grants extra unopened packs (used by achievement rewards) and persists them. */
   grantBonusPacks: (count: number) => void
+  /** Verifies and applies a voucher code. See game/vouchers.ts for the code format. */
+  redeemVoucher: (code: string) => Promise<VoucherRedemptionResult>
   cardHandlers: {
     onPointerDown: (e: React.PointerEvent) => void
     onPointerMove: (e: React.PointerEvent) => void
@@ -157,7 +171,7 @@ export function useGame(): Game {
       const packsOpened = s.packsOpened + 1
       let packs = s.packs
       let refillAt = s.refillAt
-      if (!s.isTradePack) {
+      if (!s.isTradePack && !s.isVoucherPack) {
         packs = Math.max(0, s.packs - 1)
         refillAt = packs < MAX_AUTOMATIC_PACKS
           ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS)
@@ -179,9 +193,11 @@ export function useGame(): Game {
         outgoingDrag: 0,
         faceUp: false,
         isTradePack: false,
+        isVoucherPack: false,
+        voucherRarity: null,
         packCompletionSeq: s.packCompletionSeq + 1,
         lastPackMembers: s.pack,
-        lastPackWasTrade: s.isTradePack ?? false,
+        lastPackWasTrade: (s.isTradePack || s.isVoucherPack) ?? false,
       }
     })
   }, [])
@@ -298,6 +314,64 @@ export function useGame(): Game {
     [patch, after, rip],
   )
 
+  const redeemVoucher = useCallback(
+    async (code: string): Promise<VoucherRedemptionResult> => {
+      const result = await verifyVoucherCode(code)
+      if (!result.ok) return { ok: false, reason: 'invalid' }
+
+      const s = stateRef.current
+      const { type, rarity, amount } = result.payload
+
+      // Refill vouchers are deliberately exempt from the per-device single-use
+      // check — they're meant to be reusable, unlike rarity/timer vouchers.
+      // They grant `amount` packs on top of whatever the player already has,
+      // same as an achievement's bonus-pack reward.
+      if (type === 'refill') {
+        const packs = s.packs + (amount ?? 1)
+        const refillAt = packs < MAX_AUTOMATIC_PACKS ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS) : null
+        persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+        patch({ packs, refillAt })
+        return { ok: true, type, packs }
+      }
+
+      const redeemed = loadRedeemedVouchers()
+      if (redeemed.has(result.nonce)) return { ok: false, reason: 'already-redeemed' }
+
+      if (type === 'timer') {
+        if (s.refillAt == null) return { ok: false, reason: 'no-timer' }
+        const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
+        const refillAt = packs < MAX_AUTOMATIC_PACKS ? s.refillAt + REFILL_INTERVAL_MS : null
+        persist({ owned: s.owned, packs, cardsRevealed: s.cardsRevealed, packsOpened: s.packsOpened, refillAt })
+        redeemed.add(result.nonce)
+        persistRedeemedVouchers(redeemed)
+        patch({ packs, refillAt })
+        return { ok: true, type }
+      }
+
+      // rarity — opens a bonus 5-card pack of a single rarity, same
+      // "doesn't consume regular packs" treatment as a trade-in pack.
+      const rarityPack = drawRarityPack(rarity as RarityKey)
+      redeemed.add(result.nonce)
+      persistRedeemedVouchers(redeemed)
+      patch({
+        screen: 'tear',
+        ripped: false,
+        grown: false,
+        pack: rarityPack,
+        revealIdx: 0,
+        faceUp: false,
+        outgoing: null,
+        outgoingDrag: 0,
+        isVoucherPack: true,
+        voucherRarity: rarity,
+      })
+      after(30, () => patch({ grown: true }))
+      after(30 + PACK_GROW_MS + 160, rip)
+      return { ok: true, type }
+    },
+    [patch, after, rip],
+  )
+
   // ── swipe / tap on the top reveal card ──
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
@@ -347,6 +421,7 @@ export function useGame(): Game {
     goTrade,
     executeTrade,
     grantBonusPacks,
+    redeemVoucher,
     goDebate,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   }

@@ -341,3 +341,30 @@ export function persistAchievementProgress(progress: AchievementProgress): void 
     /* ignore quota / private-mode failures */
   }
 }
+
+// ── redeemed vouchers ───────────────────────────────────────────────────────
+// Kept apart from the save, same reasoning as collection prefs: a corrupt or
+// absent value should never cost the player their packs/cards. There is no
+// backend, so this only stops a code being redeemed twice *on this device* —
+// see the file-level note in game/vouchers.ts for that tradeoff.
+
+const VOUCHERS_KEY = 'bundeshaus-vouchers-v1'
+
+export function loadRedeemedVouchers(): Set<string> {
+  try {
+    const raw = localStorage.getItem(VOUCHERS_KEY)
+    if (!raw) return new Set()
+    const parsed = JSON.parse(raw) as unknown
+    return new Set(Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === 'string') : [])
+  } catch {
+    return new Set()
+  }
+}
+
+export function persistRedeemedVouchers(redeemed: Set<string>): void {
+  try {
+    localStorage.setItem(VOUCHERS_KEY, JSON.stringify([...redeemed]))
+  } catch {
+    /* ignore quota / private-mode failures */
+  }
+}

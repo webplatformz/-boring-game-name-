@@ -319,6 +319,20 @@ const en = {
   achCopyRoomAccidentDesc: 'Own 26 copies of the same card.',
   achMythicHunterTitle: 'Mythic Hunter',
   achMythicHunterDesc: 'Pull a Mythic card straight from a pack.',
+
+  // ── vouchers ──
+  redeemVoucherLink: 'GOT A VOUCHER?',
+  redeemVoucherAria: 'Redeem a voucher code',
+  voucherModalTitle: 'REDEEM VOUCHER',
+  voucherModalSubtitle: 'Enter a voucher code to unlock its reward.',
+  voucherCodePlaceholder: 'ENTER CODE',
+  voucherRedeemBtn: 'REDEEM',
+  voucherCloseAria: 'Close',
+  voucherSuccessRefill: 'PACKS REFILLED TO {count}!',
+  voucherSuccessTimer: 'REFILL TIMER SKIPPED — YOUR PACKS ARE TOPPED UP!',
+  voucherErrorInvalid: 'THAT CODE ISN’T VALID.',
+  voucherErrorUsed: 'THIS VOUCHER HAS ALREADY BEEN USED.',
+  voucherErrorNoTimer: 'NO REFILL TIMER IS RUNNING RIGHT NOW.',
 } as const
 
 export type TranslationKey = keyof typeof en
@@ -362,6 +376,7 @@ const de: Partial<Record<TranslationKey, string>> = {
   achFirstTradeTitle: 'Erster Tausch', achFirstTradeDesc: 'Schliesse deinen ersten Tausch ab.', achTradeExpertTitle: 'Tausch-Experte', achTradeExpertDesc: 'Schliesse 10 Tauschgeschäfte ab.', achTradeVeteranTitle: 'Tausch-Veteran', achTradeVeteranDesc: 'Schliesse 100 Tauschgeschäfte ab.', achTradeMasterTitle: 'Tausch-Meister', achTradeMasterDesc: 'Schliesse 1000 Tauschgeschäfte ab.',
   achDailyLogin7Title: 'Wochenstammgast', achDailyLogin7Desc: 'Öffne 7 Tage in Folge ein Pack.', achDailyLogin30Title: 'Monatsstammgast', achDailyLogin30Desc: 'Öffne 30 Tage in Folge ein Pack.', achDailyLogin100Title: 'Gewohnheitstier', achDailyLogin100Desc: 'Öffne 100 Tage in Folge ein Pack.',
   achLawStudentTitle: 'Jurastudent', achLawStudentDesc: 'Öffne jede rechtliche Hinweisseite.', achKilljoyTitle: 'Spielverderber', achKilljoyDesc: 'Klicke auf die Kontakt-E-Mail.', achMultilingualTitle: 'Mehrsprachig', achMultilingualDesc: 'Wähle jede Anzeigesprache mindestens einmal aus.', achSleeplessTitle: 'Schlaflos', achSleeplessDesc: 'Öffne ein Pack um 3 Uhr nachts.', achCopyRoomAccidentTitle: 'Kopierunfall', achCopyRoomAccidentDesc: 'Besitze 26 Exemplare derselben Karte.', achMythicHunterTitle: 'Mythenjäger', achMythicHunterDesc: 'Ziehe eine mythische Karte direkt aus einem Pack.',
+  redeemVoucherLink: 'GUTSCHEIN?', redeemVoucherAria: 'Gutscheincode einlösen', voucherModalTitle: 'GUTSCHEIN EINLÖSEN', voucherModalSubtitle: 'Gib einen Gutscheincode ein, um die Belohnung freizuschalten.', voucherCodePlaceholder: 'CODE EINGEBEN', voucherRedeemBtn: 'EINLÖSEN', voucherCloseAria: 'Schliessen', voucherSuccessRefill: 'PACKS AUF {count} AUFGEFÜLLT!', voucherSuccessTimer: 'WARTEZEIT ÜBERSPRUNGEN — DEINE PACKS SIND AUFGEFÜLLT!', voucherErrorInvalid: 'DIESER CODE IST UNGÜLTIG.', voucherErrorUsed: 'DIESER GUTSCHEIN WURDE BEREITS EINGELÖST.', voucherErrorNoTimer: 'GERADE LÄUFT KEINE WARTEZEIT.',
 }
 
 const fr: Partial<Record<TranslationKey, string>> = {
@@ -389,6 +404,7 @@ const fr: Partial<Record<TranslationKey, string>> = {
   achFirstTradeTitle: 'Premier échange', achFirstTradeDesc: 'Termine ton premier échange.', achTradeExpertTitle: 'Expert de l’échange', achTradeExpertDesc: 'Termine 10 échanges.', achTradeVeteranTitle: 'Vétéran de l’échange', achTradeVeteranDesc: 'Termine 100 échanges.', achTradeMasterTitle: 'Maître de l’échange', achTradeMasterDesc: 'Termine 1000 échanges.',
   achDailyLogin7Title: 'Habitué hebdomadaire', achDailyLogin7Desc: 'Ouvre un pack 7 jours de suite.', achDailyLogin30Title: 'Habitué mensuel', achDailyLogin30Desc: 'Ouvre un pack 30 jours de suite.', achDailyLogin100Title: 'Créature d’habitude', achDailyLogin100Desc: 'Ouvre un pack 100 jours de suite.',
   achLawStudentTitle: 'Étudiant en droit', achLawStudentDesc: 'Ouvre chaque page légale et d’avertissement.', achKilljoyTitle: 'Rabat-joie', achKilljoyDesc: 'Clique sur l’e-mail de contact.', achMultilingualTitle: 'Multilingue', achMultilingualDesc: 'Sélectionne chaque langue d’affichage au moins une fois.', achSleeplessTitle: 'Insomniaque', achSleeplessDesc: 'Ouvre un pack à 3h du matin.', achCopyRoomAccidentTitle: 'Accident de photocopieuse', achCopyRoomAccidentDesc: 'Possède 26 exemplaires de la même carte.', achMythicHunterTitle: 'Chasseur de mythique', achMythicHunterDesc: 'Tire une carte mythique directement d’un pack.',
+  redeemVoucherLink: 'UN BON ?', redeemVoucherAria: 'Utiliser un code promo', voucherModalTitle: 'UTILISER UN BON', voucherModalSubtitle: 'Entre un code pour débloquer sa récompense.', voucherCodePlaceholder: 'ENTRER LE CODE', voucherRedeemBtn: 'UTILISER', voucherCloseAria: 'Fermer', voucherSuccessRefill: 'PACKS REMPLIS À {count} !', voucherSuccessTimer: 'ATTENTE IGNORÉE — TES PACKS SONT RECHARGÉS !', voucherErrorInvalid: 'CE CODE N’EST PAS VALIDE.', voucherErrorUsed: 'CE BON A DÉJÀ ÉTÉ UTILISÉ.', voucherErrorNoTimer: 'AUCUNE ATTENTE EN COURS ACTUELLEMENT.',
 }
 
 const it: Partial<Record<TranslationKey, string>> = {
@@ -416,6 +432,7 @@ const it: Partial<Record<TranslationKey, string>> = {
   achFirstTradeTitle: 'Primo scambio', achFirstTradeDesc: 'Completa il tuo primo scambio.', achTradeExpertTitle: 'Esperto di scambi', achTradeExpertDesc: 'Completa 10 scambi.', achTradeVeteranTitle: 'Veterano degli scambi', achTradeVeteranDesc: 'Completa 100 scambi.', achTradeMasterTitle: 'Maestro degli scambi', achTradeMasterDesc: 'Completa 1000 scambi.',
   achDailyLogin7Title: 'Habitué settimanale', achDailyLogin7Desc: 'Apri un pacchetto per 7 giorni di fila.', achDailyLogin30Title: 'Habitué mensile', achDailyLogin30Desc: 'Apri un pacchetto per 30 giorni di fila.', achDailyLogin100Title: 'Animale abitudinario', achDailyLogin100Desc: 'Apri un pacchetto per 100 giorni di fila.',
   achLawStudentTitle: 'Studente di legge', achLawStudentDesc: 'Apri ogni pagina legale e di avvertenza.', achKilljoyTitle: 'Guastafeste', achKilljoyDesc: 'Clicca sull’e-mail di contatto.', achMultilingualTitle: 'Poliglotta', achMultilingualDesc: 'Seleziona ogni lingua di visualizzazione almeno una volta.', achSleeplessTitle: 'Insonne', achSleeplessDesc: 'Apri un pacchetto alle 3 di notte.', achCopyRoomAccidentTitle: 'Incidente in fotocopisteria', achCopyRoomAccidentDesc: 'Possiedi 26 copie della stessa carta.', achMythicHunterTitle: 'Cacciatore di mitiche', achMythicHunterDesc: 'Estrai una carta mitica direttamente da un pacchetto.',
+  redeemVoucherLink: 'HAI UN VOUCHER?', redeemVoucherAria: 'Riscatta un codice voucher', voucherModalTitle: 'RISCATTA VOUCHER', voucherModalSubtitle: 'Inserisci un codice voucher per sbloccare il premio.', voucherCodePlaceholder: 'INSERISCI IL CODICE', voucherRedeemBtn: 'RISCATTA', voucherCloseAria: 'Chiudi', voucherSuccessRefill: 'PACK RIPORTATI A {count}!', voucherSuccessTimer: 'ATTESA SALTATA — I TUOI PACK SONO STATI RICARICATI!', voucherErrorInvalid: 'QUESTO CODICE NON È VALIDO.', voucherErrorUsed: 'QUESTO VOUCHER È GIÀ STATO USATO.', voucherErrorNoTimer: 'AL MOMENTO NON C’È ALCUNA ATTESA IN CORSO.',
 }
 
 const translations: Record<Language, Partial<Record<TranslationKey, string>>> = { en, de, fr, it }

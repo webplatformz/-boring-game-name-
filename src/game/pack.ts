@@ -51,3 +51,17 @@ export function drawTradePackCard(targetRarity: RarityKey): Member[] {
   const hit = Math.floor(Math.random() * pool.length)
   return [pool[hit]]
 }
+
+/**
+ * Draw a full pack of unique cards all of one rarity, for a rarity voucher.
+ * Every eligible rarity (see VOUCHER_RARITIES) has enough members to fill a
+ * pack with no duplicates.
+ */
+export function drawRarityPack(rarity: RarityKey, size = PACK_SIZE): Member[] {
+  const pool = MEMBERS.filter((m) => m.ratings.rarity === rarity)
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[pool[i], pool[j]] = [pool[j], pool[i]]
+  }
+  return pool.slice(0, size)
+}

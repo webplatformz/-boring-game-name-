@@ -47,12 +47,13 @@ const ring = (m: Member) => TIERS[m.ratings.rarity].c + '8c'
  */
 export function PackOpening({ game }: { game: Game }) {
   const { state } = game
-  const { screen, ripped, grown, pack, isTradePack, tradeRarity, revealIdx, drag, dragging, faceUp, outgoing, outgoingDrag } = state
+  const { screen, ripped, grown, pack, isTradePack, tradeRarity, isVoucherPack, voucherRarity, revealIdx, drag, dragging, faceUp, outgoing, outgoingDrag } = state
   const revealing = screen === 'reveal'
   const { ref: sizerRef, scale } = useCardScale()
 
   const rarityTier = tradeRarity ? TIERS[tradeRarity] : null
-  const packAccentColor = isTradePack ? rarityTier?.c : undefined
+  const voucherTier = voucherRarity ? TIERS[voucherRarity] : null
+  const packAccentColor = isTradePack ? rarityTier?.c : isVoucherPack ? voucherTier?.c : undefined
 
   // The cards sitting inside the sealed pack, top card first, while tearing.
   const tearDeck = pack
@@ -149,8 +150,12 @@ export function PackOpening({ game }: { game: Game }) {
       {/* subtext while tearing, per-card progress pips while revealing */}
       <div style={{ position: 'relative', marginTop: 12, height: 15 }}>
         <div style={{ position: 'absolute', inset: 0, textAlign: 'center', opacity: revealing ? 0 : 1, transition: CROSSFADE }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier ? rarityTier.c : '#5C7391', ...introStyle(60) }}>
-            {isTradePack ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK` : `${PACK_SIZE} MEMBERS INCOMING`}
+          <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.16em', color: rarityTier?.c ?? voucherTier?.c ?? '#5C7391', ...introStyle(60) }}>
+            {isTradePack
+              ? `SPECIAL ${rarityTier?.label ?? ''} TRADE PACK`
+              : isVoucherPack
+                ? `SPECIAL ${voucherTier?.label ?? ''} VOUCHER PACK`
+                : `${PACK_SIZE} MEMBERS INCOMING`}
           </div>
         </div>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', gap: 4, alignItems: 'center', opacity: revealing ? 1 : 0, transition: CROSSFADE }}>
@@ -249,7 +254,13 @@ export function PackOpening({ game }: { game: Game }) {
                   style={{ position: 'absolute', left: 0, right: 0, top: PACK_TOP_H - 9, height: 9, background: `linear-gradient(180deg,rgba(255,255,255,.4),${packAccentColor ?? 'rgba(255,197,61,.14)'} 45%,transparent)` }}
                 />
                 <PackLabel
-                  subtext={isTradePack ? `1 CARD · ${rarityTier?.label ?? ''} TRADE` : `${PACK_SIZE} CARDS · NO DUPES`}
+                  subtext={
+                    isTradePack
+                      ? `1 CARD · ${rarityTier?.label ?? ''} TRADE`
+                      : isVoucherPack
+                        ? `${PACK_SIZE} CARDS · ${voucherTier?.label ?? ''} VOUCHER`
+                        : `${PACK_SIZE} CARDS · NO DUPES`
+                  }
                   rarityColor={packAccentColor}
                 />
               </PackShell>

@@ -10,6 +10,7 @@ import { SwissCross } from '../components/CardBack'
 import { CardModal } from '../components/CardModal'
 import { OpeningStats } from '../components/OpeningStats'
 import { TrophyIcon } from '../components/TrophyIcon'
+import { VoucherModal } from '../components/VoucherModal'
 import { PACK_SIZE } from '../game/pack'
 import { LANGUAGES, useI18n } from '../i18n'
 
@@ -19,6 +20,7 @@ const MONO = "'IBM Plex Mono',monospace"
 export function Home({ game, unlockedAchievements, totalAchievements }: { game: Game; unlockedAchievements: number; totalAchievements: number }) {
   const { language, setLanguage, t, rarity } = useI18n()
   const [openCardMember, setOpenCardMember] = useState<Member | null>(null)
+  const [voucherOpen, setVoucherOpen] = useState(false)
   const { packs, owned, refillAt } = game.state
   const ownedList = Object.keys(owned)
     .map((id) => MEMBERS_BY_ID.get(Number(id)))
@@ -152,6 +154,14 @@ export function Home({ game, unlockedAchievements, totalAchievements }: { game: 
         </div>
       )}
 
+      <button
+        onClick={() => setVoucherOpen(true)}
+        aria-label={t('redeemVoucherAria')}
+        style={{ textAlign: 'center', fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}
+      >
+        {t('redeemVoucherLink')}
+      </button>
+
       {/* stat tiles */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10 }}>
         <button
@@ -243,6 +253,7 @@ export function Home({ game, unlockedAchievements, totalAchievements }: { game: 
       </div>
 
       <CardModal member={openCardMember} onClose={() => setOpenCardMember(null)} />
+      <VoucherModal open={voucherOpen} onClose={() => setVoucherOpen(false)} game={game} />
     </div>
   )
 }
