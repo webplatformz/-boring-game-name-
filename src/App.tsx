@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { useGame } from './game/useGame'
+import type { Screen } from './game/useGame'
 import { useDebate } from './game/useDebate'
 import { useAchievements } from './game/useAchievements'
 import { recordLegalPageOpened, LEGAL_PAGES } from './game/achievements'
@@ -30,6 +31,13 @@ function infoPageFromHash(): InfoPage | null {
     : null
 }
 
+function screenFromHash(): Screen | null {
+  const page = window.location.hash.slice(1)
+  return page === 'home' || page === 'collection' || page === 'debate' || page === 'trade'
+    ? page
+    : null
+}
+
 export function App() {
   const game = useGame()
   const debate = useDebate()
@@ -39,6 +47,7 @@ export function App() {
   const [achievementTarget, setAchievementTarget] = useState<string | null>(null)
   const [achievementTargetRequest, setAchievementTargetRequest] = useState(0)
   const { screen } = game.state
+  const { goHome, goCollection, goDebate, goTrade } = game
   const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
   // Home can grow taller than a short phone viewport — keep it in normal
   // page flow so the legal footer always follows its content. Tab screens
@@ -52,10 +61,27 @@ export function App() {
       const nextPage = infoPageFromHash()
       setInfoPage(nextPage)
       if (nextPage !== 'achievements') setAchievementTarget(null)
+      const nextScreen = screenFromHash()
+      if (nextScreen === 'home') goHome()
+      else if (nextScreen === 'collection') goCollection()
+      else if (nextScreen === 'debate') goDebate()
+      else if (nextScreen === 'trade') goTrade()
     }
+    syncHash()
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
-  }, [])
+  }, [goHome, goCollection, goDebate, goTrade])
+
+  // Keep the main game screens addressable without exposing transient pack
+  // opening phases as routes.
+  useEffect(() => {
+    if (infoPageFromHash()) return
+    if (screen !== 'home' && screen !== 'collection' && screen !== 'debate' && screen !== 'trade') return
+    const nextHash = `#${screen}`
+    if (window.location.hash !== nextHash) {
+      window.history.pushState(null, '', nextHash)
+    }
+  }, [screen])
 
   // Tracks the "Law Student" hidden achievement — visiting every legal/info page.
   useEffect(() => {
