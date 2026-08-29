@@ -1,5 +1,16 @@
 import { expect, test } from '@playwright/test'
 
+test('a new player starts with five packs', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
+    localStorage.setItem('bundeshaus-language-v1', 'en')
+    localStorage.removeItem('bundeshaus-pack-v1')
+  })
+  await page.goto('/')
+
+  await expect(page.locator('.packs-badge')).toHaveText(/PACKS\s*5/)
+})
+
 test('applies every elapsed offline interval and keeps the next countdown', async ({
   page,
 }) => {
