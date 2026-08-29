@@ -1,8 +1,9 @@
 # Debate Mode
 
 Single-player-vs-AI Debate mode built on card `atk`/`def`/`ovr` stats.
-The five-turn polling duel is fully wired in the product. Future stakes and
-rewards remain design-only. No votation/initiative data is used.
+The five-turn polling duel is fully wired in the product. Campaign selection,
+escalation, exhaustion, and rewards remain design-only. No
+votation/initiative data is used.
 
 Model checks use Node's built-in test runner via `npm run verify:debate`;
 the production-rule simulation runs via `npm run simulate:debate`.
@@ -164,9 +165,9 @@ rest is Undecided. Tied OVR → fully neutral start (0/0/100/0/0).
 
 1. **Majority win** (ends early): one side's `Firm + Rather` > 50.
 2. **Turn-limit win** (after 5 turns, no majority): higher `Firm + Rather`
-   wins — explicitly **less valuable** than a majority win (reward
-   differential is a TODO, see Part 3). Exact tie → compare `ovr`, then
-   coin-flip.
+   wins. Training records it separately from a majority win, but both count as
+   a campaign stage win and award the same rarity-based packs. Exact tie →
+   compare `ovr`, then coin-flip.
 
 Undecided voters count for neither side either way.
 
@@ -266,7 +267,8 @@ arithmetic:
 
 ### Open TODOs and tuning notes
 
-- Reward differential between majority vs. turn-limit win (see Part 3).
+- Campaign rewards depend only on opponent rarity. Majority and turn-limit wins
+  receive the same stage reward; training wins receive no reward.
 - Simulation recommendation: start with `K = 4`. With stat-weighted actions
   and the frozen `1.5x`/normal-strength tuning, K = 4 produced 23.4% majority
   wins by turn 5 in the 2026-08-21 seeded 100,000-trial run; K = 6 produced
@@ -278,48 +280,662 @@ arithmetic:
 - Reproducible simulation: `npm run simulate:debate`. The script imports the
   production model and supports
   `DEF_TRICKLE_MULTIPLIER` and `REPELLED_TRICKLE_MULTIPLIER` for tuning.
-- How this composes with the stakes/rewards layer below is not yet
-  addressed — that layer should work with either resolution mechanic.
+- The training/campaign layer below uses this polling duel unchanged.
 
-## Future: stakes & rewards (designed, not implemented)
+## Future: training & campaign modes (designed, not implemented)
 
-**Status: design only.** Debates today have no stakes —
-just a persisted win/loss counter.
+**Status: design only.** After the player selects a card, Debate will ask
+which mode to start:
 
-### Base wager/reward system (prerequisite)
+- **Single random debate** preserves today's behavior exactly. It selects an
+  opponent using the current matchmaking rules, records the outcome, awards
+  nothing, and never exhausts the player's card. This is the training ground.
+- **Campaign** uses the selected card for an escalating sequence of up to six
+  debates. Opponent rarity starts at `common` and increases by one tier after
+  every win. The campaign's booster packs are held until the player banks them
+  or wins the final `mythic` debate.
 
-- **Dupes only**: a card can only be wagered as the fighter if
-  `owned[id] >= 2`. A player's only copy of any card is never at risk.
-- **Reward on win**: draw one random card of the wagered card's tier
-  (reusing `drawTradePackCard`-style logic from `src/game/pack.ts`), held
-  as the current stake rather than added to `owned` immediately (see
-  streak mechanic below).
-- **Cost on loss**: the wagered card is removed from `owned`.
-- **Balancing goal**: tune EV to be *worse* than the guaranteed 5-for-1
-  trade-in, so battling stays a side gamble, not a better grind path.
-- Open: exact reward-draw odds, and whether a per-card daily cooldown is
-  needed to stop spamming one strong duplicate.
+The previously proposed duplicate wager, card-loss penalty, random card reward,
+and double-or-nothing streak are superseded by this campaign design. A campaign
+does not consume or risk ownership of the selected card.
 
-### Double-or-nothing streak
+### Campaign rules
 
-1. **Ante**: wager a duplicate (tier T). Lose → gone, chain never starts.
-   Win → reward R1 (tier T) becomes the current stake; offered **Bank vs.
-   Push**.
-2. **Bank** → R1 added to `owned`, chain ends.
-3. **Push** → R1 itself becomes the stake for a new fight, tier-matched to
-   R1 (not the original card). Lose → **entire chain forfeited**. Win →
-   next reward, another Bank/Push choice.
-4. **Escalating tier-up chance** per push, capped: Push 1 → 10%, Push 2 →
-   25%, Push 3 → 40%. Void (stays same-tier) if already `mythic`.
-5. **Hard cap: 3 pushes** — auto-banks after a Push 3 win (max chain =
-   ante-win + 3 pushes = 4 wins before forced payout). Protects the
-   scarce legend (5 members) / mythic (7 members) supply from farming.
+1. The selected player card keeps the same stats and is used for the entire
+   campaign, regardless of its own rarity.
+2. The first opponent is selected randomly from `common` cards. Each subsequent
+   opponent is selected randomly from the next rarity:
+   `common → uncommon → rare → ultra → legend → mythic`. Within the required
+   rarity, matchmaking excludes the player's card and prefers a different-party
+   opponent, falling back to any other eligible card when necessary.
+3. The underlying five-turn polling duel, AI behavior, and win conditions do
+   not change.
+4. Defeating an opponent adds that stage's packs to the campaign's unbanked
+   reward. Packs are not granted to the player's inventory yet.
+5. After a win from `common` through `legend`, the player chooses:
+   - **Bank & end**: grant every pack accumulated in this campaign and finish.
+   - **Continue**: keep the accumulated packs at risk and face the next rarity.
+6. Losing any debate ends the campaign and forfeits all unbanked packs,
+   including packs earned from earlier wins.
+7. Winning the `mythic` debate completes the campaign and automatically grants
+   all 21 accumulated packs. There is no final Bank/Continue choice.
+8. One owned copy of the campaign card becomes **exhausted when the campaign
+   ends** and cannot start another campaign until the next local midnight on
+   the player's device. Each owned copy may enter one campaign per local day.
+   While a campaign is active, it reserves one copy's daily allowance.
+   Exhaustion does not prevent single random debates.
+9. The player may explicitly abandon a persisted campaign. Abandoning forfeits
+   all unbanked packs, records a campaign loss, ends the campaign, and exhausts
+   one owned copy exactly like a debate loss.
+10. Only one campaign may be active globally. The player must finish or abandon
+    it before starting a campaign with any other card or copy. While it is
+    active, entering Debate always resumes that campaign; single training
+    debates are unavailable until the campaign ends or is abandoned.
 
-### Open questions
+### Rewards
 
-- Exact base reward-draw odds (needs tuning against trade-in EV).
-- Per-card daily Debate cooldown, and its cap, alongside dupes-only wagering.
-- Bank/Push UI: a new screen/step between `result` and the next `fight` —
-  not designed yet.
-- Whether "push" should be blocked while the *original* wagered card is
-  still on cooldown from a previous chain.
+The reward for a stage is based only on the defeated opponent's rarity. Rewards
+accumulate linearly rather than doubling:
+
+| Defeated rarity | Packs earned | Campaign total |
+|---|---:|---:|
+| Common | 1 | 1 |
+| Uncommon | 2 | 3 |
+| Rare | 3 | 6 |
+| Ultra | 4 | 10 |
+| Legend | 5 | 15 |
+| Mythic | 6 | 21 |
+
+Each awarded pack is a normal five-card booster pack using the existing
+`drawPack` rules. Banking increases a persistent unopened-pack balance; cards
+are not drawn until the player chooses to open those packs later through the
+normal pack flow.
+
+### Player paths
+
+```mermaid
+flowchart TD
+    A[Select owned card] --> B{Choose mode}
+    B -->|Single random debate| T[Play current tier-matched debate]
+    T --> T2[Record result; no reward or exhaustion]
+
+    B -->|Start campaign| C[Reserve card for active campaign]
+    C --> D[Common opponent]
+    C -.->|Abandon at any point| X[Forfeit rewards; record loss; exhaust one copy]
+    D -->|Lose| L[Forfeit rewards; end campaign; exhaust one copy]
+    D -->|Win: 1 pack total| E{Bank or continue?}
+    E -->|Bank| P1[Grant 1 pack; end campaign; exhaust one copy]
+    E -->|Continue| F[Uncommon opponent]
+
+    F -->|Lose| L
+    F -->|Win: 3 packs total| G{Bank or continue?}
+    G -->|Bank| P3[Grant 3 packs; end campaign; exhaust one copy]
+    G -->|Continue| H[Rare opponent]
+
+    H -->|Lose| L
+    H -->|Win: 6 packs total| I{Bank or continue?}
+    I -->|Bank| P6[Grant 6 packs; end campaign; exhaust one copy]
+    I -->|Continue| J[Ultra opponent]
+
+    J -->|Lose| L
+    J -->|Win: 10 packs total| K{Bank or continue?}
+    K -->|Bank| P10[Grant 10 packs; end campaign; exhaust one copy]
+    K -->|Continue| M[Legend opponent]
+
+    M -->|Lose| L
+    M -->|Win: 15 packs total| N{Bank or continue?}
+    N -->|Bank| P15[Grant 15 packs; end campaign; exhaust one copy]
+    N -->|Continue| O[Mythic opponent]
+
+    O -->|Lose| L
+    O -->|Win| P21[Grant 21 packs; end campaign; exhaust one copy]
+```
+
+At every loss node the payout is **0**, even if the campaign previously
+reached a bank offer. The possible successful exit values are therefore
+**1, 3, 6, 10, 15, or 21 packs**.
+
+### Target architecture
+
+Training and campaigns are separate mode coordinators over one reusable duel
+session. Neither mode owns poll arithmetic, and the duel session has no concept
+of packs, stages, exhaustion, persistence, or training statistics.
+
+```text
+src/game/debate.ts                 pure poll rules
+          │
+          ▼
+src/game/debateSession.ts          pure one-duel state machine
+          │
+          ▼
+src/game/useDuelSession.ts         timers and React lifecycle
+       ┌──┴───────────────┐
+       ▼                  ▼
+useTrainingDebate.ts      useDebateCampaign.ts
+training record           campaign progression/persistence
+       └──┬───────────────┘
+          ▼
+src/game/useDebate.ts              screen-facing facade
+          ▼
+src/screens/Debate.tsx             view router and composition
+```
+
+Dependencies only point downward. Pure game modules must not import React,
+`localStorage`, `useGame`, or UI components. Mode coordinators may start and
+observe duel sessions, but must not reproduce turn resolution.
+
+#### 1. Poll rules: `src/game/debate.ts`
+
+Keep the existing `PollState`, `INITIAL_POLL`, `resolveTurn`, `checkWin`, tuning
+constants, and invariants unchanged. This module answers only: “given these
+cards, actions, and poll, what is the next poll and has somebody won?”
+
+It must not know whether the duel belongs to training or a campaign. Campaign
+rarity, rewards, and exhaustion must never become parameters to
+`resolveTurn`.
+
+#### 2. Reusable duel session: `src/game/debateSession.ts`
+
+Extract the per-duel transition logic currently embedded in
+`useDebate.chooseAction` into a pure reducer. It owns one five-turn duel from
+initial poll to settled result:
+
+```ts
+type DuelPhase =
+  | 'awaiting-action'
+  | 'actions-locked'
+  | 'revealing'
+  | 'settled'
+
+interface DuelSession {
+  phase: DuelPhase
+  poll: PollState
+  turn: number
+  playerAction: DebateAction | null
+  opponentAction: DebateAction | null
+  lastTurn: CompletedDebateTurn | null
+  winner: PollWinner | null
+}
+
+type DuelEvent =
+  | { type: 'lock-actions'; player: DebateAction; opponent: DebateAction }
+  | { type: 'reveal' }
+  | { type: 'finish-reveal' }
+```
+
+- `createDuel(playerCard, opponentCard)` creates turn 1 and the initial poll.
+- `reduceDuel(session, event, cards)` is the only place that sequences
+  `resolveTurn` and `checkWin`.
+- `reveal` resolves exactly once and always enters the visible reveal phase,
+  even when that turn has produced a winner.
+- `finish-reveal` runs after the existing result delay. It enters `settled` if
+  there is a winner; otherwise it clears both actions and starts the next turn.
+  This preserves today's pause between the poll movement and result banner.
+  Invalid events return an explicit error/result rather than silently mutating
+  state.
+- `CompletedDebateTurn` belongs here rather than in a mode hook because both
+  modes render the same feedback.
+
+Persist IDs and scalar state, not bundled `Member` objects. A validated
+`DuelSnapshot` plus `toDuelSnapshot`/`restoreDuelSnapshot` reconstructs cards
+from `MEMBERS_BY_ID`. Snapshot validation checks member IDs, phase/action
+consistency, turn bounds, poll total, and winner state.
+
+Suspense and reveal timing are presentation state, not durable campaign state.
+For campaign duels, persist the selected player and opponent actions
+synchronously when they are locked, before starting the suspense timer. Persist
+the resolved poll and winner again when `reveal` runs.
+
+On restoration, normalize transient phases without replaying animations:
+
+- `actions-locked` immediately dispatches `reveal` using the persisted actions;
+  the AI action is never selected again.
+- `revealing` immediately dispatches `finish-reveal`, entering either the next
+  turn or the settled result.
+- `awaiting-action` and `settled` restore directly.
+
+Persist the normalized snapshot before accepting new input. This guarantees
+that closing during suspense or reveal cannot reroll an AI action, resolve a
+turn twice, or force the player to wait through an old animation.
+
+#### 3. Duel timing adapter: `src/game/useDuelSession.ts`
+
+This hook wraps the pure session with only browser interaction concerns:
+
+- suspense and reveal timers;
+- the synchronous action lock that prevents double submission;
+- AI action selection through an injected callback;
+- cancellation on unmount; and
+- `start`, `restore`, `chooseAction`, and `clear` commands.
+
+It emits `onSettled(winner, snapshot)` once, after `finish-reveal` enters the
+settled phase. It does not write statistics, pick the next campaign opponent,
+grant packs, or clear persisted campaigns. Both mode hooks reuse this adapter,
+ensuring identical battle timing and behavior.
+
+`clear` increments an internal session generation as well as cancelling timers.
+Every delayed callback checks that generation before dispatching. Abandoning a
+campaign calls `clear` before its terminal commit, so stale suspense or reveal
+callbacks cannot settle an already-abandoned campaign.
+
+Campaign mode receives an `onCheckpoint(snapshot)` callback and invokes it for
+the synchronous action lock and resolved reveal transitions. Training does not
+persist checkpoints. Restore normalization suppresses timers until the next
+stable snapshot has been saved.
+
+#### 4. Training coordinator: `src/game/useTrainingDebate.ts`
+
+Training remains deliberately small:
+
+1. Receive the selected player card.
+2. Use the existing `pickOpponentFrom` tier-window matchmaking.
+3. Start a shared duel session.
+4. On settlement, update only `DebateRecord`.
+5. Return to card selection when the player chooses another debate.
+
+This hook owns `bundeshaus-battle-v2`, majority/turn-limit classification, and
+training reset semantics. It has no imports from campaign modules and cannot
+grant rewards or exhaust cards.
+
+#### 5. Campaign domain: `src/game/debateCampaign.ts`
+
+Keep campaign progression pure and separate from React:
+
+```ts
+type CampaignPhase = 'in-duel' | 'awaiting-choice'
+
+interface CampaignState {
+  playerId: number
+  stageIndex: 0 | 1 | 2 | 3 | 4 | 5
+  phase: CampaignPhase
+  unbankedPacks: number
+  duel: DuelSnapshot
+}
+
+type CampaignEvent =
+  | { type: 'stage-settled'; winner: PollWinner }
+  | { type: 'continue'; nextDuel: DuelSnapshot }
+  | { type: 'bank' }
+  | { type: 'abandon' }
+
+type CampaignEffect =
+  | { type: 'persist' }
+  | { type: 'complete'; outcome: 'banked' | 'lost' | 'completed'; packs: number }
+```
+
+`CAMPAIGN_RARITIES`, stage pack values, cumulative totals, stage transitions,
+and `nextLocalMidnight` live in this module. The reducer verifies that
+`unbankedPacks` equals the total implied by `stageIndex`; callers do not pass
+arbitrary reward values.
+
+Terminal transitions produce data effects rather than calling storage or
+`grantBonusPacks`. A loss or abandon produces `packs: 0`; bank and mythic
+completion produce the validated accumulated total.
+
+#### 6. Campaign coordinator: `src/game/useDebateCampaign.ts`
+
+This hook composes the reusable duel session with the campaign reducer. It owns:
+
+- exact-rarity opponent selection for each stage;
+- restoring the single persisted campaign;
+- saving a snapshot after every stable transition;
+- checkpointing locked actions and resolved turns so transient animations can
+  be skipped safely after interruption;
+- Bank, Continue, and Abandon commands;
+- campaign statistics and exhaustion effects; and
+- forwarding one terminal commit to game state.
+
+It does not update `DebateRecord`. Continuing asks the campaign matcher for the
+next opponent, creates a new `DuelSnapshot`, and then dispatches `continue`.
+An active campaign always wins precedence over starting another campaign.
+It also wins precedence over training: the coordinator resumes its persisted
+duel or choice state and exposes no command for starting a training debate.
+
+`src/game/debateMatch.ts` retains `pickOpponentFrom` unchanged for training and
+adds `pickOpponentAtRarity`. Both functions share a private
+cross-party-preferred candidate helper, but their eligibility rules remain
+separate and explicit.
+
+#### 7. Screen facade: `src/game/useDebate.ts`
+
+Keep `useDebate` as the single API consumed by the screen, but make it a facade
+rather than the owner of all behavior. It composes the two mode hooks and
+exposes a discriminated state:
+
+```ts
+type DebateViewState =
+  | { view: 'pick'; trainingRecord: DebateRecord }
+  | { view: 'choose-mode'; playerCard: Member; campaignAvailable: boolean }
+  | { view: 'duel'; mode: 'training' | 'campaign'; duel: DuelViewModel }
+  | { view: 'campaign-choice'; campaign: CampaignViewModel }
+  | { view: 'campaign-result'; result: CampaignResultViewModel }
+  | { view: 'campaign-storage-error'; attempted: CampaignCommand }
+  | { view: 'training-result'; duel: DuelViewModel }
+```
+
+The facade routes user intent to one coordinator:
+
+- on initialization, a valid active campaign immediately determines the view;
+  the picker and mode choice are unreachable;
+- `pickCard` records the pending selection but starts nothing;
+- `startTraining` delegates to the training coordinator only when no campaign
+  is active;
+- `startCampaign` delegates to the campaign coordinator;
+- `chooseAction` delegates to whichever mode owns the active duel; and
+- `bank`, `continueCampaign`, and `abandonCampaign` exist only in campaign
+  states.
+
+Impossible combinations should be unrepresentable. Avoid a single flat object
+with nullable `mode`, `campaign`, `winner`, and `reward` fields; discriminated
+states give each component exactly the data valid for its view.
+
+The facade never retains a training selection or duel while campaign state is
+active. Starting a campaign clears any pending mode-selection state before its first
+snapshot is persisted. A terminal campaign commit atomically clears the
+campaign; only after that commit succeeds may the facade expose a result or the
+picker.
+
+After a terminal commit succeeds, the facade derives a non-persisted
+`campaign-result` view from the completed command and keeps it until dismissed.
+It shows the outcome and packs granted, if any. The receipt is presentation
+state only: reloading after the commit goes to the picker because the campaign
+has already been cleared and all effects are durable.
+
+#### 8. Persistence and atomic game-state commit
+
+Campaign durability crosses packs, ownership, exhaustion, and the active
+snapshot. These values should therefore live in the same persisted
+`SaveState` transaction in `src/game/storage.ts`, rather than splitting the
+campaign across unrelated local-storage keys:
+
+```ts
+type CampaignStageIndex = 0 | 1 | 2 | 3 | 4 | 5
+type BankableRarity = Exclude<RarityKey, 'mythic'>
+
+interface DuelSnapshot {
+  version: 1
+  playerId: number
+  opponentId: number
+  phase: DuelPhase
+  poll: PollState
+  turn: number
+  playerAction: DebateAction | null
+  opponentAction: DebateAction | null
+  lastTurn: CompletedDebateTurn | null
+  winner: PollWinner | null
+}
+
+interface CampaignSnapshot {
+  version: 1
+  id: string
+  playerId: number
+  stageIndex: CampaignStageIndex
+  phase: CampaignPhase
+  unbankedPacks: number
+  duel: DuelSnapshot
+}
+
+interface DebateExhaustion {
+  count: number
+  resetAt: number
+}
+
+interface CampaignRecord {
+  campaignsStarted: number
+  campaignsBanked: number
+  campaignsLost: number
+  campaignsAbandoned: number
+  campaignsCompleted: number
+  packsAwarded: number
+  stageWins: Record<RarityKey, number>
+  stageLosses: Record<RarityKey, number>
+  bankExits: Record<BankableRarity, number>
+}
+
+interface SaveState {
+  // existing fields
+  campaign: CampaignSnapshot | null
+  debateExhaustion: Record<number, DebateExhaustion>
+  campaignRecord: CampaignRecord
+}
+
+interface CampaignProgressCommit {
+  campaignId: string
+  expectedStageIndex: CampaignStageIndex
+  next: CampaignSnapshot
+  stageWin: RarityKey
+}
+
+interface CampaignOutcomeCommit {
+  campaignId: string
+  expectedStageIndex: CampaignStageIndex
+  outcome: 'banked' | 'lost' | 'abandoned' | 'completed'
+  stageResult: 'win' | 'loss' | null
+  packs: number
+}
+
+type CampaignCommand =
+  | { type: 'start'; snapshot: CampaignSnapshot }
+  | { type: 'checkpoint'; snapshot: CampaignSnapshot }
+  | { type: 'progress'; commit: CampaignProgressCommit }
+  | { type: 'outcome'; commit: CampaignOutcomeCommit }
+```
+
+All counters are finite non-negative integers, and every applicable rarity key
+is present after normalization. `campaignsLost` includes both stage losses and
+explicit abandonments; `campaignsAbandoned` is the abandonment subset.
+`stageLosses` counts only played duel losses. `campaignsCompleted` counts
+mythic wins, while `campaignsBanked` and `bankExits` count voluntary successful
+exits.
+
+Starting a campaign and incrementing `campaignsStarted` is one save. A
+non-terminal stage win and its `stageWins` increment are saved with the
+`awaiting-choice` snapshot. A stage loss or mythic win records its stage result
+inside the terminal commit. Statistics therefore cannot drift from resumable
+campaign state.
+
+Every progress or outcome commit must match the currently persisted campaign
+ID, expected stage, and phase. A progress snapshot must retain the same player
+ID. The repository revalidates pack totals and stage rarity from the active
+snapshot rather than trusting command payloads. A mismatched or stale command
+fails without changing state.
+
+Campaign repository commands return an explicit result:
+
+```ts
+type CampaignWriteResult =
+  | { ok: true }
+  | { ok: false; error: 'storage-unavailable' }
+```
+
+`src/game/useGame.ts` exposes a narrow campaign gateway rather than the general
+state setter:
+
+```ts
+interface DebateCampaignGateway {
+  activeCampaign: CampaignSnapshot | null
+  startCampaign(snapshot: CampaignSnapshot): CampaignWriteResult
+  checkpointCampaign(snapshot: CampaignSnapshot): CampaignWriteResult
+  commitCampaignProgress(commit: CampaignProgressCommit): CampaignWriteResult
+  commitCampaignOutcome(commit: CampaignOutcomeCommit): CampaignWriteResult
+  campaignAvailability(memberId: number): number
+}
+```
+
+- `startCampaign` stores the active snapshot and increments
+  `campaignsStarted`.
+- `checkpointCampaign` stores locked actions or a resolved poll without
+  changing statistics.
+- `commitCampaignProgress` stores a non-terminal stage win and its
+  `awaiting-choice` snapshot atomically.
+- `commitCampaignOutcome` applies packs, terminal statistics, exhaustion, and
+  campaign removal together.
+
+`App.tsx` composes the hooks explicitly:
+
+```ts
+const game = useGame()
+const debate = useDebate({ campaign: game.debateCampaign })
+```
+
+`useDebate` passes only this gateway to `useDebateCampaign`; neither
+`useDebateCampaign` nor `useDuelSession` receives the complete `Game` object.
+This replaces the current assumption that `useDebate()` is entirely independent
+from game state while keeping the dependency narrow and testable.
+
+`commitCampaignOutcome` performs one functional state update and one `persist`
+call that simultaneously:
+
+1. grants the validated pack count;
+2. increments campaign statistics;
+3. increments exhaustion for the selected member; and
+4. clears the active campaign.
+
+This single-save boundary is the idempotency mechanism: after reload, either
+the active campaign still exists and no terminal effects were applied, or it is
+gone and every terminal effect was applied. There is no intermediate
+“payout claimed” write in another key.
+
+The existing `grantBonusPacks` remains for achievement rewards; campaigns use
+`commitCampaignOutcome` because a separate pack grant followed by campaign
+cleanup is not atomic.
+
+Campaign writes are fail-closed. Compute the candidate next state, write the
+complete save first, and publish it to React state only after persistence
+succeeds. Do not use the current silent `persist` behavior for campaign
+checkpoints or terminal commits.
+
+If a checkpoint or terminal commit fails:
+
+- cancel duel timers and retain the last durable campaign state;
+- retain the attempted command in memory for an explicit Retry;
+- block further campaign actions until Retry succeeds or the player exits;
+- show a storage error without claiming that rewards, statistics, or
+  exhaustion changed; and
+- on Exit, discard the pending in-memory command so the next visit restores
+  the last durable snapshot.
+
+A failed terminal commit therefore leaves the persisted campaign active and
+grants no packs in memory. Retrying the same validated command is safe.
+
+Today `persist` replaces the complete save object, and existing callers build
+that object field by field. Extending `SaveState` therefore requires one shared
+`toSaveState(GameState)` serializer (or equivalent repository update helper)
+used by every save path, including pack completion, automatic refill, bonus
+packs, trade-in, and voucher redemption. No caller may reconstruct only the
+legacy fields. Add a regression test proving that every non-campaign save
+operation preserves the active campaign, exhaustion, and campaign record.
+
+Malformed campaign snapshots are discarded as a unit, never partially
+restored. Corrupt data is a storage-recovery case rather than a gameplay
+outcome: grant no packs, release the reservation, and do not record a loss or
+exhaust a card from partially trusted fields. Existing `SaveState` values
+without campaign fields receive safe defaults. `DebateRecord` remains under
+`bundeshaus-battle-v2` because it is training-only.
+
+#### 9. UI component responsibilities
+
+`src/screens/Debate.tsx` becomes a small router over `DebateViewState`. Move
+mode-specific and reusable views into `src/components/debate/` as the screen
+grows:
+
+| Component | Responsibility |
+|---|---|
+| `DebatePicker` | List owned cards and campaign allowances; no mode starts here. |
+| `DebateModeChoice` | Explain and select Training or Campaign for one card. |
+| `DebateArena` | Render cards, poll, actions, reveal, and duel result; mode-agnostic. |
+| `CampaignHud` | Render stage rarity, progress, and unbanked packs around the arena. |
+| `CampaignChoice` | Render Bank/Continue and the next-stage risk. |
+| `CampaignResult` | Show the committed bank, loss, abandon, or mythic outcome until dismissed. |
+| `CampaignStorageError` | Block campaign input and offer Retry or Exit after a failed write. |
+| `AbandonCampaignDialog` | Confirm the terminal zero-payout action. |
+| `DebateStats` | Present training and campaign records without combining them. |
+
+`DebateArena` receives a `DuelViewModel` and callbacks; it must not inspect
+campaign state or call persistence. Campaign chrome composes around the same
+arena rather than forking it.
+
+The current `useEffect(() => debate.reset)` in `Debate.tsx` must be removed.
+Unmounting may cancel visual timers, but only the training coordinator may
+discard an unpersisted training duel. Campaign state survives navigation and
+resumes at its exact persisted phase.
+
+When an active campaign exists, the screen renders only its current campaign
+view plus Bank/Continue or Abandon where valid. It does not render a shortcut
+to the picker or training mode. This keeps one top-level mode active at a time
+and avoids parallel transient state.
+
+#### 10. Collection, trade, achievements, and navigation
+
+- Campaign eligibility is derived as
+  `owned - exhausted - active reservation`. Exhaustion affects campaigns only.
+- `useGame.executeTrade` is the enforcement boundary for reserved copies;
+  `Trade.tsx` should also hide/disable them for clear feedback. Exhausted copies
+  remain tradable, and exhaustion counts survive trade/reacquisition until
+  midnight.
+- Existing achievements observe cards only when normal packs are opened.
+  Campaign payout itself is not a direct pull.
+- `App.tsx` routing does not need campaign logic. Entering Debate invokes the
+  facade, which exposes the persisted active campaign as the current view and
+  suppresses training entry until that campaign reaches a terminal state.
+- `drawPack` and the normal pack-opening components remain unchanged.
+
+#### 11. Localization and accessibility
+
+`src/i18n.tsx` contains all five supported language dictionaries. Add keys in
+English, German, French, Italian, and Romansh for mode choice, campaign
+explanations, stage progress, accumulated packs, next-stage risk, Bank,
+Continue, Resume, Abandon, abandon confirmation, exhaustion and availability,
+campaign results, campaign statistics, and storage-error Retry/Exit actions.
+
+Do not embed campaign copy directly in components. Mode controls, confirmation
+dialogs, disabled campaign controls, pack totals, and storage errors need
+localized accessible names. Focus moves into an opened confirmation or error
+dialog and returns to the invoking control when cancelled.
+
+### State ownership summary
+
+| State | Owner | Persisted |
+|---|---|---:|
+| Poll rules and turn result | `debate.ts` | No |
+| Current duel phase/poll/actions | `debateSession.ts` / `useDuelSession` | Campaign only |
+| Training selection and result | `useTrainingDebate` | Record only; absent during a campaign |
+| Campaign stage and unbanked packs | `debateCampaign.ts` / `useDebateCampaign` | Yes |
+| Completed campaign result view | `useDebate` facade | No |
+| Pending failed campaign command | `useDebate` facade | No |
+| Packs, exhaustion, active campaign, campaign record | `useGame` / `SaveState` | Yes |
+| Current screen/view composition | `useDebate` facade | No |
+| Animation timers and action lock | `useDuelSession` | No |
+
+### Implementation sequence
+
+1. Extract `debateSession.ts` and `useDuelSession.ts` behind today's
+   `useDebate` API without changing UI or behavior.
+2. Move training matchmaking and record updates into `useTrainingDebate`.
+   Existing Debate tests are the regression gate for both extraction steps.
+3. Replace the flat screen state with `DebateViewState` and add mode selection.
+4. Implement and unit-test `debateCampaign.ts`, reward totals, eligibility, and
+   exact-rarity matchmaking before adding persistence or UI.
+5. Extend `SaveState` and `useGame` with campaign repository commands and the
+   atomic terminal commit.
+6. Add `useDebateCampaign`, exact snapshot restoration, and navigation resume.
+7. Split the screen into the components above and add campaign chrome around
+   the unchanged arena.
+8. Add all five language dictionaries and dialog/control accessibility.
+9. Update trade enforcement, campaign statistics UI, and browser coverage.
+
+### Verification boundaries
+
+- `debateSession` tests prove both modes resolve identical duels and reject
+  invalid phase transitions.
+- `debateCampaign` tests cover every stage, reward total, bank/loss/abandon
+  path, mythic auto-completion, copy allowance, and local-midnight expiry.
+- Storage tests cover migration defaults, malformed snapshots, exact-state
+  restoration, one-save terminal commits, and preservation of campaign fields
+  through every unrelated `SaveState` writer.
+- Browser tests cover mode selection, arena reuse, all bank exits, campaign
+  loss, abandon confirmation, duplicate-copy allowances, trade reservation,
+  navigation away/back, reload during every duel phase, storage-write failure,
+  keyboard/dialog focus, and each stable campaign phase.
+- `scripts/simulate-debate.mts` remains unchanged because campaign mode does not
+  alter AI actions, poll movement, or win resolution.
