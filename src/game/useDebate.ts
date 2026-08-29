@@ -38,6 +38,7 @@ export type DebateViewState =
       view: 'duel'
       mode: 'training' | 'campaign'
       campaign: CampaignSnapshot | null
+      campaignResult: CampaignCompletion | null
       step: Exclude<DebateStep, 'pick'>
       playerCard: Member
       oppCard: Member
@@ -171,6 +172,28 @@ export function useDebate(gateway: DebateCampaignGateway): Debate {
       record: training.record,
       command: campaign.failedCommand,
     }
+  } else if (
+    (campaign.activeCampaign || campaign.result) &&
+    campaignSession &&
+    campaignPlayerCard &&
+    campaignOpponentCard
+  ) {
+    state = {
+      view: 'duel',
+      mode: 'campaign',
+      campaign: campaign.activeCampaign,
+      campaignResult: campaign.result,
+      step: stepFromPhase(campaignSession.phase),
+      record: training.record,
+      playerCard: campaignPlayerCard,
+      oppCard: campaignOpponentCard,
+      playerAction: campaignSession.playerAction,
+      oppAction: campaignSession.oppAction,
+      poll: campaignSession.poll,
+      lastTurn: campaignSession.lastTurn,
+      turn: campaignSession.turn,
+      winner: campaignSession.winner,
+    }
   } else if (campaign.result) {
     state = {
       view: 'campaign-result',
@@ -205,6 +228,7 @@ export function useDebate(gateway: DebateCampaignGateway): Debate {
       view: 'duel',
       mode: 'campaign',
       campaign: campaign.activeCampaign,
+      campaignResult: null,
       step: stepFromPhase(campaignSession.phase),
       record: training.record,
       playerCard: campaignPlayerCard,
@@ -227,6 +251,7 @@ export function useDebate(gateway: DebateCampaignGateway): Debate {
       view: 'duel',
       mode: 'training',
       campaign: null,
+      campaignResult: null,
       step: stepFromPhase(session.phase),
       record: training.record,
       playerCard,

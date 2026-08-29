@@ -44,6 +44,7 @@ export interface DuelSessionController {
     playerCard: Member,
     oppCard: Member,
     snapshot: DuelSnapshot,
+    options?: { notifySettled?: boolean },
   ) => void
   chooseAction: (action: DebateAction) => void
   retryCheckpoint: () => void
@@ -254,6 +255,7 @@ export function useDuelSession(
       playerCard: Member,
       oppCard: Member,
       snapshot: DuelSnapshot,
+      options?: { notifySettled?: boolean },
     ) => {
       cancelTimers()
       pendingCheckpoint.current = null
@@ -270,7 +272,7 @@ export function useDuelSession(
         }
         if (current.session.phase === 'settled') {
           actionLocked.current = true
-          finishTransition(current)
+          if (options?.notifySettled !== false) finishTransition(current)
           return
         }
 

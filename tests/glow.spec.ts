@@ -146,7 +146,7 @@ test('debate glows keep their full scale behind mode and duel content', async ({
   )
 })
 
-test('campaign choice card stays between its title and reward copy', async ({
+test('campaign choice stays beneath the settled duel cards', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 740 })
@@ -211,17 +211,19 @@ test('campaign choice card stays between its title and reward copy', async ({
   await page.goto('/')
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
 
-  const [title, anchor, reward] = await Promise.all([
-    page.getByText('STAGE WON', { exact: true }).boundingBox(),
-    page.getByTestId('debate-card-glow-anchor').boundingBox(),
+  const [card, title, reward] = await Promise.all([
+    page.getByTestId('debate-card-player').boundingBox(),
+    page.getByText('YOU WON!', { exact: true }).boundingBox(),
     page.getByText('1 PACKS READY TO BANK', { exact: true }).boundingBox(),
   ])
-  expect(anchor?.y ?? 0).toBeGreaterThanOrEqual(
-    (title?.y ?? 0) + (title?.height ?? 0),
+  expect(title?.y ?? 0).toBeGreaterThanOrEqual(
+    (card?.y ?? 0) + (card?.height ?? 0),
   )
-  expect((anchor?.y ?? 0) + (anchor?.height ?? 0)).toBeLessThanOrEqual(
+  expect((title?.y ?? 0) + (title?.height ?? 0)).toBeLessThanOrEqual(
     reward?.y ?? 0,
   )
+  await expect(page.getByTestId('debate-poll')).toBeVisible()
+  await expect(page.getByTestId('debate-card-opponent')).toBeVisible()
 })
 
 test('the losing card stays opaque while its own glow is dimmed', async ({

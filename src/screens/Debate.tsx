@@ -233,6 +233,17 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
             onFightAgain={
               debate.state.mode === 'training' ? debate.reset : undefined
             }
+            resultFooter={
+              debate.state.mode === 'campaign' ? (
+                <CampaignDuelFooter
+                  campaign={debate.state.campaign}
+                  result={debate.state.campaignResult}
+                  onBank={debate.bankCampaign}
+                  onContinue={debate.continueCampaign}
+                  onDone={debate.dismissCampaignResult}
+                />
+              ) : undefined
+            }
           />
         </>
       )}
@@ -421,6 +432,7 @@ function CampaignResult({
               ? t('campaignAbandoned')
               : t('campaignLost')
       }
+
       body={
         wonPacks
           ? t('campaignRewarded', { count: result.packs })
@@ -431,6 +443,69 @@ function CampaignResult({
         {t('campaignDone')}
       </button>
     </CampaignPanel>
+  )
+}
+
+function CampaignDuelFooter({
+  campaign,
+  result,
+  onBank,
+  onContinue,
+  onDone,
+}: {
+  campaign: Extract<DebateHook['state'], { view: 'duel' }>['campaign']
+  result: Extract<DebateHook['state'], { view: 'duel' }>['campaignResult']
+  onBank: () => void
+  onContinue: () => void
+  onDone: () => void
+}) {
+  const { t, rarity } = useI18n()
+
+  if (campaign?.phase === 'awaiting-choice') {
+    const nextRarity = CAMPAIGN_RARITIES[campaign.stageIndex + 1]
+    return (
+      <>
+        <div style={{ fontFamily: MONO, fontSize: 11, color: '#EAF2FF' }}>
+          {t('campaignPacksSecured', { count: campaign.unbankedPacks })}
+        </div>
+        <div style={{ fontFamily: MONO, fontSize: 10, color: '#7690AE', textAlign: 'center', lineHeight: 1.4 }}>
+          {t('campaignNextRisk', { rarity: rarity(nextRarity) })}
+        </div>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={onBank} style={campaignActionStyle('#2FD3C4')}>
+            {t('campaignBank')}
+          </button>
+          <button onClick={onContinue} style={campaignActionStyle('#FFC53D')}>
+            {t('campaignContinue')}
+          </button>
+        </div>
+      </>
+    )
+  }
+
+  if (!result) return null
+  const wonPacks = result.packs > 0
+  const title =
+    result.outcome === 'completed'
+      ? t('campaignCompleted')
+      : result.outcome === 'banked'
+        ? t('campaignBanked')
+        : result.outcome === 'abandoned'
+          ? t('campaignAbandoned')
+          : t('campaignLost')
+
+  return (
+    <>
+      <div style={{ fontFamily: AB, fontSize: 13, color: '#FFC53D' }}>{title}</div>
+      <div style={{ fontFamily: MONO, fontSize: 10, color: '#9FB6D2', textAlign: 'center' }}>
+        {wonPacks
+          ? t('campaignRewarded', { count: result.packs })
+          : t('campaignRewardForfeited')}
+      </div>
+      <button onClick={onDone} style={campaignActionStyle('#FFC53D')}>
+        {t('campaignDone')}
+      </button>
+    </>
   )
 }
 
@@ -641,6 +716,7 @@ function Arena({
   winner,
   onChoose,
   onFightAgain,
+  resultFooter,
 }: {
   step: 'fight' | 'reveal' | 'result'
   playerCard: Member
@@ -653,6 +729,7 @@ function Arena({
   winner: PollWinner | null
   onChoose: (action: DebateAction) => void
   onFightAgain?: () => void
+  resultFooter?: ReactNode
 }) {
   const { t } = useI18n()
   const locked = playerAction !== null
@@ -785,6 +862,7 @@ function Arena({
                 {t('debateAgain')}
               </button>
             )}
+            {resultFooter}
           </div>
         </div>
       )}

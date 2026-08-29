@@ -619,11 +619,14 @@ exposes a discriminated state:
 type DebateViewState =
   | { view: 'pick'; trainingRecord: DebateRecord }
   | { view: 'choose-mode'; playerCard: Member; campaignAvailable: boolean }
-  | { view: 'duel'; mode: 'training' | 'campaign'; duel: DuelViewModel }
-  | { view: 'campaign-choice'; campaign: CampaignViewModel }
-  | { view: 'campaign-result'; result: CampaignResultViewModel }
+  | {
+      view: 'duel'
+      mode: 'training' | 'campaign'
+      duel: DuelViewModel
+      campaign: CampaignViewModel | null
+      campaignResult: CampaignResultViewModel | null
+    }
   | { view: 'campaign-storage-error'; attempted: CampaignCommand }
-  | { view: 'training-result'; duel: DuelViewModel }
 ```
 
 The facade routes user intent to one coordinator:
@@ -856,17 +859,21 @@ grows:
 |---|---|
 | `DebatePicker` | List owned cards and campaign allowances; no mode starts here. |
 | `DebateModeChoice` | Explain and select Training or Campaign for one card. |
-| `DebateArena` | Render cards, poll, actions, reveal, and duel result; mode-agnostic. |
+| `DebateArena` | Render cards, poll, actions, reveal, duel result, and an injected mode-specific result footer. |
 | `CampaignHud` | Render stage rarity, progress, and unbanked packs around the arena. |
-| `CampaignChoice` | Render Bank/Continue and the next-stage risk. |
-| `CampaignResult` | Show the committed bank, loss, abandon, or mythic outcome until dismissed. |
+| `CampaignDuelFooter` | Keep the settled duel visible while rendering Bank/Continue, or a committed bank/loss/mythic result with Done. |
+| `CampaignResult` | Show an outcome without a settled duel, such as abandonment. |
 | `CampaignStorageError` | Block campaign input and offer Retry or Exit after a failed write. |
 | `AbandonCampaignDialog` | Confirm the terminal zero-payout action. |
 | `DebateStats` | Present training and campaign records without combining them. |
 
-`DebateArena` receives a `DuelViewModel` and callbacks; it must not inspect
-campaign state or call persistence. Campaign chrome composes around the same
-arena rather than forking it.
+`DebateArena` receives a `DuelViewModel`, callbacks, and an optional result
+footer; it must not inspect campaign state or call persistence. Campaign chrome
+composes around the same arena rather than forking it. Campaign settlement is
+still committed immediately, but the settled duel remains transiently mounted
+until the player continues or dismisses the result. An `awaiting-choice`
+snapshot restores that settled duel without dispatching settlement a second
+time.
 
 The current `useEffect(() => debate.reset)` in `Debate.tsx` must be removed.
 Unmounting may cancel visual timers, but only the training coordinator may

@@ -162,9 +162,15 @@ test('banking a won campaign stage awards packs and exhausts one copy', async ({
   await page.goto('/')
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
 
-  await expect(page.getByText('STAGE WON')).toBeVisible()
+  await expect(page.getByText('YOU WON!', { exact: true })).toBeVisible()
+  await expect(page.getByTestId('debate-poll')).toBeVisible()
+  await expect(page.getByTestId('debate-card-player')).toBeVisible()
+  await expect(page.getByTestId('debate-card-opponent')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'KEEP GOING' })).toBeVisible()
   await page.getByRole('button', { name: 'BANK & END' }).click()
   await expect(page.getByText('REWARDS BANKED')).toBeVisible()
+  await expect(page.getByTestId('debate-card-player')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'DONE' })).toBeVisible()
 
   const save = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),

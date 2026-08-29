@@ -122,11 +122,11 @@ export function useDebateCampaign(
             stageResult,
             packs: completion.packs,
           }),
-        () => {
-          campaignRef.current = null
-          duelRef.current?.clear()
-          setResult(completion)
-        },
+          () => {
+            campaignRef.current = null
+            if (completion.outcome === 'abandoned') duelRef.current?.clear()
+            setResult(completion)
+          },
       )
     },
     [runWrite],
@@ -164,10 +164,9 @@ export function useDebateCampaign(
             next,
             stageWin: CAMPAIGN_RARITIES[active.stageIndex],
           }),
-        () => {
-          campaignRef.current = next
-          duelRef.current?.clear()
-        },
+          () => {
+            campaignRef.current = next
+          },
       )
     },
     [completeCampaign, runWrite],
@@ -200,14 +199,12 @@ export function useDebateCampaign(
       return
     }
     restoredId.current = active.id
-    if (active.phase === 'awaiting-choice') {
-      duelRef.current?.clear()
-      return
-    }
     const playerCard = MEMBERS_BY_ID.get(active.playerId)
     const opponentCard = MEMBERS_BY_ID.get(active.duel.opponentId)
     if (!playerCard || !opponentCard) return
-    duelRef.current?.restore(playerCard, opponentCard, active.duel)
+    duelRef.current?.restore(playerCard, opponentCard, active.duel, {
+      notifySettled: active.phase !== 'awaiting-choice',
+    })
   }, [])
 
   useEffect(() => {
@@ -297,7 +294,10 @@ export function useDebateCampaign(
     pendingWrite.current?.retry()
   }, [duel])
 
-  const dismissResult = useCallback(() => setResult(null), [])
+  const dismissResult = useCallback(() => {
+    duelRef.current?.clear()
+    setResult(null)
+  }, [])
 
   const clearTransientState = useCallback(() => {
     duelRef.current?.clear()
