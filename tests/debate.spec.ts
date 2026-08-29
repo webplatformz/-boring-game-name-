@@ -340,6 +340,25 @@ test('Debate reveals poll movement and automatically advances the turn', async (
     /(?:Both attacks recruited support in proportion to ATK|Equal ATK split the available undecided voters)\./,
     { timeout: 2_000 },
   )
+  const overflowBoundary = await page.evaluate(() => {
+    const fightRow = document.querySelector(
+      '[data-testid="debate-fight-row"]',
+    )
+    const arena = fightRow?.parentElement
+    const screen = document.querySelector('[data-testid="debate-screen"]')
+    return {
+      arenaX: arena ? getComputedStyle(arena).overflowX : null,
+      arenaY: arena ? getComputedStyle(arena).overflowY : null,
+      screenX: screen ? getComputedStyle(screen).overflowX : null,
+      screenY: screen ? getComputedStyle(screen).overflowY : null,
+    }
+  })
+  expect(overflowBoundary).toEqual({
+    arenaX: 'visible',
+    arenaY: 'visible',
+    screenX: 'clip',
+    screenY: 'clip',
+  })
   await expect(poll.getByText('ATTACKED', { exact: true })).toHaveCount(2)
   expect((await poll.boundingBox())?.height).toBeCloseTo(pollHeightBefore ?? 0, 0)
   await expect(page.getByTestId('poll-deltas').locator('span')).not.toHaveCount(0)

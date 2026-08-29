@@ -20,7 +20,7 @@ import {
   getPollDeltas,
 } from '../game/debateFeedback'
 import { CardFront } from '../components/CardFront'
-import { CardGlow } from '../components/CardGlow'
+import { FixedCardGlow } from '../components/CardGlow'
 import { Flag } from '../components/Flag'
 import { useI18n } from '../i18n'
 
@@ -77,19 +77,42 @@ function computeFightCardWidth(): number {
  * the whole thing down with a CSS transform, so every proportion (text,
  * wedge, bars) shrinks together correctly.
  */
-function ScaledCard({ width, member, foil = true, highlightStat = null, style }: {
+function ScaledCard({ width, member, foil = true, highlightStat = null, dimmed = false, style }: {
   width: number
   member: Member
   foil?: boolean
   highlightStat?: 'atk' | 'def' | null
+  dimmed?: boolean
   style?: CSSProperties
 }) {
   const scale = width / CARD_MAX_W
   const height = width * (504 / 336)
+  const anchor = useRef<HTMLDivElement>(null)
   return (
-    <div style={{ width, height, position: 'relative' }}>
-      <div style={{ width: CARD_MAX_W, height: CARD_MAX_W * (504 / 336), position: 'absolute', top: 0, left: 0, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-        <CardGlow rarity={member.ratings.rarity} />
+    <div
+      ref={anchor}
+      data-testid="debate-card-glow-anchor"
+      style={{ width, height, position: 'relative' }}
+    >
+      <FixedCardGlow
+        rarity={member.ratings.rarity}
+        anchor={anchor}
+        opacity={dimmed ? 0.22 : 1}
+      />
+      <div
+        data-testid="scaled-card-surface"
+        style={{
+          width: CARD_MAX_W,
+          height: CARD_MAX_W * (504 / 336),
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          filter: dimmed ? 'brightness(.55) saturate(.55)' : 'none',
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          transition: 'filter 300ms ease-out',
+        }}
+      >
         <CardFront member={member} foil={foil} highlightStat={highlightStat} style={style} />
       </div>
     </div>
@@ -116,10 +139,11 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
   return (
     <div
       className="screen-fill"
-      // No overflow:hidden here (unlike Collection) — the fight/reveal/result
-      // steps render CardGlow directly in the flow, and its bloom is meant to
-      // bleed past the card edges (see CardModal/Reveal for the same pattern).
-      style={{ padding: '10px 20px 12px', display: 'flex', flexDirection: 'column', gap: 10, animation: 'riseIn 300ms ease-out' }}
+      data-testid="debate-screen"
+      // Clip once at the full screen boundary rather than turning narrower
+      // children into scroll containers. Card glows are portalled behind the
+      // app, so they remain full-size and unaffected by this boundary.
+      style={{ padding: '10px 20px 12px', display: 'flex', flexDirection: 'column', gap: 10, overflow: 'clip', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
@@ -678,10 +702,6 @@ function Arena({
 
   return (
     <div
-      // overflowY is a safety net, not the primary fit mechanism: cardW is
-      // sized against DEBATE_CHROME_H to fit without clipping on real
-      // devices, but this guards against edge cases (browser chrome
-      // resize, font load) so the arena never forces a page scroll.
       style={{
         flex: 1,
         minHeight: 0,
@@ -690,7 +710,6 @@ function Arena({
         alignItems: 'center',
         gap: 10,
         paddingBottom: 4,
-        overflowY: 'hidden',
       }}
     >
       <PollMeter
@@ -851,12 +870,13 @@ function motionStyle(motion: CardMotion | null): CSSProperties {
 function VsBadge({ width, flash }: { width: number; flash: 'hit' | 'block' | null }) {
   return (
     <div
+      data-testid="debate-vs"
       aria-hidden="true"
       style={{
         flex: 'none',
         width: 40,
         height: 28,
-        marginTop: width * CARD_ASPECT / 2 + 3,
+        marginTop: 25 + 6 + width * CARD_ASPECT / 2 - 14,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1132,11 +1152,10 @@ function DebateCard({
         flexDirection: 'column',
         alignItems: 'center',
         gap: 6,
-        opacity: dimmed ? 0.55 : 1,
-        transition: 'opacity 300ms ease-out',
       }}
     >
       <div
+        data-testid={`debate-card-label-${side}`}
         style={{
           fontFamily: MONO,
           fontSize: 9,
@@ -1167,6 +1186,7 @@ function DebateCard({
           width={width}
           member={member}
           highlightStat={highlightStat}
+          dimmed={dimmed}
           style={{
             boxShadow: own
               ? '0 20px 46px -20px rgba(0,0,0,.75), 0 0 0 2px #8FEDE3, 0 0 24px 2px rgba(143,237,227,.4)'

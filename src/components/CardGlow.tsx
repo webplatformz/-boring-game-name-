@@ -22,6 +22,7 @@ let glowPortalRoot: HTMLDivElement | null = null
 function getGlowPortalRoot(): HTMLDivElement {
   if (glowPortalRoot && glowPortalRoot.isConnected) return glowPortalRoot
   const el = document.createElement('div')
+  el.dataset.cardGlowLayer = 'backdrop'
   document.body.insertBefore(el, document.body.firstChild)
   glowPortalRoot = el
   return el
@@ -101,7 +102,15 @@ export function CardGlow({ rarity, style }: { rarity: RarityKey; style?: CSSProp
  * centred) column rather than the viewport, drifting further off-centre the
  * wider the viewport got past the column's max-width.
  */
-export function FixedCardGlow({ rarity, anchor }: { rarity: RarityKey; anchor: RefObject<HTMLElement | null> }) {
+export function FixedCardGlow({
+  rarity,
+  anchor,
+  opacity = 1,
+}: {
+  rarity: RarityKey
+  anchor: RefObject<HTMLElement | null>
+  opacity?: number
+}) {
   const [box, setBox] = useState<DOMRect | null>(null)
 
   useEffect(() => {
@@ -125,7 +134,17 @@ export function FixedCardGlow({ rarity, anchor }: { rarity: RarityKey; anchor: R
   return createPortal(
     <div
       aria-hidden
-      style={{ position: 'fixed', left: box.left, top: box.top, width: box.width, height: box.height, pointerEvents: 'none' }}
+      data-testid="fixed-card-glow"
+      style={{
+        position: 'fixed',
+        left: box.left,
+        top: box.top,
+        width: box.width,
+        height: box.height,
+        opacity,
+        pointerEvents: 'none',
+        transition: 'opacity 300ms ease-out',
+      }}
     >
       <CardGlow rarity={rarity} />
     </div>,
