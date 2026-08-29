@@ -87,7 +87,7 @@ test('keeps the footer after pack opening and every information page', async ({ 
   await expectBeforeFooter(page, page.locator('.screen-transition > div'))
 
   const pages = [
-    { link: 'UPDATES', heading: 'Updates' },
+    { link: /^UPDATES/, heading: 'Updates' },
     { link: 'SCORE METHOD', heading: 'HOW THE SCORES WORK' },
     { link: 'DATA METHOD', heading: 'How personal data becomes game data' },
     { link: 'PRIVACY', heading: 'Privacy' },

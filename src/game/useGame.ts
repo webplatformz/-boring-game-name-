@@ -19,13 +19,18 @@ import {
   MAX_AUTOMATIC_PACKS,
   persist,
   persistRedeemedVouchers,
-  REFILL_BATCH_SIZE,
   REFILL_INTERVAL_MS,
   type SaveState,
   syncMemberScoreCache,
   validateCampaignSnapshot,
 } from './storage'
+import { reconcilePackRefill } from './packRefill'
 import { verifyVoucherCode } from './vouchers'
+
+const AUTOMATIC_REFILL_RULES = {
+  maxPacks: MAX_AUTOMATIC_PACKS,
+  intervalMs: REFILL_INTERVAL_MS,
+}
 
 export type Screen = 'home' | 'tear' | 'reveal' | 'collection' | 'trade' | 'debate'
 
@@ -306,9 +311,12 @@ export function useGame(): Game {
   const grantBonusPacks = useCallback((count: number) => {
     if (count <= 0) return
     updateState((s) => {
-      const packs = s.packs + count
-      // Achievement packs are independent from the automatic refill timer.
-      const refillAt = s.refillAt
+      const { packs, refillAt } = reconcilePackRefill(
+        s.packs + count,
+        s.refillAt,
+        Date.now(),
+        AUTOMATIC_REFILL_RULES,
+      )
       persist(toSaveState({
         ...s,
         packs,
@@ -318,23 +326,20 @@ export function useGame(): Game {
     })
   }, [updateState])
 
-  // While waiting on the refill timer, tick once a second so the UI countdown
-  // stays live, and grant one automatic pack when it elapses.
+  // Tick once a second to keep the countdown live and catch up every elapsed
+  // interval at once after a suspended tab resumes.
   useEffect(() => {
     if (state.refillAt == null) return
     const id = setInterval(() => {
       updateState((s) => {
         if (s.refillAt == null) return s
         if (Date.now() >= s.refillAt) {
-          if (s.packs >= MAX_AUTOMATIC_PACKS) {
-            const refillAt = null
-            persist(toSaveState({ ...s, refillAt }))
-            return { ...s, refillAt }
-          }
-          const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
-          const refillAt = packs < MAX_AUTOMATIC_PACKS
-            ? s.refillAt + REFILL_INTERVAL_MS
-            : null
+          const { packs, refillAt } = reconcilePackRefill(
+            s.packs,
+            s.refillAt,
+            Date.now(),
+            AUTOMATIC_REFILL_RULES,
+          )
           persist(toSaveState({
             ...s,
             packs,
@@ -505,6 +510,12 @@ export function useGame(): Game {
 
       const existingExhaustion = current.debateExhaustion[active.playerId]
       const now = new Date()
+      const refill = reconcilePackRefill(
+        current.packs + commit.packs,
+        current.refillAt,
+        now.getTime(),
+        AUTOMATIC_REFILL_RULES,
+      )
       const debateExhaustion = {
         ...current.debateExhaustion,
         [active.playerId]: {
@@ -517,7 +528,8 @@ export function useGame(): Game {
       }
       return commitCampaignState({
         ...current,
-        packs: current.packs + commit.packs,
+        packs: refill.packs,
+        refillAt: refill.refillAt,
         campaign: null,
         debateExhaustion,
         campaignRecord,
@@ -594,8 +606,12 @@ export function useGame(): Game {
       if (redeemed.has(result.nonce)) return { ok: false, reason: 'already-redeemed' }
 
       if (type === 'refill') {
-        const packs = s.packs + (amount ?? 1)
-        const refillAt = packs < MAX_AUTOMATIC_PACKS ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS) : null
+        const { packs, refillAt } = reconcilePackRefill(
+          s.packs + (amount ?? 1),
+          s.refillAt,
+          Date.now(),
+          AUTOMATIC_REFILL_RULES,
+        )
         persist(toSaveState({
           ...s,
           packs,
@@ -609,8 +625,8 @@ export function useGame(): Game {
 
       if (type === 'timer') {
         if (s.refillAt == null) return { ok: false, reason: 'no-timer' }
-        const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
-        const refillAt = packs < MAX_AUTOMATIC_PACKS ? s.refillAt + REFILL_INTERVAL_MS : null
+        const packs = Math.max(s.packs, MAX_AUTOMATIC_PACKS)
+        const refillAt = null
         persist(toSaveState({
           ...s,
           packs,

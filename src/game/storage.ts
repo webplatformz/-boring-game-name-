@@ -14,6 +14,7 @@ import {
   toDuelSnapshot,
   type DuelSnapshot,
 } from './debateSession'
+import { reconcilePackRefill } from './packRefill'
 
 export type BankableRarity = Exclude<RarityKey, 'mythic'>
 
@@ -67,9 +68,13 @@ export interface SaveState {
 
 const KEY = 'bundeshaus-pack-v1'
 export const STARTING_PACKS = 5
-export const MAX_AUTOMATIC_PACKS = 5
-export const REFILL_BATCH_SIZE = 5
-export const REFILL_INTERVAL_MS = import.meta.env.DEV ? 5_000 : 30 * 60 * 1_000
+export const MAX_AUTOMATIC_PACKS = 10
+export const REFILL_INTERVAL_MS = 10 * 60 * 1_000
+
+const REFILL_RULES = {
+  maxPacks: MAX_AUTOMATIC_PACKS,
+  intervalMs: REFILL_INTERVAL_MS,
+}
 
 const ZERO_RARITIES: Record<RarityKey, number> = {
   common: 0,
@@ -113,21 +118,23 @@ export function loadSave(): SaveState {
       const s = JSON.parse(raw) as Partial<SaveState>
       const now = Date.now()
       let packs = isValidCount(s.packs) ? s.packs : STARTING_PACKS
-      let refillAt = typeof s.refillAt === 'number' ? s.refillAt : null
+      let refillAt =
+        typeof s.refillAt === 'number' &&
+        Number.isFinite(s.refillAt) &&
+        s.refillAt >= 0
+          ? s.refillAt
+          : null
       const cardsRevealed = isValidCount(s.cardsRevealed) ? s.cardsRevealed : 0
       const packsOpened = isValidCount(s.packsOpened) ? s.packsOpened : 0
       const regularPacksOpened = isValidCount(s.regularPacksOpened) ? s.regularPacksOpened : packsOpened
-      if (refillAt !== null && now >= refillAt && packs < MAX_AUTOMATIC_PACKS) {
-        const elapsedIntervals = Math.floor((now - refillAt) / REFILL_INTERVAL_MS) + 1
-        const granted = Math.min(MAX_AUTOMATIC_PACKS - packs, elapsedIntervals * REFILL_BATCH_SIZE)
-        const intervalsUsed = Math.ceil(granted / REFILL_BATCH_SIZE)
-        packs += granted
-        refillAt = packs < MAX_AUTOMATIC_PACKS ? refillAt + intervalsUsed * REFILL_INTERVAL_MS : null
-      } else if (packs >= MAX_AUTOMATIC_PACKS) {
-        refillAt = null
-      } else if (refillAt === null) {
-        refillAt = now + REFILL_INTERVAL_MS
-      }
+      const refill = reconcilePackRefill(
+        packs,
+        refillAt,
+        now,
+        REFILL_RULES,
+      )
+      packs = refill.packs
+      refillAt = refill.refillAt
       const normalized: SaveState = {
         owned: s.owned ?? {},
         packs,
@@ -154,7 +161,7 @@ export function loadSave(): SaveState {
     cardsRevealed: 0,
     packsOpened: 0,
     regularPacksOpened: 0,
-    refillAt: null,
+    refillAt: Date.now() + REFILL_INTERVAL_MS,
     campaign: null,
     debateExhaustion: {},
     campaignRecord: cloneCampaignRecord(DEFAULT_CAMPAIGN_RECORD),

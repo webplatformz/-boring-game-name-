@@ -38,6 +38,35 @@ test('a refill voucher grants its encoded pack amount and can only be redeemed o
   expect(afterSecondAttempt.packs).toBe(4)
 })
 
+test('a timer voucher fills the automatic balance directly to ten', async ({
+  page,
+}) => {
+  const code = await generateVoucherCode({
+    type: 'timer',
+    rarity: null,
+    amount: null,
+  })
+  await openHome(page, {
+    packs: 3,
+    owned: {},
+    cardsRevealed: 0,
+    packsOpened: 0,
+    refillAt: Date.now() + 60_000,
+  })
+
+  await expect(page.getByText(/NEXT PACK IN/)).toBeVisible()
+  await redeem(page, code)
+  await expect(
+    page.getByText('REFILL TIMER SKIPPED — YOUR PACKS ARE TOPPED UP!'),
+  ).toBeVisible()
+
+  const stored = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),
+  )
+  expect(stored.packs).toBe(10)
+  expect(stored.refillAt).toBeNull()
+})
+
 test('a rarity voucher opens a 5-card pack of a single non-mythic rarity, and can only be redeemed once', async ({ page }) => {
   const code = await generateVoucherCode({ type: 'rarity', rarity: 'legend', amount: null })
   await openHome(page, { packs: 2, owned: {}, cardsRevealed: 0, packsOpened: 0, refillAt: null })

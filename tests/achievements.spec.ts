@@ -266,13 +266,13 @@ test('an achievement pack does not reset an independent refill timer', async ({ 
 
   await expect(page.getByRole('status')).toBeVisible()
 
-  // The achievement reward remains until the due automatic refill tops the
-  // balance up to the current automatic cap.
+  // The achievement reward remains, and the due automatic interval adds one
+  // pack without resetting the cadence.
   await page.waitForTimeout(1_500)
 
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!))
-  expect(stored.packs).toBe(5)
-  expect(stored.refillAt).toBeNull()
+  expect(stored.packs).toBe(2)
+  expect(stored.refillAt).not.toBeNull()
 })
 
 test('an automatic refill never reduces a bonus-pack balance above its cap', async ({
