@@ -23,6 +23,12 @@ const content: Record<Language, UpdatesCopy> = {
     intro: 'Short notes about new features, improvements, and other news from Bundeshaus Pack.',
     items: [
       {
+        id: '2026-08-29-campaign-mode',
+        date: '2026-08-29',
+        title: 'Campaign mode arrives',
+        body: 'Take one card from a Common opponent all the way to Mythic. Bank your growing pack reward after a win or keep going—but one loss forfeits it. However the campaign ends, the card is exhausted until the next day.',
+      },
+      {
         id: '2026-08-28-updates',
         date: '2026-08-28',
         title: 'A home for project news',
@@ -35,6 +41,12 @@ const content: Record<Language, UpdatesCopy> = {
     title: 'Neuigkeiten',
     intro: 'Kurze Meldungen zu neuen Funktionen, Verbesserungen und weiteren Neuigkeiten rund um Bundeshaus Pack.',
     items: [
+      {
+        id: '2026-08-29-campaign-mode',
+        date: '2026-08-29',
+        title: 'Der Kampagnenmodus ist da',
+        body: 'Führe eine Karte von einem gewöhnlichen Gegner bis zu Mythisch. Sichere nach einem Sieg deine wachsende Pack-Belohnung oder mache weiter – aber eine Niederlage kostet alles. Unabhängig vom Ausgang ist die Karte danach bis zum nächsten Tag erschöpft.',
+      },
       {
         id: '2026-08-28-updates',
         date: '2026-08-28',
@@ -49,6 +61,12 @@ const content: Record<Language, UpdatesCopy> = {
     intro: 'De brèves nouvelles sur les fonctionnalités, les améliorations et les autres actualités de Bundeshaus Pack.',
     items: [
       {
+        id: '2026-08-29-campaign-mode',
+        date: '2026-08-29',
+        title: 'Le mode Campagne est arrivé',
+        body: 'Mène une carte d’un adversaire commun jusqu’au niveau mythique. Encaisse une récompense croissante après une victoire ou continue, mais une défaite fait tout perdre. Quelle que soit l’issue, la carte est ensuite épuisée jusqu’au lendemain.',
+      },
+      {
         id: '2026-08-28-updates',
         date: '2026-08-28',
         title: 'Un espace pour les actualités du projet',
@@ -62,6 +80,12 @@ const content: Record<Language, UpdatesCopy> = {
     intro: 'Brevi notizie su nuove funzionalità, miglioramenti e altre novità di Bundeshaus Pack.',
     items: [
       {
+        id: '2026-08-29-campaign-mode',
+        date: '2026-08-29',
+        title: 'Arriva la modalità Campagna',
+        body: 'Porta una carta da un avversario comune fino al livello mitico. Incassa la ricompensa crescente dopo una vittoria o continua, ma una sconfitta fa perdere tutto. Qualunque sia l’esito, la carta resta poi esaurita fino al giorno successivo.',
+      },
+      {
         id: '2026-08-28-updates',
         date: '2026-08-28',
         title: 'Uno spazio per le novità del progetto',
@@ -74,6 +98,12 @@ const content: Record<Language, UpdatesCopy> = {
     title: 'Novitads',
     intro: 'Curtas infurmaziuns davart novas funcziuns, meglieraziuns ed autras novitads da Bundeshaus Pack.',
     items: [
+      {
+        id: '2026-08-29-campaign-mode',
+        date: '2026-08-29',
+        title: 'Il modus da campagna è qua',
+        body: 'Maina ina carta d’in adversari cumin fin al nivel mitic. Segirescha la recompensa creschenta suenter ina victoria u cuntinuescha, ma ina terrada fa perder tut. Independentamain da la fin è la carta silsuenter exausta fin l’auter di.',
+      },
       {
         id: '2026-08-28-updates',
         date: '2026-08-28',

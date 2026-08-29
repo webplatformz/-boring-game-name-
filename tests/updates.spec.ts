@@ -15,9 +15,10 @@ test('shows new updates in the footer until the player reads them', async ({ pag
   await updatesLink.click()
   await expect(page).toHaveURL(/#updates$/)
   await expect(page.getByRole('heading', { name: 'Updates', exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Campaign mode arrives' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'A home for project news' })).toBeVisible()
   await expect(footer.locator('[aria-hidden="true"]')).toHaveCount(0)
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-updates-read-v1'))).toBe('2026-08-28-updates')
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('bundeshaus-updates-read-v1'))).toBe('2026-08-29-campaign-mode')
 
   await page.reload()
   await expect(footer.getByRole('link', { name: 'UPDATES', exact: true })).toBeVisible()
