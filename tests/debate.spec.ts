@@ -52,7 +52,7 @@ test('selecting a card asks for the debate mode before matchmaking', async ({ pa
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await page.getByText('Thomas Aeschi', { exact: true }).click()
 
-  await expect(page.getByText('CHOOSE DEBATE MODE', { exact: true })).toBeVisible()
+  await expect(page.getByText('CHOOSE DEBATE MODE', { exact: true })).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: /SINGLE RANDOM DEBATE/ }),
   ).toBeEnabled()
@@ -79,7 +79,7 @@ test('a campaign starts at common and resumes after leaving Debate', async ({
     return save.campaign.id as string
   })
 
-  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
+  await page.getByRole('button', { name: 'EXIT', exact: true }).click()
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
 
   await expect(page.getByText('STAGE 1/6 · COMMON')).toBeVisible()
@@ -247,7 +247,7 @@ test('leaving Debate cancels the active turn and returns to the picker', async (
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await startTrainingDebate(page)
   await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
-  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
+  await page.getByRole('button', { name: 'EXIT', exact: true }).click()
   await page.waitForTimeout(3_000)
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
@@ -266,7 +266,7 @@ test('leaving during a revealed turn prevents delayed record persistence', async
   await expect(page.getByTestId('debate-feedback')).not.toBeEmpty({
     timeout: 2_000,
   })
-  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
+  await page.getByRole('button', { name: 'EXIT', exact: true }).click()
   await page.waitForTimeout(2_500)
 
   await expect
@@ -364,7 +364,7 @@ test('Debate reveals poll movement and automatically advances the turn', async (
     arenaX: 'visible',
     arenaY: 'visible',
     screenX: 'clip',
-    screenY: 'clip',
+    screenY: 'visible',
   })
   await expect(poll.getByText('ATTACKED', { exact: true })).toHaveCount(2)
   expect((await poll.boundingBox())?.height).toBeCloseTo(pollHeightBefore ?? 0, 0)

@@ -59,7 +59,7 @@ test('legendary card renders its full glow', async ({ page }) => {
 test('debate glows keep their full scale behind mode and duel content', async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 360, height: 740 })
+  await page.setViewportSize({ width: 360, height: 568 })
   await page.addInitScript((id: number) => {
     localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
     localStorage.setItem('bundeshaus-language-v1', 'en')
@@ -72,9 +72,6 @@ test('debate glows keep their full scale behind mode and duel content', async ({
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await page.getByText('Maya Graf', { exact: true }).click()
 
-  const modeTitle = await page
-    .getByText('CHOOSE DEBATE MODE', { exact: true })
-    .boundingBox()
   const modeAnchor = await page
     .getByTestId('debate-card-glow-anchor')
     .boundingBox()
@@ -86,15 +83,18 @@ test('debate glows keep their full scale behind mode and duel content', async ({
     .getByRole('button', { name: /SINGLE RANDOM DEBATE/ })
     .boundingBox()
   expect(modeAnchor).not.toBeNull()
+  expect(modeAnchor?.width).toBe(110)
   expect(fullGlow?.width ?? 0).toBeGreaterThan((modeAnchor?.width ?? 0) * 1.5)
-  expect((modeAnchor?.y ?? 0)).toBeGreaterThanOrEqual(
-    (modeTitle?.y ?? 0) + (modeTitle?.height ?? 0),
-  )
+  await expect(page.getByText('CHOOSE DEBATE MODE', { exact: true })).toHaveCount(0)
   expect(
     (modeAnchor?.y ?? 0) + (modeAnchor?.height ?? 0),
   ).toBeLessThanOrEqual(
     firstModeButton?.y ?? 0,
   )
+  await page.setViewportSize({ width: 360, height: 900 })
+  expect(
+    (await page.getByTestId('debate-card-glow-anchor').boundingBox())?.width,
+  ).toBe(130)
   expect(
     await page.evaluate(() => {
       const layer = document.querySelector('[data-card-glow-layer="backdrop"]')
@@ -146,10 +146,10 @@ test('debate glows keep their full scale behind mode and duel content', async ({
   )
 })
 
-test('campaign choice stays beneath the settled duel cards', async ({
+test('campaign choice stays beneath the cards and is reachable on a short phone', async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 360, height: 740 })
+  await page.setViewportSize({ width: 360, height: 667 })
   await page.addInitScript(
     ({ playerId, opponentId }) => {
       localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
@@ -224,6 +224,13 @@ test('campaign choice stays beneath the settled duel cards', async ({
   )
   await expect(page.getByTestId('debate-poll')).toBeVisible()
   await expect(page.getByTestId('debate-card-opponent')).toBeVisible()
+  await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden()
+  await expect(page.getByRole('contentinfo')).toBeHidden()
+
+  const continueButton = page.getByRole('button', { name: 'KEEP GOING', exact: true })
+  await continueButton.scrollIntoViewIfNeeded()
+  await expect(continueButton).toBeInViewport()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(360)
 })
 
 test('the losing card stays opaque while its own glow is dimmed', async ({

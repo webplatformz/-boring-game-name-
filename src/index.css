@@ -542,6 +542,41 @@ a:hover {
   padding: max(6px, env(safe-area-inset-top)) 20px 4px;
   background: transparent;
 }
+.mode-choice-card {
+  width: 165px;
+  height: 247.5px;
+  flex: none;
+}
+.mode-choice-card > [data-testid="scaled-card-surface"] {
+  transform: scale(0.4910714286);
+}
+@media (max-width: 429px) {
+  .mode-choice-card {
+    width: 150px;
+    height: 225px;
+  }
+  .mode-choice-card > [data-testid="scaled-card-surface"] {
+    transform: scale(0.4464285714);
+  }
+}
+@media (max-width: 379px) {
+  .mode-choice-card {
+    width: 130px;
+    height: 195px;
+  }
+  .mode-choice-card > [data-testid="scaled-card-surface"] {
+    transform: scale(0.3869047619);
+  }
+}
+@media (max-width: 339px), (max-height: 620px) {
+  .mode-choice-card {
+    width: 110px;
+    height: 165px;
+  }
+  .mode-choice-card > [data-testid="scaled-card-surface"] {
+    transform: scale(0.3273809524);
+  }
+}
 @media (max-width: 399px) {
   .app-navigation {
     padding-inline: 12px;

@@ -56,7 +56,9 @@ export function App() {
   const [achievementTargetRequest, setAchievementTargetRequest] = useState(0)
   const { screen } = game.state
   const { goHome, goCollection, goDebate, goTrade } = game
-  const showTabs = !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
+  const activeDuel = !infoPage && screen === 'debate' && debate.state.view === 'duel'
+  const showTabs = !activeDuel && !infoPage && (screen === 'home' || screen === 'collection' || screen === 'debate' || screen === 'trade')
+  const showFooter = !activeDuel
   // Home can grow taller than a short phone viewport — keep it in normal
   // page flow so the legal footer always follows its content. Tab screens
   // (including an active debate) are viewport-constrained instead: debate's
@@ -189,7 +191,7 @@ export function App() {
             </>
           )}
         </div>
-        <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} updatesUnread={updatesUnread} />
+        {showFooter && <LegalFooter aboveTabs={showTabs} pushToBottom={naturalFlowScreen} updatesUnread={updatesUnread} />}
       </div>
       {showDisclaimer && <ProjectDisclaimer onAcknowledge={() => setShowDisclaimer(false)} />}
       <AchievementToast item={achievements.toast} onDismiss={achievements.dismissToast} onSelect={openAchievement} />

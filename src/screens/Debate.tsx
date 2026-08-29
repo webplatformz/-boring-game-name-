@@ -36,14 +36,10 @@ const DEBATE_CARD_W_MAX = 165
 const DEBATE_CARD_W_MIN = 66
 const DEBATE_SIDE_PADDING = 40 // screen-fill's left+right padding
 const DEBATE_ROW_RESERVED_W = 60 // VS label + the two flex gaps around it
-// Everything in the viewport-constrained column besides the card itself:
-// tab bar, legal footer, screen padding, header, poll meter, the gaps
-// between them, and — since attack/defend now stack under the player's own
-// card instead of living in a separate row — that action slot's height too.
-// The footer stays visible through every step (tests rely on it framing the
-// result screen), so its height is budgeted here even though it sits
-// outside the Arena.
-const DEBATE_CHROME_H = 454
+// Everything in the duel besides the card itself: screen padding, header,
+// campaign HUD, poll meter, gaps and the action/result slot. App navigation
+// and the legal footer are hidden while a duel is active.
+const DEBATE_CHROME_H = 340
 
 function useFightCardWidth(): number {
   const [w, setW] = useState<number>(() => computeFightCardWidth())
@@ -77,20 +73,22 @@ function computeFightCardWidth(): number {
  * the whole thing down with a CSS transform, so every proportion (text,
  * wedge, bars) shrinks together correctly.
  */
-function ScaledCard({ width, member, foil = true, highlightStat = null, dimmed = false, style }: {
-  width: number
+function ScaledCard({ width, className, member, foil = true, highlightStat = null, dimmed = false, style }: {
+  width?: number
+  className?: string
   member: Member
   foil?: boolean
   highlightStat?: 'atk' | 'def' | null
   dimmed?: boolean
   style?: CSSProperties
 }) {
-  const scale = width / CARD_MAX_W
-  const height = width * (504 / 336)
+  const scale = width ? width / CARD_MAX_W : undefined
+  const height = width ? width * (504 / 336) : undefined
   const anchor = useRef<HTMLDivElement>(null)
   return (
     <div
       ref={anchor}
+      className={className}
       data-testid="debate-card-glow-anchor"
       style={{ width, height, position: 'relative' }}
     >
@@ -108,7 +106,7 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, dimmed =
           top: 0,
           left: 0,
           filter: dimmed ? 'brightness(.55) saturate(.55)' : 'none',
-          transform: `scale(${scale})`,
+          transform: scale ? `scale(${scale})` : undefined,
           transformOrigin: 'top left',
           transition: 'filter 300ms ease-out',
         }}
@@ -140,18 +138,30 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
     <div
       className="screen-fill"
       data-testid="debate-screen"
-      // Clip once at the full screen boundary rather than turning narrower
-      // children into scroll containers. Card glows are portalled behind the
-      // app, so they remain full-size and unaffected by this boundary.
-      style={{ padding: '10px 20px 12px', display: 'flex', flexDirection: 'column', gap: 10, overflow: 'clip', animation: 'riseIn 300ms ease-out' }}
+      // Clip horizontal lunge overflow once at the full screen boundary.
+      // Vertical content remains in document flow so short phone viewports
+      // can scroll to campaign result actions. Card glows are portalled.
+      style={{ padding: '10px 20px 12px', display: 'flex', flexDirection: 'column', gap: 10, overflowX: 'clip', animation: 'riseIn 300ms ease-out' }}
     >
       {/* header */}
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
         <div style={{ fontFamily: AB, fontSize: 26, letterSpacing: '-.03em' }}>{t('debateTitle')}</div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontFamily: MONO, fontSize: 11, letterSpacing: '.1em' }}>
-          <span style={{ color: '#8FEDE3' }}>{t('winsShort', { count: record.wins })}</span>
-          <span style={{ color: '#3E5170' }}>·</span>
-          <span style={{ color: '#FF9EC4' }}>{t('lossesShort', { count: record.losses })}</span>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', fontFamily: MONO, fontSize: 11, letterSpacing: '.1em' }}>
+            <span style={{ color: '#8FEDE3' }}>{t('winsShort', { count: record.wins })}</span>
+            <span style={{ color: '#3E5170' }}>·</span>
+            <span style={{ color: '#FF9EC4' }}>{t('lossesShort', { count: record.losses })}</span>
+          </div>
+          {debate.state.view === 'duel' && (
+            <button
+              onClick={game.goHome}
+              aria-label={t('campaignExit')}
+              title={t('campaignExit')}
+              style={{ width: 30, height: 30, borderRadius: 8, border: '1px solid rgba(234,242,255,.16)', color: '#9FB6D2', fontFamily: MONO, fontSize: 20, lineHeight: 1 }}
+            >
+              ×
+            </button>
+          )}
         </div>
       </div>
 
@@ -284,15 +294,12 @@ function ModeChoice({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 14,
+        gap: 10,
         overflowY: 'auto',
-        padding: '4px 0 8px',
+        padding: '0 0 6px',
       }}
     >
-      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
-        {t('chooseDebateMode')}
-      </div>
-      <ScaledCard width={150} member={playerCard} />
+      <ScaledCard className="mode-choice-card" member={playerCard} />
       <div style={{ width: '100%', maxWidth: 360, display: 'grid', gap: 10 }}>
         <button
           onClick={onStartTraining}
@@ -624,12 +631,12 @@ function campaignActionStyle(accent: string): CSSProperties {
 
 function modeButtonStyle(accent: string): CSSProperties {
   return {
-    minHeight: 100,
+    minHeight: 88,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     gap: 7,
-    padding: '16px',
+    padding: '13px 16px',
     borderRadius: 12,
     border: `1px solid ${accent}55`,
     borderLeft: `4px solid ${accent}`,

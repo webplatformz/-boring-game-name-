@@ -29,7 +29,7 @@ async function expectBeforeFooter(page: Page, content: Locator) {
   expect((contentBox?.y ?? 0) + (contentBox?.height ?? 0)).toBeLessThanOrEqual((footerBox?.y ?? 0) + 1)
 }
 
-test('keeps the footer after every tab screen, including debate results', async ({ page }) => {
+test('keeps the footer on tab screens and hides app chrome during a duel', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 667 })
   await openSeededApp(page)
 
@@ -68,14 +68,12 @@ test('keeps the footer after every tab screen, including debate results', async 
   expect((debateRecord?.wins ?? 0) + (debateRecord?.losses ?? 0)).toBe(1)
 
   const fightAgain = page.getByRole('button', { name: 'DEBATE AGAIN' })
-  await expectBeforeFooter(page, fightAgain)
+  await expect(fightAgain).toBeVisible()
+  await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden()
+  await expect(page.getByRole('contentinfo')).toBeHidden()
 
-  // At the app's regular desktop-test height, the reserved result/footer
-  // chrome should keep the entire debate and footer inside the viewport.
-  await page.setViewportSize({ width: 690, height: 900 })
-  await expectBeforeFooter(page, fightAgain)
-  const desktopFooter = await page.getByRole('contentinfo').boundingBox()
-  expect((desktopFooter?.y ?? 0) + (desktopFooter?.height ?? 0)).toBeLessThanOrEqual(901)
+  await fightAgain.click()
+  await expectBeforeFooter(page, page.getByTestId('debate-screen'))
 })
 
 test('keeps the footer after pack opening and every information page', async ({ page }) => {
