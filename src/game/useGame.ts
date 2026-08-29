@@ -2,8 +2,18 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Member } from '../data/members'
 import type { RarityKey } from '../theme'
 import { PACK_GROW_MS, PACK_RIP_MS } from '../theme'
+import {
+  CAMPAIGN_RARITIES,
+  campaignAllowance,
+  campaignTotalAfterWin,
+  nextLocalMidnight,
+  type CampaignStageIndex,
+} from './debateCampaign'
 import { drawPack, drawRarityPack, drawTradePackCard, getNextRarity } from './pack'
 import {
+  type CampaignRecord,
+  type CampaignSnapshot,
+  type DebateExhaustion,
   loadRedeemedVouchers,
   loadSave,
   MAX_AUTOMATIC_PACKS,
@@ -11,7 +21,9 @@ import {
   persistRedeemedVouchers,
   REFILL_BATCH_SIZE,
   REFILL_INTERVAL_MS,
+  type SaveState,
   syncMemberScoreCache,
+  validateCampaignSnapshot,
 } from './storage'
 import { verifyVoucherCode } from './vouchers'
 
@@ -25,6 +37,9 @@ export interface GameState {
   cardsRevealed: number
   packsOpened: number
   regularPacksOpened: number
+  campaign: CampaignSnapshot | null
+  debateExhaustion: Record<number, DebateExhaustion>
+  campaignRecord: CampaignRecord
   pack: Member[]
   revealIdx: number
   drag: number
@@ -63,6 +78,9 @@ const INITIAL: GameState = {
   cardsRevealed: save.cardsRevealed,
   packsOpened: save.packsOpened,
   regularPacksOpened: save.regularPacksOpened,
+  campaign: save.campaign,
+  debateExhaustion: save.debateExhaustion,
+  campaignRecord: save.campaignRecord,
   pack: [],
   revealIdx: 0,
   drag: 0,
@@ -83,6 +101,38 @@ export type VoucherRedemptionResult =
   | { ok: true; type: 'timer' | 'rarity' }
   | { ok: false; reason: 'invalid' | 'already-redeemed' | 'no-timer' }
 
+export type CampaignWriteResult =
+  | { ok: true }
+  | { ok: false; error: 'invalid-command' | 'storage-unavailable' }
+
+export interface CampaignProgressCommit {
+  campaignId: string
+  expectedStageIndex: CampaignStageIndex
+  next: CampaignSnapshot
+  stageWin: RarityKey
+}
+
+export interface CampaignOutcomeCommit {
+  campaignId: string
+  expectedStageIndex: CampaignStageIndex
+  outcome: 'banked' | 'lost' | 'abandoned' | 'completed'
+  stageResult: 'win' | 'loss' | null
+  packs: number
+}
+
+export interface DebateCampaignGateway {
+  activeCampaign: CampaignSnapshot | null
+  startCampaign: (snapshot: CampaignSnapshot) => CampaignWriteResult
+  checkpointCampaign: (snapshot: CampaignSnapshot) => CampaignWriteResult
+  commitCampaignProgress: (
+    commit: CampaignProgressCommit,
+  ) => CampaignWriteResult
+  commitCampaignOutcome: (
+    commit: CampaignOutcomeCommit,
+  ) => CampaignWriteResult
+  campaignAvailability: (memberId: number) => number
+}
+
 export interface Game {
   state: GameState
   ripNow: () => void
@@ -95,6 +145,7 @@ export interface Game {
   executeTrade: (tradedMemberIds: number[], sourceRarity: RarityKey) => void
   /** Grants extra unopened packs (used by achievement rewards) and persists them. */
   grantBonusPacks: (count: number) => void
+  debateCampaign: DebateCampaignGateway
   /** Verifies and applies a voucher code. See game/vouchers.ts for the code format. */
   redeemVoucher: (code: string) => Promise<VoucherRedemptionResult>
   cardHandlers: {
@@ -107,6 +158,19 @@ export interface Game {
 
 export function useGame(): Game {
   const [state, setState] = useState<GameState>(INITIAL)
+  const stateRef = useRef(state)
+  stateRef.current = state
+
+  const updateState = useCallback(
+    (update: GameState | ((current: GameState) => GameState)): GameState => {
+      const next =
+        typeof update === 'function' ? update(stateRef.current) : update
+      stateRef.current = next
+      setState(next)
+      return next
+    },
+    [],
+  )
 
   // Existing collections contain ids rather than stale member objects. Keep a
   // revisioned local score snapshot in sync for offline/local consumers too.
@@ -116,21 +180,32 @@ export function useGame(): Game {
 
   // Merge-style updater mirroring the prototype's this.setState.
   const patch = useCallback(
-    (p: Partial<GameState> | ((s: GameState) => Partial<GameState>)) =>
-      setState((s) => ({ ...s, ...(typeof p === 'function' ? p(s) : p) })),
-    [],
+    (p: Partial<GameState> | ((s: GameState) => Partial<GameState>)) => {
+      updateState((current) => ({
+        ...current,
+        ...(typeof p === 'function' ? p(current) : p),
+      }))
+    },
+    [updateState],
   )
 
   // Timers + gesture scratch state, all in refs so re-renders don't disturb them.
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
   const x0 = useRef(0)
   const moved = useRef(0)
-  const stateRef = useRef(state)
-  stateRef.current = state
   // Earliest time a *new* advance() call is allowed. Kept separate from the
   // outgoing card's full cleanup (see `advance`) so the next card can be
   // tapped well before the previous one's exit animation has fully finished.
   const advanceLockedUntil = useRef(0)
+
+  const commitCampaignState = useCallback((next: GameState): CampaignWriteResult => {
+    if (!persist(toSaveState(next))) {
+      return { ok: false, error: 'storage-unavailable' }
+    }
+    stateRef.current = next
+    updateState(next)
+    return { ok: true }
+  }, [updateState])
 
   const after = useCallback((ms: number, fn: () => void) => {
     const id = setTimeout(fn, ms)
@@ -176,7 +251,7 @@ export function useGame(): Game {
   }, [patch, after, rip])
 
   const finishPack = useCallback(() => {
-    setState((s) => {
+    updateState((s) => {
       // A completed pack is counted once, whether its cards were turned over
       // individually or collected through Skip all.
       if (s.pack.length === 0) return s
@@ -194,7 +269,15 @@ export function useGame(): Game {
           ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS)
           : null
       }
-      persist({ owned, packs, cardsRevealed, packsOpened, regularPacksOpened, refillAt })
+      persist(toSaveState({
+        ...s,
+        owned,
+        packs,
+        cardsRevealed,
+        packsOpened,
+        regularPacksOpened,
+        refillAt,
+      }))
       const returnScreen = s.isTradePack ? 'trade' : 'home'
       return {
         ...s,
@@ -218,53 +301,52 @@ export function useGame(): Game {
         lastPackWasTrade: (s.isTradePack || s.isVoucherPack) ?? false,
       }
     })
-  }, [])
+  }, [updateState])
 
   const grantBonusPacks = useCallback((count: number) => {
     if (count <= 0) return
-    setState((s) => {
+    updateState((s) => {
       const packs = s.packs + count
       // Achievement packs are independent from the automatic refill timer.
       const refillAt = s.refillAt
-      persist({
-        owned: s.owned,
+      persist(toSaveState({
+        ...s,
         packs,
-        cardsRevealed: s.cardsRevealed,
-        packsOpened: s.packsOpened,
-        regularPacksOpened: s.regularPacksOpened,
         refillAt,
-      })
+      }))
       return { ...s, packs, refillAt }
     })
-  }, [])
+  }, [updateState])
 
   // While waiting on the refill timer, tick once a second so the UI countdown
   // stays live, and grant one automatic pack when it elapses.
   useEffect(() => {
     if (state.refillAt == null) return
     const id = setInterval(() => {
-      setState((s) => {
+      updateState((s) => {
         if (s.refillAt == null) return s
         if (Date.now() >= s.refillAt) {
+          if (s.packs >= MAX_AUTOMATIC_PACKS) {
+            const refillAt = null
+            persist(toSaveState({ ...s, refillAt }))
+            return { ...s, refillAt }
+          }
           const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
           const refillAt = packs < MAX_AUTOMATIC_PACKS
             ? s.refillAt + REFILL_INTERVAL_MS
             : null
-          persist({
-            owned: s.owned,
+          persist(toSaveState({
+            ...s,
             packs,
-            cardsRevealed: s.cardsRevealed,
-            packsOpened: s.packsOpened,
-            regularPacksOpened: s.regularPacksOpened,
             refillAt,
-          })
+          }))
           return { ...s, packs, refillAt }
         }
         return { ...s }
       })
     }, 1000)
     return () => clearInterval(id)
-  }, [state.refillAt])
+  }, [state.refillAt, updateState])
 
   const advance = useCallback((releaseDrag = stateRef.current.drag) => {
     const s = stateRef.current
@@ -294,12 +376,175 @@ export function useGame(): Game {
   const goTrade = useCallback(() => patch({ screen: 'trade' }), [patch])
   const goDebate = useCallback(() => patch({ screen: 'debate' }), [patch])
 
+  const campaignAvailability = useCallback((memberId: number): number => {
+    const current = stateRef.current
+    const entry = current.debateExhaustion[memberId]
+    const exhausted =
+      entry && entry.resetAt > Date.now() ? entry.count : 0
+    return campaignAllowance(
+      current.owned[memberId] ?? 0,
+      exhausted,
+      current.campaign?.playerId === memberId,
+    )
+  }, [])
+
+  const startCampaign = useCallback(
+    (snapshot: CampaignSnapshot): CampaignWriteResult => {
+      const current = stateRef.current
+      const validated = validateCampaignSnapshot(snapshot, current.owned)
+      if (
+        current.campaign ||
+        !validated ||
+        validated.stageIndex !== 0 ||
+        validated.phase !== 'in-duel' ||
+        validated.unbankedPacks !== 0 ||
+        validated.duel.phase !== 'awaiting-action' ||
+        campaignAvailability(validated.playerId) < 1
+      ) {
+        return { ok: false, error: 'invalid-command' }
+      }
+      const campaignRecord = cloneCampaignRecord(current.campaignRecord)
+      campaignRecord.campaignsStarted += 1
+      return commitCampaignState({
+        ...current,
+        campaign: validated,
+        campaignRecord,
+      })
+    },
+    [campaignAvailability, commitCampaignState],
+  )
+
+  const checkpointCampaign = useCallback(
+    (snapshot: CampaignSnapshot): CampaignWriteResult => {
+      const current = stateRef.current
+      const active = current.campaign
+      const validated = validateCampaignSnapshot(snapshot, current.owned)
+      if (
+        !active ||
+        !validated ||
+        validated.id !== active.id ||
+        validated.playerId !== active.playerId ||
+        !isValidCampaignCheckpoint(active, validated)
+      ) {
+        return { ok: false, error: 'invalid-command' }
+      }
+      return commitCampaignState({ ...current, campaign: validated })
+    },
+    [commitCampaignState],
+  )
+
+  const commitCampaignProgress = useCallback(
+    (commit: CampaignProgressCommit): CampaignWriteResult => {
+      const current = stateRef.current
+      const active = current.campaign
+      const next = validateCampaignSnapshot(commit.next, current.owned)
+      if (
+        !active ||
+        !next ||
+        !matchesCampaign(
+          active,
+          commit.campaignId,
+          commit.expectedStageIndex,
+        ) ||
+        active.phase !== 'in-duel' ||
+        active.stageIndex === CAMPAIGN_RARITIES.length - 1 ||
+        active.duel.phase !== 'settled' ||
+        active.duel.winner?.winner !== 'player' ||
+        next.id !== active.id ||
+        next.playerId !== active.playerId ||
+        next.stageIndex !== active.stageIndex ||
+        next.phase !== 'awaiting-choice' ||
+        next.unbankedPacks !== campaignTotalAfterWin(active.stageIndex) ||
+        commit.stageWin !== CAMPAIGN_RARITIES[active.stageIndex]
+      ) {
+        return { ok: false, error: 'invalid-command' }
+      }
+      const campaignRecord = cloneCampaignRecord(current.campaignRecord)
+      campaignRecord.stageWins[commit.stageWin] += 1
+      return commitCampaignState({
+        ...current,
+        campaign: next,
+        campaignRecord,
+      })
+    },
+    [commitCampaignState],
+  )
+
+  const commitCampaignOutcome = useCallback(
+    (commit: CampaignOutcomeCommit): CampaignWriteResult => {
+      const current = stateRef.current
+      const active = current.campaign
+      if (
+        !active ||
+        !matchesCampaign(
+          active,
+          commit.campaignId,
+          commit.expectedStageIndex,
+        ) ||
+        !isValidCampaignOutcome(active, commit)
+      ) {
+        return { ok: false, error: 'invalid-command' }
+      }
+
+      const rarity = CAMPAIGN_RARITIES[active.stageIndex]
+      const campaignRecord = cloneCampaignRecord(current.campaignRecord)
+      if (commit.outcome === 'banked') {
+        campaignRecord.campaignsBanked += 1
+        campaignRecord.bankExits[rarity as Exclude<RarityKey, 'mythic'>] += 1
+      } else if (commit.outcome === 'lost') {
+        campaignRecord.campaignsLost += 1
+        campaignRecord.stageLosses[rarity] += 1
+      } else if (commit.outcome === 'abandoned') {
+        campaignRecord.campaignsLost += 1
+        campaignRecord.campaignsAbandoned += 1
+      } else {
+        campaignRecord.campaignsCompleted += 1
+        campaignRecord.stageWins.mythic += 1
+      }
+      campaignRecord.packsAwarded += commit.packs
+
+      const existingExhaustion = current.debateExhaustion[active.playerId]
+      const now = new Date()
+      const debateExhaustion = {
+        ...current.debateExhaustion,
+        [active.playerId]: {
+          count:
+            (existingExhaustion && existingExhaustion.resetAt > now.getTime()
+              ? existingExhaustion.count
+              : 0) + 1,
+          resetAt: nextLocalMidnight(now),
+        },
+      }
+      return commitCampaignState({
+        ...current,
+        packs: current.packs + commit.packs,
+        campaign: null,
+        debateExhaustion,
+        campaignRecord,
+      })
+    },
+    [commitCampaignState],
+  )
+
   const executeTrade = useCallback(
     (tradedMemberIds: number[], sourceRarity: RarityKey) => {
       const targetRarity = getNextRarity(sourceRarity)
       if (!targetRarity || tradedMemberIds.length !== 5) return
 
-      const currentOwned = { ...stateRef.current.owned }
+      const current = stateRef.current
+      const currentOwned = { ...current.owned }
+      const requested = tradedMemberIds.reduce<Record<number, number>>(
+        (counts, id) => {
+          counts[id] = (counts[id] ?? 0) + 1
+          return counts
+        },
+        {},
+      )
+      for (const [rawId, count] of Object.entries(requested)) {
+        const id = Number(rawId)
+        const reserved = current.campaign?.playerId === id ? 1 : 0
+        if ((currentOwned[id] ?? 0) - reserved < count) return
+      }
       // Deduct traded cards
       for (const id of tradedMemberIds) {
         if (currentOwned[id] && currentOwned[id] > 0) {
@@ -311,14 +556,10 @@ export function useGame(): Game {
       }
 
       const pack = drawTradePackCard(targetRarity)
-      persist({
+      persist(toSaveState({
+        ...current,
         owned: currentOwned,
-        packs: stateRef.current.packs,
-        cardsRevealed: stateRef.current.cardsRevealed,
-        packsOpened: stateRef.current.packsOpened,
-        regularPacksOpened: stateRef.current.regularPacksOpened,
-        refillAt: stateRef.current.refillAt,
-      })
+      }))
 
       patch({
         owned: currentOwned,
@@ -355,14 +596,11 @@ export function useGame(): Game {
       if (type === 'refill') {
         const packs = s.packs + (amount ?? 1)
         const refillAt = packs < MAX_AUTOMATIC_PACKS ? (s.refillAt ?? Date.now() + REFILL_INTERVAL_MS) : null
-        persist({
-          owned: s.owned,
+        persist(toSaveState({
+          ...s,
           packs,
-          cardsRevealed: s.cardsRevealed,
-          packsOpened: s.packsOpened,
-          regularPacksOpened: s.regularPacksOpened,
           refillAt,
-        })
+        }))
         redeemed.add(result.nonce)
         persistRedeemedVouchers(redeemed)
         patch({ packs, refillAt })
@@ -373,14 +611,11 @@ export function useGame(): Game {
         if (s.refillAt == null) return { ok: false, reason: 'no-timer' }
         const packs = Math.min(MAX_AUTOMATIC_PACKS, s.packs + REFILL_BATCH_SIZE)
         const refillAt = packs < MAX_AUTOMATIC_PACKS ? s.refillAt + REFILL_INTERVAL_MS : null
-        persist({
-          owned: s.owned,
+        persist(toSaveState({
+          ...s,
           packs,
-          cardsRevealed: s.cardsRevealed,
-          packsOpened: s.packsOpened,
-          regularPacksOpened: s.regularPacksOpened,
           refillAt,
-        })
+        }))
         redeemed.add(result.nonce)
         persistRedeemedVouchers(redeemed)
         patch({ packs, refillAt })
@@ -460,8 +695,210 @@ export function useGame(): Game {
     goTrade,
     executeTrade,
     grantBonusPacks,
+    debateCampaign: {
+      activeCampaign: state.campaign,
+      startCampaign,
+      checkpointCampaign,
+      commitCampaignProgress,
+      commitCampaignOutcome,
+      campaignAvailability,
+    },
     redeemVoucher,
     goDebate,
     cardHandlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel },
   }
+}
+
+function toSaveState(state: GameState): SaveState {
+  return {
+    owned: state.owned,
+    packs: state.packs,
+    cardsRevealed: state.cardsRevealed,
+    packsOpened: state.packsOpened,
+    regularPacksOpened: state.regularPacksOpened,
+    refillAt: state.refillAt,
+    campaign: state.campaign,
+    debateExhaustion: state.debateExhaustion,
+    campaignRecord: state.campaignRecord,
+  }
+}
+
+function cloneCampaignRecord(record: CampaignRecord): CampaignRecord {
+  return {
+    ...record,
+    stageWins: { ...record.stageWins },
+    stageLosses: { ...record.stageLosses },
+    bankExits: { ...record.bankExits },
+  }
+}
+
+function matchesCampaign(
+  active: CampaignSnapshot,
+  id: string,
+  stageIndex: CampaignStageIndex,
+): boolean {
+  return active.id === id && active.stageIndex === stageIndex
+}
+
+function isValidCampaignCheckpoint(
+  active: CampaignSnapshot,
+  next: CampaignSnapshot,
+): boolean {
+  if (next.stageIndex === active.stageIndex) {
+    return (
+      active.phase === 'in-duel' &&
+      next.phase === 'in-duel' &&
+      next.unbankedPacks === active.unbankedPacks &&
+      isMonotonicDuelCheckpoint(active.duel, next.duel)
+    )
+  }
+
+  function isMonotonicDuelCheckpoint(
+    active: CampaignSnapshot['duel'],
+    next: CampaignSnapshot['duel'],
+  ): boolean {
+    if (
+      next.playerId !== active.playerId ||
+      next.opponentId !== active.opponentId
+    ) {
+      return false
+    }
+    if (snapshotsEqual(active, next)) return true
+
+    if (
+      active.phase === 'awaiting-action' &&
+      next.phase === 'actions-locked'
+    ) {
+      return (
+        next.turn === active.turn &&
+        pollsEqual(next.poll, active.poll) &&
+        completedTurnsEqual(next.lastTurn, active.lastTurn)
+      )
+    }
+    if (
+      active.phase === 'actions-locked' &&
+      next.phase === 'revealing'
+    ) {
+      return (
+        next.turn === active.turn &&
+        next.playerAction === active.playerAction &&
+        next.oppAction === active.oppAction &&
+        next.lastTurn !== null &&
+        pollsEqual(next.lastTurn.pollBefore, active.poll)
+      )
+    }
+    if (
+      active.phase === 'revealing' &&
+      next.phase === 'awaiting-action'
+    ) {
+      return (
+        active.winner === null &&
+        next.turn === active.turn + 1 &&
+        pollsEqual(next.poll, active.poll) &&
+        completedTurnsEqual(next.lastTurn, active.lastTurn)
+      )
+    }
+    if (active.phase === 'revealing' && next.phase === 'settled') {
+      return (
+        active.winner !== null &&
+        next.turn === active.turn &&
+        pollsEqual(next.poll, active.poll) &&
+        next.playerAction === active.playerAction &&
+        next.oppAction === active.oppAction &&
+        completedTurnsEqual(next.lastTurn, active.lastTurn) &&
+        winnersEqual(next.winner, active.winner)
+      )
+    }
+    return false
+  }
+
+  function snapshotsEqual(
+    left: CampaignSnapshot['duel'],
+    right: CampaignSnapshot['duel'],
+  ): boolean {
+    return (
+      left.phase === right.phase &&
+      left.turn === right.turn &&
+      left.playerAction === right.playerAction &&
+      left.oppAction === right.oppAction &&
+      pollsEqual(left.poll, right.poll) &&
+      completedTurnsEqual(left.lastTurn, right.lastTurn) &&
+      winnersEqual(left.winner, right.winner)
+    )
+  }
+
+  function pollsEqual(
+    left: CampaignSnapshot['duel']['poll'],
+    right: CampaignSnapshot['duel']['poll'],
+  ): boolean {
+    return (
+      left.firmPlayer === right.firmPlayer &&
+      left.ratherPlayer === right.ratherPlayer &&
+      left.undecided === right.undecided &&
+      left.ratherOpponent === right.ratherOpponent &&
+      left.firmOpponent === right.firmOpponent
+    )
+  }
+
+  function completedTurnsEqual(
+    left: CampaignSnapshot['duel']['lastTurn'],
+    right: CampaignSnapshot['duel']['lastTurn'],
+  ): boolean {
+    if (!left || !right) return left === right
+    return (
+      left.playerAction === right.playerAction &&
+      left.oppAction === right.oppAction &&
+      pollsEqual(left.pollBefore, right.pollBefore) &&
+      pollsEqual(left.poll, right.poll)
+    )
+  }
+
+  function winnersEqual(
+    left: CampaignSnapshot['duel']['winner'],
+    right: CampaignSnapshot['duel']['winner'],
+  ): boolean {
+    if (!left || !right) return left === right
+    return left.winner === right.winner && left.majority === right.majority
+  }
+  return (
+    active.phase === 'awaiting-choice' &&
+    next.stageIndex === active.stageIndex + 1 &&
+    next.phase === 'in-duel' &&
+    next.unbankedPacks === active.unbankedPacks &&
+    next.duel.phase === 'awaiting-action'
+  )
+}
+
+function isValidCampaignOutcome(
+  active: CampaignSnapshot,
+  commit: CampaignOutcomeCommit,
+): boolean {
+  if (commit.outcome === 'abandoned') {
+    return commit.stageResult === null && commit.packs === 0
+  }
+  if (commit.outcome === 'banked') {
+    return (
+      active.phase === 'awaiting-choice' &&
+      active.stageIndex < CAMPAIGN_RARITIES.length - 1 &&
+      commit.stageResult === null &&
+      commit.packs === active.unbankedPacks
+    )
+  }
+  if (commit.outcome === 'lost') {
+    return (
+      active.phase === 'in-duel' &&
+      active.duel.phase === 'settled' &&
+      active.duel.winner?.winner === 'opponent' &&
+      commit.stageResult === 'loss' &&
+      commit.packs === 0
+    )
+  }
+  return (
+    active.phase === 'in-duel' &&
+    active.stageIndex === CAMPAIGN_RARITIES.length - 1 &&
+    active.duel.phase === 'settled' &&
+    active.duel.winner?.winner === 'player' &&
+    commit.stageResult === 'win' &&
+    commit.packs === campaignTotalAfterWin(active.stageIndex)
+  )
 }

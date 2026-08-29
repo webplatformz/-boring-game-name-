@@ -185,3 +185,37 @@ test('an achievement pack does not reset an independent refill timer', async ({ 
   expect(stored.packs).toBe(5)
   expect(stored.refillAt).toBeNull()
 })
+
+test('an automatic refill never reduces a bonus-pack balance above its cap', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
+    localStorage.setItem('bundeshaus-language-v1', 'en')
+    localStorage.setItem(
+      'bundeshaus-pack-v1',
+      JSON.stringify({
+        packs: 0,
+        owned: {},
+        cardsRevealed: 5_000,
+        packsOpened: 1_000,
+        regularPacksOpened: 1_000,
+        refillAt: Date.now() + 1_000,
+      }),
+    )
+  })
+  await page.goto('/')
+  await expect(page.getByRole('status')).toBeVisible()
+
+  const rewardedPacks = await page.evaluate(
+    () => JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!).packs,
+  )
+  expect(rewardedPacks).toBeGreaterThan(5)
+
+  await page.waitForTimeout(1_500)
+  const stored = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),
+  )
+  expect(stored.packs).toBe(rewardedPacks)
+  expect(stored.refillAt).toBeNull()
+})

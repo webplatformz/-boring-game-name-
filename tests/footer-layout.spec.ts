@@ -43,6 +43,7 @@ test('keeps the footer after every tab screen, including debate results', async 
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await page.getByRole('button', { name: /SINGLE RANDOM DEBATE/ }).click()
   const attack = page.getByRole('button', { name: 'ATTACK', exact: true })
   const outcome = page.getByText(/YOU (?:WON!|LOST)/)
   for (let turn = 0; turn < 5; turn++) {

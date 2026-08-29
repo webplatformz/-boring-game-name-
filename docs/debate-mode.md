@@ -1,9 +1,10 @@
 # Debate Mode
 
 Single-player-vs-AI Debate mode built on card `atk`/`def`/`ovr` stats.
-The five-turn polling duel is fully wired in the product. Campaign selection,
-escalation, exhaustion, and rewards remain design-only. No
-votation/initiative data is used.
+The five-turn polling duel and Campaign mode are wired in the product.
+Campaign progression, exact-rarity matchmaking, interruption recovery,
+validated persistence, exhaustion, statistics, atomic reward commits, and
+localized campaign UI are implemented. No votation/initiative data is used.
 
 Model checks use Node's built-in test runner via `npm run verify:debate`;
 the production-rule simulation runs via `npm run simulate:debate`.
@@ -179,12 +180,23 @@ Undecided voters count for neither side either way.
   and injectable randomness for deterministic verification.
 - `debateMatch.ts`: pure cross-party-preferred matchmaking and stat-weighted
   `chooseAiAction`, shared by the app and simulator.
-- `useDebate.ts`: `'fight'`/`'reveal'` steps loop per turn. State includes
-  `poll`, `turn` (1–5), `winner: { winner, majority } | null` (replaces
-  single-shot v1 result), plus a `lastTurn` snapshot so feedback persists
-  while the next action is chosen.
-  Timer cancellation and a synchronous double-submit guard apply per turn;
-  leaving the Debate screen resets an active debate.
+- `debateSession.ts`: pure one-duel state machine. It owns
+  `awaiting-action → actions-locked → revealing → settled` transitions and
+  calls the existing poll resolver exactly once per turn.
+- `useDuelSession.ts`: shared React timing adapter with suspense/result timers,
+  generation-based timer cancellation, and a synchronous double-submit guard.
+- `useTrainingDebate.ts`: training-only matchmaking and `DebateRecord`
+  persistence.
+- `useDebate.ts`: screen facade with discriminated picker, mode-choice, and
+  duel views. Campaign selection is visible but disabled until its coordinator
+  and persistence are implemented. Leaving the screen resets an active
+  training debate.
+- `debateCampaign.ts`: pure six-stage campaign progression, cumulative reward,
+  bank/loss/abandon, copy-allowance, and local-midnight helpers. It is tested
+  and connected to the game-state persistence gateway through
+  `useDebateCampaign.ts`.
+- `debateMatch.ts`: retains training matchmaking and adds exact-rarity,
+  cross-party-preferred campaign matchmaking.
 - `Debate.tsx`: compact persistent cards surround an animated five-bucket poll
   meter with a fixed 50/50 marker, turn indicator, neutral per-turn explanation,
   signed bucket deltas that persist until the next result, fixed action-reveal
@@ -284,8 +296,9 @@ arithmetic:
 
 ## Future: training & campaign modes (designed, not implemented)
 
-**Status: design only.** After the player selects a card, Debate will ask
-which mode to start:
+**Status: implemented.** Mode choice, the pure campaign domain, persistence,
+orchestration, and the campaign UI are wired. After the player selects a card,
+Debate asks which mode to start:
 
 - **Single random debate** preserves today's behavior exactly. It selects an
   opponent using the current matchmaking rules, records the outcome, awards

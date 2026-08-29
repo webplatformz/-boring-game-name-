@@ -14,6 +14,10 @@ async function seedOwnedCard(page: Page, deterministic = false) {
       localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
       localStorage.setItem('bundeshaus-language-v1', 'en')
       localStorage.setItem(
+        'bundeshaus-achievements-v1',
+        JSON.stringify({ unlocked: { 'first-pull': Date.now() } }),
+      )
+      localStorage.setItem(
         'bundeshaus-pack-v1',
         JSON.stringify({
           packs: 10,
@@ -36,11 +40,205 @@ async function seedOwnedCard(page: Page, deterministic = false) {
   await page.goto('/')
 }
 
+async function startTrainingDebate(page: Page) {
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await page
+    .getByRole('button', { name: /SINGLE RANDOM DEBATE/ })
+    .click()
+}
+
+test('selecting a card asks for the debate mode before matchmaking', async ({ page }) => {
+  await seedOwnedCard(page)
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+
+  await expect(page.getByText('CHOOSE DEBATE MODE', { exact: true })).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: /SINGLE RANDOM DEBATE/ }),
+  ).toBeEnabled()
+  await expect(
+    page.getByRole('button', { name: /START A CAMPAIGN/ }),
+  ).toBeEnabled()
+
+  await page.getByRole('button', { name: '← CHOOSE ANOTHER CARD' }).click()
+  await expect(page.getByText('CHOOSE YOUR DEBATER', { exact: true })).toBeVisible()
+})
+
+test('a campaign starts at common and resumes after leaving Debate', async ({
+  page,
+}) => {
+  await seedOwnedCard(page, true)
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await page.getByRole('button', { name: /START A CAMPAIGN/ }).click()
+
+  await expect(page.getByText('STAGE 1/6 · COMMON')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'ATTACK', exact: true })).toBeEnabled()
+  const campaignId = await page.evaluate(() => {
+    const save = JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!)
+    return save.campaign.id as string
+  })
+
+  await page.getByRole('button', { name: 'CARDS', exact: true }).click()
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+
+  await expect(page.getByText('STAGE 1/6 · COMMON')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'ATTACK', exact: true })).toBeEnabled()
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const save = JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!)
+        return save.campaign.id as string
+      }),
+    )
+    .toBe(campaignId)
+})
+
+test('banking a won campaign stage awards packs and exhausts one copy', async ({
+  page,
+}) => {
+  await page.addInitScript(({ playerId }) => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
+    localStorage.setItem('bundeshaus-language-v1', 'en')
+    localStorage.setItem(
+      'bundeshaus-achievements-v1',
+      JSON.stringify({ unlocked: { 'first-pull': Date.now() } }),
+    )
+    localStorage.setItem(
+      'bundeshaus-pack-v1',
+      JSON.stringify({
+        packs: 10,
+        owned: { [playerId]: 1 },
+        cardsRevealed: 1,
+        packsOpened: 1,
+        regularPacksOpened: 1,
+        refillAt: null,
+        campaign: {
+          version: 1,
+          id: 'bank-test',
+          playerId,
+          stageIndex: 0,
+          phase: 'awaiting-choice',
+          unbankedPacks: 1,
+          duel: {
+            version: 1,
+            playerId,
+            opponentId: 4296,
+            phase: 'settled',
+            poll: {
+              firmPlayer: 51,
+              ratherPlayer: 0,
+              undecided: 49,
+              ratherOpponent: 0,
+              firmOpponent: 0,
+            },
+            playerAction: 'attack',
+            oppAction: 'attack',
+            lastTurn: {
+              pollBefore: {
+                firmPlayer: 0,
+                ratherPlayer: 12,
+                undecided: 88,
+                ratherOpponent: 0,
+                firmOpponent: 0,
+              },
+              poll: {
+                firmPlayer: 51,
+                ratherPlayer: 0,
+                undecided: 49,
+                ratherOpponent: 0,
+                firmOpponent: 0,
+              },
+              playerAction: 'attack',
+              oppAction: 'attack',
+            },
+            turn: 1,
+            winner: { winner: 'player', majority: true },
+          },
+        },
+      }),
+    )
+  }, { playerId: OWNED_MEMBER_ID })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+
+  await expect(page.getByText('STAGE WON')).toBeVisible()
+  await page.getByRole('button', { name: 'BANK & END' }).click()
+  await expect(page.getByText('REWARDS BANKED')).toBeVisible()
+
+  const save = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),
+  )
+  expect(save.packs).toBe(11)
+  expect(save.campaign).toBeNull()
+  expect(save.debateExhaustion[OWNED_MEMBER_ID].count).toBe(1)
+  expect(save.campaignRecord.campaignsBanked).toBe(1)
+  expect(save.campaignRecord.packsAwarded).toBe(1)
+})
+
+test('resuming a locked campaign turn skips interrupted animations safely', async ({
+  page,
+}) => {
+  await page.addInitScript(({ playerId }) => {
+    localStorage.setItem('bundeshaus-disclaimer-v1', 'acknowledged')
+    localStorage.setItem('bundeshaus-language-v1', 'en')
+    localStorage.setItem(
+      'bundeshaus-pack-v1',
+      JSON.stringify({
+        packs: 10,
+        owned: { [playerId]: 1 },
+        cardsRevealed: 1,
+        packsOpened: 1,
+        regularPacksOpened: 1,
+        refillAt: null,
+        campaign: {
+          version: 1,
+          id: 'resume-locked-test',
+          playerId,
+          stageIndex: 0,
+          phase: 'in-duel',
+          unbankedPacks: 0,
+          duel: {
+            version: 1,
+            playerId,
+            opponentId: 4296,
+            phase: 'actions-locked',
+            poll: {
+              firmPlayer: 0,
+              ratherPlayer: 12,
+              undecided: 88,
+              ratherOpponent: 0,
+              firmOpponent: 0,
+            },
+            playerAction: 'defend',
+            oppAction: 'attack',
+            lastTurn: null,
+            turn: 1,
+            winner: null,
+          },
+        },
+      }),
+    )
+  }, { playerId: OWNED_MEMBER_ID })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
+
+  await expect(page.getByTestId('debate-poll')).toContainText('TURN 2 / 5')
+  await expect(page.getByRole('button', { name: 'ATTACK', exact: true })).toBeEnabled()
+  const campaign = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!).campaign,
+  )
+  expect(campaign.duel.phase).toBe('awaiting-action')
+  expect(campaign.duel.turn).toBe(2)
+  expect(campaign.duel.lastTurn.playerAction).toBe('defend')
+  expect(campaign.duel.lastTurn.oppAction).toBe('attack')
+})
+
 test('leaving Debate cancels the active turn and returns to the picker', async ({ page }) => {
   await seedOwnedCard(page)
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
-  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await startTrainingDebate(page)
   await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
   await page.getByRole('button', { name: 'CARDS', exact: true }).click()
   await page.waitForTimeout(3_000)
@@ -56,7 +254,7 @@ test('leaving during a revealed turn prevents delayed record persistence', async
   await seedOwnedCard(page, true)
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
-  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await startTrainingDebate(page)
   await page.getByRole('button', { name: 'ATTACK', exact: true }).click()
   await expect(page.getByTestId('debate-feedback')).not.toBeEmpty({
     timeout: 2_000,
@@ -69,7 +267,7 @@ test('leaving during a revealed turn prevents delayed record persistence', async
     .toBeNull()
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
   await expect(page.getByText('CHOOSE YOUR DEBATER', { exact: true })).toBeVisible()
-  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await startTrainingDebate(page)
   await expect(page.getByRole('button', { name: 'ATTACK', exact: true })).toBeEnabled()
 })
 
@@ -114,7 +312,7 @@ test('Debate reveals poll movement and automatically advances the turn', async (
   await seedOwnedCard(page, true)
 
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
-  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await startTrainingDebate(page)
 
   const poll = page.getByTestId('debate-poll')
   const pollTrack = page.getByTestId('poll-track')
@@ -174,7 +372,7 @@ test('Debate reveals poll movement and automatically advances the turn', async (
 test('Debate ignores a repeated action submission in the same event loop', async ({ page }) => {
   await seedOwnedCard(page, true)
   await page.getByRole('button', { name: 'DEBATE', exact: true }).click()
-  await page.getByText('Thomas Aeschi', { exact: true }).click()
+  await startTrainingDebate(page)
 
   const randomCallsBefore = await page.evaluate(
     () => window.__debateRandomCalls,

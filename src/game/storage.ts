@@ -2,7 +2,47 @@
 
 import type { RarityKey } from '../theme'
 import { RARITY_ORDER } from '../theme'
-import { MEMBERS, META } from '../data/members'
+import { MEMBERS, MEMBERS_BY_ID, META } from '../data/members'
+import {
+  CAMPAIGN_RARITIES,
+  campaignTotalAfterWin,
+  type CampaignPhase,
+  type CampaignStageIndex,
+} from './debateCampaign'
+import {
+  restoreDuelSnapshot,
+  toDuelSnapshot,
+  type DuelSnapshot,
+} from './debateSession'
+
+export type BankableRarity = Exclude<RarityKey, 'mythic'>
+
+export interface CampaignSnapshot {
+  version: 1
+  id: string
+  playerId: number
+  stageIndex: CampaignStageIndex
+  phase: CampaignPhase
+  unbankedPacks: number
+  duel: DuelSnapshot
+}
+
+export interface DebateExhaustion {
+  count: number
+  resetAt: number
+}
+
+export interface CampaignRecord {
+  campaignsStarted: number
+  campaignsBanked: number
+  campaignsLost: number
+  campaignsAbandoned: number
+  campaignsCompleted: number
+  packsAwarded: number
+  stageWins: Record<RarityKey, number>
+  stageLosses: Record<RarityKey, number>
+  bankExits: Record<BankableRarity, number>
+}
 
 export interface SaveState {
   /** Unopened packs remaining. */
@@ -17,6 +57,12 @@ export interface SaveState {
   regularPacksOpened: number
   /** Timestamp (ms) when the next automatic pack unlocks, or null if not waiting. */
   refillAt: number | null
+  /** The single resumable Debate campaign, if one is active. */
+  campaign: CampaignSnapshot | null
+  /** member id → copies already used for campaigns until resetAt. */
+  debateExhaustion: Record<number, DebateExhaustion>
+  /** Aggregate Campaign-only performance. */
+  campaignRecord: CampaignRecord
 }
 
 const KEY = 'bundeshaus-pack-v1'
@@ -24,6 +70,35 @@ export const STARTING_PACKS = 5
 export const MAX_AUTOMATIC_PACKS = 5
 export const REFILL_BATCH_SIZE = 5
 export const REFILL_INTERVAL_MS = import.meta.env.DEV ? 5_000 : 30 * 60 * 1_000
+
+const ZERO_RARITIES: Record<RarityKey, number> = {
+  common: 0,
+  uncommon: 0,
+  rare: 0,
+  ultra: 0,
+  legend: 0,
+  mythic: 0,
+}
+
+const ZERO_BANK_EXITS: Record<BankableRarity, number> = {
+  common: 0,
+  uncommon: 0,
+  rare: 0,
+  ultra: 0,
+  legend: 0,
+}
+
+export const DEFAULT_CAMPAIGN_RECORD: CampaignRecord = {
+  campaignsStarted: 0,
+  campaignsBanked: 0,
+  campaignsLost: 0,
+  campaignsAbandoned: 0,
+  campaignsCompleted: 0,
+  packsAwarded: 0,
+  stageWins: ZERO_RARITIES,
+  stageLosses: ZERO_RARITIES,
+  bankExits: ZERO_BANK_EXITS,
+}
 
 // A valid count is a finite, non-negative integer — guards against corrupt
 // localStorage values like negatives, fractions, NaN or Infinity.
@@ -60,6 +135,12 @@ export function loadSave(): SaveState {
         packsOpened,
         regularPacksOpened,
         refillAt,
+        campaign: normalizeCampaign(s.campaign, s.owned ?? {}),
+        debateExhaustion: normalizeDebateExhaustion(
+          s.debateExhaustion,
+          now,
+        ),
+        campaignRecord: normalizeCampaignRecord(s.campaignRecord),
       }
       persist(normalized)
       return normalized
@@ -74,15 +155,190 @@ export function loadSave(): SaveState {
     packsOpened: 0,
     regularPacksOpened: 0,
     refillAt: null,
+    campaign: null,
+    debateExhaustion: {},
+    campaignRecord: cloneCampaignRecord(DEFAULT_CAMPAIGN_RECORD),
   }
 }
 
-export function persist(state: SaveState): void {
+export function persist(state: SaveState): boolean {
   try {
     localStorage.setItem(KEY, JSON.stringify(state))
+    return true
   } catch {
-    /* ignore quota / private-mode failures */
+    return false
   }
+}
+
+function normalizeCampaign(
+  value: unknown,
+  owned: Record<number, number>,
+): CampaignSnapshot | null {
+  if (!isObject(value)) return null
+  if (
+    value.version !== 1 ||
+    typeof value.id !== 'string' ||
+    value.id.length === 0 ||
+    !isMemberId(value.playerId) ||
+    !isCampaignStageIndex(value.stageIndex) ||
+    (value.phase !== 'in-duel' && value.phase !== 'awaiting-choice') ||
+    (value.phase === 'awaiting-choice' &&
+      value.stageIndex === CAMPAIGN_RARITIES.length - 1) ||
+    !isValidCount(value.unbankedPacks) ||
+    !isObject(value.duel) ||
+    (owned[value.playerId] ?? 0) < 1
+  ) {
+    return null
+  }
+
+  const playerCard = MEMBERS_BY_ID.get(value.playerId)
+  const opponentId = value.duel.opponentId
+  if (!isMemberId(opponentId)) return null
+  const opponentCard = MEMBERS_BY_ID.get(opponentId)
+  if (
+    !playerCard ||
+    !opponentCard ||
+    opponentCard.ratings.rarity !== CAMPAIGN_RARITIES[value.stageIndex]
+  ) {
+    return null
+  }
+
+  const expectedPacks =
+    value.phase === 'awaiting-choice'
+      ? campaignTotalAfterWin(value.stageIndex)
+      : value.stageIndex === 0
+        ? 0
+        : campaignTotalAfterWin(
+            (value.stageIndex - 1) as CampaignStageIndex,
+          )
+  if (value.unbankedPacks !== expectedPacks) return null
+
+  try {
+    const duel = restoreDuelSnapshot(
+      value.duel as unknown as DuelSnapshot,
+      playerCard,
+      opponentCard,
+    )
+    if (
+      value.phase === 'awaiting-choice' &&
+      (duel.phase !== 'settled' || duel.winner?.winner !== 'player')
+    ) {
+      return null
+    }
+    return {
+      version: 1,
+      id: value.id,
+      playerId: value.playerId,
+      stageIndex: value.stageIndex,
+      phase: value.phase,
+      unbankedPacks: value.unbankedPacks,
+      duel: toDuelSnapshot(value.playerId, opponentId, duel),
+    }
+  } catch {
+    return null
+  }
+}
+
+export function validateCampaignSnapshot(
+  value: unknown,
+  owned: Record<number, number>,
+): CampaignSnapshot | null {
+  return normalizeCampaign(value, owned)
+}
+
+function normalizeDebateExhaustion(
+  value: unknown,
+  now: number,
+): Record<number, DebateExhaustion> {
+  if (!isObject(value)) return {}
+  const normalized: Record<number, DebateExhaustion> = {}
+  for (const [rawId, rawEntry] of Object.entries(value)) {
+    const id = Number(rawId)
+    if (
+      !isMemberId(id) ||
+      !MEMBERS_BY_ID.has(id) ||
+      !isObject(rawEntry) ||
+      !isValidCount(rawEntry.count) ||
+      typeof rawEntry.resetAt !== 'number' ||
+      !Number.isFinite(rawEntry.resetAt) ||
+      rawEntry.resetAt <= now
+    ) {
+      continue
+    }
+    normalized[id] = { count: rawEntry.count, resetAt: rawEntry.resetAt }
+  }
+  return normalized
+}
+
+function normalizeCampaignRecord(value: unknown): CampaignRecord {
+  const record = isObject(value) ? value : {}
+  return {
+    campaignsStarted: validCountOrZero(record.campaignsStarted),
+    campaignsBanked: validCountOrZero(record.campaignsBanked),
+    campaignsLost: validCountOrZero(record.campaignsLost),
+    campaignsAbandoned: validCountOrZero(record.campaignsAbandoned),
+    campaignsCompleted: validCountOrZero(record.campaignsCompleted),
+    packsAwarded: validCountOrZero(record.packsAwarded),
+    stageWins: normalizeRarityCounts(record.stageWins),
+    stageLosses: normalizeRarityCounts(record.stageLosses),
+    bankExits: normalizeBankExitCounts(record.bankExits),
+  }
+}
+
+function normalizeRarityCounts(value: unknown): Record<RarityKey, number> {
+  const counts = isObject(value) ? value : {}
+  return {
+    common: validCountOrZero(counts.common),
+    uncommon: validCountOrZero(counts.uncommon),
+    rare: validCountOrZero(counts.rare),
+    ultra: validCountOrZero(counts.ultra),
+    legend: validCountOrZero(counts.legend),
+    mythic: validCountOrZero(counts.mythic),
+  }
+}
+
+function normalizeBankExitCounts(
+  value: unknown,
+): Record<BankableRarity, number> {
+  const counts = isObject(value) ? value : {}
+  return {
+    common: validCountOrZero(counts.common),
+    uncommon: validCountOrZero(counts.uncommon),
+    rare: validCountOrZero(counts.rare),
+    ultra: validCountOrZero(counts.ultra),
+    legend: validCountOrZero(counts.legend),
+  }
+}
+
+function cloneCampaignRecord(record: CampaignRecord): CampaignRecord {
+  return {
+    ...record,
+    stageWins: { ...record.stageWins },
+    stageLosses: { ...record.stageLosses },
+    bankExits: { ...record.bankExits },
+  }
+}
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null
+}
+
+function isMemberId(value: unknown): value is number {
+  return Number.isInteger(value)
+}
+
+function isCampaignStageIndex(
+  value: unknown,
+): value is CampaignStageIndex {
+  return (
+    Number.isInteger(value) &&
+    (value as number) >= 0 &&
+    (value as number) < CAMPAIGN_RARITIES.length
+  )
+}
+
+function validCountOrZero(value: unknown): number {
+  return isValidCount(value) ? value : 0
 }
 
 // ── derived member score cache ──────────────────────────────────────────────

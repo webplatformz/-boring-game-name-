@@ -36,11 +36,15 @@ export function Trade({ game }: { game: Game }) {
       if (count <= 0) continue
       const m = MEMBERS_BY_ID.get(Number(idStr))
       if (m && m.ratings.rarity === selectedRarity) {
-        list.push({ member: m, totalOwned: count })
+        const reserved = game.state.campaign?.playerId === m.id ? 1 : 0
+        const availableOwned = Math.max(0, count - reserved)
+        if (availableOwned > 0) {
+          list.push({ member: m, totalOwned: availableOwned })
+        }
       }
     }
     return list.sort((a, b) => a.member.ratings.ovr - b.member.ratings.ovr)
-  }, [game.state.owned, selectedRarity])
+  }, [game.state.campaign?.playerId, game.state.owned, selectedRarity])
 
   // Count how many of each member ID are currently selected in slots
   const selectedCounts = useMemo(() => {

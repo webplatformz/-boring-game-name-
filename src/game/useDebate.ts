@@ -1,229 +1,269 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { MEMBERS, type Member } from '../data/members'
-import { RARITY_ORDER } from '../theme'
+import { useCallback, useState } from 'react'
+import { MEMBERS_BY_ID, type Member } from '../data/members'
+import type { DebateAction, PollState, PollWinner } from './debate'
 import type {
-  DebateAction,
-  PollState,
-  PollWinner,
-} from './debate'
+  CompletedDebateTurn,
+  DuelPhase,
+} from './debateSession'
+import type { CampaignCompletion } from './debateCampaign'
+import type { CampaignSnapshot, DebateRecord } from './storage'
 import {
-  checkWin,
-  DEBATE_TURN_LIMIT,
-  INITIAL_POLL,
-  resolveTurn,
-} from './debate'
-import { chooseAiAction, pickOpponentFrom } from './debateMatch'
-import type { DebateRecord } from './storage'
-import { loadDebateRecord, persistDebateRecord } from './storage'
+  DEBATE_RESULT_MS,
+  DEBATE_SUSPENSE_MS,
+} from './useDuelSession'
+import {
+  useDebateCampaign,
+  type CampaignCommand,
+} from './useDebateCampaign'
+import type { DebateCampaignGateway } from './useGame'
+import { useTrainingDebate } from './useTrainingDebate'
+
+export { DEBATE_RESULT_MS, DEBATE_SUSPENSE_MS }
+export type { CompletedDebateTurn }
 
 export type DebateStep = 'pick' | 'fight' | 'reveal' | 'result'
 
-/** Delay between the player's tap and both actions being revealed, so the
- * choice lands with some suspense instead of resolving instantly. */
-export const DEBATE_SUSPENSE_MS = 900
-/** Delay between the reveal (stat highlight + action labels appearing) and
- * the result banner — kept long enough to actually read what was chosen. */
-export const DEBATE_RESULT_MS = 1800
-
-export interface CompletedDebateTurn {
-  pollBefore: PollState
-  poll: PollState
-  playerAction: DebateAction
-  oppAction: DebateAction
+interface DebateViewBase {
+  record: DebateRecord
 }
 
-export interface DebateState {
-  step: DebateStep
-  record: DebateRecord
-  playerCard: Member | null
-  oppCard: Member | null
+export type DebateViewState =
+  | (DebateViewBase & { view: 'pick' })
+  | (DebateViewBase & {
+      view: 'choose-mode'
+      playerCard: Member
+      campaignAvailability: number
+    })
+  | (DebateViewBase & {
+      view: 'duel'
+      mode: 'training' | 'campaign'
+      campaign: CampaignSnapshot | null
+      step: Exclude<DebateStep, 'pick'>
+      playerCard: Member
+      oppCard: Member
+      playerAction: DebateAction | null
+      oppAction: DebateAction | null
+      poll: PollState
+      lastTurn: CompletedDebateTurn | null
+      turn: number
+      winner: PollWinner | null
+    })
+  | (DebateViewBase & {
+      view: 'campaign-loading'
+      campaign: CampaignSnapshot
+    })
+  | (DebateViewBase & {
+      view: 'campaign-choice'
+      campaign: CampaignSnapshot
+      playerCard: Member
+    })
+  | (DebateViewBase & {
+      view: 'campaign-result'
+      result: CampaignCompletion
+    })
+  | (DebateViewBase & {
+      view: 'campaign-storage-error'
+      command: CampaignCommand
+    })
+
+export interface DuelViewModel {
+  step: Exclude<DebateStep, 'pick'>
+  playerCard: Member
+  oppCard: Member
   playerAction: DebateAction | null
   oppAction: DebateAction | null
-  poll: PollState | null
+  poll: PollState
   lastTurn: CompletedDebateTurn | null
   turn: number
   winner: PollWinner | null
 }
 
 export interface Debate {
-  state: DebateState
+  state: DebateViewState
   pickPlayerCard: (member: Member) => void
+  startTraining: () => void
+  startCampaign: () => void
+  chooseAnotherCard: () => void
   chooseAction: (action: DebateAction) => void
+  bankCampaign: () => void
+  continueCampaign: () => void
+  abandonCampaign: () => void
+  retryCampaignWrite: () => void
+  dismissCampaignResult: () => void
+  enter: () => void
   reset: () => void
 }
 
-const PICK_STATE: Omit<DebateState, 'record'> = {
-  step: 'pick',
-  playerCard: null,
-  oppCard: null,
-  playerAction: null,
-  oppAction: null,
-  poll: null,
-  lastTurn: null,
-  turn: 1,
-  winner: null,
+function stepFromPhase(
+  phase: DuelPhase,
+): Exclude<DebateStep, 'pick'> {
+  if (phase === 'revealing') return 'reveal'
+  if (phase === 'settled') return 'result'
+  return 'fight'
 }
 
-const INITIAL: DebateState = {
-  record: loadDebateRecord(),
-  ...PICK_STATE,
-}
+export function useDebate(gateway: DebateCampaignGateway): Debate {
+  const training = useTrainingDebate()
+  const campaign = useDebateCampaign(gateway)
+  const {
+    pickPlayerCard: startTrainingDuel,
+    chooseAction: chooseTrainingAction,
+    reset: resetTraining,
+  } = training
+  const {
+    start: startCampaignDuel,
+    chooseAction: chooseCampaignAction,
+    clearTransientState,
+  } = campaign
+  const [pendingPlayerCard, setPendingPlayerCard] = useState<Member | null>(null)
+  const session = training.duel.state.session
+  const playerCard = training.duel.state.playerCard
+  const oppCard = training.duel.state.oppCard
 
-/**
- * Standalone Debate state machine, kept separate from useGame's
- * pack-opening flow since the two are unrelated. Screen-level transition
- * into/out of 'debate' still lives in useGame/App.
- */
-export function useDebate(): Debate {
-  const [state, setState] = useState<DebateState>(INITIAL)
-
-  const patch = useCallback(
-    (p: Partial<DebateState> | ((s: DebateState) => Partial<DebateState>)) =>
-      setState((s) => ({ ...s, ...(typeof p === 'function' ? p(s) : p) })),
-    [],
-  )
-
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([])
-  const actionLocked = useRef(false)
-  const stateRef = useRef(state)
-  stateRef.current = state
-
-  const after = useCallback((ms: number, fn: () => void) => {
-    const id = setTimeout(() => {
-      timers.current = timers.current.filter((timer) => timer !== id)
-      fn()
-    }, ms)
-    timers.current.push(id)
-    return id
+  const pickPlayerCard = useCallback((member: Member) => {
+    setPendingPlayerCard(member)
   }, [])
 
-  // Cancels any in-flight suspense/reveal timers so a reset (or a new pick)
-  // can never be clobbered by a stale callback still resolving a previous round.
-  const clearTimers = useCallback(() => {
-    timers.current.forEach(clearTimeout)
-    timers.current = []
+  const chooseAnotherCard = useCallback(() => {
+    setPendingPlayerCard(null)
   }, [])
 
-  useEffect(() => clearTimers, [clearTimers])
+  const startTraining = useCallback(() => {
+    if (!pendingPlayerCard || campaign.activeCampaign) return
+    startTrainingDuel(pendingPlayerCard)
+    setPendingPlayerCard(null)
+  }, [campaign.activeCampaign, pendingPlayerCard, startTrainingDuel])
 
-  const pickPlayerCard = useCallback(
-    (member: Member) => {
-      clearTimers()
-      actionLocked.current = false
-      const oppCard = pickOpponentFrom(MEMBERS, member, RARITY_ORDER)
-      const poll = INITIAL_POLL(member, oppCard)
-      patch({
-        step: 'fight',
-        playerCard: member,
-        oppCard,
-        playerAction: null,
-        oppAction: null,
-        poll,
-        lastTurn: null,
-        turn: 1,
-        winner: null,
-      })
-    },
-    [patch, clearTimers],
-  )
+  const startCampaign = useCallback(() => {
+    if (!pendingPlayerCard || campaign.activeCampaign) return
+    startCampaignDuel(pendingPlayerCard)
+    setPendingPlayerCard(null)
+  }, [campaign.activeCampaign, pendingPlayerCard, startCampaignDuel])
 
   const chooseAction = useCallback(
     (action: DebateAction) => {
-      const s = stateRef.current
-      if (
-        actionLocked.current ||
-        s.step !== 'fight' ||
-        s.playerAction !== null ||
-        !s.playerCard ||
-        !s.oppCard ||
-        !s.poll
-      ) {
-        return
+      if (campaign.activeCampaign?.phase === 'in-duel') {
+        chooseCampaignAction(action)
+      } else {
+        chooseTrainingAction(action)
       }
-      actionLocked.current = true
-      const oppAction = chooseAiAction(s.oppCard)
-      patch({ playerAction: action, oppAction })
-      after(DEBATE_SUSPENSE_MS, () => {
-        const cur = stateRef.current
-        if (
-          !cur.playerCard ||
-          !cur.oppCard ||
-          !cur.playerAction ||
-          !cur.oppAction ||
-          !cur.poll
-        ) {
-          console.error('Debate turn lost required state before reveal')
-          clearTimers()
-          actionLocked.current = false
-          patch(PICK_STATE)
-          return
-        }
-        const pollBefore = cur.poll
-        const poll = resolveTurn(
-          pollBefore,
-          cur.playerCard,
-          cur.playerAction,
-          cur.oppCard,
-          cur.oppAction,
-        )
-        const winner = checkWin(
-          poll,
-          cur.turn,
-          DEBATE_TURN_LIMIT,
-          cur.playerCard,
-          cur.oppCard,
-        )
-        patch({
-          step: 'reveal',
-          poll,
-          winner,
-          lastTurn: {
-            pollBefore,
-            poll,
-            playerAction: cur.playerAction,
-            oppAction: cur.oppAction,
-          },
-        })
-
-        after(DEBATE_RESULT_MS, () => {
-          if (winner) {
-            clearTimers()
-            const majorityWins =
-              cur.record.majorityWins +
-              (winner.winner === 'player' && winner.majority ? 1 : 0)
-            const turnLimitWins =
-              cur.record.turnLimitWins +
-              (winner.winner === 'player' && !winner.majority ? 1 : 0)
-            const record: DebateRecord = {
-              wins: majorityWins + turnLimitWins,
-              losses: cur.record.losses + (winner.winner === 'opponent' ? 1 : 0),
-              majorityWins,
-              turnLimitWins,
-            }
-            persistDebateRecord(record)
-            patch({ step: 'result', record })
-            return
-          }
-
-          actionLocked.current = false
-          patch({
-            step: 'fight',
-            turn: cur.turn + 1,
-            playerAction: null,
-            oppAction: null,
-            winner: null,
-          })
-        })
-      })
     },
-    [after, clearTimers, patch],
+    [
+      campaign.activeCampaign?.phase,
+      chooseCampaignAction,
+      chooseTrainingAction,
+    ],
   )
 
   const reset = useCallback(() => {
-    clearTimers()
-    actionLocked.current = false
-    patch(PICK_STATE)
-  }, [patch, clearTimers])
+    setPendingPlayerCard(null)
+    resetTraining()
+    clearTransientState()
+  }, [clearTransientState, resetTraining])
 
-  return { state, pickPlayerCard, chooseAction, reset }
+  let state: DebateViewState
+  const campaignSession = campaign.duel.state.session
+  const campaignPlayerCard = campaign.duel.state.playerCard
+  const campaignOpponentCard = campaign.duel.state.oppCard
+  if (campaign.failedCommand) {
+    state = {
+      view: 'campaign-storage-error',
+      record: training.record,
+      command: campaign.failedCommand,
+    }
+  } else if (campaign.result) {
+    state = {
+      view: 'campaign-result',
+      record: training.record,
+      result: campaign.result,
+    }
+  } else if (campaign.activeCampaign?.phase === 'awaiting-choice') {
+    const resolvedPlayer = MEMBERS_BY_ID.get(
+      campaign.activeCampaign.playerId,
+    )
+    if (!resolvedPlayer) {
+      state = {
+        view: 'campaign-loading',
+        record: training.record,
+        campaign: campaign.activeCampaign,
+      }
+    } else {
+      state = {
+        view: 'campaign-choice',
+        record: training.record,
+        campaign: campaign.activeCampaign,
+        playerCard: resolvedPlayer,
+      }
+    }
+  } else if (
+    campaign.activeCampaign &&
+    campaignSession &&
+    campaignPlayerCard &&
+    campaignOpponentCard
+  ) {
+    state = {
+      view: 'duel',
+      mode: 'campaign',
+      campaign: campaign.activeCampaign,
+      step: stepFromPhase(campaignSession.phase),
+      record: training.record,
+      playerCard: campaignPlayerCard,
+      oppCard: campaignOpponentCard,
+      playerAction: campaignSession.playerAction,
+      oppAction: campaignSession.oppAction,
+      poll: campaignSession.poll,
+      lastTurn: campaignSession.lastTurn,
+      turn: campaignSession.turn,
+      winner: campaignSession.winner,
+    }
+  } else if (campaign.activeCampaign) {
+    state = {
+      view: 'campaign-loading',
+      record: training.record,
+      campaign: campaign.activeCampaign,
+    }
+  } else if (session && playerCard && oppCard) {
+    state = {
+      view: 'duel',
+      mode: 'training',
+      campaign: null,
+      step: stepFromPhase(session.phase),
+      record: training.record,
+      playerCard,
+      oppCard,
+      playerAction: session.playerAction,
+      oppAction: session.oppAction,
+      poll: session.poll,
+      lastTurn: session.lastTurn,
+      turn: session.turn,
+      winner: session.winner,
+    }
+  } else if (pendingPlayerCard) {
+    state = {
+      view: 'choose-mode',
+      record: training.record,
+      playerCard: pendingPlayerCard,
+      campaignAvailability: gateway.campaignAvailability(
+        pendingPlayerCard.id,
+      ),
+    }
+  } else {
+    state = { view: 'pick', record: training.record }
+  }
+
+  return {
+    state,
+    pickPlayerCard,
+    startTraining,
+    startCampaign,
+    chooseAnotherCard,
+    chooseAction,
+    bankCampaign: campaign.bank,
+    continueCampaign: campaign.continue,
+    abandonCampaign: campaign.abandon,
+    retryCampaignWrite: campaign.retry,
+    dismissCampaignResult: campaign.dismissResult,
+    enter: campaign.resume,
+    reset,
+  }
 }

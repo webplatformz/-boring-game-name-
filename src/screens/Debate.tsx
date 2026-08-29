@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
@@ -14,6 +14,7 @@ import {
   type PollState,
   type PollWinner,
 } from '../game/debate'
+import { CAMPAIGN_RARITIES } from '../game/debateCampaign'
 import {
   getDebateFeedbackKey,
   getPollDeltas,
@@ -97,20 +98,13 @@ function ScaledCard({ width, member, foil = true, highlightStat = null, style }:
 
 export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
   const { t } = useI18n()
-  const {
-    step,
-    record,
-    playerCard,
-    oppCard,
-    playerAction,
-    oppAction,
-    poll,
-    lastTurn,
-    turn,
-    winner,
-  } = debate.state
+  const { record } = debate.state
+  const [confirmingAbandon, setConfirmingAbandon] = useState(false)
 
-  useEffect(() => debate.reset, [debate.reset])
+  useEffect(() => {
+    debate.enter()
+    return debate.reset
+  }, [debate.enter, debate.reset])
 
   const ownedList = useMemo(() => {
     return Object.keys(game.state.owned)
@@ -137,32 +131,413 @@ export function Debate({ game, debate }: { game: Game; debate: DebateHook }) {
         </div>
       </div>
 
-      {step === 'pick' && <Picker ownedList={ownedList} onPick={debate.pickPlayerCard} onGoHome={game.goHome} />}
+      {debate.state.view === 'pick' && (
+        <Picker
+          ownedList={ownedList}
+          onPick={debate.pickPlayerCard}
+          onGoHome={game.goHome}
+        />
+      )}
+
+      {debate.state.view === 'choose-mode' && (
+        <ModeChoice
+          playerCard={debate.state.playerCard}
+          onStartTraining={debate.startTraining}
+          onStartCampaign={debate.startCampaign}
+          campaignAvailability={debate.state.campaignAvailability}
+          onChooseAnother={debate.chooseAnotherCard}
+        />
+      )}
+
+      {debate.state.view === 'campaign-loading' && (
+        <CampaignPanel
+          title={t('campaignResuming')}
+          body={t('campaignResumingBody')}
+        />
+      )}
+
+      {debate.state.view === 'campaign-choice' && (
+        <CampaignChoice
+          campaign={debate.state.campaign}
+          playerCard={debate.state.playerCard}
+          onBank={debate.bankCampaign}
+          onContinue={debate.continueCampaign}
+          onAbandon={() => setConfirmingAbandon(true)}
+        />
+      )}
+
+      {debate.state.view === 'campaign-result' && (
+        <CampaignResult
+          result={debate.state.result}
+          onDismiss={debate.dismissCampaignResult}
+        />
+      )}
+
+      {debate.state.view === 'campaign-storage-error' && (
+        <CampaignStorageError
+          onRetry={debate.retryCampaignWrite}
+          onExit={() => {
+            debate.reset()
+            game.goHome()
+          }}
+        />
+      )}
 
       {/* fight/reveal/result share one persistent Arena instance so the cards
        * never unmount+remount between them — that full-tree swap was the
        * cause of the jarring instant cut into the result screen. Only the
        * footer content (buttons → status → banner) changes underneath. */}
-      {(step === 'fight' || step === 'reveal' || step === 'result') &&
-        playerCard &&
-        oppCard &&
-        poll && (
-        <Arena
-          step={step}
-          playerCard={playerCard}
-          oppCard={oppCard}
-          playerAction={playerAction}
-          oppAction={oppAction}
-          poll={poll}
-          lastTurn={lastTurn}
-          turn={turn}
-          winner={winner}
-          onChoose={debate.chooseAction}
-          onFightAgain={debate.reset}
+      {debate.state.view === 'duel' && (
+        <>
+          {debate.state.mode === 'campaign' && debate.state.campaign && (
+            <CampaignHud
+              campaign={debate.state.campaign}
+              onAbandon={() => setConfirmingAbandon(true)}
+            />
+          )}
+          <Arena
+            step={debate.state.step}
+            playerCard={debate.state.playerCard}
+            oppCard={debate.state.oppCard}
+            playerAction={debate.state.playerAction}
+            oppAction={debate.state.oppAction}
+            poll={debate.state.poll}
+            lastTurn={debate.state.lastTurn}
+            turn={debate.state.turn}
+            winner={debate.state.winner}
+            onChoose={debate.chooseAction}
+            onFightAgain={
+              debate.state.mode === 'training' ? debate.reset : undefined
+            }
+          />
+        </>
+      )}
+
+      {confirmingAbandon && (
+        <AbandonCampaignDialog
+          onConfirm={() => {
+            setConfirmingAbandon(false)
+            debate.abandonCampaign()
+          }}
+          onCancel={() => setConfirmingAbandon(false)}
         />
       )}
     </div>
   )
+}
+
+function ModeChoice({
+  playerCard,
+  onStartTraining,
+  onStartCampaign,
+  campaignAvailability,
+  onChooseAnother,
+}: {
+  playerCard: Member
+  onStartTraining: () => void
+  onStartCampaign: () => void
+  campaignAvailability: number
+  onChooseAnother: () => void
+}) {
+  const { t } = useI18n()
+
+  return (
+    <div
+      style={{
+        flex: 1,
+        minHeight: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 14,
+        overflowY: 'auto',
+        padding: '4px 0 8px',
+      }}
+    >
+      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '.14em', color: '#5C7391' }}>
+        {t('chooseDebateMode')}
+      </div>
+      <ScaledCard width={150} member={playerCard} />
+      <div style={{ width: '100%', maxWidth: 360, display: 'grid', gap: 10 }}>
+        <button
+          onClick={onStartTraining}
+          style={modeButtonStyle('#2FD3C4')}
+        >
+          <span style={{ fontFamily: AB, fontSize: 15 }}>{t('singleDebateTitle')}</span>
+          <span style={{ fontFamily: MONO, fontSize: 10, lineHeight: 1.45, color: '#9FB6D2' }}>
+            {t('singleDebateBody')}
+          </span>
+        </button>
+        <button
+          disabled={campaignAvailability < 1}
+          aria-describedby={
+            campaignAvailability < 1 ? 'campaign-mode-unavailable' : undefined
+          }
+          onClick={onStartCampaign}
+          style={{
+            ...modeButtonStyle('#FFC53D'),
+            cursor: campaignAvailability < 1 ? 'not-allowed' : 'pointer',
+            opacity: campaignAvailability < 1 ? 0.55 : 1,
+          }}
+        >
+          <span style={{ fontFamily: AB, fontSize: 15 }}>{t('campaignTitle')}</span>
+          <span style={{ fontFamily: MONO, fontSize: 10, lineHeight: 1.45, color: '#9FB6D2' }}>
+            {t('campaignBody')}
+          </span>
+          <span
+            id={
+              campaignAvailability < 1
+                ? 'campaign-mode-unavailable'
+                : undefined
+            }
+            style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '.12em', color: '#FFD87A' }}
+          >
+            {campaignAvailability < 1
+              ? t('campaignUnavailableToday')
+              : t('campaignCopiesAvailable', {
+                  count: campaignAvailability,
+                })}
+          </span>
+        </button>
+      </div>
+      <button
+        onClick={onChooseAnother}
+        style={{ padding: '8px 12px', fontFamily: MONO, fontSize: 10, letterSpacing: '.1em', color: '#7690AE' }}
+      >
+        {t('chooseAnotherCard')}
+      </button>
+    </div>
+  )
+}
+
+function CampaignHud({
+  campaign,
+  onAbandon,
+}: {
+  campaign: NonNullable<Extract<DebateHook['state'], { view: 'duel' }>['campaign']>
+  onAbandon: () => void
+}) {
+  const { t, rarity } = useI18n()
+  return (
+    <div style={{ flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '7px 10px', borderRadius: 9, border: '1px solid rgba(255,197,61,.28)', background: 'rgba(255,197,61,.07)', fontFamily: MONO, fontSize: 9 }}>
+      <span style={{ color: '#FFD87A', letterSpacing: '.1em' }}>
+        {t('campaignStage', {
+          current: campaign.stageIndex + 1,
+          total: CAMPAIGN_RARITIES.length,
+          rarity: rarity(CAMPAIGN_RARITIES[campaign.stageIndex]),
+        })}
+      </span>
+      <span style={{ color: '#9FB6D2' }}>
+        {t('campaignPacksAtRisk', { count: campaign.unbankedPacks })}
+      </span>
+      <button onClick={onAbandon} style={{ color: '#FF9EC4', letterSpacing: '.08em' }}>
+        {t('campaignAbandon')}
+      </button>
+    </div>
+  )
+}
+
+function CampaignChoice({
+  campaign,
+  playerCard,
+  onBank,
+  onContinue,
+  onAbandon,
+}: {
+  campaign: Extract<DebateHook['state'], { view: 'campaign-choice' }>['campaign']
+  playerCard: Member
+  onBank: () => void
+  onContinue: () => void
+  onAbandon: () => void
+}) {
+  const { t, rarity } = useI18n()
+  const nextRarity = CAMPAIGN_RARITIES[campaign.stageIndex + 1]
+  return (
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, textAlign: 'center' }}>
+      <div style={{ fontFamily: AB, fontSize: 22, color: '#FFC53D' }}>{t('campaignStageWon')}</div>
+      <ScaledCard width={130} member={playerCard} />
+      <div style={{ fontFamily: MONO, fontSize: 12, color: '#EAF2FF' }}>
+        {t('campaignPacksSecured', { count: campaign.unbankedPacks })}
+      </div>
+      <div style={{ fontFamily: MONO, fontSize: 10, color: '#7690AE', maxWidth: 300, lineHeight: 1.5 }}>
+        {t('campaignNextRisk', { rarity: rarity(nextRarity) })}
+      </div>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button onClick={onBank} style={campaignActionStyle('#2FD3C4')}>
+          {t('campaignBank')}
+        </button>
+        <button onClick={onContinue} style={campaignActionStyle('#FFC53D')}>
+          {t('campaignContinue')}
+        </button>
+      </div>
+      <button onClick={onAbandon} style={{ fontFamily: MONO, fontSize: 10, color: '#FF9EC4' }}>
+        {t('campaignAbandon')}
+      </button>
+    </div>
+  )
+}
+
+function CampaignResult({
+  result,
+  onDismiss,
+}: {
+  result: Extract<DebateHook['state'], { view: 'campaign-result' }>['result']
+  onDismiss: () => void
+}) {
+  const { t } = useI18n()
+  const wonPacks = result.packs > 0
+  return (
+    <CampaignPanel
+      title={
+        result.outcome === 'completed'
+          ? t('campaignCompleted')
+          : result.outcome === 'banked'
+            ? t('campaignBanked')
+            : result.outcome === 'abandoned'
+              ? t('campaignAbandoned')
+              : t('campaignLost')
+      }
+      body={
+        wonPacks
+          ? t('campaignRewarded', { count: result.packs })
+          : t('campaignRewardForfeited')
+      }
+    >
+      <button onClick={onDismiss} style={campaignActionStyle('#FFC53D')}>
+        {t('campaignDone')}
+      </button>
+    </CampaignPanel>
+  )
+}
+
+function CampaignStorageError({
+  onRetry,
+  onExit,
+}: {
+  onRetry: () => void
+  onExit: () => void
+}) {
+  const { t } = useI18n()
+  return (
+    <CampaignPanel
+      title={t('campaignStorageError')}
+      body={t('campaignStorageErrorBody')}
+    >
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button onClick={onRetry} style={campaignActionStyle('#FFC53D')}>
+          {t('campaignRetry')}
+        </button>
+        <button onClick={onExit} style={campaignActionStyle('#7690AE')}>
+          {t('campaignExit')}
+        </button>
+      </div>
+    </CampaignPanel>
+  )
+}
+
+function CampaignPanel({
+  title,
+  body,
+  children,
+}: {
+  title: string
+  body: string
+  children?: ReactNode
+}) {
+  return (
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, textAlign: 'center', padding: 20 }}>
+      <div style={{ fontFamily: AB, fontSize: 22, color: '#FFC53D' }}>{title}</div>
+      <div style={{ maxWidth: 320, fontFamily: MONO, fontSize: 11, lineHeight: 1.55, color: '#9FB6D2' }}>{body}</div>
+      {children}
+    </div>
+  )
+}
+
+function AbandonCampaignDialog({
+  onConfirm,
+  onCancel,
+}: {
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  const { t } = useI18n()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const cancelRef = useRef(onCancel)
+  cancelRef.current = onCancel
+
+  useEffect(() => {
+    const previouslyFocused = document.activeElement
+    const dialog = dialogRef.current
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        cancelRef.current()
+        return
+      }
+      if (event.key !== 'Tab' || !dialog) return
+      const controls = Array.from(
+        dialog.querySelectorAll<HTMLButtonElement>('button:not(:disabled)'),
+      )
+      const first = controls[0]
+      const last = controls[controls.length - 1]
+      if (!first || !last) return
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus()
+    }
+  }, [])
+
+  return (
+    <div role="presentation" style={{ position: 'fixed', inset: 0, zIndex: 80, display: 'grid', placeItems: 'center', padding: 24, background: 'rgba(4,8,14,.82)' }}>
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="abandon-campaign-title" style={{ width: 'min(340px, 100%)', display: 'flex', flexDirection: 'column', gap: 14, padding: 20, borderRadius: 14, border: '1px solid rgba(255,95,162,.4)', background: '#0B121D', textAlign: 'center' }}>
+        <div id="abandon-campaign-title" style={{ fontFamily: AB, fontSize: 20, color: '#FF9EC4' }}>{t('campaignAbandonTitle')}</div>
+        <div style={{ fontFamily: MONO, fontSize: 11, lineHeight: 1.5, color: '#9FB6D2' }}>{t('campaignAbandonBody')}</div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
+          <button autoFocus onClick={onCancel} style={campaignActionStyle('#7690AE')}>{t('campaignCancel')}</button>
+          <button onClick={onConfirm} style={campaignActionStyle('#FF5FA2')}>{t('campaignAbandonConfirm')}</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function campaignActionStyle(accent: string): CSSProperties {
+  return {
+    padding: '11px 18px',
+    borderRadius: 10,
+    border: `1px solid ${accent}88`,
+    background: `${accent}18`,
+    color: accent,
+    fontFamily: AB,
+    fontSize: 12,
+    letterSpacing: '.05em',
+  }
+}
+
+function modeButtonStyle(accent: string): CSSProperties {
+  return {
+    minHeight: 100,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 7,
+    padding: '16px',
+    borderRadius: 12,
+    border: `1px solid ${accent}55`,
+    borderLeft: `4px solid ${accent}`,
+    background: '#0B121D',
+    color: '#EAF2FF',
+    textAlign: 'left',
+  }
 }
 
 // ── card picker: choose your fighter from the owned collection ─────────────
@@ -253,7 +628,7 @@ function Arena({
   turn: number
   winner: PollWinner | null
   onChoose: (action: DebateAction) => void
-  onFightAgain: () => void
+  onFightAgain?: () => void
 }) {
   const { t } = useI18n()
   const locked = playerAction !== null
@@ -383,12 +758,14 @@ function Arena({
                   ? t('debateMajorityLoss')
                   : t('debateTurnLimitLoss')}
             </div>
-            <button
-              onClick={onFightAgain}
-              style={{ marginTop: 0, padding: '11px 24px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
-            >
-              {t('debateAgain')}
-            </button>
+            {onFightAgain && (
+              <button
+                onClick={onFightAgain}
+                style={{ marginTop: 0, padding: '11px 24px', borderRadius: 12, background: 'linear-gradient(100deg,#FFC53D,#FF9E3D)', color: '#0A0F18', fontFamily: AB, fontSize: 13, letterSpacing: '.06em' }}
+              >
+                {t('debateAgain')}
+              </button>
+            )}
           </div>
         </div>
       )}
