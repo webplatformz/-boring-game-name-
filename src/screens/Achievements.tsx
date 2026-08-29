@@ -16,10 +16,21 @@ const TIER_COLORS = {
   gold: '#FFC53D',
 } as const
 
-const CATEGORY_ORDER: { key: AchievementCategory; titleKey: 'achCategoryCollection' | 'achCategoryPackOpening' | 'achCategoryTrading' | 'achCategoryStreaks' }[] = [
+const CATEGORY_ORDER: {
+  key: AchievementCategory
+  titleKey:
+    | 'achCategoryCollection'
+    | 'achCategoryPackOpening'
+    | 'achCategoryTrading'
+    | 'achCategoryDebate'
+    | 'achCategoryCampaign'
+    | 'achCategoryStreaks'
+}[] = [
   { key: 'collection', titleKey: 'achCategoryCollection' },
   { key: 'packOpening', titleKey: 'achCategoryPackOpening' },
   { key: 'trading', titleKey: 'achCategoryTrading' },
+  { key: 'debate', titleKey: 'achCategoryDebate' },
+  { key: 'campaign', titleKey: 'achCategoryCampaign' },
   { key: 'streaks', titleKey: 'achCategoryStreaks' },
 ]
 

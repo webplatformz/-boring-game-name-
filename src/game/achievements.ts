@@ -14,9 +14,20 @@ import {
   loadAchievementProgress,
   persistAchievementProgress,
 } from './storage'
-import type { AchievementProgress } from './storage'
+import type {
+  AchievementProgress,
+  CampaignRecord,
+  DebateRecord,
+} from './storage'
 
-export type AchievementCategory = 'collection' | 'packOpening' | 'trading' | 'streaks' | 'hidden'
+export type AchievementCategory =
+  | 'collection'
+  | 'packOpening'
+  | 'trading'
+  | 'debate'
+  | 'campaign'
+  | 'streaks'
+  | 'hidden'
 export type AchievementTier = 'bronze' | 'silver' | 'gold'
 
 export const ACHIEVEMENT_TIER_REWARDS: Record<AchievementTier, number> = {
@@ -44,6 +55,10 @@ export interface AchievementContext {
   sleeplessTriggered: boolean
   mythicDirectPull: boolean
   perfectlyMixedTriggered: boolean
+  debateRecord: DebateRecord
+  campaignRecord: CampaignRecord
+  campaignUpsetVictorySeq: number
+  fullMobilisation: boolean
 }
 
 interface AchievementBase {
@@ -265,6 +280,89 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     check: (ctx) => ctx.tradesCompleted >= 1000,
   },
 
+  // ── debate ──
+  {
+    id: 'first-debate',
+    category: 'debate',
+    tier: 'bronze',
+    titleKey: 'achFirstDebateTitle',
+    descKey: 'achFirstDebateDesc',
+    check: (ctx) => ctx.debateRecord.wins + ctx.debateRecord.losses >= 1,
+  },
+  {
+    id: 'seasoned-debater',
+    category: 'debate',
+    tier: 'silver',
+    repeatEvery: 50,
+    repeatValue: (ctx) => ctx.debateRecord.wins,
+    titleKey: 'achSeasonedDebaterTitle',
+    descKey: 'achSeasonedDebaterDesc',
+    progress: (ctx) => ({ current: ctx.debateRecord.wins, goal: 50 }),
+  },
+
+  // ── campaign ──
+  {
+    id: 'safe-hands',
+    category: 'campaign',
+    tier: 'bronze',
+    titleKey: 'achSafeHandsTitle',
+    descKey: 'achSafeHandsDesc',
+    check: (ctx) => ctx.campaignRecord.campaignsBanked >= 1,
+  },
+  {
+    id: 'upset-victory',
+    category: 'campaign',
+    tier: 'silver',
+    titleKey: 'achUpsetVictoryTitle',
+    descKey: 'achUpsetVictoryDesc',
+    check: (ctx) => ctx.campaignUpsetVictorySeq >= 1,
+  },
+  {
+    id: 'mandate-secured',
+    category: 'campaign',
+    tier: 'gold',
+    titleKey: 'achMandateSecuredTitle',
+    descKey: 'achMandateSecuredDesc',
+    check: (ctx) => ctx.campaignRecord.campaignsCompleted >= 1,
+  },
+  {
+    id: 'exit-strategy',
+    category: 'campaign',
+    tier: 'gold',
+    titleKey: 'achExitStrategyTitle',
+    descKey: 'achExitStrategyDesc',
+    progress: (ctx) => ({
+      current: Object.values(ctx.campaignRecord.bankExits).filter(
+        (count) => count > 0,
+      ).length,
+      goal: RARITY_ORDER.length - 1,
+    }),
+    check: (ctx) =>
+      Object.values(ctx.campaignRecord.bankExits).every((count) => count > 0),
+  },
+  {
+    id: 'campaign-treasury',
+    category: 'campaign',
+    tier: 'silver',
+    titleKey: 'achCampaignTreasuryTitle',
+    descKey: 'achCampaignTreasuryDesc',
+    progress: (ctx) => ({ current: ctx.campaignRecord.packsAwarded, goal: 100 }),
+    check: (ctx) => ctx.campaignRecord.packsAwarded >= 100,
+  },
+  {
+    id: 'on-the-campaign-trail',
+    category: 'campaign',
+    tier: 'bronze',
+    repeatEvery: 50,
+    repeatValue: (ctx) =>
+      ctx.campaignRecord.campaignsBanked +
+      ctx.campaignRecord.campaignsLost -
+      ctx.campaignRecord.campaignsAbandoned +
+      ctx.campaignRecord.campaignsCompleted,
+    titleKey: 'achCampaignTrailTitle',
+    descKey: 'achCampaignTrailDesc',
+  },
+
   // ── streaks ──
   {
     id: 'daily-login-7',
@@ -358,6 +456,15 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     titleKey: 'achMythicHunterTitle',
     descKey: 'achMythicHunterDesc',
     check: (ctx) => ctx.mythicDirectPull,
+  },
+  {
+    id: 'full-mobilisation',
+    category: 'hidden',
+    tier: 'bronze',
+    hidden: true,
+    titleKey: 'achFullMobilisationTitle',
+    descKey: 'achFullMobilisationDesc',
+    check: (ctx) => ctx.fullMobilisation,
   },
 ]
 

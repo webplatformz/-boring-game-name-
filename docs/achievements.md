@@ -58,14 +58,35 @@ of the pack-opening milestones.
 
 ## Debate
 
-Debate achievements remain deferred while rewards and stakes are designed.
+Single random debates remain a reward-free training mode. Their achievements
+grant the normal tier bonus packs, but the debates themselves do not grant
+campaign rewards.
 
 | Achievement | Tier | Repeatable | Requirement |
 | --- | --- | --- | --- |
-| **First Victory** | Bronze | No | Win a Debate |
-| **Debate Veteran** | Silver | No | Win 10 Debates |
-| **Debate Champion** | Gold | No | Win 100 Debates |
-| **Debate Circuit** | Silver | Yes | Win another 25 Debates; rewards at 25, 50, 75, and so on |
+| **First Debate** | Bronze | No | Finish one single random debate |
+| **Seasoned Debater** | Silver | Yes | Win another 50 single random debates; rewards at 50, 100, 150, and so on |
+
+## Campaign
+
+| Achievement | Tier | Repeatable | Requirement |
+| --- | --- | --- | --- |
+| **Safe Hands** | Bronze | No | Bank campaign rewards for the first time |
+| **Upset Victory** | Silver | No | Win a campaign duel against a card of a higher rarity than the player's card |
+| **Mandate Secured** | Gold | No | Complete all six campaign stages through Mythic |
+| **Exit Strategy** | Gold | No | Bank after every possible exit rarity: Common, Uncommon, Rare, Ultra Rare, and Legend |
+| **Campaign Treasury** | Silver | No | Earn 100 packs from campaign rewards |
+| **On the Campaign Trail** | Bronze | Yes | Start and conclude another 50 campaigns; rewards at 50, 100, 150, and so on |
+
+**On the Campaign Trail** advances only when a campaign ends by banking,
+losing a duel, or completing Mythic. Abandoned campaigns do not count. Although
+the achievement describes campaigns started, progress is recorded when each
+qualifying campaign concludes so abandonment can be excluded reliably.
+
+**Upset Victory** is evaluated when a winning campaign duel is durably
+committed. Comparing the two cards' rarity ranks at that point avoids an
+additional lifetime campaign statistic; only the normal unlocked achievement
+state is persisted.
 
 ## Streaks
 
@@ -91,6 +112,11 @@ Hidden achievements are not shown in the UI until they are achieved.
 | **Copy Room Accident** | Gold | No | Own 26 copies of the same card |
 | **Mythic Hunter** | Gold | No | Pull a Mythic-rarity card directly from a regular pack |
 | **Perfectly Mixed** | Gold | No | Open a regular pack containing five different rarities |
+| **Full Mobilisation** | Bronze | No | Own at least five cards and have no campaign-ready owned copies remaining before the next local exhaustion reset |
+
+**Full Mobilisation** is evaluated from the owned-copy counts and current
+campaign exhaustion records. It remains hidden because displaying its progress
+would encourage players to exhaust cards purely to fill an achievement meter.
 
 ## Repeatable achievement rules
 

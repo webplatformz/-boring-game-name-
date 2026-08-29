@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'reac
 import { MEMBERS_BY_ID } from '../data/members'
 import type { Member } from '../data/members'
 import type { Game } from './useGame'
+import type { DebateRecord } from './storage'
 import {
   ACHIEVEMENTS,
   claimRepeatAchievements,
@@ -48,7 +49,11 @@ function resolveOwnedList(owned: Record<number, number>): Member[] {
     .filter((m): m is Member => Boolean(m))
 }
 
-export function useAchievements(game: Game): AchievementsApi {
+export function useAchievements(
+  game: Game,
+  debateRecord: DebateRecord,
+  campaignUpsetVictorySeq: number,
+): AchievementsApi {
   const progress = useSyncExternalStore(subscribeAchievementProgress, getAchievementProgress)
   const [toastQueue, setToastQueue] = useState<AchievementToastItem[]>([])
 
@@ -69,10 +74,26 @@ export function useAchievements(game: Game): AchievementsApi {
 
   const context = useMemo<AchievementContext>(() => {
     const ownedList = resolveOwnedList(game.state.owned)
+    const totalOwnedCopies = Object.values(game.state.owned).reduce(
+      (sum, count) => sum + count,
+      0,
+    )
+    const fullMobilisation =
+      totalOwnedCopies >= 5 &&
+      Object.entries(game.state.owned).every(
+        ([id, count]) => {
+          const exhaustion = game.state.debateExhaustion[Number(id)]
+          return (
+            exhaustion !== undefined &&
+            exhaustion.resetAt > Date.now() &&
+            exhaustion.count >= count
+          )
+        },
+      )
     return {
       owned: game.state.owned,
       ownedList,
-      totalOwnedCopies: Object.values(game.state.owned).reduce((sum, n) => sum + n, 0),
+      totalOwnedCopies,
       packsOpened: game.state.packsOpened,
       regularPacksOpened: game.state.regularPacksOpened,
       tradesCompleted: progress.tradesCompleted,
@@ -85,8 +106,21 @@ export function useAchievements(game: Game): AchievementsApi {
       sleeplessTriggered: progress.sleeplessTriggered,
       mythicDirectPull: progress.mythicDirectPull,
       perfectlyMixedTriggered: progress.perfectlyMixedTriggered,
+      debateRecord,
+      campaignRecord: game.state.campaignRecord,
+      campaignUpsetVictorySeq,
+      fullMobilisation,
     }
-  }, [game.state.owned, game.state.packsOpened, game.state.regularPacksOpened, progress])
+  }, [
+    campaignUpsetVictorySeq,
+    debateRecord,
+    game.state.campaignRecord,
+    game.state.debateExhaustion,
+    game.state.owned,
+    game.state.packsOpened,
+    game.state.regularPacksOpened,
+    progress,
+  ])
 
   useEffect(() => {
     // Pack completion updates game state and achievement progress in separate

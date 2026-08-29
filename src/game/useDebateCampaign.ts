@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { MEMBERS, MEMBERS_BY_ID, type Member } from '../data/members'
+import { RARITY_ORDER } from '../theme'
 import type { DebateAction } from './debate'
 import {
   abandonCampaign,
@@ -35,6 +36,7 @@ export type CampaignCommand =
 
 export interface DebateCampaignController {
   activeCampaign: CampaignSnapshot | null
+  upsetVictorySeq: number
   result: CampaignCompletion | null
   failedCommand: CampaignCommand | null
   duel: DuelSessionController
@@ -64,6 +66,7 @@ export function useDebateCampaign(
   const [failedCommand, setFailedCommand] =
     useState<CampaignCommand | null>(null)
   const [result, setResult] = useState<CampaignCompletion | null>(null)
+  const [upsetVictorySeq, setUpsetVictorySeq] = useState(0)
 
   gatewayRef.current = gateway
   if (gateway.activeCampaign) {
@@ -109,7 +112,11 @@ export function useDebateCampaign(
   }, [])
 
   const completeCampaign = useCallback(
-    (completion: CampaignCompletion, stageResult: 'win' | 'loss' | null) => {
+    (
+      completion: CampaignCompletion,
+      stageResult: 'win' | 'loss' | null,
+      upsetVictory = false,
+    ) => {
       const active = campaignRef.current
       if (!active) return
       runWrite(
@@ -125,6 +132,7 @@ export function useDebateCampaign(
           () => {
             campaignRef.current = null
             if (completion.outcome === 'abandoned') duelRef.current?.clear()
+            if (upsetVictory) setUpsetVictorySeq((value) => value + 1)
             setResult(completion)
           },
       )
@@ -146,10 +154,15 @@ export function useDebateCampaign(
       }
       campaignRef.current = settledSnapshot
       const transition = settleCampaignStage(toCampaignState(settledSnapshot))
+      const upsetVictory =
+        settled.winner.winner === 'player' &&
+        RARITY_ORDER.indexOf(settled.oppCard.ratings.rarity) >
+          RARITY_ORDER.indexOf(settled.playerCard.ratings.rarity)
       if (transition.status === 'complete') {
         completeCampaign(
           transition.completion,
           transition.completion.outcome === 'completed' ? 'win' : 'loss',
+          upsetVictory,
         )
         return
       }
@@ -166,6 +179,7 @@ export function useDebateCampaign(
           }),
           () => {
             campaignRef.current = next
+            if (upsetVictory) setUpsetVictorySeq((value) => value + 1)
           },
       )
     },
@@ -309,6 +323,7 @@ export function useDebateCampaign(
 
   return {
     activeCampaign: gateway.activeCampaign,
+    upsetVictorySeq,
     result,
     failedCommand:
       failedCommand ?? (duel.checkpointError ? 'checkpoint' : null),

@@ -175,7 +175,8 @@ test('banking a won campaign stage awards packs and exhausts one copy', async ({
   const save = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),
   )
-  expect(save.packs).toBe(11)
+  // One campaign pack plus the Bronze Safe Hands achievement reward.
+  expect(save.packs).toBe(12)
   expect(save.campaign).toBeNull()
   expect(save.debateExhaustion[OWNED_MEMBER_ID].count).toBe(1)
   expect(save.campaignRecord.campaignsBanked).toBe(1)

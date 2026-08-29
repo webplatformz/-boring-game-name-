@@ -81,6 +81,7 @@ export interface DuelViewModel {
 
 export interface Debate {
   state: DebateViewState
+  campaignUpsetVictorySeq: number
   pickPlayerCard: (member: Member) => void
   startTraining: () => void
   startCampaign: () => void
@@ -278,6 +279,7 @@ export function useDebate(gateway: DebateCampaignGateway): Debate {
 
   return {
     state,
+    campaignUpsetVictorySeq: campaign.upsetVictorySeq,
     pickPlayerCard,
     startTraining,
     startCampaign,

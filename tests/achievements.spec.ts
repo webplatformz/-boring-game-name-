@@ -37,7 +37,7 @@ test('opening the first pack unlocks First Pull, shows a toast, and grants a bon
   await expect(page).toHaveURL(/#achievements$/)
   const achievementsPage = page.getByRole('main')
   await expect(achievementsPage.getByText('ACHIEVEMENTS', { exact: true })).toBeVisible()
-  await expect(achievementsPage.getByText('1 OF 22 UNLOCKED')).toBeVisible()
+  await expect(achievementsPage.getByText('1 OF 30 UNLOCKED')).toBeVisible()
   await expect(achievementsPage.getByText('First Pull', { exact: true })).toBeVisible()
   await expect(page.locator('#achievement-first-pull')).toBeFocused()
   await page.getByRole('button', { name: '← BACK TO GAME' }).click()
@@ -139,6 +139,95 @@ test('unlocks the two new achievements from their persisted event progress', asy
   const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('bundeshaus-achievements-v1')!))
   expect(progress.unlocked).toHaveProperty('across-the-aisle')
   expect(progress.unlocked).toHaveProperty('perfectly-mixed')
+})
+
+test('unlocks persisted debate and campaign achievements with repeat thresholds', async ({
+  page,
+}) => {
+  const resetAt = Date.now() + 60_000
+  await openApp(page, {
+    packs: 10,
+    owned: { 4053: 5 },
+    cardsRevealed: 0,
+    packsOpened: 0,
+    regularPacksOpened: 0,
+    refillAt: null,
+    debateExhaustion: { 4053: { count: 5, resetAt } },
+    campaignRecord: {
+      campaignsStarted: 100,
+      campaignsBanked: 1,
+      campaignsLost: 51,
+      campaignsAbandoned: 1,
+      campaignsCompleted: 1,
+      packsAwarded: 100,
+      stageWins: {
+        common: 1,
+        uncommon: 1,
+        rare: 1,
+        ultra: 1,
+        legend: 1,
+        mythic: 1,
+      },
+      stageLosses: {
+        common: 50,
+        uncommon: 0,
+        rare: 0,
+        ultra: 0,
+        legend: 0,
+        mythic: 0,
+      },
+      bankExits: {
+        common: 1,
+        uncommon: 1,
+        rare: 1,
+        ultra: 1,
+        legend: 1,
+      },
+    },
+  })
+  await page.evaluate(() => {
+    localStorage.setItem(
+      'bundeshaus-battle-v2',
+      JSON.stringify({
+        wins: 50,
+        losses: 1,
+        majorityWins: 50,
+        turnLimitWins: 0,
+      }),
+    )
+  })
+  await page.reload()
+
+  await expect
+    .poll(async () => {
+      const progress = await page.evaluate(() =>
+        JSON.parse(localStorage.getItem('bundeshaus-achievements-v1')!),
+      )
+      return {
+        unlocked: [
+          'first-debate',
+          'seasoned-debater',
+          'safe-hands',
+          'mandate-secured',
+          'exit-strategy',
+          'campaign-treasury',
+          'on-the-campaign-trail',
+          'full-mobilisation',
+        ].every((id) => id in progress.unlocked),
+        debateRepeats: progress.repeatCompletions['seasoned-debater'],
+        campaignRepeats: progress.repeatCompletions['on-the-campaign-trail'],
+      }
+    })
+    .toEqual({
+      unlocked: true,
+      debateRepeats: 1,
+      campaignRepeats: 1,
+    })
+
+  const save = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem('bundeshaus-pack-v1')!),
+  )
+  expect(save.packs).toBe(30)
 })
 
 test('a legacy save that already qualifies for an achievement grants exactly one bonus pack, not two', async ({ page }) => {

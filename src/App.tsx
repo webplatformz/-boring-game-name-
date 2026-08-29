@@ -43,7 +43,11 @@ function screenFromHash(): Screen | null {
 export function App() {
   const game = useGame()
   const debate = useDebate(game.debateCampaign)
-  const achievements = useAchievements(game)
+  const achievements = useAchievements(
+    game,
+    debate.state.record,
+    debate.campaignUpsetVictorySeq,
+  )
   const [showDisclaimer, setShowDisclaimer] = useState(() => !hasAcknowledgedDisclaimer())
   const [infoPage, setInfoPage] = useState<InfoPage | null>(infoPageFromHash)
   const [hashSynced, setHashSynced] = useState(false)
